@@ -1,0 +1,69 @@
+html {
+    font-size: 62.5%;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+body {
+    font-size: 120%;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    font-size: inherit;
+}
+
+tr, td {
+    vertical-align: top;
+}
+
+#header {
+    padding: 5px 20px;
+    background: #666;
+    color: #eee;
+}
+#header .app-path-section {
+    font-weight: bold;
+}
+#header a.app-path-section {
+    text-decoration: none;
+    color: #eee;
+}
+#header a.app-path-section:hover {
+    text-decoration: underline;
+}
+
+#header h1 {
+    margin: 0;
+}
+
+#body {
+    padding: 20px;
+}
+
+a.action {
+    margin: 0 3px;
+    text-decoration: none;
+    color: #448;
+}
+a.action:hover {
+    color: #88f;
+}
+
+a.inaction {
+    margin: 0 3px;
+    text-decoration: none;
+    color: #ccc;
+}
+
+a img {
+    border: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.fbs-pane, .fbs-flyout-pane {
+    z-index: 2000;
+}
