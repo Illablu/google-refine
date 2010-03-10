@@ -1,0 +1,141 @@
+.browsing-panel {
+}
+.browsing-panel-indicator {
+    clear: both;
+    display: none;
+    margin: 1em;
+    text-align: center;
+}
+.browsing-panel-controls {
+    clear: both;
+    display: none;
+    margin: 1em;
+    text-align: center;
+}
+
+ul.facets-container {
+    margin: 0;
+    padding: 0;
+}
+
+li.facet-container {
+    display: block;
+    clear: both;
+    margin: 0;
+    padding: 0;
+    margin-top: 1em;
+    background: white;
+}
+
+.facet-title {
+    padding: 5px;
+    background: #eee;
+    font-weight: bold;
+    cursor: move;
+}
+.facet-body {
+    border: 1px solid #ccc;
+    padding: 1px;
+}
+.facet-body-scrollable {
+    height: 20em;
+    overflow: auto;
+}
+.facet-footer {
+    padding: 1px;
+    text-align: center;
+    font-size: 80%;
+}
+
+.facet-choice {
+    padding: 2px 5px;
+    clear: both;
+}
+.facet-choice-selected .facet-choice-label {
+    font-weight: bold;
+}
+
+a.facet-choice-label {
+    margin-right: 0.5em;
+    text-decoration: none;
+    color: #004;
+}
+a.facet-choice-label:hover {
+    text-decoration: underline;
+    color: #66f;
+}
+
+.facet-choice-count {
+    color: #aaa;
+}
+.facet-choice-count:before {
+    content: "(";
+    color: #aaa;
+}
+.facet-choice-count:after {
+    content: ")";
+    color: #aaa;
+}
+
+a.facet-choice-link {
+    margin-left: 1em;
+    font-size: 80%;
+    float: right;
+    text-decoration: none;
+    color: #aac;
+}
+a.facet-choice-link:hover {
+    text-decoration: underline;
+    color: #88a;
+}
+
+a.facet-choice-edit {
+    margin-left: 0.5em;
+    font-size: 80%;
+    text-decoration: none;
+    color: #aac;
+    visibility: hidden;
+}
+
+a.facet-choice-edit:hover {
+    text-decoration: underline;
+    color: #88a;
+}
+
+img.facet-choice-link {
+    text-align: baseline;
+    cursor: pointer;
+    margin: 0 2px;
+    float: right;
+}
+
+.facet-range-body {
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+.facet-range-histogram {
+    margin: 10px 4px;
+    overflow: hidden;
+}
+.facet-range-histogram img {
+    height: 50px;
+    position: relative;
+    left: -2px;
+}
+.facet-range-slider {
+}
+.facet-range-status {
+    margin: 10px 0;
+    text-align: center;
+    color: #aaa;
+}
+
+.facet-text-body {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.facet-text-body input {
+    width: 98%;
+}
+

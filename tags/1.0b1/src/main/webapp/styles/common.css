@@ -1,0 +1,100 @@
+html {
+    font-size: 62.5%;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-size: 120%;
+    margin: 0;
+    padding: 0;
+    background: #eee;
+}
+
+table {
+    font-size: inherit;
+}
+
+tr, td {
+    vertical-align: baseline;
+}
+
+input {
+    vertical-align: middle;
+}
+
+#header {
+    background: url(../images/metaweb-sprite-vertical.png) repeat-x scroll 0 0 #025B8D;
+    border-bottom: 1px solid #FCE166;
+    color: #FFFFFF;
+    height: 47px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+}
+#logo {
+    display: block;
+    padding: 13px 0;
+}
+#footer {
+    font-size: 80%;
+    margin: 10px;
+    color: #888;
+    text-align: center;
+}
+#footer a {
+    color: #448;
+}
+
+#body {
+    background: white;
+}
+
+a.action {
+    margin: 0 3px;
+    text-decoration: none;
+    color: #448;
+}
+a.action:hover {
+    color: #88f;
+}
+
+a.inaction {
+    margin: 0 3px;
+    text-decoration: none;
+    color: #ccc;
+}
+
+a img {
+    border: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.fbs-pane, .fbs-flyout-pane {
+    z-index: 2000;
+}
+
+.hidden {
+    display: none;
+}
+
+.ui-widget-header {
+    background-image: none;
+    background-color: #ccc;
+}
+
+.ui-widget-content a.ui-state-default.ui-slider-handle {
+    background: url(../images/slider-left-bracket.png) no-repeat bottom left;
+    border: none;
+    top: -10px;
+}
+.ui-widget-content a.ui-state-default.ui-slider-handle:last-child {
+    background: url(../images/slider-right-bracket.png) no-repeat bottom right;
+    border: none;
+    top: -10px;
+}
+.ui-slider .ui-slider-handle {
+    height: 32px;
+}
