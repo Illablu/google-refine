@@ -8,8 +8,6 @@ import org.json.JSONException;
 import org.json.JSONWriter;
 
 import com.metaweb.gridworks.Jsonizable;
-import com.metaweb.gridworks.history.HistoryEntry;
-import com.metaweb.gridworks.history.HistoryProcess;
 
 public class ProcessManager implements Jsonizable {
     protected List<Process> _processes = new LinkedList<Process>();
@@ -31,36 +29,22 @@ public class ProcessManager implements Jsonizable {
         writer.endObject();
     }
 
-    public HistoryEntry queueProcess(Process process) {
+    public boolean queueProcess(Process process) {
         if (process.isImmediate() && _processes.size() == 0) {
             try {
-                return process.performImmediate();
+                process.performImmediate();
             } catch (Exception e) {
                 // TODO: Not sure what to do yet
                 e.printStackTrace();
             }
+            return true;
         } else {
             _processes.add(process);
             
             update();
-        }
-        return null;
-    }
-    
-    public boolean queueProcess(HistoryProcess process) {
-        if (process.isImmediate() && _processes.size() == 0) {
-            try {
-                return process.performImmediate() != null;
-            } catch (Exception e) {
-                // TODO: Not sure what to do yet
-                e.printStackTrace();
-            }
-        } else {
-            _processes.add(process);
             
-            update();
+            return false;
         }
-        return false;
     }
     
     public boolean hasPending() {

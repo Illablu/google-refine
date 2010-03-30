@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONWriter;
+
 import com.metaweb.gridworks.commands.Command;
 import com.metaweb.gridworks.history.HistoryEntry;
 import com.metaweb.gridworks.model.Project;
@@ -28,7 +30,7 @@ public class AnnotateOneRowCommand extends Command {
             String starredString = request.getParameter("starred");
             if (starredString != null) {
                 boolean starred = "true".endsWith(starredString);
-                String description = (starred ? "Star row " : "Unstar row ") + (rowIndex + 1); 
+                String description = starred ? "Star row " + rowIndex : "Unstar row " + rowIndex; 
 
                 StarOneRowProcess process = new StarOneRowProcess(
                     project, 
@@ -37,7 +39,16 @@ public class AnnotateOneRowCommand extends Command {
                     starred
                 );
                 
-                performProcessAndRespond(request, response, project, process);
+                boolean done = project.processManager.queueProcess(process);
+                if (done) {
+                    JSONWriter writer = new JSONWriter(response.getWriter());
+                    
+                    writer.object();
+                    writer.key("code"); writer.value("ok");
+                    writer.endObject();
+                } else {
+                    respond(response, "{ \"code\" : \"pending\" }");
+                }
             } else {
                 respond(response, "{ \"code\" : \"error\", \"message\" : \"invalid command parameters\" }");
             }
@@ -65,7 +76,7 @@ public class AnnotateOneRowCommand extends Command {
         protected HistoryEntry createHistoryEntry() throws Exception {
             return new HistoryEntry(
                 _project, 
-                (starred ? "Star row " : "Unstar row ") + (rowIndex + 1), 
+                starred ? "Star row " + rowIndex : "Unstar row " + rowIndex, 
                 null, 
                 new RowStarChange(rowIndex, starred)
             );

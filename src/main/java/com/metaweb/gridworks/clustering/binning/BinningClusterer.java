@@ -62,7 +62,7 @@ public class BinningClusterer extends Clusterer {
             }
         }
         
-        public boolean visit(Project project, int rowIndex, Row row, boolean includeContextual, boolean includeDependent) {
+        public boolean visit(Project project, int rowIndex, Row row, boolean contextual) {
             Cell cell = row.getCell(_colindex);
             if (cell != null && cell.value != null) {
                 String v = cell.value.toString();

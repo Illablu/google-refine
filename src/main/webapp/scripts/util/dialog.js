@@ -57,7 +57,7 @@ DialogSystem.createDialog = function() {
 
 DialogSystem.showBusy = function(message) {
     var frame = DialogSystem.createDialog();
-    frame.addClass("dialog-busy-frame");
+    frame.width("300px").css("-moz-border-radius", "25px");
     
     var body = $('<div>').addClass("dialog-busy-body").appendTo(frame);
     $('<img>').attr("src", "images/large-spinner.gif").appendTo(body);

@@ -26,7 +26,10 @@ public class RemoveColumnCommand extends Command {
             AbstractOperation op = new ColumnRemovalOperation(columnName);
             Process process = op.createProcess(project, new Properties());
             
-            performProcessAndRespond(request, response, project, process);
+            boolean done = project.processManager.queueProcess(process);
+            
+            respond(response, "{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+            
         } catch (Exception e) {
             respondException(response, e);
         }

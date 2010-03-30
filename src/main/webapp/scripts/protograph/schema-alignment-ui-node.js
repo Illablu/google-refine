@@ -248,7 +248,7 @@ SchemaAlignmentDialog.UINode.prototype._showNodeConfigDialog = function() {
     
     frame.width("800px");
     
-    var header = $('<div></div>').addClass("dialog-header").text("Schema Skeleton Node").appendTo(frame);
+    var header = $('<div></div>').addClass("dialog-header").text("Protograph Node").appendTo(frame);
     var body = $('<div></div>').addClass("dialog-body").appendTo(frame);
     var footer = $('<div></div>').addClass("dialog-footer").appendTo(frame);
     
@@ -265,10 +265,10 @@ SchemaAlignmentDialog.UINode.prototype._showNodeConfigDialog = function() {
         '<option value="/type/datetime">date/time</option>';
     
     var html = $(
-        '<table class="grid-layout layout-normal layout-full">' +
+        '<table class="schema-align-node-dialog-layout">' +
             '<tr>' +
                 '<td>' +
-                    '<table class="grid-layout layout-tight">' +
+                    '<table class="schema-align-node-dialog-layout2">' +
                         '<tr>' +
                             '<td>' +
                                 '<div class="schema-align-node-dialog-node-type">' +
@@ -278,11 +278,11 @@ SchemaAlignmentDialog.UINode.prototype._showNodeConfigDialog = function() {
                         '</tr>' +
                         '<tr>' +
                             '<td>' +
-                                '<table class="grid-layout layout-tight">' +
+                                '<table class="schema-align-node-dialog-layout2">' +
                                     '<tr>' +
                                         '<td><div class="schema-alignment-node-dialog-column-list" bind="divColumns"></div></td>' +
                                         '<td>' +
-                                            '<table class="grid-layout layout-tight" cols="4">' +
+                                            '<table class="schema-align-node-dialog-layout2" cols="4">' +
                                                 '<tr>' +
                                                     '<td colspan="4">The cell\'s content is used ...</td>' +
                                                 '</tr>' +
@@ -336,7 +336,7 @@ SchemaAlignmentDialog.UINode.prototype._showNodeConfigDialog = function() {
                 '</td>' +
                 
                 '<td>' +
-                    '<table class="grid-layout layout-tight">' +
+                    '<table class="schema-align-node-dialog-layout2">' +
                         '<tr>' +
                             '<td colspan="3">' +
                                 '<div class="schema-align-node-dialog-node-type">' +

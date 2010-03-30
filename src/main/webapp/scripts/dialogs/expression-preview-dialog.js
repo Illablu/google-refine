@@ -32,16 +32,16 @@ function ExpressionPreviewDialog(title, cellIndex, rowIndices, values, expressio
 };
 
 ExpressionPreviewDialog.generateWidgetHtml = function() {
-    return '<div class="grid-layout layout-tight layout-full"><table rows="4" cols="2">' +
+    return '<table class="expression-preview-layout" rows="4" cols="2">' +
             '<tr>' +
                 '<td>Expression</td>' +
                 '<td>Language</td>' +
             '</tr>' +
             '<tr>' +
-                '<td rowspan="2"><div class="input-container"><textarea class="expression-preview-code" bind="expressionPreviewTextarea" /></div></td>' +
+                '<td rowspan="2"><textarea class="expression-preview-code" bind="expressionPreviewTextarea" /></td>' +
                 '<td width="150" height="1">' +
                     '<select bind="expressionPreviewLanguageSelect">' +
-                        '<option value="gel">Gridworks expression language (GEL)</option>' +
+                        '<option value="gel">Native expression language</option>' +
                         '<option value="jython">Jython</option>' +
                         '<option value="clojure">Clojure</option>' +
                     '</select>' +
@@ -70,7 +70,7 @@ ExpressionPreviewDialog.generateWidgetHtml = function() {
                     '</div>' +
                 '</td>' +
             '</tr>' +
-        '</table></div>';
+        '</table>';
 };
 
 ExpressionPreviewDialog.Widget = function(
@@ -242,7 +242,7 @@ ExpressionPreviewDialog.Widget.prototype._renderExpressionHistory = function(dat
     
     var table = $(
         '<table width="100%" cellspacing="5">' +
-            '<tr><th>Expression</th><th></th><th>Language</th><th>From</th></tr>' +
+            '<tr><th>Expression</th><th>Language</th><th>From</th><th></th></tr>' +
         '</table>'
     ).appendTo(elmt)[0];
     
@@ -251,8 +251,10 @@ ExpressionPreviewDialog.Widget.prototype._renderExpressionHistory = function(dat
         var o = Scripting.parse(entry.code);
         
         $(tr.insertCell(0)).text(o.expression);
+        $(tr.insertCell(1)).text(o.language);
+        $(tr.insertCell(2)).text(entry.global ? "Other projects" : "This project");
         
-        $('<a href="javascript:{}">Reuse</a>').appendTo(tr.insertCell(1)).click(function() {
+        $('<a href="javascript:{}">Re-use</a>').appendTo(tr.insertCell(3)).click(function() {
             self._elmts.expressionPreviewTextarea[0].value = o.expression;
             self._elmts.expressionPreviewLanguageSelect[0].value = o.language;
             
@@ -262,9 +264,6 @@ ExpressionPreviewDialog.Widget.prototype._renderExpressionHistory = function(dat
             
             self.update();
         });
-        
-        $(tr.insertCell(2)).text(o.language);
-        $(tr.insertCell(3)).html(entry.global ? "Other&nbsp;projects" : "This&nbsp;project");
     };
     
     for (var i = 0; i < data.expressions.length; i++) {

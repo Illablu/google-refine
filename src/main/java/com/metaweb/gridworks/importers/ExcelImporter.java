@@ -1,6 +1,5 @@
 package com.metaweb.gridworks.importers;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.Serializable;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.apache.poi.common.usermodel.Hyperlink;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -19,10 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.metaweb.gridworks.model.Cell;
 import com.metaweb.gridworks.model.Column;
 import com.metaweb.gridworks.model.Project;
-import com.metaweb.gridworks.model.Recon;
-import com.metaweb.gridworks.model.ReconCandidate;
 import com.metaweb.gridworks.model.Row;
-import com.metaweb.gridworks.model.Recon.Judgment;
 
 public class ExcelImporter implements Importer {
     final protected boolean _xmlBased;
@@ -44,19 +39,10 @@ public class ExcelImporter implements Importer {
     public void read(InputStream inputStream, Project project,
             Properties options, int skip, int limit) throws Exception {
         
-        Workbook wb = null;
-        try {
-            wb = _xmlBased ? 
+        Workbook wb = _xmlBased ? 
                 new XSSFWorkbook(inputStream) : 
                 new HSSFWorkbook(new POIFSFileSystem(inputStream));
-        } catch (IOException e) {
-            throw new IOException(
-                "Attempted to parse file as Excel file but failed. " +
-                "Try to use Excel to re-save the file as a different Excel version or as TSV and upload again.",
-                e
-            );
-        }
-        
+                
         Sheet sheet = wb.getSheetAt(0);
 
         int firstRow = sheet.getFirstRowNum();
@@ -159,39 +145,7 @@ public class ExcelImporter implements Importer {
                     }
                     
                     if (value != null) {
-                        Recon recon = null;
-                        
-                        Hyperlink hyperlink = cell.getHyperlink();
-                        if (hyperlink != null) {
-                            String url = hyperlink.getAddress();
-                            
-                            if (url.startsWith("http://") || 
-                                url.startsWith("https://")) {
-                                
-                                final String sig = "freebase.com/view";
-                                
-                                int i = url.indexOf(sig);
-                                if (i > 0) {
-                                    String id = url.substring(i + sig.length());
-                                    
-                                    int q = id.indexOf('?');
-                                    if (q > 0) {
-                                        id = id.substring(0, q);
-                                    }
-                                    int h = id.indexOf('#');
-                                    if (h > 0) {
-                                        id = id.substring(0, h);
-                                    }
-                                    
-                                    recon = new Recon();
-                                    recon.judgment = Judgment.Matched;
-                                    recon.match = new ReconCandidate(id, "", value.toString(), new String[0], 100);
-                                    recon.addCandidate(recon.match);
-                                }
-                            }
-                        }
-                        
-                        newRow.setCell(c, new Cell(value, recon));
+                        newRow.setCell(c, new Cell(value, null));
                         hasData = true;
                     }
                 }
@@ -201,8 +155,6 @@ public class ExcelImporter implements Importer {
                     
                     if (skip <= 0 || rowsWithData > skip) {
                         project.rows.add(newRow);
-                        project.columnModel.setMaxCellIndex(newRow.cells.size());
-                        
                         if (limit > 0 && project.rows.size() >= limit) {
                             break;
                         }

@@ -3,7 +3,6 @@ package com.metaweb.gridworks.model;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -27,7 +26,6 @@ public class ColumnModel implements Jsonizable {
     transient protected Map<String, Column>  _nameToColumn;
     transient protected Map<Integer, Column> _cellIndexToColumn;
     transient protected List<ColumnGroup>    _rootColumnGroups;
-    transient protected List<String>		 _columnNames;
     
     public ColumnModel() {
         internalInitialize();
@@ -53,27 +51,9 @@ public class ColumnModel implements Jsonizable {
     public int getKeyColumnIndex() {
         return _keyColumnIndex;
     }
-    
-    public void addColumnGroup(int startColumnIndex, int span, int keyColumnIndex) {
-        for (ColumnGroup g : columnGroups) {
-            if (g.startColumnIndex == startColumnIndex && g.columnSpan == span) {
-                if (g.keyColumnIndex == keyColumnIndex) {
-                    return;
-                } else {
-                    columnGroups.remove(g);
-                    break;
-                }
-            }
-        }
-        
-        ColumnGroup cg = new ColumnGroup(startColumnIndex, span, keyColumnIndex);
-        
-        columnGroups.add(cg);
-        
-    }
 
     public void update() {
-        internalInitialize();
+        generateMaps();
     }
     
     public Column getColumnByName(String name) {
@@ -82,10 +62,6 @@ public class ColumnModel implements Jsonizable {
     
     public Column getColumnByCellIndex(int cellIndex) {
         return _cellIndexToColumn.get(cellIndex);
-    }
-    
-    public List<String> getColumnNames() {
-    	return _columnNames;
     }
 
     public void write(JSONWriter writer, Properties options)
@@ -195,12 +171,10 @@ public class ColumnModel implements Jsonizable {
     protected void generateMaps() {
         _nameToColumn = new HashMap<String, Column>();
         _cellIndexToColumn = new HashMap<Integer, Column>();
-        _columnNames = new ArrayList<String>();
         
         for (Column column : columns) {
             _nameToColumn.put(column.getName(), column);
             _cellIndexToColumn.put(column.getCellIndex(), column);
-            _columnNames.add(column.getName());
         }
     }
 }

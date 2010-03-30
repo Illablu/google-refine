@@ -1,28 +1,25 @@
+.view-panel {
+}
 .data-table-container {
     border: 1px solid #ccc;
-    overflow: auto;
+    overflow-x: auto;
 }
 
 table.data-table {
-    margin: 0px;
-    padding: 0px;
-    border-collapse: collapse;
 }
 
 table.data-table > tbody > tr > td {
     padding: 2px 5px;
+    border-top: 1px solid white;
     border-right: 1px solid white;
 }
 
 table.data-table > tbody > tr.odd > td {
-    border-top: 1px solid #eee;
-    border-right: 1px solid #eee;
+    border-top: 1px solid #ddd;
 }
 
 table.data-table > tbody > tr.even > td {
-    border-top: 1px solid white;
-    border-right: 1px solid white;
-    background: #eee;
+    background: #ddd;
 }
 
 table.data-table > tbody > tr.contextual > td > div {
@@ -33,56 +30,26 @@ table.data-table > tbody > tr.record.contextual > td {
 }
 
 table.data-table td.column-header {
-    background: #e8e8e8;
+    background: #ddd;
     cursor: pointer;
     padding: 5px 5px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #aaa;
     white-space: pre;
     font-weight: bold;
 }
 
-table.column-header-layout {
-    border-collapse: collapse;
-    width: 100%;
-}
 table.column-header-layout td {
     padding: 0px;
     font-weight: bold;
 }
-a.column-header-menu {
-    display: block;
-    margin-left: 5px;
-    width: 19px;
-    height: 19px;
-    background-image: url(../../images/menu-dropdown.png);
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
-}
-a.column-header-menu:hover {
-    background-position: -19px 0px;
-}
-.column-header-recon-stats-bar {
-    margin-top: 5px;
-    height: 3px;
-    max-height: 3px;
-    background: #333;
-    position: relative;
-    width: 100%;
-}
-.column-header-recon-stats-blanks {
-    position: absolute;
-    height: 100%;
-    background: white;
-}
-.column-header-recon-stats-matched {
-    position: absolute;
-    height: 100%;
-    background: #6d6;
-}
 
+img.column-header-menu {
+    position: relative;
+    top: -5px;
+    left: 5px;
+}
 
 .viewPanel-summary {
-    margin: 1em 2em 0em 2em;
 }
 .viewPanel-summary-row-count {
     font-size: 150%;
@@ -91,9 +58,7 @@ a.column-header-menu:hover {
 
 .viewPanel-pagingControls {
     text-align: center;
-}
-.viewPanel-pagingControls td {
-    padding: 1em 2em;
+    margin: 1em 0;
 }
 
 div.data-table-cell-content {
@@ -206,7 +171,18 @@ a.data-table-star-off {
     background: #fffee0;
 }
 table.data-table-cell-editor-layout {
+    width: 100%;
     white-space: pre;
+}
+table.data-table-cell-editor-layout > tbody > tr > td {
+    padding-right: 3px;
+    padding-bottom: 3px;
+}
+table.data-table-cell-editor-layout > tbody > tr > td:last-child {
+    padding-right: 0px;
+}
+table.data-table-cell-editor-layout > tbody > tr:last-child > td {
+    padding-bottom: 0px;
 }
 
 textarea.data-table-cell-editor-editor {

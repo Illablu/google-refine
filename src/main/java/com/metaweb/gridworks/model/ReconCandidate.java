@@ -27,7 +27,7 @@ public class ReconCandidate implements HasFields, Jsonizable {
     
     public Object getField(String name, Properties bindings) {
         if ("id".equals(name)) {
-            return topicID;
+            return topicName;
         } else if ("guid".equals(name)) {
             return topicGUID;
         } else if ("name".equals(name)) {
@@ -48,14 +48,11 @@ public class ReconCandidate implements HasFields, Jsonizable {
         writer.key("guid"); writer.value(topicGUID);
         writer.key("name"); writer.value(topicName);
         writer.key("score"); writer.value(score);
-        
-        /* if (!options.containsKey("reconCandidateOmitTypes")) */ {
-	        writer.key("types"); writer.array();
-	        for (String typeID : typeIDs) {
-	            writer.value(typeID);
-	        }
-	        writer.endArray();
+        writer.key("types"); writer.array();
+        for (String typeID : typeIDs) {
+            writer.value(typeID);
         }
+        writer.endArray();
         
         writer.endObject();
     }

@@ -19,7 +19,6 @@ import com.metaweb.gridworks.commands.edit.ApplyOperationsCommand;
 import com.metaweb.gridworks.commands.edit.CreateProjectCommand;
 import com.metaweb.gridworks.commands.edit.DeleteProjectCommand;
 import com.metaweb.gridworks.commands.edit.ExportProjectCommand;
-import com.metaweb.gridworks.commands.edit.ExtendDataCommand;
 import com.metaweb.gridworks.commands.edit.ImportProjectCommand;
 import com.metaweb.gridworks.commands.edit.TextTransformCommand;
 import com.metaweb.gridworks.commands.edit.EditOneCellCommand;
@@ -52,7 +51,6 @@ import com.metaweb.gridworks.commands.util.GetExpressionLanguageInfoCommand;
 import com.metaweb.gridworks.commands.util.GuessTypesOfColumnCommand;
 import com.metaweb.gridworks.commands.util.LogExpressionCommand;
 import com.metaweb.gridworks.commands.util.PreviewExpressionCommand;
-import com.metaweb.gridworks.commands.util.PreviewExtendDataCommand;
 import com.metaweb.gridworks.commands.util.PreviewProtographCommand;
 
 public class GridworksServlet extends HttpServlet {
@@ -60,8 +58,6 @@ public class GridworksServlet extends HttpServlet {
     private static final long serialVersionUID = 2386057901503517403L;
     
     static protected Map<String, Command> _commands = new HashMap<String, Command>();
-    
-    // timer for periodically saving projects
     static protected Timer _timer = new Timer();
     
     static {
@@ -96,7 +92,6 @@ public class GridworksServlet extends HttpServlet {
         
         _commands.put("add-column", new AddColumnCommand());
         _commands.put("remove-column", new RemoveColumnCommand());
-        _commands.put("extend-data", new ExtendDataCommand());
         
         _commands.put("reconcile", new ReconcileCommand());
         _commands.put("recon-match-best-candidates", new ReconMatchBestCandidatesCommand());
@@ -111,14 +106,12 @@ public class GridworksServlet extends HttpServlet {
         
         _commands.put("save-protograph", new SaveProtographCommand());
         
+        _commands.put("preview-expression", new PreviewExpressionCommand());
         _commands.put("get-expression-language-info", new GetExpressionLanguageInfoCommand());
         _commands.put("get-expression-history", new GetExpressionHistoryCommand());
         _commands.put("log-expression", new LogExpressionCommand());
         
-        _commands.put("preview-expression", new PreviewExpressionCommand());
-        _commands.put("preview-extend-data", new PreviewExtendDataCommand());
         _commands.put("preview-protograph", new PreviewProtographCommand());
-        
         _commands.put("guess-types-of-column", new GuessTypesOfColumnCommand());
     }
 
@@ -130,22 +123,21 @@ public class GridworksServlet extends HttpServlet {
         
         long period = 1000 * 60 * 5; // 5 minutes
         _timer.scheduleAtFixedRate(new TimerTask() {
+            
             @Override
             public void run() {
-                ProjectManager.singleton.save(false); // quick, potentially incomplete save
+                ProjectManager.singleton.save(false);
             }
         }, period, period);
     }
     
     @Override
     public void destroy() {
-        // cancel automatic periodic saving and force a complete save. 
-        if (_timer != null) {
-            _timer.cancel();
-            _timer = null;
-        }
+        _timer.cancel();
+        _timer = null;
+        
         if (ProjectManager.singleton != null) {
-            ProjectManager.singleton.save(true); // complete save
+            ProjectManager.singleton.save(true);
             ProjectManager.singleton = null;
         }
         
@@ -167,11 +159,6 @@ public class GridworksServlet extends HttpServlet {
     }
     
     protected String getCommandName(HttpServletRequest request) {
-        /*
-         *  Remove extraneous path segments that might be there for other purposes,
-         *  e.g., for /export-rows/filename.ext, export-rows is the command while
-         *  filename.ext is only for the browser to prompt a convenient filename. 
-         */
         String commandName = request.getPathInfo().substring(1);
         int slash = commandName.indexOf('/');
         return slash > 0 ? commandName.substring(0, slash) : commandName;

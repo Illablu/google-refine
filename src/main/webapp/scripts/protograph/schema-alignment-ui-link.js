@@ -59,7 +59,6 @@ SchemaAlignmentDialog.UILink.prototype._renderMain = function() {
             window.setTimeout(function() {
                 self._parentUINode.removeLink(self);
                 self._tr.parentNode.removeChild(self._tr);
-                self._dialog.preview();
             }, 100);
         });
     

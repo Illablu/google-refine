@@ -9,23 +9,19 @@ function DataTableColumnHeaderUI(dataTableView, column, columnIndex, td) {
 
 DataTableColumnHeaderUI.prototype._render = function() {
     var self = this;
+    var td = this._td;
     
-    var html = $(
-        '<table class="column-header-layout">' +
-            '<tr>' +
-                '<td bind="nameContainer"></td>' +
-                '<td width="1%">' +
-                    '<a class="column-header-menu" bind="dropdownMenu">&nbsp;</a>' +
-                '</td>' +
-            '</tr>' +
-        '</table>' +
-        '<div style="display:none;" bind="reconStatsContainer"></div>'
-    ).appendTo(this._td);
+    var headerTable = document.createElement("table");
+    $(headerTable).addClass("column-header-layout").attr("cellspacing", "0").attr("cellpadding", "0").attr("width", "100%").appendTo(td);
     
-    var elmts = DOM.bind(html);
+    var headerTableRow = headerTable.insertRow(0);
+    var headerLeft = headerTableRow.insertCell(0);
+    var headerRight = headerTableRow.insertCell(1);
     
-    elmts.nameContainer.text(this._column.name);
-    elmts.dropdownMenu.click(function() {
+    $('<span></span>').html(this._column.name).appendTo(headerLeft);
+    
+    $(headerRight).attr("width", "1%");
+    $('<img src="/images/menu-dropdown.png" />').addClass("column-header-menu").appendTo(headerRight).click(function() {
         self._createMenuForColumnHeader(this);
     });
     
@@ -35,20 +31,20 @@ DataTableColumnHeaderUI.prototype._render = function() {
             var newPercent = Math.ceil(100 * stats.newTopics / stats.nonBlanks);
             var matchPercent = Math.ceil(100 * stats.matchedTopics / stats.nonBlanks);
             var unreconciledPercent = Math.ceil(100 * (stats.nonBlanks - stats.matchedTopics - stats.newTopics) / stats.nonBlanks);
-            var title = matchPercent + "% matched, " + newPercent + "% new, " + unreconciledPercent + "% to be reconciled";
             
             var whole = $('<div>')
-                .addClass("column-header-recon-stats-bar")
-                .attr("title", title)
-                .appendTo(elmts.reconStatsContainer.show());
+                .height("3px")
+                .css("background", "#333")
+                .css("position", "relative")
+                .attr("title", matchPercent + "% matched, " + newPercent + "% new, " + unreconciledPercent + "% to be reconciled")
+                .width("100%")
+                .appendTo(td);
             
-            $('<div>')
-                .addClass("column-header-recon-stats-blanks")
+            $('<div>').height("100%").css("background", "white").css("position", "absolute")
                 .width(Math.round((stats.newTopics + stats.matchedTopics) * 100 / stats.nonBlanks) + "%")
                 .appendTo(whole);
                 
-            $('<div>')
-                .addClass("column-header-recon-stats-matched")
+            $('<div>').height("100%").css("background", "#6d6").css("position", "absolute")
                 .width(Math.round(stats.matchedTopics * 100 / stats.nonBlanks) + "%")
                 .appendTo(whole);
         }
@@ -120,35 +116,6 @@ DataTableColumnHeaderUI.prototype._createMenuForColumnHeader = function(elmt) {
                     label: "Common Numeric Facets",
                     submenu: [
                         {
-                            label: "Numeric Log Facet",
-                            click: function() {
-                                ui.browsingEngine.addFacet(
-                                    "range", 
-                                    {
-                                        "name" : self._column.name + ": value.log()",
-                                        "columnName" : self._column.name, 
-                                        "expression" : "value.log()",
-                                        "mode" : "range"
-                                    }
-                                );
-                            }
-                        },
-                        {
-                            label: "1-bounded Numeric Log Facet",
-                            click: function() {
-                                ui.browsingEngine.addFacet(
-                                    "range", 
-                                    {
-                                        "name" : self._column.name + ": log(max(1, value))",
-                                        "columnName" : self._column.name, 
-                                        "expression" : "log(max(1, value))",
-                                        "mode" : "range"
-                                    }
-                                );
-                            }
-                        },
-                        {},
-                        {
                             label: "Text Length Facet",
                             click: function() {
                                 ui.browsingEngine.addFacet(
@@ -213,7 +180,7 @@ DataTableColumnHeaderUI.prototype._createMenuForColumnHeader = function(elmt) {
                         ui.browsingEngine.addFacet(
                             "text", 
                             {
-                                "name" : self._column.name,
+                                "name" : self._column.name + " (regex)",
                                 "columnName" : self._column.name, 
                                 "mode" : "regex",
                                 "caseSensitive" : true
@@ -296,7 +263,7 @@ DataTableColumnHeaderUI.prototype._createMenuForColumnHeader = function(elmt) {
                 {},
                 {
                     label: "Cluster & Edit ...",
-                    click: function() { new ClusteringDialog(self._column.name, "value"); }
+                    click: function() { new FacetBasedEditDialog(self._column.name, "value"); }
                 }
             ]
         },
@@ -307,11 +274,6 @@ DataTableColumnHeaderUI.prototype._createMenuForColumnHeader = function(elmt) {
                     label: "Add Column Based on This Column ...",
                     click: function() { self._doAddColumn("value"); }
                 },
-                {
-                    label: "Add Columns From Freebase ...",
-                    click: function() { self._doAddColumnFromFreebase(); }
-                },
-                {},
                 {
                     label: "Remove This Column",
                     click: function() { self._doRemoveColumn(); }
@@ -585,7 +547,7 @@ DataTableColumnHeaderUI.prototype._doTextTransformPrompt = function() {
     var footer = $('<div></div>').addClass("dialog-footer").appendTo(frame);
     
     body.html(
-        '<div class="grid-layout layout-tight layout-full"><table>' +
+        '<table class="expression-preview-layout">' +
             '<tr>' +
                 '<td colspan="4">' + ExpressionPreviewDialog.generateWidgetHtml() + '</td>' +
             '</tr>' +
@@ -781,7 +743,7 @@ DataTableColumnHeaderUI.prototype._doAddColumn = function(initialExpression) {
     var footer = $('<div></div>').addClass("dialog-footer").appendTo(frame);
     
     body.html(
-        '<div class="grid-layout layout-normal layout-full"><table cols="2">' +
+        '<table class="expression-preview-layout" cols="2">' +
             '<tr>' +
                 '<td width="1%" style="white-space: pre;">' +
                     'New column name' +
@@ -803,7 +765,7 @@ DataTableColumnHeaderUI.prototype._doAddColumn = function(initialExpression) {
             '<tr>' +
                 '<td colspan="2">' + ExpressionPreviewDialog.generateWidgetHtml() + '</td>' +
             '</tr>' +
-        '</table></div>'
+        '</table>'
     );
     var bodyElmts = DOM.bind(body);
     
@@ -849,33 +811,6 @@ DataTableColumnHeaderUI.prototype._doAddColumn = function(initialExpression) {
         o.values,
         "value"
     );    
-};
-
-DataTableColumnHeaderUI.prototype._doAddColumnFromFreebase = function() {
-    if ("reconConfig" in this._column && "type" in this._column.reconConfig) {
-        var o = DataTableView.sampleVisibleRows(this._column);
-        var self = this;
-        new ExtendDataPreviewDialog(
-            this._column, 
-            this._columnIndex, 
-            o.rowIndices, 
-            function(extension) {
-                Gridworks.postProcess(
-                    "extend-data", 
-                    {
-                        baseColumnName: self._column.name,
-                        columnInsertIndex: self._columnIndex + 1
-                    },
-                    {
-                        extension: JSON.stringify(extension)
-                    },
-                    { rowsChanged: true, modelsChanged: true }
-                );
-            }
-        );
-    } else {
-        alert("This column has not been reconciled yet.");
-    }
 };
 
 DataTableColumnHeaderUI.prototype._doRemoveColumn = function() {

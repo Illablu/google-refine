@@ -78,15 +78,6 @@ public class GuessTypesOfColumnCommand extends Command {
     
     final static int s_sampleSize = 20;
     
-    /**
-     * Run relevance searches for the first n cells in the given column and
-     * count the types of the results. Return a sorted list of types, from most
-     * frequent to least. 
-     * 
-     * @param project
-     * @param column
-     * @return
-     */
     protected List<TypeGroup> guessTypes(Project project, Column column) {
         Map<String, TypeGroup> map = new HashMap<String, TypeGroup>();
         
@@ -126,7 +117,7 @@ public class GuessTypesOfColumnCommand extends Command {
             jsonWriter.endObject();
             
             StringBuffer sb = new StringBuffer();
-            sb.append("http://api.freebase.com/api/service/search?queries=");
+            sb.append("http://api.freebase.com/api/service/search?indent=1&queries=");
             sb.append(ParsingUtilities.encode(stringWriter.toString()));
             
             URL url = new URL(sb.toString());
@@ -155,7 +146,7 @@ public class GuessTypesOfColumnCommand extends Command {
                     
                     for (int j = 0; j < count; j++) {
                         JSONObject result = results.getJSONObject(j);
-                        double score = 1.0 / (1 + j); // score by each result's rank
+                        double score = 1.0 / (1 + j); //result.getDouble("relevance:score");
                         
                         JSONArray types = result.getJSONArray("type");
                         int typeCount = types.length();

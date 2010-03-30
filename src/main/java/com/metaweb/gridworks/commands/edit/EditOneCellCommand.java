@@ -53,19 +53,12 @@ public class EditOneCellCommand extends Command {
                 value
             );
             
-            HistoryEntry historyEntry = project.processManager.queueProcess(process);
-            if (historyEntry != null) {
-                /*
-                 * If the operation has been done, return the new cell's data
-                 * so the client side can update the cell's rendering right away.
-                 */
+            boolean done = project.processManager.queueProcess(process);
+            if (done) {
                 JSONWriter writer = new JSONWriter(response.getWriter());
-                Properties options = new Properties();
-                
                 writer.object();
                 writer.key("code"); writer.value("ok");
-                writer.key("historyEntry"); historyEntry.write(writer, options);
-                writer.key("cell"); process.newCell.write(writer, options);
+                writer.key("cell"); process.newCell.write(writer, new Properties());
                 writer.endObject();
             } else {
                 respond(response, "{ \"code\" : \"pending\" }");

@@ -11,7 +11,6 @@ import com.metaweb.gridworks.expr.functions.Slice;
 import com.metaweb.gridworks.expr.functions.ToDate;
 import com.metaweb.gridworks.expr.functions.ToNumber;
 import com.metaweb.gridworks.expr.functions.ToString;
-import com.metaweb.gridworks.expr.functions.Type;
 import com.metaweb.gridworks.expr.functions.arrays.Join;
 import com.metaweb.gridworks.expr.functions.arrays.Reverse;
 import com.metaweb.gridworks.expr.functions.arrays.Sort;
@@ -30,9 +29,7 @@ import com.metaweb.gridworks.expr.functions.math.Min;
 import com.metaweb.gridworks.expr.functions.math.Mod;
 import com.metaweb.gridworks.expr.functions.math.Pow;
 import com.metaweb.gridworks.expr.functions.math.Round;
-import com.metaweb.gridworks.expr.functions.math.Sum;
 import com.metaweb.gridworks.expr.functions.strings.Contains;
-import com.metaweb.gridworks.expr.functions.strings.SplitByLengths;
 import com.metaweb.gridworks.expr.functions.strings.Diff;
 import com.metaweb.gridworks.expr.functions.strings.EndsWith;
 import com.metaweb.gridworks.expr.functions.strings.Fingerprint;
@@ -107,8 +104,6 @@ public class ControlFunctionRegistry {
     }
 
     static {
-        registerFunction("type", new Type());
-        
         registerFunction("toString", new ToString());
         registerFunction("toNumber", new ToNumber());
         registerFunction("toDate", new ToDate());
@@ -124,7 +119,6 @@ public class ControlFunctionRegistry {
         registerFunction("replaceChars", new ReplaceChars());
         registerFunction("split", new Split());
         registerFunction("splitByCharType", new SplitByCharType());
-        registerFunction("splitByLengths", new SplitByLengths());
         registerFunction("partition", new Partition());
         registerFunction("rpartition", new RPartition());
         registerFunction("trim", new Trim());
@@ -164,7 +158,6 @@ public class ControlFunctionRegistry {
         registerFunction("ln", new Ln());
         registerFunction("pow", new Pow());
         registerFunction("exp", new Exp());
-        registerFunction("sum", new Sum());
         
         registerFunction("and", new And());
         registerFunction("or", new Or());

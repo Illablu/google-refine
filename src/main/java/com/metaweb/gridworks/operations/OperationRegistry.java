@@ -34,7 +34,6 @@ public abstract class OperationRegistry {
         
         register("column-addition", ColumnAdditionOperation.class);
         register("column-removal", ColumnRemovalOperation.class);
-        register("extend-data", ExtendDataOperation.class);
         
         register("row-star", RowStarOperation.class);
         

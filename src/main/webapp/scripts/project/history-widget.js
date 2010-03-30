@@ -3,9 +3,6 @@ function HistoryWidget(div) {
     this.update();
 }
 
-HistoryWidget.prototype.resize = function() {
-};
-
 HistoryWidget.prototype.update = function(onDone) {
     var self = this;
     Ajax.chainGetJSON(
@@ -24,67 +21,14 @@ HistoryWidget.prototype.update = function(onDone) {
 HistoryWidget.prototype._render = function() {
     var self = this;
     
-    var collapsedMessage = 
-        (this._data.past.length == 0 ? 
-            "" : 
-            (this._data.past.length == 1 ? "1 change - " : (this._data.past.length + " changes - "))
-        ) + 'hover to see';
+    this._div.empty();
+    this._div.unbind();
     
-    this._div
-        .empty()
-        .unbind()
-        .html(
-            '<h3>Undo/Redo History</h3>' +
-            '<div class="history-panel-body-collapsed" bind="bodyCollapsedDiv">' +
-                collapsedMessage +
-            '</div>' +
-            '<div class="history-panel-body" bind="bodyDiv">' +
-                '<div class="history-past" bind="pastDiv"></div>' +
-                '<div class="history-now" bind="nowDiv">done upto here</div>' +
-                '<div class="history-future" bind="futureDiv"></div>' +
-            '</div>' +
-            '<div class="history-panel-body-controls" bind="bodyControlsDiv"><a href="javascript:{}" bind="rollUpLink">roll up</a></div>' +
-            '<div class="history-panel-footer">' +
-                '<a href="javascript:{}" bind="extractLink">extract</a> &bull; ' +
-                '<a href="javascript:{}" bind="applyLink">apply</a>' +
-            '</div>'
-        );
+    $('<h3>Undo/Redo History</h3>').appendTo(this._div);
     
-    var elmts = DOM.bind(this._div);
-    
-    var renderEntry = function(container, entry, lastDoneID, title) {
-        var a = $('<a href="javascript:{}"></a>').appendTo(container);
-        a.addClass("history-entry").html(entry.description).attr("title", title).click(function(evt) {
-            return self._onClickHistoryEntry(evt, entry, lastDoneID);
-        });
-        return a;
-    };
-    
-    if (this._data.past.length == 0) {
-        elmts.pastDiv.html('<div class="history-panel-message">No change to undo</div>');
-    } else {
-        for (var i = 0; i < this._data.past.length; i++) {
-            var entry = this._data.past[i];
-            renderEntry(elmts.pastDiv, entry, i == 0 ? 0 : this._data.past[i - 1].id, "Undo to here");
-        }
-    }
-    
-    if (this._data.future.length == 0) {
-        elmts.futureDiv.html('<div class="history-panel-message">No change to redo</div>');
-    } else {
-        for (var i = 0; i < this._data.future.length; i++) {
-            var entry = this._data.future[i];
-            renderEntry(elmts.futureDiv, entry, entry.id, "Redo to here");
-        }
-    }
-    
-    elmts.extractLink.click(function() { self._extractOperations(); });
-    elmts.applyLink.click(function() { self._showApplyOperationsDialog(); });
-    
-    elmts.bodyCollapsedDiv.mouseenter(function(evt) {
-        elmts.bodyCollapsedDiv.hide();
-        elmts.bodyDiv.show();
-        elmts.bodyControlsDiv.show();
+    var bodyDiv = $('<div></div>').addClass("history-panel-body").appendTo(this._div);
+    bodyDiv.mouseenter(function(evt) {
+        bodyDiv.addClass("history-panel-body-expanded");
     });
     
     this._div.mouseenter(function(evt) {
@@ -95,23 +39,55 @@ HistoryWidget.prototype._render = function() {
     }).mouseleave(function(evt) {
         self._timerID = window.setTimeout(function() {
             self._timerID = null;
-            elmts.bodyCollapsedDiv.show();
-            elmts.bodyDiv.hide();
-            elmts.bodyControlsDiv.hide();
+            bodyDiv.removeClass("history-panel-body-expanded");
+            autoscroll();
         }, 1000);
     });
     
-    elmts.rollUpLink.click(function(evt) {
-        if (self._timerID != null) {
-            window.clearTimeout(self._timerID);
-            self._timerID = null;
-        }
-        elmts.bodyCollapsedDiv.show();
-        elmts.bodyDiv.hide();
-        elmts.bodyControlsDiv.hide();
-    });
+    var renderEntry = function(container, entry, lastDoneID, title) {
+        var a = $('<a href="javascript:{}"></a>').appendTo(container);
+        a.addClass("history-entry").html(entry.description).attr("title", title).click(function(evt) {
+            return self._onClickHistoryEntry(evt, entry, lastDoneID);
+        });
+        return a;
+    };
     
-    elmts.bodyDiv[0].scrollTop = elmts.nowDiv[0].offsetTop + elmts.nowDiv[0].offsetHeight - elmts.bodyDiv[0].offsetHeight;
+    var divPast = $('<div></div>').addClass("history-past").appendTo(bodyDiv);
+    if (this._data.past.length == 0) {
+        $('<div></div>').addClass("history-panel-message").text("No change to undo").appendTo(divPast);
+    } else {
+        for (var i = 0; i < this._data.past.length; i++) {
+            var entry = this._data.past[i];
+            renderEntry(divPast, entry, i == 0 ? 0 : this._data.past[i - 1].id, "Undo to here");
+        }
+    }
+    
+    var divNow = $('<div></div>').text("done upto here").addClass("history-now").appendTo(bodyDiv);
+    
+    var divFuture = $('<div></div>').addClass("history-future").appendTo(bodyDiv);
+    if (this._data.future.length == 0) {
+        $('<div></div>').addClass("history-panel-message").text("No change to redo").appendTo(divFuture);
+    } else {
+        for (var i = 0; i < this._data.future.length; i++) {
+            var entry = this._data.future[i];
+            renderEntry(divFuture, entry, entry.id, "Redo to here");
+        }
+    }
+    
+    var autoscroll = function() {
+        bodyDiv[0].scrollTop = divNow[0].offsetTop + divNow[0].offsetHeight - bodyDiv[0].offsetHeight;
+    };
+    autoscroll();
+    
+    
+    var footerDiv = $('<div></div>').addClass("history-panel-footer").appendTo(this._div);
+    $('<a href="javascript:{}"></a>').text("extract").appendTo(footerDiv).click(function() {
+        self._extractOperations();
+    });
+    $('<span> &bull; </span>').appendTo(footerDiv);
+    $('<a href="javascript:{}"></a>').text("apply").appendTo(footerDiv).click(function() {
+        self._showApplyOperationsDialog();
+    });
 };
 
 HistoryWidget.prototype._onClickHistoryEntry = function(evt, entry, lastDoneID) {
@@ -148,26 +124,22 @@ HistoryWidget.prototype._showExtractOperationsDialog = function(json) {
     var body = $('<div></div>').addClass("dialog-body").appendTo(frame);
     var footer = $('<div></div>').addClass("dialog-footer").appendTo(frame);
     
-    var html = $(
-        '<div class="grid-layout layout-normal layout-full"><table>' +
-            '<tr><td colspan="2">' +
-                'The following JSON code encodes the operations you have done that can be abstracted. ' +
-                'You can copy and save it in order to apply the same operations in the future.' +
-            '</td></tr>' +
-            '<tr>' +
-                '<td width="50%">' +
-                    '<div class="extract-operation-dialog-entries"><table cellspacing="5" bind="entryTable"></table></div>' +
-                '</td>' +
-                '<td width="50%">' +
-                    '<div class="input-container"><textarea wrap="off" class="history-operation-json" bind="textarea" /></div>' +
-                '</td>' +
-            '</tr>' +
-        '</table></div>'
-    ).appendTo(body);
-    
-    var elmts = DOM.bind(html);
+    $('<p></p>').text(
+        "The following JSON code encodes the operations you have done that can be abstracted. " + 
+        "You can copy and save it in order to apply the same operations in the future.").appendTo(body);
         
-    var entryTable = elmts.entryTable[0];
+    var table = $('<table width="100%" cellspacing="0" cellpadding="0"><tr></tr></table>')
+        .addClass("extract-operation-dialog-layout")
+        .appendTo(body)[0];
+    
+    var leftColumn = table.rows[0].insertCell(0);
+    var rightColumn = table.rows[0].insertCell(1);
+    $(leftColumn).width("50%");
+    $(rightColumn).width("50%").css("padding-left", "20px");
+    
+    var entryDiv = $('<div>').addClass("extract-operation-dialog-entries").appendTo(leftColumn);
+    
+    var entryTable = $('<table cellspacing="5"></table>').appendTo(entryDiv)[0];
     var createEntry = function(entry) {
         var tr = entryTable.insertRow(entryTable.rows.length);
         var td0 = tr.insertCell(0);
@@ -190,7 +162,11 @@ HistoryWidget.prototype._showExtractOperationsDialog = function(json) {
     for (var i = 0; i < json.entries.length; i++) {
         createEntry(json.entries[i]);
     }
-    
+        
+    var textarea = $('<textarea />')
+        .attr("wrap", "off")
+        .addClass("extract-operation-dialog-textarea")
+        .appendTo(rightColumn);
     var updateJson = function() {
         var a = [];
         for (var i = 0; i < json.entries.length; i++) {
@@ -199,7 +175,7 @@ HistoryWidget.prototype._showExtractOperationsDialog = function(json) {
                 a.push(entry.operation);
             }
         }
-        elmts.textarea.text(JSON.stringify(a, null, 2));
+        textarea.text(JSON.stringify(a, null, 2));
     };
     updateJson();
     
@@ -212,7 +188,7 @@ HistoryWidget.prototype._showExtractOperationsDialog = function(json) {
     textarea[0].select();
 };
 
-HistoryWidget.prototype._showApplyOperationsDialog = function() {
+HistoryWidget.prototype._showApplyOperationsDialog = function(json) {
     var self = this;
     var frame = DialogSystem.createDialog();
     frame.width("800px");
@@ -221,22 +197,21 @@ HistoryWidget.prototype._showApplyOperationsDialog = function() {
     var body = $('<div></div>').addClass("dialog-body").appendTo(frame);
     var footer = $('<div></div>').addClass("dialog-footer").appendTo(frame);
     
-    var html = $(
-        '<div class="grid-layout layout-normal layout-full"><table>' +
-            '<tr><td>' +
-                'Paste the JSON code encoding the operations to perform.' +
-            '</td></tr>' +
-            '<tr><td>' +
-                '<div class="input-container"><textarea wrap="off" bind="textarea" class="history-operation-json" /></div>' +
-            '</td></tr>' +
-        '</table></div>'
-    ).appendTo(body);
-    
-    var elmts = DOM.bind(html);
+    $('<p></p>').text(
+        "Paste the JSON code encoding the operations to perform.").appendTo(body);
+        
+    var textarea = $('<textarea />')
+        .attr("wrap", "off")
+        .css("white-space", "pre")
+        .css("font-family", "monospace")
+        .width("100%")
+        .height("400px")
+        .appendTo(body);
+    textarea.text(JSON.stringify(json, null, 2));
     
     $('<button></button>').text("Apply").click(function() {
         try {
-            var json = JSON.parse(elmts.textarea[0].value);
+            var json = JSON.parse(textarea[0].value);
         } catch (e) {
             alert("The JSON you pasted is invalid.");
             return;

@@ -20,12 +20,6 @@ ListFacet.reconstruct = function(div, uiState) {
     return new ListFacet(div, uiState.c, uiState.o, uiState.s);
 };
 
-ListFacet.prototype.reset = function() {
-    this._selection = [];
-    this._blankChoice = null;
-    this._errorChoice = null;
-};
-
 ListFacet.prototype.getUIState = function() {
     var json = {
         c: this.getJSON(),
@@ -68,21 +62,19 @@ ListFacet.prototype.hasSelection = function() {
 ListFacet.prototype.updateState = function(data) {
     this._data = data;
     
-    if ("choices" in data) {
-        var selection = [];
-        var choices = data.choices;
-        for (var i = 0; i < choices.length; i++) {
-            var choice = choices[i];
-            if (choice.s) {
-                selection.push(choice);
-            }
+    var selection = [];
+    var choices = data.choices;
+    for (var i = 0; i < choices.length; i++) {
+        var choice = choices[i];
+        if (choice.s) {
+            selection.push(choice);
         }
-        this._selection = selection;
-        this._reSortChoices();
-    
-        this._blankChoice = data.blankChoice || null;
-        this._errorChoice = data.errorChoice || null;
     }
+    this._selection = selection;
+    this._reSortChoices();
+    
+    this._blankChoice = data.blankChoice || null;
+    this._errorChoice = data.errorChoice || null;
     
     this.render();
 };
@@ -125,11 +117,8 @@ ListFacet.prototype.render = function() {
     }
     
     if (this._data == null) {
-        $('<div>').text("Loading...").addClass("facet-body-message").appendTo(bodyDiv);
         bodyDiv.appendTo(container);
-    } else if ("error" in this._data) {
-        $('<div>').text(this._data.error).addClass("facet-body-message").appendTo(bodyDiv);
-        bodyDiv.appendTo(container);
+        bodyDiv.html("Loading...");
     } else {
         var selectionCount = this._selection.length
             + (this._blankChoice != null && this._blankChoice.s ? 1 : 0)
@@ -244,7 +233,7 @@ ListFacet.prototype.render = function() {
 };
 
 ListFacet.prototype._doEdit = function() {
-    new ClusteringDialog(this._config.columnName, this._config.expression);
+    new FacetBasedEditDialog(this._config.columnName, this._config.expression);
 };
 
 ListFacet.prototype._editChoice = function(choice, choiceDiv) {

@@ -59,19 +59,12 @@ public class ReconJudgeOneCellCommand extends Command {
                 match
             );
             
-            HistoryEntry historyEntry = project.processManager.queueProcess(process);
-            if (historyEntry != null) {
-                /*
-                 * If the process is done, write back the cell's data so that the
-                 * client side can update its UI right away.
-                 */
+            boolean done = project.processManager.queueProcess(process);
+            if (done) {
                 JSONWriter writer = new JSONWriter(response.getWriter());
-                Properties options = new Properties();
-                
                 writer.object();
                 writer.key("code"); writer.value("ok");
-                writer.key("historyEntry"); historyEntry.write(writer, options);
-                writer.key("cell"); process.newCell.write(writer, options);
+                writer.key("cell"); process.newCell.write(writer, new Properties());
                 writer.endObject();
             } else {
                 respond(response, "{ \"code\" : \"pending\" }");

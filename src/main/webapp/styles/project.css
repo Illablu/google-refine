@@ -1,53 +1,35 @@
-body {
-    background: white;
-}
-
 #body {
-    padding: 0;
-    margin: 0;
+    padding: 20px;
 }
 
 #loading-message {
     text-align: center;
     font-size: 300%;
     color: #faa;
-    padding: 1in;
+    margin: 1in;
     font-style: italic;
 }
 
-#footer {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    z-index: 1000;
-    padding: 0.5em 0;
-    width: 100%;
-    border-top: none;
-    background: #ccc;
-    color: #888;
+#logo {
+    padding: 13px 0;
+    padding-right: 13px;
+    border-right: 1px solid #ccc;
+    float: left;
 }
-#footer a {
-    color: #66c;
+#path {
+    position: absolute;
+    top: 50%;
+    left: 170px;
+    margin-top: -0.5em;
+    line-height: 1em;
+}
+#path .app-path-section {
+    font-weight: bold;
+}
+#path a.app-path-section {
     text-decoration: none;
+    color: #eee;
 }
-#footer a:hover {
+#path a.app-path-section:hover {
     text-decoration: underline;
-}
-
-.menu-bar-container {
-    position: fixed;
-    left: 0px;
-    width: 100%;
-}
-
-.view-panel {
-    position: fixed;
-    background: white;
-    overflow: hidden;
-}
-
-.facet-panel {
-    position: fixed;
-    background: white;
-    overflow: auto;
 }

@@ -178,7 +178,6 @@ public class Project {
         /* String version = */ reader.readLine();
         
         Project project = new Project(id);
-        int maxCellCount = 0;
         
         String line;
         while ((line = reader.readLine()) != null) {
@@ -196,15 +195,11 @@ public class Project {
                 int count = Integer.parseInt(value);
                 
                 for (int i = 0; i < count; i++) {
-                	Row row = Row.load(reader.readLine());
-                    project.rows.add(row);
-                    
-                    maxCellCount = Math.max(maxCellCount, row.cells.size());
+                    project.rows.add(Row.load(reader.readLine()));
                 }
             }
         }
         
-        project.columnModel.setMaxCellIndex(maxCellCount - 1);
         project.recomputeRowContextDependencies();
         
         return project;
@@ -251,17 +246,13 @@ public class Project {
             lastNonBlankRowsByGroup[i] = -1;
         }
         
-        int rowCount = rows.size();
-        int groupCount = keyedGroups.size();
-        
         int recordIndex = 0;
-        for (int r = 0; r < rowCount; r++) {
+        for (int r = 0; r < rows.size(); r++) {
             Row row = rows.get(r);
-            row.contextRows = null;
             row.contextRowSlots = null;
             row.contextCellSlots = null;
             
-            for (int g = 0; g < groupCount; g++) {
+            for (int g = 0; g < keyedGroups.size(); g++) {
                 Group group = keyedGroups.get(g);
                 
                 if (!ExpressionUtils.isNonBlankData(row.getCellValue(group.keyCellIndex))) {
@@ -305,7 +296,6 @@ public class Project {
             
             rootKeyedGroup.cellIndices = new int[count - 1];
             rootKeyedGroup.keyCellIndex = columnModel.columns.get(columnModel.getKeyColumnIndex()).getCellIndex();
-
             for (int i = 0; i < count; i++) {
                 if (i < rootKeyedGroup.keyCellIndex) {
                     rootKeyedGroup.cellIndices[i] = i;

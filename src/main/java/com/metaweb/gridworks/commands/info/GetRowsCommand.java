@@ -29,7 +29,6 @@ public class GetRowsCommand extends Command {
             int start = Math.min(project.rows.size(), Math.max(0, getIntegerParameter(request, "start", 0)));
             int limit = Math.min(project.rows.size() - start, Math.max(0, getIntegerParameter(request, "limit", 20)));
             Properties options = new Properties();
-            options.put("reconCandidateOmitTypes", true);
             
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Type", "application/json");
@@ -39,8 +38,8 @@ public class GetRowsCommand extends Command {
             
             {
                 RowAccumulator acc = new RowAccumulator(start, limit) {
-                    JSONWriter  writer;
-                    Properties  options;
+                    JSONWriter    writer;
+                    Properties    options;
                     Properties  extra;
                     
                     public RowAccumulator init(JSONWriter writer, Properties options) {
@@ -54,13 +53,8 @@ public class GetRowsCommand extends Command {
                     }
                     
                     @Override
-                    public boolean internalVisit(int rowIndex, Row row, boolean contextual, boolean dependent) {
+                    public boolean internalVisit(int rowIndex, Row row, boolean contextual) {
                         try {
-                            /*
-                             * Whatever that's in the "extra" field will be written out
-                             * by the row as well. This is how we can customize what the row
-                             * writes, in a limited way.
-                             */
                             if (contextual) {
                                 options.put("extra", extra);
                             } else {
@@ -105,11 +99,11 @@ public class GetRowsCommand extends Command {
             this.limit = limit;
         }
         
-        public boolean visit(Project project, int rowIndex, Row row, boolean contextual, boolean dependent) {
+        public boolean visit(Project project, int rowIndex, Row row, boolean contextual) {
             boolean r = false;
             
             if (total >= start && total < start + limit) {
-                r = internalVisit(rowIndex, row, contextual, dependent);
+                r = internalVisit(rowIndex, row, contextual);
             }
             if (!contextual) {
                 total++;
@@ -117,7 +111,7 @@ public class GetRowsCommand extends Command {
             return r;
         }
         
-        protected boolean internalVisit(int rowIndex, Row row, boolean contextual, boolean dependent) {
+        protected boolean internalVisit(int rowIndex, Row row, boolean contextual) {
             return false;
         }
     }

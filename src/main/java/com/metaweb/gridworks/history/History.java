@@ -17,13 +17,6 @@ import com.metaweb.gridworks.Jsonizable;
 import com.metaweb.gridworks.ProjectManager;
 import com.metaweb.gridworks.model.Project;
 
-/**
- * Track done and undone changes. Done changes can be undone; undone changes can be redone.
- * Each change is actually not tracked directly but through a history entry. The history
- * entry stores only the metadata, while the change object stores the actual data. Thus
- * the history entries are much smaller and can be kept in memory, while the change objects
- * are only loaded into memory on demand.
- */
 public class History implements Jsonizable {
     static public Change readOneChange(LineNumberReader reader) throws Exception {
         /* String version = */ reader.readLine();
@@ -52,8 +45,8 @@ public class History implements Jsonizable {
     }
     
     protected long               _projectID;
-    protected List<HistoryEntry> _pastEntries;   // done changes, can be undone
-    protected List<HistoryEntry> _futureEntries; // undone changes, can be redone
+    protected List<HistoryEntry> _pastEntries;
+    protected List<HistoryEntry> _futureEntries;
     
     public History(Project project) {
         _projectID = project.id;
@@ -62,23 +55,15 @@ public class History implements Jsonizable {
     }
     
     public void addEntry(HistoryEntry entry) {
+        for (HistoryEntry entry2 : _futureEntries) {
+            entry2.delete();
+        }
+        
         entry.apply(ProjectManager.singleton.getProject(_projectID));
         _pastEntries.add(entry);
+        _futureEntries.clear();
         
         setModified();
-        
-        // Any new change will clear all future entries.
-        List<HistoryEntry> futureEntries = _futureEntries;
-        _futureEntries = new ArrayList<HistoryEntry>();
-        
-        for (HistoryEntry entry2 : futureEntries) {
-            try {
-                // remove residual data on disk
-                entry2.delete();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
     
     protected void setModified() {
@@ -95,7 +80,6 @@ public class History implements Jsonizable {
     
     public void undoRedo(long lastDoneEntryID) {
         if (lastDoneEntryID == 0) {
-            // undo all the way back to the start of the project
             undo(_pastEntries.size());
         } else {
             for (int i = 0; i < _pastEntries.size(); i++) {
@@ -112,31 +96,6 @@ public class History implements Jsonizable {
                 }
             }
         }
-    }
-    
-    public long getPrecedingEntryID(long entryID) {
-        if (entryID == 0) {
-        	return -1;
-        } else {
-            for (int i = 0; i < _pastEntries.size(); i++) {
-                if (_pastEntries.get(i).id == entryID) {
-                    return i == 0 ? 0 : _pastEntries.get(i - 1).id;
-                }
-            }
-            
-            for (int i = 0; i < _futureEntries.size(); i++) {
-                if (_futureEntries.get(i).id == entryID) {
-                	if (i > 0) {
-                		return _futureEntries.get(i - 1).id;
-                	} else if (_pastEntries.size() > 0) {
-                		return _pastEntries.get(_pastEntries.size() - 1).id;
-                	} else {
-                		return 0;
-                	}
-                }
-            }
-        }
-        return -1;
     }
     
     protected HistoryEntry getEntry(long entryID) {
@@ -162,12 +121,12 @@ public class History implements Jsonizable {
             
             entry.revert(project);
             
-            setModified();
             times--;
             
             _pastEntries.remove(_pastEntries.size() - 1);
             _futureEntries.add(0, entry);
         }
+        setModified();
     }
     
     protected void redo(int times) {
@@ -178,12 +137,12 @@ public class History implements Jsonizable {
             
             entry.apply(project);
             
-            setModified();
             times--;
             
             _pastEntries.add(entry);
             _futureEntries.remove(0);
         }
+        setModified();
     }
     
     public void write(JSONWriter writer, Properties options)

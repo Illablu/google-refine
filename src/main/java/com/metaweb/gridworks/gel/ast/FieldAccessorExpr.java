@@ -7,11 +7,6 @@ import com.metaweb.gridworks.expr.Evaluable;
 import com.metaweb.gridworks.expr.ExpressionUtils;
 import com.metaweb.gridworks.expr.HasFields;
 
-/**
- * An abstract syntax tree node encapsulating a field accessor,
- * e.g., "cell.value" is accessing the field named "value" on the
- * variable called "cell".
- */
 public class FieldAccessorExpr implements Evaluable {
     final protected Evaluable     _inner;
     final protected String        _fieldName;
@@ -24,7 +19,7 @@ public class FieldAccessorExpr implements Evaluable {
     public Object evaluate(Properties bindings) {
         Object o = _inner.evaluate(bindings);
         if (ExpressionUtils.isError(o)) {
-            return o; // bubble the error up
+            return o;
         } else if (o == null) {
             return new EvalError("Cannot retrieve field from null");
         } else if (o instanceof HasFields) {

@@ -13,11 +13,6 @@ TextSearchFacet.reconstruct = function(div, uiState) {
     return new TextSearchFacet(div, uiState.c, uiState.o);
 };
 
-TextSearchFacet.prototype.reset = function() {
-    this._query = null;
-    this._div.find(".input-container input").each(function() { this.value = ""; });
-};
-
 TextSearchFacet.prototype.getUIState = function() {
     var json = {
         c: this.getJSON(),
@@ -45,46 +40,23 @@ TextSearchFacet.prototype.hasSelection = function() {
 
 TextSearchFacet.prototype._initializeUI = function() {
     var self = this;
-    this._div.empty().html(
-        '<div class="facet-title">' + 
-            '<img bind="removeButton" src="images/close.png" title="Remove this facet" class="facet-choice-link" />' +
-            '<span>' + this._config.name + '</span>' +
-        '</div>' +
-        '<div class="facet-text-body"><div class="grid-layout layout-tightest layout-full"><table>' +
-            '<tr><td colspan="2"><div class="input-container"><input bind="input" /></div></td></tr>' +
-            '<tr><td width="1%"><input type="checkbox" bind="caseSensitiveCheckbox" /></td><td>case sensitive</td></tr>' +
-            '<tr><td width="1%"><input type="checkbox" bind="regexCheckbox" /></td><td>regular expression</td></tr>' +
-        '</table></div></div>'
-    );
+    var container = this._div.empty();
     
-    var elmts = DOM.bind(this._div);
+    var headerDiv = $('<div></div>').addClass("facet-title").appendTo(container);
+    $('<span></span>').text(this._config.name).appendTo(headerDiv);
     
-    if (this._config.caseSensitive) {
-        elmts.caseSensitiveCheckbox.attr("checked", "true");
-    }
-    if (this._config.mode == "regex") {
-        elmts.regexCheckbox.attr("checked", "true");
-    }
+    var removeButton = $('<a href="javascript:{}"></a>').addClass("facet-choice-link").text("remove").click(function() {
+        self._remove();
+    }).prependTo(headerDiv);
     
-    elmts.removeButton.click(function() { self._remove(); });
+    var bodyDiv = $('<div></div>').addClass("facet-text-body").appendTo(container);
     
-    elmts.caseSensitiveCheckbox.bind("change", function() {
-        self._config.caseSensitive = this.checked;
-        if (self._query != null && self._query.length > 0) {
-            self._scheduleUpdate();
-        }
-    });
-    elmts.regexCheckbox.bind("change", function() {
-        self._config.mode = this.checked ? "regex" : "text";
-        if (self._query != null && self._query.length > 0) {
-            self._scheduleUpdate();
-        }
-    });
-    
-    elmts.input.keyup(function(evt) {
+    var input = $('<input />').appendTo(bodyDiv);
+    input.keyup(function(evt) {
         self._query = this.value;
         self._scheduleUpdate();
-    }).focus();
+    });
+    input[0].focus();
 };
 
 TextSearchFacet.prototype.updateState = function(data) {

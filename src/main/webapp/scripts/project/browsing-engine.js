@@ -28,9 +28,6 @@ function BrowsingEngine(div, facetConfigs) {
     }
 }
 
-BrowsingEngine.prototype.resize = function() {
-};
-
 BrowsingEngine.prototype.getFacetUIStates = function() {
     var f = [];
     for (var i = 0; i < this._facets.length; i++) {
@@ -44,17 +41,8 @@ BrowsingEngine.prototype._initializeUI = function() {
     var self = this;
     
     this._div.html(
-        '<div class="browsing-panel-header">' +
-            '<div class="browsing-panel-indicator" bind="indicator"><img src="images/small-spinner.gif" /> refreshing facets ...</div>' +
-            '<div class="browsing-panel-controls" bind="controls">' +
-                '<p>' +
-                    '<a href="javascript:{}" bind="refreshLink" title="Make sure all facets are up-to-date">refresh</a> &bull; ' +
-                    '<a href="javascript:{}" bind="resetLink" title="Clear selection in all facets">reset</a> &bull; ' +
-                    '<a href="javascript:{}" bind="removeLink" title="Remove all facets">remove</a> all facets' +
-                '</p>' +
-                '<p><input type="checkbox" class="inline" bind="includeDependentRowsCheck" /> show dependent rows</p>' +
-            '</div>' +
-        '</div>' +
+        '<div class="browsing-panel-indicator" bind="indicator"><img src="images/small-spinner.gif" /> refreshing facets ...</div>' +
+        '<div class="browsing-panel-controls" bind="controls"><a href="javascript:{}" bind="refreshLink">refresh facets</a></div>' +
         '<ul bind="facets" class="facets-container"></ul>'
     );
     this._elmts = DOM.bind(this._div);
@@ -66,13 +54,7 @@ BrowsingEngine.prototype._initializeUI = function() {
     });
     this._elmts.facets.disableSelection();
     
-    this._elmts.includeDependentRowsCheck.change(function() {
-        Gridworks.update({ engineChanged: true });
-    });
-    
     this._elmts.refreshLink.click(function() { self.update(); });
-    this._elmts.resetLink.click(function() { self.reset(); });
-    this._elmts.removeLink.click(function() { self.remove(); });
 };
 
 BrowsingEngine.prototype._updateFacetOrder = function() {
@@ -91,10 +73,7 @@ BrowsingEngine.prototype._updateFacetOrder = function() {
 };
 
 BrowsingEngine.prototype.getJSON = function(keepUnrestrictedFacets) {
-    var a = {
-        facets: [],
-        includeDependent: this._elmts.includeDependentRowsCheck[0].checked
-    };
+    var a = { facets: [] };
     for (var i = 0; i < this._facets.length; i++) {
         var facet = this._facets[i];
         if (keepUnrestrictedFacets || facet.facet.hasSelection()) {
@@ -130,17 +109,8 @@ BrowsingEngine.prototype.removeFacet = function(facet) {
     var update = facet.hasSelection();
     for (var i = this._facets.length - 1;i >= 0; i--) {
         if (this._facets[i].facet === facet) {
-            var elmt = this._facets[i].elmt;
+            this._facets[i].elmt.remove();
             this._facets.splice(i, 1);
-            
-            // This makes really big facet disappear right away. If you just call remove()
-            // then it takes a while for all the event handlers to get unwired, and the UI
-            // appear frozen.
-            elmt.hide();
-            window.setTimeout(function() {
-                elmt.remove();
-            }, 300);
-            
             break;
         }
     }
@@ -177,29 +147,4 @@ BrowsingEngine.prototype.update = function(onDone) {
         },
         "json"
     );
-};
-
-BrowsingEngine.prototype.reset = function() {
-    for (var i = 0; i < this._facets.length; i++) {
-        this._facets[i].facet.reset();
-    }
-    
-    Gridworks.update({ engineChanged: true });
-};
-
-BrowsingEngine.prototype.remove = function() {
-    var oldFacets = this._facets;
-    
-    this._facets = [];
-    
-    for (var i = 0; i < oldFacets.length; i++) {
-        oldFacets[i].elmt.hide();
-    }
-    window.setTimeout(function() {
-        for (var i = 0; i < oldFacets.length; i++) {
-            oldFacets[i].elmt.remove();
-        }
-    }, 300);
-    
-    Gridworks.update({ engineChanged: true });
 };

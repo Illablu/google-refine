@@ -15,7 +15,6 @@ import com.metaweb.gridworks.model.Project;
 import com.metaweb.gridworks.operations.SaveProtographOperation;
 import com.metaweb.gridworks.process.Process;
 import com.metaweb.gridworks.protograph.Protograph;
-import com.metaweb.gridworks.util.ParsingUtilities;
 
 public class SaveProtographCommand extends Command {
     @Override
@@ -26,13 +25,16 @@ public class SaveProtographCommand extends Command {
             Project project = getProject(request);
             
             String jsonString = request.getParameter("protograph");
-            JSONObject json = ParsingUtilities.evaluateJsonStringToObject(jsonString);
+            JSONObject json = jsonStringToObject(jsonString);
             Protograph protograph = Protograph.reconstruct(json);
             
             AbstractOperation op = new SaveProtographOperation(protograph);
             Process process = op.createProcess(project, new Properties());
             
-            performProcessAndRespond(request, response, project, process);
+            boolean done = project.processManager.queueProcess(process);
+            
+            respond(response, "{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+            
         } catch (Exception e) {
             respondException(response, e);
         }

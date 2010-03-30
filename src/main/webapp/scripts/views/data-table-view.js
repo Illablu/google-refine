@@ -4,15 +4,18 @@ function DataTableView(div) {
     this._showRecon = true;
     this._collapsedColumnNames = {};
     
+    this._initializeUI();
     this._showRows(0);
 }
 
-DataTableView.prototype.resize = function() {
-    var topHeight = this._div.find(".viewPanel-summary").outerHeight(true) + this._div.find(".viewPanel-pagingControls").outerHeight(true);
+DataTableView.prototype._initializeUI = function() {
+    this._div.addClass("view-panel");
     
-    this._div.find(".data-table-container")
-        .css("height", (this._div.innerHeight() - topHeight - 1) + "px")
-        .css("display", "block");
+    var self = this;
+    $(window).resize(function() {
+        var dataTableContainer = self._div.find(".data-table-container");
+        dataTableContainer.hide().width(self._div.width() + "px").show();
+    });
 };
 
 DataTableView.prototype.update = function(onDone) {
@@ -21,29 +24,18 @@ DataTableView.prototype.update = function(onDone) {
 
 DataTableView.prototype.render = function() {
     var self = this;
+    var container = this._div;
     
-    var oldTableDiv = this._div.find(".data-table-container");
-    var scrollLeft = (oldTableDiv.length > 0) ? oldTableDiv[0].scrollLeft : 0;
+    var scrollLeft = 0;
+    var oldTableDiv = container.find(".data-table-container");
+    if (oldTableDiv.length > 0) {
+        scrollLeft = oldTableDiv[0].scrollLeft;
+    }
     
-    var html = $(
-        '<div bind="summaryDiv" class="viewPanel-summary"></div>' +
-        '<table bind="pagingControls" width="100%" class="viewPanel-pagingControls"><tr><td align="right"></td><td align="right"></td></tr></table>' +
-        '<div bind="dataTableContainer" class="data-table-container" style="display: none;"><table bind="table" class="data-table" cellspacing="0"></table></div>'
-    );
-    var elmts = DOM.bind(html);
+    container.empty();
     
-    this._renderSummaryText(elmts.summaryDiv);
-    this._renderPagingControls(elmts.pagingControls[0]);
-    this._renderDataTable(elmts.table[0]);
+    var divSummary = $('<div></div>').addClass("viewPanel-summary").appendTo(container);
     
-    this._div.empty().append(html);
-    
-    this.resize();
-        
-    elmts.dataTableContainer[0].scrollLeft = scrollLeft;
-};
-
-DataTableView.prototype._renderSummaryText = function(elmt) {
     var summaryText;
     
     var from = (theProject.rowModel.start + 1);
@@ -54,14 +46,15 @@ DataTableView.prototype._renderSummaryText = function(elmt) {
         summaryText = from + ' to ' + to + ' of <span class="viewPanel-summary-row-count">' + 
             (theProject.rowModel.filtered) + '</span> rows (filtered from ' + (theProject.rowModel.total) + ' rows total)';
     }
-    $('<span>').html(summaryText).appendTo(elmt);
-};
-
-DataTableView.prototype._renderPagingControls = function(table) {
-    var self = this;
+    $('<span>').html(summaryText).appendTo(divSummary);
     
-    var pagingControls0 = table.rows[0].cells[0];
-    var pagingControls1 = table.rows[0].cells[1];
+    /*
+     *  Paging controls
+     */
+    
+    var pagingControls = $('<table width="100%"><tr><td align="right"></td><td align="right"></td></tr></table>').addClass("viewPanel-pagingControls").appendTo(container);
+    var pagingControls0 = pagingControls[0].rows[0].cells[0];
+    var pagingControls1 = pagingControls[0].rows[0].cells[1];
     
     var firstPage = $('<a href="javascript:{}">&laquo; first</a>').appendTo(pagingControls0);
     var previousPage = $('<a href="javascript:{}">&laquo; previous</a>').appendTo(pagingControls0);
@@ -100,10 +93,20 @@ DataTableView.prototype._renderPagingControls = function(table) {
     for (var i = 0; i < sizes.length; i++) {
         renderPageSize(i);
     }
-};
-
-DataTableView.prototype._renderDataTable = function(table) {
-    var self = this;
+    
+    /*============================================================
+     *  Data Table
+     *============================================================
+     */
+    var tableDiv = $('<div></div>')
+        .addClass("data-table-container")
+        .css("width", container.width() + "px")
+        .appendTo(container);
+    
+    var table = document.createElement("table");
+    $(table)
+        .attr("cellspacing", "0")
+        .addClass("data-table");
     
     var columns = theProject.columnModel.columns;
     var columnGroups = theProject.columnModel.columnGroups;
@@ -161,9 +164,7 @@ DataTableView.prototype._renderDataTable = function(table) {
                     
                     c += (columnGroup.columnSpan - 1);
                     
-                    if ("subgroups" in columnGroup) {
-                        nextLayer = nextLayer.concat(columnGroup.subgroups);
-                    }
+                    nextLayer = nextLayer.concat(columnGroup.subgroups);
                 }
             }
         }
@@ -174,13 +175,12 @@ DataTableView.prototype._renderDataTable = function(table) {
             renderColumnGroups(nextLayer, []);
         }
     };
-    
-    if (columnGroups.length > 0) {
-        renderColumnGroups(
-            columnGroups, 
-            [ theProject.columnModel.keyCellIndex ]
-        );
-    }    
+    /*
+    renderColumnGroups(
+        columnGroups, 
+        [ theProject.columnModel.keyCellIndex ]
+    );
+    */
     
     /*------------------------------------------------------------
      *  Column Headers with Menus
@@ -188,18 +188,10 @@ DataTableView.prototype._renderDataTable = function(table) {
      */
     
     var trHead = table.insertRow(table.rows.length);
-    DOM.bind(
-        $(trHead.insertCell(trHead.cells.length))
-            .attr("colspan", "2")
-            .addClass("column-header")
-            .html(
-                '<table class="column-header-layout"><tr><td>&nbsp;</td>' +
-                    '<td width="1%">' +
-                        '<a class="column-header-menu" bind="dropdownMenu">&nbsp;</a>' +
-                    '</td>' +
-                '</tr></table>'
-            )
-    ).dropdownMenu.click(function() {
+    
+    var tdHeadIndex = trHead.insertCell(trHead.cells.length);
+    $(tdHeadIndex).attr("colspan", "2").addClass("column-header");
+    $('<img src="/images/menu-dropdown.png" />').addClass("column-header-menu").appendTo(tdHeadIndex).click(function() {
         self._createMenuForAllColumns(this);
     });
     
@@ -288,6 +280,13 @@ DataTableView.prototype._renderDataTable = function(table) {
         }
         renderRow(tr, r, row, even);
     }
+    
+    /*
+     *  Finally, inject the table into the DOM
+     */
+    $(table).appendTo(tableDiv);
+    
+    tableDiv[0].scrollLeft = scrollLeft;
 };
 
 DataTableView.prototype._showRows = function(start, onDone) {

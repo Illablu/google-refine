@@ -1,12 +1,12 @@
 package com.metaweb.gridworks.commands.edit;
 
-import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
@@ -24,7 +24,6 @@ import com.metaweb.gridworks.commands.Command;
 import com.metaweb.gridworks.importers.ExcelImporter;
 import com.metaweb.gridworks.importers.Importer;
 import com.metaweb.gridworks.importers.TsvCsvImporter;
-import com.metaweb.gridworks.importers.XmlImporter;
 import com.metaweb.gridworks.model.Project;
 import com.metaweb.gridworks.util.ParsingUtilities;
 import com.oreilly.servlet.multipart.FilePart;
@@ -39,25 +38,11 @@ public class CreateProjectCommand extends Command {
             throws ServletException, IOException {
         
         try {
-            /*
-             * The uploaded file is in the POST body as a "file part". If
-             * we call request.getParameter() then the POST body will get
-             * read and we won't have a chance to parse the body ourselves.
-             * This is why we have to parse the URL for parameters ourselves.
-             * Don't call request.getParameter() before calling internalImport().
-             */
-            
             Properties options = ParsingUtilities.parseUrlParameters(request);
-            
             Project project = new Project();
             
             internalImport(request, project, options);
 
-            /*
-             * The import process above populates options with parameters
-             * in the POST body. That's why we're constructing the project
-             * metadata object after calling internalImport().
-             */
             ProjectMetadata pm = new ProjectMetadata();
             pm.setName(options.getProperty("project-name"));
             pm.setPassword(options.getProperty("project-password"));
@@ -70,37 +55,80 @@ public class CreateProjectCommand extends Command {
             
             redirect(response, "/project.html?project=" + project.id);
         } catch (Exception e) {
-            redirect(response, "/error.html?redirect=index.html&msg=" +
-                ParsingUtilities.encode("Failed to import file: " + e.getLocalizedMessage())
-            );
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
     
     protected void internalImport(
         HttpServletRequest    request,
-        Project               project,
+        Project                project,
         Properties            options
     ) throws Exception {
-        MultipartParser parser = new MultipartParser(request, 1024 * 1024 * 1024);
+        MultipartParser parser = null;
+        try {
+            parser = new MultipartParser(request, 20 * 1024 * 1024);
+        } catch (Exception e) {
+            // silent
+        }
         
         if (parser != null) {
             Part part = null;
             String url = null;
             
+            int limit = -1;
+            int skip = 0;
+            
+            if (options.containsKey("limit")) {
+                String s = options.getProperty("limit");
+                try {
+                    limit = Integer.parseInt(s);
+                } catch (Exception e) {
+                }
+            }
+            if (options.containsKey("skip")) {
+                String s = options.getProperty("skip");
+                try {
+                    skip = Integer.parseInt(s);
+                } catch (Exception e) {
+                }
+            }
+            
             while ((part = parser.readNextPart()) != null) {
                 
                 if (part.isFile()) {
-                    internalImportFilePart((FilePart) part, project, options);
+                    FilePart filePart = (FilePart) part;
                     
+                    Importer importer = guessImporter(options, null, filePart.getFileName());
+                    
+                    if (importer.takesReader()) {
+                        CharsetDetector detector = new CharsetDetector();
+                        detector.setDeclaredEncoding("utf8"); // the content on the web is encoded in UTF-8 so assume that
+                        CharsetMatch charsetMatch = detector.setText(enforceMarking(filePart.getInputStream())).detect();
+                        options.setProperty("encoding", charsetMatch.getName());
+                        options.setProperty("encoding_confidence", Integer.toString(charsetMatch.getConfidence()));
+                        Gridworks.log("Best encoding guess: " + charsetMatch.getName() + " [confidence: " + charsetMatch.getConfidence() + "]");
+                        Reader reader = charsetMatch.getReader();
+                        try {
+                            importer.read(charsetMatch.getReader(), project, options, skip, limit);
+                        } finally {
+                            reader.close();
+                        }
+                    } else {
+                        InputStream inputStream = filePart.getInputStream();
+                        try {
+                            importer.read(inputStream, project, options, skip, limit);
+                        } finally {
+                            inputStream.close();
+                        }
+                    }
                 } else if (part.isParam()) {
                     ParamPart paramPart = (ParamPart) part;
                     String paramName = paramPart.getName();
-                    
                     if (paramName.equals("raw-text")) {
                         StringReader reader = new StringReader(paramPart.getStringValue());
                         try {
-                            internalInvokeImporter(project, new TsvCsvImporter(), options, reader);
+                            new TsvCsvImporter().read(reader, project, options, skip, limit);
                         } finally {
                             reader.close();
                         }
@@ -113,27 +141,18 @@ public class CreateProjectCommand extends Command {
             }
             
             if (url != null && url.length() > 0) {
-                internalImportURL(request, project, options, url);
+                internalImportURL(request, project, options, url, skip, limit);
             }
         }
     }
     
-    protected void internalImportFilePart(
-        FilePart    filePart,
-        Project     project,
-        Properties  options
-    ) throws Exception {
-        
-        Importer importer = guessImporter(options, null, filePart.getFileName());
-        
-        internalInvokeImporter(project, importer, options, filePart.getInputStream(), null);
-    }
-    
     protected void internalImportURL(
         HttpServletRequest    request,
-        Project               project,
+        Project                project,
         Properties            options,
-        String                urlString
+        String                urlString,
+        int                 skip,
+        int                    limit
     ) throws Exception {
         URL url = new URL(urlString);
         URLConnection connection = null;
@@ -159,124 +178,20 @@ public class CreateProjectCommand extends Command {
                 connection.getContentType(),
                 url.getPath()
             );
-            
-            internalInvokeImporter(project, importer, options, inputStream, connection.getContentEncoding());
+        
+            if (importer.takesReader()) {
+                String encoding = connection.getContentEncoding();
+                
+                Reader reader = new InputStreamReader(
+                    inputStream, (encoding == null) ? "ISO-8859-1" : encoding);
+                            
+                importer.read(reader, project, options, skip, limit);
+            } else {
+                importer.read(inputStream, project, options, skip, limit);
+            }
         } finally {
             inputStream.close();
         }
-    }
-    
-    protected void internalInvokeImporter(
-        Project     project,
-        Importer    importer,
-        Properties  options,
-        InputStream rawInputStream,
-        String      encoding
-    ) throws Exception {
-        
-        int limit = -1;
-        int skip = 0;
-        
-        if (options.containsKey("limit")) {
-            String s = options.getProperty("limit");
-            try {
-                limit = Integer.parseInt(s);
-            } catch (Exception e) {
-            }
-        }
-        if (options.containsKey("skip")) {
-            String s = options.getProperty("skip");
-            try {
-                skip = Integer.parseInt(s);
-            } catch (Exception e) {
-            }
-        }
-        
-        BufferedInputStream inputStream = new BufferedInputStream(rawInputStream);
-        
-        if (importer.takesReader()) {
-            /*
-             * NOTE(SM): The ICU4J char detection code requires the input stream to support mark/reset. 
-             * Unfortunately, not all ServletInputStream implementations are marking, so we need do 
-             * this memory-expensive wrapping to make it work. It's far from ideal but I don't have 
-             * a more efficient solution.
-             */
-            byte[] bytes = new byte[1024 * 4];
-            {
-                inputStream.mark(bytes.length);
-                inputStream.read(bytes);
-                inputStream.reset();
-            }
-            
-            CharsetDetector detector = new CharsetDetector();
-            detector.setDeclaredEncoding("utf8"); // the content on the web is encoded in UTF-8 so assume that
-            
-            Reader reader = null;
-            CharsetMatch[] charsetMatches = detector.setText(bytes).detectAll();
-            for (CharsetMatch charsetMatch : charsetMatches) {
-                try {
-                    reader = new InputStreamReader(inputStream, charsetMatch.getName());
-                    
-                    options.setProperty("encoding", charsetMatch.getName());
-                    options.setProperty("encoding_confidence", Integer.toString(charsetMatch.getConfidence()));
-                    
-                    Gridworks.log(
-                        "Best encoding guess: " + 
-                        charsetMatch.getName() + 
-                        " [confidence: " + charsetMatch.getConfidence() + "]");
-                    
-                    break;
-                } catch (UnsupportedEncodingException e) {
-                    // silent
-                }
-            }
-            
-            if (reader == null) { // when all else fails
-                reader = encoding != null ?
-                        new InputStreamReader(inputStream, encoding) :
-                        new InputStreamReader(inputStream);
-            }
-            
-            try {
-                importer.read(reader, project, options, skip, limit);
-            } finally {
-                reader.close();
-            }
-        } else {
-            try {
-                importer.read(inputStream, project, options, skip, limit);
-            } finally {
-                inputStream.close();
-            }
-        }        
-    }
-    
-    protected void internalInvokeImporter(
-        Project     project,
-        Importer    importer,
-        Properties  options,
-        Reader      reader
-    ) throws Exception {
-        
-        int limit = -1;
-        int skip = 0;
-        
-        if (options.containsKey("limit")) {
-            String s = options.getProperty("limit");
-            try {
-                limit = Integer.parseInt(s);
-            } catch (Exception e) {
-            }
-        }
-        if (options.containsKey("skip")) {
-            String s = options.getProperty("skip");
-            try {
-                skip = Integer.parseInt(s);
-            } catch (Exception e) {
-            }
-        }
-        
-        importer.read(reader, project, options, skip, limit);
     }
     
     protected Importer guessImporter(
@@ -302,14 +217,34 @@ public class CreateProjectCommand extends Command {
                 return new ExcelImporter(false); 
             } else if (fileName.endsWith(".xlsx")) {
                 return new ExcelImporter(true); 
-            } else if (
-                    fileName.endsWith(".xml") ||
-                    fileName.endsWith(".rss")
-                ) {
-                return new XmlImporter(); 
             }
         }
         
         return new TsvCsvImporter();
     }
+
+    /*
+     * NOTE(SM): The ICU4J char detection code requires the input stream to support mark/reset. Unfortunately, not
+     * all ServletInputStream implementations are marking, so we need do this memory-expensive wrapping to make
+     * it work. It's far from ideal but I don't have a more efficient solution.
+     */
+    private static InputStream enforceMarking(InputStream input) throws IOException {
+        if (input.markSupported()) {
+            return input;
+        } else {
+            ByteArrayOutputStream output = new ByteArrayOutputStream(64 * 1024);
+            
+            byte[] buffer = new byte[1024 * 4];
+            long count = 0;
+            int n = 0;
+            while (-1 != (n = input.read(buffer))) {
+                output.write(buffer, 0, n);
+                count += n;
+            }
+            input.close();
+            
+            return new ByteArrayInputStream(output.toByteArray());
+        }
+    }
+    
 }

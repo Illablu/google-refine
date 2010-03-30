@@ -37,8 +37,7 @@ DataTableCellUI.prototype._render = function() {
         if (r.j == "new") {
             $('<span>').text(cell.v + " (new topic) ").appendTo(divContent);
             
-            $('<a href="javascript:{}"></a>')
-                .text("re\u2011match")
+            $('<a href="javascript:{}">re-match</a>')
                 .addClass("data-table-recon-action")
                 .appendTo(divContent).click(function(evt) {
                     self._doRematch();
@@ -53,7 +52,7 @@ DataTableCellUI.prototype._render = function() {
                 
             $('<span> </span>').appendTo(divContent);
             $('<a href="javascript:{}"></a>')
-                .text("re\u2011match")
+                .text("re-match")
                 .addClass("data-table-recon-action")
                 .appendTo(divContent)
                 .click(function(evt) {
@@ -193,20 +192,19 @@ DataTableCellUI.prototype._searchForMatch = function() {
     var body = $('<div></div>').addClass("dialog-body").appendTo(frame);
     var footer = $('<div></div>').addClass("dialog-footer").appendTo(frame);
     
-    var html = $(
-        '<div class="grid-layout layout-normal layout-full"><table>' +
-            '<tr><td colspan="2">Search Freebase for topic to match ' + this._cell.v + '</td></tr>' +
-            '<tr>' +
-                '<td><input bind="input" /></td>' +
-                '<td><input type="checkbox" checked="true" bind="checkSimilar" /> Match other cells with same content</td>' +
-            '</tr>' +
-        '</table></div>'
-    ).appendTo(body);
+    $('<p></p>').text("Search Freebase for topic to match " + this._cell.v).appendTo(body);
     
-    var elmts = DOM.bind(html);
-    
+    var input = $('<input />').attr("value", this._cell.v).appendTo($('<p></p>').appendTo(body));
     var match = null;
-    var commit = function() {
+    input.suggest({}).bind("fb-select", function(e, data) {
+        match = data;
+    });
+    
+    var pSimilar = $('<p></p>').appendTo(body);
+    var checkSimilar = $('<input type="checkbox" checked="true" />').appendTo(pSimilar);
+    $('<span>').text(" Match other cells with the same content as well").appendTo(pSimilar);
+    
+    $('<button></button>').text("Match").click(function() {
         if (match != null) {
             var params = {
                 judgment: "matched",
@@ -215,7 +213,7 @@ DataTableCellUI.prototype._searchForMatch = function() {
                 topicName: match.name,
                 types: $.map(match.type, function(elmt) { return elmt.id; }).join(",")
             };
-            if (elmts.checkSimilar[0].checked) {
+            if (checkSimilar[0].checked) {
                 params.similarValue = self._cell.v;
                 params.columnName = Gridworks.cellIndexToColumn(self._cellIndex).name;
                 
@@ -229,24 +227,14 @@ DataTableCellUI.prototype._searchForMatch = function() {
         
             DialogSystem.dismissUntil(level - 1);
         }
-    };
+    }).appendTo(footer);
     
-    $('<button></button>').text("Match").click(commit).appendTo(footer);
     $('<button></button>').text("Cancel").click(function() {
         DialogSystem.dismissUntil(level - 1);
     }).appendTo(footer);
     
     var level = DialogSystem.showDialog(frame);
-    
-    elmts.input
-        .attr("value", this._cell.v)
-        .suggest({})
-        .bind("fb-select", function(e, data) {
-            match = data;
-            commit();
-        })
-        .focus()
-        .data("suggest").textchange();
+    input.focus().data("suggest").textchange();
 };
 
 DataTableCellUI.prototype._postProcessOneCell = function(command, params, columnStatsChanged) {
@@ -304,7 +292,7 @@ DataTableCellUI.prototype._startEdit = function(elmt) {
     
     var menu = MenuSystem.createMenu().addClass("data-table-cell-editor").width("400px");
     menu.html(
-        '<table class="grid-layout layout-tighest layout-full data-table-cell-editor-layout">' +
+        '<table class="data-table-cell-editor-layout">' +
             '<tr>' +
                 '<td colspan="5">' +
                     '<textarea class="data-table-cell-editor-editor" bind="textarea" />' +

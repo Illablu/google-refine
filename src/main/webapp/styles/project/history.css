@@ -2,45 +2,28 @@
     position: absolute;
     top: -1px;
     right: 20px;
-    width: 300px;
+    width: 250px;
+    background: #fffee0;
+    border: 1px solid #666;
     z-index: 10;
 }
 .history-panel h3 {
     margin: 0;
     padding: 3px;
     background: #aaa;
-    color: #fff;
-    border-bottom: 1px solid #b8b8b8;
+    color: #eee;
     font-size: 100%;
-    text-align: center;
-    border: 1px solid #666;
-}
-
-.history-panel-body-collapsed {
-    border-left: 1px solid #888;
-    border-right: 1px solid #888;
-    background: #eee;
-    padding: 0.5em;
     text-align: center;
 }
 .history-panel-body {
-    display: none;
-    border-left: 1px solid #888;
-    border-right: 1px solid #888;
-    background: #fff;
-    height: 400px;
+    padding: 2px;
+    height: 50px;
+    overflow: hidden;
+}
+.history-panel-body.history-panel-body-expanded {
+    height: 300px;
     overflow: auto;
 }
-.history-panel-body-controls {
-    font-size: 80%;
-    padding: 0.5em;
-    text-align: center;
-    background: #eee;
-    border-left: 1px solid #888;
-    border-right: 1px solid #888;
-    display: none;
-}
-
 .history-panel-message {
     text-align: center;
     color: #aaa;
@@ -50,18 +33,16 @@
     padding-bottom: 3px;
 }
 .history-now {
-    padding: 3px 0;
-    background: #a9e9fb;
+    padding: 1px;
+    background: #f88;
     color: white;
     font-size: 80%;
-    text-transform: uppercase;
     text-align: center;
     font-variant: small-caps;
     font-weight: bold;
 }
 .history-future {
     padding-top: 3px;
-    padding-bottom: 3px;
 }
 a.history-entry {
     display: block;
@@ -95,29 +76,30 @@ a.history-entry:hover {
 .history-panel-footer {
     margin: 0;
     padding: 3px;
-    background: #b8b8b8;
-    color: #fff;
-    font-size: 90%;
-    border: 1px solid #888;
+    background: #aaa;
+    color: #eee;
+    font-size: 80%;
     text-align: center;
-    -moz-border-radius-bottomleft: 10px;
-    -webkit-border-bottom-left-radius: 10px;
-    -moz-border-radius-bottomright: 10px;
-    -webkit-border-bottom-right-radius: 10px;    
 }
 .history-panel-footer a {
     color: white;
     text-decoration: none;
 }
 
+table.extract-operation-dialog-layout td {
+    vertical-align: top;
+}
 .extract-operation-dialog-entries {
     height: 400px;
-    padding: 2px;
-    border: 1px inset;
     overflow: auto;
 }
-textarea.history-operation-json {
+textarea.extract-operation-dialog-textarea {
+    display: block;
+    margin: 0;
+    vertical-align: top;
     white-space: pre;
     font-family: monospace;
+    padding: 2%;
+    width: 96%;
     height: 400px;
 }

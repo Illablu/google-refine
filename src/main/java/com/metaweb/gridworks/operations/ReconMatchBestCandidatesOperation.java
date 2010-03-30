@@ -69,10 +69,10 @@ public class ReconMatchBestCandidatesOperation extends EngineDependentMassCellOp
                 return this;
             }
             
-            public boolean visit(Project project, int rowIndex, Row row, boolean includeContextual, boolean includeDependent) {
+            public boolean visit(Project project, int rowIndex, Row row, boolean contextual) {
                 if (cellIndex < row.cells.size()) {
                     Cell cell = row.cells.get(cellIndex);
-                    if (cell != null && cell.recon != null) {
+                    if (cell.recon != null) {
                         ReconCandidate candidate = cell.recon.getBestCandidate();
                         if (candidate != null) {
                             Cell newCell = new Cell(

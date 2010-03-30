@@ -1,32 +1,19 @@
-var GridworksVersion = {
-    description: "Gridworks 1.0 beta 2 (rolling update)",
-    date: "2010-03-23"
-};
-
 function onLoad() {
+    $("#upload-file-button").click(onClickUploadFileButton);
+    
     $.getJSON(
         "/command/get-all-project-metadata",
         null,
         function(data) {
             renderProjects(data);
-            $("#upload-file-button").click(onClickUploadFileButton);
         },
         "json"
     );
-    
-    var thisVersion = Date.parseExact(GridworksVersion.date, "yyyy-MM-dd");
-    var latestVersion = Date.parseExact(GridworksReleases.releases[0].date, "yyyy-MM-dd");
-    if (thisVersion.getTime() < latestVersion.getTime()) {
-        $('<div id="version-message">' +
-            'New version "' + GridworksReleases.releases[0].description + '" <a href="' + GridworksReleases.homepage + '">available for download here</a>.' +
-          '</div>').appendTo(document.body)
-    }
 }
 $(onLoad);
 
 function onClickUploadFileButton(evt) {
-    var projectName = $("#project-name-input")[0].value;
-    if ($.trim(projectName).length == 0) {
+    if ($("#project-name-input")[0].value.trim().length == 0) {
         window.alert("You must specify a project name.");
         
         evt.preventDefault();
@@ -99,6 +86,8 @@ function renderProjects(data) {
         for (var i = 0; i < projects.length; i++) {
             renderProject(projects[i]);
         }
+        
+        $(table).appendTo(container);
     }
 }
 
@@ -107,10 +96,10 @@ function formatDate(d) {
     var today = Date.today();
     var tomorrow = Date.today().add({ days: 1 });
     if (d.between(today, tomorrow)) {
-        return "Today " + d.toString("h:mm tt");
+        return "Today " + d.toString("HH:mm");
     } else if (d.between(yesterday, today)) {
-        return "Yesterday " + d.toString("h:mm tt");
+        return "Yesterday " + d.toString("HH:mm");
     } else {
-        return d.toString("ddd, MMM d, yyyy");
+        return d.toString("M-ddd-yyyy");
     }
 }

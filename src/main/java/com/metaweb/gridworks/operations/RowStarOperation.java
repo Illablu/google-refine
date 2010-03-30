@@ -77,7 +77,7 @@ public class RowStarOperation extends EngineDependentOperation {
                 return this;
             }
             
-            public boolean visit(Project project, int rowIndex, Row row, boolean includeContextual, boolean includeDependent) {
+            public boolean visit(Project project, int rowIndex, Row row, boolean contextual) {
                 if (row.starred != _starred) {
                     RowStarChange change = new RowStarChange(rowIndex, _starred);
                     

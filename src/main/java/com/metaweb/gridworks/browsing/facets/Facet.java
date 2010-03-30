@@ -7,9 +7,6 @@ import com.metaweb.gridworks.browsing.FilteredRows;
 import com.metaweb.gridworks.browsing.filters.RowFilter;
 import com.metaweb.gridworks.model.Project;
 
-/**
- * Interface of facets.
- */
 public interface Facet extends Jsonizable {
     public RowFilter getRowFilter();
     

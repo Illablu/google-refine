@@ -10,7 +10,7 @@ public class TNode implements Serializable {
     private static final long serialVersionUID = -217604190976851241L;
 
     private final Serializable obj;
-    private double median;
+    private float median;
     private TNode left;
     private TNode right;
 
@@ -26,11 +26,11 @@ public class TNode implements Serializable {
         return this.obj;
     }
 
-    public void setMedian(double median) {
+    public void setMedian(float median) {
         this.median = median;
     }
 
-    public double getMedian() {
+    public float getMedian() {
         return median;
     }
 
@@ -48,9 +48,5 @@ public class TNode implements Serializable {
 
     public TNode getRight() {
         return right;
-    }
-    
-    public String toString() {
-        return this.obj.toString();
     }
 }

@@ -7,7 +7,7 @@
     width: 100%;
     height: 100%;
     background: black;
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 .dialog-container {
@@ -28,7 +28,7 @@
 }
 
 .dialog-header {
-    background: #404859;
+    background: #3B8700;
     padding: 5px 10px;
     font-weight: bold;
     color: white;
@@ -49,12 +49,6 @@
     margin-left: 5px;
 }
 
-.dialog-busy-frame {
-    width: 300px;
-    border: none;
-    -moz-border-radiust: 25px;
-    -webkit-border-radius: 25px;
-}
 .dialog-busy-body {
     margin: 1em;
     text-align: center;
