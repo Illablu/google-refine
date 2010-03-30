@@ -1,13 +1,9 @@
 package com.metaweb.gridworks.operations;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONObject;
-
 import com.metaweb.gridworks.model.AbstractOperation;
-import com.metaweb.gridworks.model.Project;
 
 public abstract class OperationRegistry {
     static public Map<String, Class<? extends AbstractOperation>> s_opNameToClass;
@@ -34,29 +30,10 @@ public abstract class OperationRegistry {
         
         register("column-addition", ColumnAdditionOperation.class);
         register("column-removal", ColumnRemovalOperation.class);
-        register("extend-data", ExtendDataOperation.class);
         
         register("row-star", RowStarOperation.class);
         
         register("save-protograph", SaveProtographOperation.class);
         register("text-transform", TextTransformOperation.class);
-        register("mass-edit", MassEditOperation.class);
-    }
-    
-    static public AbstractOperation reconstruct(Project project, JSONObject obj) {
-        try {
-            String op = obj.getString("op");
-            
-            Class<? extends AbstractOperation> klass = OperationRegistry.s_opNameToClass.get(op);
-            if (klass != null) {
-                Method reconstruct = klass.getMethod("reconstruct", Project.class, JSONObject.class);
-                if (reconstruct != null) {
-                    return (AbstractOperation) reconstruct.invoke(null, project, obj);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

@@ -4,8 +4,6 @@
 #               Gridworks Control System                 #
 ##########################################################
 
-# -------------- functions ------------------------------------
-
 fail () {
    cat <<EOF
 ERROR: $1
@@ -34,47 +32,40 @@ where [options] include:
 
   -w <path> path to the webapp
      default: src/main/webapp
-
-  -d <path> path to the data directory
-     default: OS dependent
-
-  -m <memory> max memory heap size to use
-     default: 1024M
-          
-  --debug enable JVM debugging (on port 8000)
+     
+  -d enable JVM debugging (on port 8000)
        
-  --jmx enable JMX monitoring (for jconsole and jvisualvm)
+  -x enable JMX monitoring (for jconsole)
   
 and <action> is one of
 
    build ..................... Build Gridworks      
    run ....................... Run Gridworks
-
-   test ...................... Test Gridworks      
    
    make_dmg <version> ........ Make MacOSX DMG distribution
    make_exe <version> ........ Make Windows EXE distribution
-   make_cli <version> ........ Make distributions to be run at command line
-
-   dist <version> ............ Make all distributions
-
+   
    clean ..................... Clean compiled classes
    distclean ................. Remove all generated files
                 
 EOF
     exit 1
 }
-                
+
 add_option() {
   OPTS="$OPTS $1"
 }
-                
-load_configs() {
-    cat $1 | egrep "^[A-Z]" | sed 's/^\(.*\)$/export \1/' > .$1
-    . ./.$1
-    rm ./.$1
-}
-    
+
+OPTS="$GRIDWORKS_OPTS"
+
+SYSTEM=`uname`
+
+if [ "$SYSTEM" == "Darwin" ] && [ "$JAVA_HOME" == "" ] ; then
+    export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home"
+fi
+        
+# ----- actions -------------------------------------------------
+
 check_macosx() {
     if [ "$SYSTEM" != 'Darwin' ] ; then
         error "This action can only run on MacOSX"
@@ -88,20 +79,18 @@ ant_prepare() {
     
     ANT=`which ant`
     if [ "$ANT" = "" ] ; then
-        cd thirdparty
-        ANT_TAR=`ls | grep apache-ant | grep tar.gz | grep -v svn`
+        ANT_TAR=`find thirdparty | grep apache-ant | grep -v svn`
         ANT_DIR=`echo $ANT_TAR | sed 's/.tar.gz//'`
         if [ ! -d $ANT_DIR ] ; then
-            tar xzf $ANT_TAR -C . || exit 1
+            tar xzf $ANT_TAR -C $GRIDWORKS_BUILD_DIR || exit 1
         fi
-        ANT="`pwd`/$ANT_DIR/bin/ant"
-        cd ..
+        ANT="$ANT_DIR/bin/ant"
     fi
 }
 
 ant() {
-    ant_prepare   
-    $ANT -f build.xml -Dbuild.dir="$GRIDWORKS_BUILD_DIR" -Ddist.dir="$GRIDWORKS_DIST_DIR" -Dversion="$VERSION" -Dnum_version="$NUM_VERSION" -Drevision="$REVISION" $1 || exit 1
+    ant_prepare    
+    $ANT -f build.xml -Dbuild.dir="$GRIDWORKS_BUILD_DIR" -Ddist.dir="$GRIDWORKS_DIST_DIR" -Dversion="$VERSION" -Dnum_version="$NUM_VERSION" -Djava.options="$JAVA_OPTIONS" $1 || exit 1
 }
 
 dist_prepare() {
@@ -111,13 +100,11 @@ dist_prepare() {
 }
        
 launch4j_prepare() {
-    cd thirdparty
-    LAUNCH4J_TAR=`ls | grep launch4j | grep tar.gz | grep -v svn`
-    LAUNCH4J_DIR="launch4j"
+    LAUNCH4J_TAR=`find thirdparty | grep launch4j | grep -v svn`
+    LAUNCH4J_DIR="thirdparty/launch4j"
     if [ ! -d "$LAUNCH4J_DIR" ] ; then
         tar xzf $LAUNCH4J_TAR -C thirdparty || exit 1
     fi
-    cd ..
 }
 
 get_version() {
@@ -127,56 +114,22 @@ get_version() {
         fail "Must specify a version number"
     fi
     
-    NUM_VERSION=`echo $VERSION | sed 's/[a-zA-Z]//g'`
+    NUM_VERSION=`echo $VERSION | sed 's/\a//g'`
 }
-
-get_revision() {
-    if [ -d ".svn" ]; then
-        INFO=`svn info`
-    elif [ -d ".git" ]; then
-        INFO=`git svn info`
-    else
-        error "cannot obtain revision, exiting!"
-    fi
-
-    REVISION=`echo $INFO | sed 's/.*Revision: /r/' | sed 's/ .*//'`
-}
-
-dist() {
-    make_dmg $1
-    make_exe $1
-    make_cli $1
-}
-
+    
 make_exe() {
     check_macosx
     dist_prepare
     launch4j_prepare
     get_version $1
-    get_revision
     
     ant exe
-
-    echo ""
-    echo "Built exe ZIP for version $VERSION-$REVISION"
-}
-
-make_cli() {
-    dist_prepare
-    get_version $1
-    get_revision
-    
-    ant cli
-    
-    echo ""
-    echo "Built cli ZIP for version $VERSION-$REVISION"
 }
     
 make_dmg() {
     check_macosx
     dist_prepare
     get_version $1
-    get_revision
     
     ant bundle
 
@@ -220,56 +173,19 @@ make_dmg() {
     sync
     hdiutil detach $DEVICE
     hdiutil convert "$GRIDWORKS_BUILD_DIR/temp_gridworks.dmg" -format UDZO -imagekey zlib-level=9 -o "$GRIDWORKS_DIST_DIR/gridworks-$VERSION.dmg"
-    hdiutil internet-enable -yes "$GRIDWORKS_DIST_DIR/gridworks-$VERSION-$REVISION.dmg"
+    hdiutil internet-enable -yes "$GRIDWORKS_DIST_DIR/gridworks-$VERSION.dmg"
     rm -f "$GRIDWORKS_BUILD_DIR/temp_gridworks.dmg"
-    
-    echo ""
-    echo "Built DMG for version $VERSION-$REVISION"
-}
-
-test() {
-    if [ ! -d $GRIDWORKS_TEST_DIR/classes ] ; then
-        ant build_tests
-        echo ""
-    fi
-    
-    CLASSPATH="$GRIDWORKS_BUILD_DIR/classes:$GRIDWORKS_TEST_DIR/classes:$GRIDWORKS_TEST_DIR/lib/*:$GRIDWORKS_LIB_DIR/*"
-
-    if [ "$1" == "" ] ; then
-        cd $GRIDWORKS_TEST_DIR/classes
-        TESTS=`find . -name '*.class' | sed s@/@.@g | sed s@.class@@ | sed s@..@@`
-        cd ../..
-    else 
-        TESTS=$1
-    fi
-    
-    RUN_CMD="$JAVA -cp $CLASSPATH $OPTS org.junit.runner.JUnitCore $TESTS"
-    
-    echo "$RUN_CMD"
-    echo ""
-    
-    exec $RUN_CMD
 }
 
 run() {
     if [ ! -d $GRIDWORKS_BUILD_DIR/classes ] ; then
-        if [ `ls $GRIDWORKS_LIB_DIR | grep gridworks` == "" ] ; then
-            ant build
-            echo ""
-        fi
-    fi
-
-    if [ "$SYSTEM" == 'Darwin' ] ; then
-        OPTS="-Xdock:name=Gridworks -Xdock:icon=src/graphics/icon/gridworks.icns $OPTS"
-    fi
-    
-    if [ "$GRIDWORKS_DATA_DIR" != "" ] ; then
-        OPTS="-Dgridworks.data_dir=$GRIDWORKS_DATA_DIR $OPTS"
+        ant build
+        echo ""
     fi
     
     CLASSPATH="$GRIDWORKS_BUILD_DIR/classes:$GRIDWORKS_LIB_DIR/*"
 
-    RUN_CMD="$JAVA -cp $CLASSPATH $OPTS com.metaweb.gridworks.Gridworks"
+    RUN_CMD="$JAVA -cp $CLASSPATH $OPTS -Xdock:name=Gridworks -Xdock:icon=src/graphics/icon/gridworks.icns com.metaweb.gridworks.Gridworks"
   
     echo "Starting Gridworks at 'http://${GRIDWORKS_HOST}:${GRIDWORKS_PORT}/'"
     echo ""
@@ -278,24 +194,6 @@ run() {
 
     exec $RUN_CMD
 }
-
-execute() {
-    if [ ! -d $GRIDWORKS_BUILD_DIR/classes ] ; then
-        ant build
-        echo ""
-    fi
-    
-    CLASSPATH="$GRIDWORKS_BUILD_DIR/classes:$GRIDWORKS_LIB_DIR/*"
-
-    RUN_CMD="$JAVA -cp $CLASSPATH $OPTS $*"
-  
-    echo "$RUN_CMD"
-    echo ""
-
-    exec $RUN_CMD $*
-}
-    
-# -------------------------- script -----------------------------
     
 # ----- We called without arguments print the usage -------------
 
@@ -305,21 +203,7 @@ execute() {
 
 cd `dirname $0`
 
-# ----- Default values ------------------------------------------
-
-OPTS=""
-
-SYSTEM=`uname`
-
-if [ "$SYSTEM" == "Darwin" ] && [ "$JAVA_HOME" == "" ] ; then
-    export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home"
-fi
-
-# ----- Load configurations -------------------------------------
-
-load_configs gridworks.ini
-
-# ----- Make sure there is an appropriate java environment is available -------------
+# ----- Make sure there is a java environment installed -------------------------
     
 if [ ! -z "$JAVA_HOME" ] ; then
     JAVA="$JAVA_HOME/bin/java"
@@ -343,14 +227,11 @@ fi
 
 while [ $# -ne 0 ] ; do
   case "$1" in
-    -h) usage;;
     -p) shift; GRIDWORKS_PORT="$1"; shift; continue;;
     -i) shift; GRIDWORKS_HOST="$1"; shift; continue;;
     -w) shift; GRIDWORKS_WEBAPP="$1"; shift; continue;;
-    -d) shift; GRIDWORKS_DATA_DIR="$1"; shift; continue;;
-    -m) shift; GRIDWORKS_MEMORY="$1"; shift; continue;;
-    --debug) shift; add_option '-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n'; continue;;
-    --jmx) shift; add_option '-Dcom.sun.management.jmxremote'; continue;;
+    -d) shift; add_option '-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n'; continue;;
+    -x) shift; add_option '-Dcom.sun.management.jmxremote'; continue;;
     -*) fail "Invalid option: $1";;
     *) break;;
   esac
@@ -361,14 +242,9 @@ ACTION=$1; shift
 # ----- Verify and Set Required Environment Variables -------------------------
 
 if [ "$JAVA_OPTIONS" == "" ] ; then
-  JAVA_OPTIONS=""
+  JAVA_OPTIONS="-Xms256M -Xmx1024M -XX:+UseLargePages -XX:+UseParallelGC"
 fi
 add_option "$JAVA_OPTIONS"
-
-if [ "$GRIDWORKS_MEMORY" == "" ] ; then
-    GRIDWORKS_MEMORY="1024M"
-fi
-add_option "-Xms256M -Xmx$GRIDWORKS_MEMORY"
 
 if [ "$GRIDWORKS_PORT" == "" ] ; then
     GRIDWORKS_PORT="3333"
@@ -385,10 +261,6 @@ if [ "$GRIDWORKS_WEBAPP" == "" ] ; then
 fi
 add_option "-Dgridworks.webapp=$GRIDWORKS_WEBAPP"
 
-if [ "$GRIDWORKS_TEST_DIR" == "" ] ; then
-    GRIDWORKS_TEST_DIR="tests"
-fi
-
 if [ "$GRIDWORKS_BUILD_DIR" == "" ] ; then
     GRIDWORKS_BUILD_DIR="build"
 fi
@@ -404,7 +276,6 @@ fi
 # ----- Respond to the action given --------------------------------------------
 
 case "$ACTION" in
-
   build)
     ant build;;
 
@@ -417,28 +288,15 @@ case "$ACTION" in
   distclean)
     ant distclean;;
 
-  test) 
-    test $1;;  
-
   run) 
     run;;  
-
-  execute) 
-    execute $*;;  
     
   make_dmg)
     make_dmg $1;;
 
   make_exe)
     make_exe $1;;
-    
-  make_cli)
-    make_cli $1;;
-    
-  dist)
-    dist $1;;
       
   *)
     usage; ;;
-    
 esac

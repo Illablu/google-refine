@@ -1,13 +1,12 @@
 html {
     font-size: 62.5%;
-    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
 }
 
 body {
     font-size: 120%;
     margin: 0;
     padding: 0;
-    background: #eee;
 }
 
 table {
@@ -15,80 +14,31 @@ table {
 }
 
 tr, td {
-    vertical-align: baseline;
-}
-
-div.grid-layout > table {
-    border-collapse: separate;
-}
-div.grid-layout.layout-full table {
-    width: 100%;
-}
-div.grid-layout > table > tbody > tr > th, div.grid-layout > table > tbody > tr > td {
-    padding: 0px;
-    text-align: left;
     vertical-align: top;
 }
-div.grid-layout.layout-normal {
-    margin: -10px;
+
+#header {
+    padding: 5px 20px;
+    background: #666;
+    color: #eee;
 }
-div.grid-layout.layout-normal > table {
-    border-spacing: 10px;
+#header .app-path-section {
+    font-weight: bold;
+}
+#header a.app-path-section {
+    text-decoration: none;
+    color: #eee;
+}
+#header a.app-path-section:hover {
+    text-decoration: underline;
 }
 
-div.grid-layout.layout-tight {
-    margin: -7px;
-}
-div.grid-layout.layout-tight > table {
-    border-spacing: 7px;
+#header h1 {
+    margin: 0;
 }
 
-div.grid-layout.layout-tighter {
-    margin: -5px;
-}
-div.grid-layout.layout-tighter > table {
-    border-spacing: 5px;
-}
-
-div.grid-layout.layout-tightest {
-    margin: -3px;
-}
-div.grid-layout.layout-tightest > table {
-    border-spacing: 3px;
-}
-
-div.grid-layout.layout-loose {
-    margin: -15px;
-}
-div.grid-layout.layout-loose > table {
-    border-spacing: 15px;
-}
-
-div.grid-layout.layout-looser {
-    margin: -20px;
-}
-div.grid-layout.layout-looser > table {
-    border-spacing: 20px;
-}
-
-input[type="checkbox"], input[type="radio"] {
-    vertical-align: baseline;
-}
-input.inline {
-    vertical-align: middle;
-}
-
-div.input-container {
-    padding: 3px;
-}
-div.input-container > input, div.input-container > textarea {
-    display: block;
-    width: 100%;
-    padding: 2px;
-    border: 1px inset;
-    margin-left: -3px;
-    margin-top: -3px;
-    vertical-align: top;
+#body {
+    padding: 20px;
 }
 
 a.action {
@@ -114,92 +64,6 @@ img {
     vertical-align: middle;
 }
 
-.hidden {
-    display: none;
-}
-
 .fbs-pane, .fbs-flyout-pane {
     z-index: 2000;
 }
-
-.ui-widget {
-    font-family: inherit;
-    font-size: inherit;
-}
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
-    font-family: inherit;
-    font-size: inherit;
-}
-.ui-widget-header {
-    background-image: none;
-    background-color: #ccc;
-}
-
-.ui-widget-content a.ui-state-default.ui-slider-handle {
-    background: url(../images/slider-left-bracket.png) no-repeat bottom left;
-    border: none;
-    margin-left: -12px;
-    top: -10px;
-}
-.ui-widget-content a.ui-state-default.ui-slider-handle:last-child {
-    background: url(../images/slider-right-bracket.png) no-repeat bottom right;
-    border: none;
-    margin-left: -2px;
-    top: -10px;
-}
-.ui-slider .ui-slider-handle {
-    height: 32px;
-}
-
-#header {
-    background: url(../images/freebase-tools-sprite-vertical.png) repeat-x scroll 0 0 #F2F2F2;
-    border-bottom: 1px solid #bbb;    
-    height: 32px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 1px;
-    position: relative;
-    overflow: hidden;
-}
-#logo {
-    padding: 7px 0;
-    padding-right: 20px;
-    float: left;
-    border-right: 1px solid #ddd;
-}
-#path {
-    position: absolute;
-    top: 50%;
-    margin-top: -0.5em;
-    line-height: 1em;
-    left: 75px;
-    height: 31px;
-}
-#path .app-path-section {
-    background: url(../images/path-delimiter.png) no-repeat center right;
-    padding: 18px 20px 20px 10px;
-}
-#path .app-path-section a {
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-}
-#path a.app-path-section:hover {
-    text-decoration: underline;
-}
-
-#footer {
-    font-size: 80%;
-    padding: 1em 0;
-    color: #666;
-    text-align: center;
-    border-top: 1px solid #ccc;
-}
-#footer a {
-    color: #448;
-}
-
-#body {
-    background: white;
-}
-

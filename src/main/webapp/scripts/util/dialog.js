@@ -17,8 +17,6 @@ DialogSystem.showDialog = function(elmt, onCancel) {
     container.css("top", Math.round((overlay.height() - elmt.height()) / 2) + "px");
     elmt.css("visibility", "visible");
     
-    container.draggable({ handle: '.dialog-header', cursor: 'move' });
-    
     var layer = {
         overlay: overlay,
         container: container,
@@ -57,7 +55,7 @@ DialogSystem.createDialog = function() {
 
 DialogSystem.showBusy = function(message) {
     var frame = DialogSystem.createDialog();
-    frame.addClass("dialog-busy-frame");
+    frame.width("300px").css("-moz-border-radius", "25px");
     
     var body = $('<div>').addClass("dialog-busy-body").appendTo(frame);
     $('<img>').attr("src", "images/large-spinner.gif").appendTo(body);

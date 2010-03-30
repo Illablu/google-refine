@@ -1,6 +1,5 @@
 package com.metaweb.gridworks.operations;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Properties;
 
@@ -11,7 +10,7 @@ import org.json.JSONWriter;
 import com.metaweb.gridworks.browsing.RowVisitor;
 import com.metaweb.gridworks.expr.Evaluable;
 import com.metaweb.gridworks.expr.ExpressionUtils;
-import com.metaweb.gridworks.expr.MetaParser;
+import com.metaweb.gridworks.expr.Parser;
 import com.metaweb.gridworks.model.AbstractOperation;
 import com.metaweb.gridworks.model.Cell;
 import com.metaweb.gridworks.model.Column;
@@ -20,143 +19,83 @@ import com.metaweb.gridworks.model.Row;
 import com.metaweb.gridworks.model.changes.CellChange;
 
 public class TextTransformOperation extends EngineDependentMassCellOperation {
-    final protected String  _expression;
-    final protected OnError _onError;
-    final protected boolean _repeat;
-    final protected int     _repeatCount;
-    
+	private static final long serialVersionUID = -7698202759999537298L;
+
+	final protected String _expression;
+	
     static public AbstractOperation reconstruct(Project project, JSONObject obj) throws Exception {
         JSONObject engineConfig = obj.getJSONObject("engineConfig");
         
         return new TextTransformOperation(
             engineConfig,
             obj.getString("columnName"),
-            obj.getString("expression"),
-            stringToOnError(obj.getString("onError")),
-            obj.getBoolean("repeat"),
-            obj.getInt("repeatCount")
+            obj.getString("expression")
         );
     }
     
-    static public OnError stringToOnError(String s) {
-    	if ("set-to-blank".equalsIgnoreCase(s)) {
-    		return OnError.SetToBlank;
-    	} else if ("store-error".equalsIgnoreCase(s)) {
-    		return OnError.StoreError;
-    	} else {
-    		return OnError.KeepOriginal;
-    	}
-    }
-    static public String onErrorToString(OnError onError) {
-    	if (onError == OnError.SetToBlank) {
-    		return "set-to-blank";
-    	} else if (onError == OnError.StoreError) {
-    		return "store-error";
-    	} else {
-    		return "keep-original";
-    	}
-    }
-    
-    public TextTransformOperation(
-            JSONObject engineConfig, 
-            String columnName, 
-            String expression, 
-            OnError onError,
-            boolean repeat,
-            int repeatCount
-        ) {
-        super(engineConfig, columnName, true);
-        _expression = expression;
-        _onError = onError;
-        _repeat = repeat;
-        _repeatCount = repeatCount;
-    }
+	public TextTransformOperation(JSONObject engineConfig, String columnName, String expression) {
+		super(engineConfig, columnName, true);
+		_expression = expression;
+	}
 
-    public void write(JSONWriter writer, Properties options)
-            throws JSONException {
-        
-        writer.object();
-        writer.key("op"); writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
-        writer.key("description"); writer.value(getBriefDescription(null));
-        writer.key("engineConfig"); writer.value(getEngineConfig());
-        writer.key("columnName"); writer.value(_columnName);
-        writer.key("expression"); writer.value(_expression);
-        writer.key("onError"); writer.value(onErrorToString(_onError));
-        writer.key("repeat"); writer.value(_repeat);
-        writer.key("repeatCount"); writer.value(_repeatCount);
-        writer.endObject();
-    }
+	public void write(JSONWriter writer, Properties options)
+			throws JSONException {
+		
+		writer.object();
+		writer.key("op"); writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+		writer.key("description"); writer.value(getBriefDescription());
+		writer.key("engineConfig"); writer.value(getEngineConfig());
+		writer.key("columnName"); writer.value(_columnName);
+		writer.key("expression"); writer.value(_expression);
+		writer.endObject();
+	}
 
-    protected String getBriefDescription(Project project) {
-        return "Text transform on cells in column " + _columnName + " using expression " + _expression;
-    }
+	protected String getBriefDescription() {
+		return "Text transform on cells in column " + _columnName + " using expression " + _expression;
+	}
 
-    protected String createDescription(Column column,
-            List<CellChange> cellChanges) {
-        
-        return "Text transform on " + cellChanges.size() + 
-            " cells in column " + column.getName() + ": " + _expression;
-    }
+	protected String createDescription(Column column,
+			List<CellChange> cellChanges) {
+		
+		return "Text transform on " + cellChanges.size() + 
+			" cells in column " + column.getHeaderLabel() + ": " + _expression;
+	}
 
-    protected RowVisitor createRowVisitor(Project project, List<CellChange> cellChanges) throws Exception {
-        Column column = project.columnModel.getColumnByName(_columnName);
-        
-        Evaluable eval = MetaParser.parse(_expression);
+	protected RowVisitor createRowVisitor(Project project, List<CellChange> cellChanges) throws Exception {
+		Column column = project.columnModel.getColumnByName(_columnName);
+		
+		Evaluable eval = new Parser(_expression).getExpression();
         Properties bindings = ExpressionUtils.createBindings(project);
         
-        return new RowVisitor() {
-            int                 cellIndex;
-            Properties             bindings;
-            List<CellChange>     cellChanges;
-            Evaluable             eval;
-            
-            public RowVisitor init(int cellIndex, Properties bindings, List<CellChange> cellChanges, Evaluable eval) {
-                this.cellIndex = cellIndex;
-                this.bindings = bindings;
-                this.cellChanges = cellChanges;
-                this.eval = eval;
-                return this;
-            }
-            
-            public boolean visit(Project project, int rowIndex, Row row, boolean includeContextual, boolean includeDependent) {
-                Cell cell = row.getCell(cellIndex);
-                Object oldValue = cell != null ? cell.value : null;
+		return new RowVisitor() {
+			int 				cellIndex;
+			Properties 			bindings;
+			List<CellChange> 	cellChanges;
+			Evaluable 			eval;
+			
+			public RowVisitor init(int cellIndex, Properties bindings, List<CellChange> cellChanges, Evaluable eval) {
+				this.cellIndex = cellIndex;
+				this.bindings = bindings;
+				this.cellChanges = cellChanges;
+				this.eval = eval;
+				return this;
+			}
+			
+			public boolean visit(Project project, int rowIndex, Row row, boolean contextual) {
+				Cell cell = row.getCell(cellIndex);
 
                 ExpressionUtils.bind(bindings, row, rowIndex, cell);
-                
-                Serializable newValue = ExpressionUtils.wrapStorable(eval.evaluate(bindings));
-                if (ExpressionUtils.isError(newValue)) {
-                	if (_onError == OnError.KeepOriginal) {
-                		return false;
-                	} else if (_onError == OnError.SetToBlank) {
-                		newValue = null;
-                	}
+				
+                Object v = eval.evaluate(bindings);
+                if ((cell != null && cell.value != null) || v != null) {
+                    Cell newCell = new Cell(v, cell.recon);
+				
+    				CellChange cellChange = new CellChange(rowIndex, cellIndex, cell, newCell);
+    				cellChanges.add(cellChange);
                 }
                 
-                if (!ExpressionUtils.sameValue(oldValue, newValue)) {
-                    Cell newCell = new Cell(newValue, (cell != null) ? cell.recon : null);
-                    
-                    if (_repeat) {
-                        for (int i = 0; i < _repeatCount; i++) {
-                            ExpressionUtils.bind(bindings, row, rowIndex, newCell);
-                            
-                            newValue = ExpressionUtils.wrapStorable(eval.evaluate(bindings));
-                            if (ExpressionUtils.isError(newValue)) {
-                                break;
-                            } else if (ExpressionUtils.sameValue(newCell.value, newValue)) {
-                                break;
-                            }
-                            
-                            newCell = new Cell(newValue, newCell.recon);
-                        }
-                    }
-                
-                    CellChange cellChange = new CellChange(rowIndex, cellIndex, cell, newCell);
-                    cellChanges.add(cellChange);
-                }
-                
-                return false;
-            }
-        }.init(column.getCellIndex(), bindings, cellChanges, eval);
-    }
+				return false;
+			}
+		}.init(column.getCellIndex(), bindings, cellChanges, eval);
+	}
 }

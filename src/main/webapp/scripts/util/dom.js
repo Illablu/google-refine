@@ -3,9 +3,7 @@ var DOM = {};
 DOM.bind = function(elmt) {
     var map = {};
     
-    for (var i = 0; i < elmt.length; i++) {
-        DOM._bindDOMElement(elmt[i], map);
-    }
+    DOM._bindDOMChildren(elmt[0], map);
     
     return map;
 };

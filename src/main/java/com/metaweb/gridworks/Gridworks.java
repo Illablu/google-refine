@@ -27,11 +27,7 @@ import com.metaweb.util.signal.SignalHandler;
 import com.metaweb.util.threads.ThreadPoolExecutorAdapter;
 
 public class Gridworks extends Server {
-    final static public String s_version = "1.0";
-    
-    private static Logger root = Logger.getRootLogger();
-    private static Logger logger = Logger.getLogger("com.metaweb.gridworks");
-    
+
     public static void main(String[] args) throws Exception  {
         
         // tell jetty to use SLF4J for logging instead of its own stuff
@@ -40,12 +36,14 @@ public class Gridworks extends Server {
 
         // initialize the log4j system
         Appender console = new ConsoleAppender(new IndentingLayout());
+        
+        Logger root = Logger.getRootLogger();
         root.setLevel(Level.ALL);
         root.addAppender(console);
 
         Logger jetty_logger = Logger.getLogger("org.mortbay.log");
-        jetty_logger.setLevel(Level.WARN);
-        
+        jetty_logger.setLevel(Level.INFO);
+
         // get main configurations
         int port = Configurations.getInteger("gridworks.port",3333);
         String host = Configurations.get("gridworks.host","127.0.0.1");
@@ -67,18 +65,6 @@ public class Gridworks extends Server {
         server.join();
     }
 
-    public static void log(String message) {
-        logger.info(message);
-    }
-
-    public static void error(String message, Throwable t) {
-        logger.error(message, t);
-    }
-
-    public static void warn(String message) {
-        logger.warn(message);
-    }
-    
     /* -------------- Gridworks HTTP server ----------------- */
     
     private ThreadPoolExecutor threadPool;
@@ -94,6 +80,15 @@ public class Gridworks extends Server {
         threadPool = new ThreadPoolExecutor(maxThreads, maxQueue, keepAliveTime, TimeUnit.SECONDS, queue);
 
         this.setThreadPool(new ThreadPoolExecutorAdapter(threadPool));
+
+        // NOTE(SM): we use a BIO connector instead of the NIO connector
+        // because NIO can't deal with thread deaths: if the execution
+        // of a script is taking too long and acre kills it, that automatically
+        // shuts down the I/O channel to the user and we can't communicate
+        // that error back to the user (which also causes the I/O channel
+        // to be abruptly terminated and causes all sorts of proxy errors
+        // down the line). This is a performance penalty, but not severe
+        // enough to compensate for this problem.
         
         Connector connector = new SocketConnector();
         connector.setPort(port);

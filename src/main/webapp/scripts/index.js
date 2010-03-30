@@ -1,32 +1,19 @@
-var GridworksVersion = {
-    description: "Gridworks 1.0 beta 2 (rolling update)",
-    date: "2010-03-23"
-};
-
 function onLoad() {
+    $("#upload-file-button").click(onClickUploadFileButton);
+    
     $.getJSON(
         "/command/get-all-project-metadata",
         null,
         function(data) {
             renderProjects(data);
-            $("#upload-file-button").click(onClickUploadFileButton);
         },
         "json"
     );
-    
-    var thisVersion = Date.parseExact(GridworksVersion.date, "yyyy-MM-dd");
-    var latestVersion = Date.parseExact(GridworksReleases.releases[0].date, "yyyy-MM-dd");
-    if (thisVersion.getTime() < latestVersion.getTime()) {
-        $('<div id="version-message">' +
-            'New version "' + GridworksReleases.releases[0].description + '" <a href="' + GridworksReleases.homepage + '">available for download here</a>.' +
-          '</div>').appendTo(document.body)
-    }
 }
 $(onLoad);
 
 function onClickUploadFileButton(evt) {
-    var projectName = $("#project-name-input")[0].value;
-    if ($.trim(projectName).length == 0) {
+    if ($("#project-name-input")[0].value.trim().length == 0) {
         window.alert("You must specify a project name.");
         
         evt.preventDefault();
@@ -46,58 +33,30 @@ function renderProjects(data) {
         if (data.projects.hasOwnProperty(n)) {
             var project = data.projects[n];
             project.id = n;
-            project.date = Date.parseExact(project.modified, "yyyy-MM-ddTHH:mm:ssZ");
+            project.date = new Date(project.modified);
             projects.push(project);
         }
     }
     
-    if (projects.length == 0) {
-        $('#body-empty').show();
-        $('#create-project-panel').remove().appendTo($('#body-empty-create-project-panel-container'));
-    } else {
-        $('#body-nonempty').show();
-        $('#create-project-panel').remove().appendTo($('#body-nonempty-create-project-panel-container'));
-
+    if (projects.length > 0) {
         projects.sort(function(a, b) { return b.date.getTime() - a.date.getTime(); });
-        if (projects.length > 10) {
-            $('#body-nonempty-logo-container').css("vertical-align", "top");
-            $('#body-nonempty-create-project-panel-container').css("vertical-align", "top");
-        }
         
         var container = $("#projects").empty().show();
-        $('<h1>').text("Projects").appendTo(container);
-        
-        var renderProject = function(project) {
-            var div = $('<div>').addClass("project").appendTo(container);
-        
-            $('<a></a>')
-                .addClass("delete-project")
-                .attr("title","Delete this project")
-                .attr("href","")
-                .html("<img src='/images/close.png' />")
-                .click(function() {
-                    if (window.confirm("Are you sure you want to delete project \"" + project.name + "\"?")) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/command/delete-project",
-                            data: { "project" : project.id },
-                            dataType: "json",
-                            success: function (data) {
-                                if (data && typeof data['code'] != 'undefined' && data.code == "ok") {
-                                    window.location.reload()
-                                }
-                            }
-                        });                    
-                    }
-                    return false;
-                }).appendTo(div);
-            
-            $('<a></a>').text(project.name).attr("href", "/project.html?project=" + project.id).appendTo(div);
-            $('<span></span>').text(formatDate(project.date)).addClass("last-modified").appendTo(div);
-        };
-        
+
+        $('<h2></h2>').text("Projects").appendTo(container);
+
+        var table = $('<table><tr><td></td><td>last modified</td></tr></table>')
+            .attr("cellspacing", "5")
+            .appendTo(container)[0];
+
         for (var i = 0; i < projects.length; i++) {
-            renderProject(projects[i]);
+            var project = projects[i];
+            var tr = table.insertRow(table.rows.length);
+            var td0 = tr.insertCell(0);
+            var td1 = tr.insertCell(1);
+        
+            $('<a></a>').text(project.name).attr("href", "/project.html?project=" + project.id).appendTo(td0);
+            $('<span></span>').text(formatDate(project.date)).appendTo(td1);
         }
     }
 }
@@ -107,10 +66,10 @@ function formatDate(d) {
     var today = Date.today();
     var tomorrow = Date.today().add({ days: 1 });
     if (d.between(today, tomorrow)) {
-        return "Today " + d.toString("h:mm tt");
+        return "Today " + d.toString("HH:mm");
     } else if (d.between(yesterday, today)) {
-        return "Yesterday " + d.toString("h:mm tt");
+        return "Yesterday " + d.toString("HH:mm");
     } else {
-        return d.toString("ddd, MMM d, yyyy");
+        return d.toString("M-ddd-yyyy");
     }
 }
