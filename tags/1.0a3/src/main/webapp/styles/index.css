@@ -1,0 +1,84 @@
+#body-empty, #body-nonempty {
+    display: none;
+}
+
+#body-template {
+    display: none;
+}
+#body-empty, #body-nonempty {
+    width: 800px;
+    padding: 100px 0;
+    margin: auto;
+}
+#body-empty > table, #body-nonempty > table {
+    width: 100%;
+    border-collapse: collapse:
+}
+#body-empty > table > tbody > tr > td, #body-nonempty > table > tbody > tr > td {
+    padding: 20px;
+    vertical-align: middle;
+}
+#body-empty-logo-container, #body-nonempty-logo-container {
+    width: 1%;
+    white-space: pre;
+    font-size: 400%;
+}
+#body-empty-create-project-panel-container, #body-nonempty-create-project-panel-container {
+    border-left: 3px solid #eee;
+}
+
+#body-nonempty {
+    width: 1000px;
+}
+#body-nonempty-logo-container {
+    font-size: 300%;
+}
+
+#body-nonempty-projects-container {
+    border-left: 3px solid #eee;
+}
+
+#create-project-panel h1 {
+    font-size: 120%;
+    margin: 1em 0;
+}
+
+#projects {
+    white-space: pre;
+}
+#projects h1 {
+    margin: 0;
+    margin-bottom: 1em;
+    font-size: 120%;
+    color: #aaa
+}
+#projects a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #004;
+}
+#projects a:hover {
+    text-decoration: underline;
+    color: #008;
+}
+.project {
+    margin: 0.25em 0;
+}
+.delete-project {
+    margin-right: 0.5em;
+}
+.last-modified {
+    margin: 0 0.25em;
+    color: #aaa;
+}
+
+#version-message {
+    padding: 20px;
+    border: 1px solid #aaa;
+    background: #ffddaa;
+    position: absolute;
+    top: -1px;
+    left: 40%;
+    width: 20%;
+    z-index: 1000;
+}
