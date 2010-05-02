@@ -70,18 +70,16 @@ public class FreebaseDataExtensionJob {
             JSONObject o = ParsingUtilities.evaluateJsonStringToObject(s);
             
             Map<String, FreebaseDataExtensionJob.DataExtension> map = new HashMap<String, FreebaseDataExtensionJob.DataExtension>();
-            if (o.has("result")) {
-                JSONArray a = o.getJSONArray("result");
-                int l = a.length();
+            JSONArray a = o.getJSONArray("result");
+            int l = a.length();
+            
+            for (int i = 0; i < l; i++) {
+                JSONObject o2 = a.getJSONObject(i);
+                String guid = o2.getString("guid");
+                FreebaseDataExtensionJob.DataExtension ext = collectResult(o2, reconCandidateMap);
                 
-                for (int i = 0; i < l; i++) {
-                    JSONObject o2 = a.getJSONObject(i);
-                    String guid = o2.getString("guid");
-                    FreebaseDataExtensionJob.DataExtension ext = collectResult(o2, reconCandidateMap);
-                    
-                    if (ext != null) {
-                        map.put(guid, ext);
-                    }
+                if (ext != null) {
+                    map.put(guid, ext);
                 }
             }
             
@@ -286,9 +284,7 @@ public class FreebaseDataExtensionJob {
                 jsonWriter.key("guid|=");
                     jsonWriter.array();
                     for (String guid : guids) {
-                        if (guid != null) {
-                            jsonWriter.value(guid);
-                        }
+                        jsonWriter.value(guid);
                     }
                     jsonWriter.endArray();
                     
