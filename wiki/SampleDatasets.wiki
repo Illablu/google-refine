@@ -1,4 +1,5 @@
 #summary List of sample datasets that you can use to try out Gridworks
+#labels Featured
 
 A good place to start is the list of [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/tests/data datasets] that we use ourselves to test Gridworks.
 
