@@ -1,5 +1,7 @@
 #summary List of functions supported by the Gridworks Expression Language
 
+<wiki:toc max_depth="1" />
+
 Function invocation in Gridworks expression language has 2 forms:
 
   * `functionName(arg0, arg1, ...)`
