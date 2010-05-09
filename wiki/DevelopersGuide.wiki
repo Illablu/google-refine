@@ -79,6 +79,8 @@ If your linux distro doesn't have java installed and you have support for apt-ge
 
 If you get warnings while compiling Gridworks that look like this
 
+{{{
     [javac] /.../SignalHandlerWrapper.java:xx: warning: sun.misc.Signal is Sun proprietary API and may be removed in a future release
+}}}
 
 go ahead and ignore them.  Unfortunately, there is no way around this and no way to turn them off (see [http://1060.org/blogxter/entry?publicid=F1BD9808599F72B829BE11499203685A here])
