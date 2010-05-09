@@ -1,7 +1,15 @@
   * [WhatsNew What's New?]
   * [GettingStarted Getting Started]
-  * GEL
-    * Expressions
-    * Functions
-  * [DevelopersGuide Developer's Guide]
   * [FAQ FAQ]
+  * Users's Resources
+    * [UserGuide How to Use Gridworks]
+    * [Recipes Recipes]
+    * Gridworks Expression Language (GEL)
+      * [GELReference GEL Reference]
+      * [GELFunctions GEL Functions]
+    * Data
+      * [SampleDatasets Sample Datasets]
+      * [DataSources Data Sources]
+  * Developers' Resources
+    * [DevelopersGuide Developer's Guide]
+    * [Roadmap Roadmap]
