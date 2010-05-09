@@ -1,0 +1,1 @@
+<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/code.google.com.gadget.xml" up_feeds="http://blogsearch.google.com/blogsearch_feeds?hl=en&q=%22gridworks%22+-puzzle&ie=utf-8&num=10&output=rss|http://freebase-gridworks.blogspot.com/feeds/posts/default"  width="500px" height="340px" border="0"/>
