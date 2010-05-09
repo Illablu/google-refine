@@ -1,0 +1,27 @@
+#summary How to get started with Freebase Gridworks
+
+Gridworks is implemented as a Java-based local web server, serving at http://localhost:3333/. You use Gridworks by interacting with it in your web browser. When you start Gridworks, it starts the web server and also opens a browser window automatically. But just like you can open several browser windows pointing to a single web site, you can open several browser windows pointing to Gridworks.
+
+==Windows==
+
+Once you have downloaded the ZIP file, decompress it into a folder somewhere, and run the .exe file in that folder. You should see the command line window in which Gridworks runs. Pressing Ctrl-C in that window should terminate Gridworks gracefully.
+
+==Mac OSX==
+
+Once you have downloaded the DMG file, open it, and drag the Gridworks icon into the Applications folder (just like you would normally install Mac applications). To launch Gridworks, go to the Applications folder and double click the Gridworks app. You should see the Gridworks app on the dock.
+
+You can switch to the Gridworks app to shut it down, or to re-open a browser window pointing to its web server in case you have accidentally closed its browser window.
+
+==Linux==
+
+Once you have downloaded the "tar.gz" file, open a shell and type
+
+  tar xzf gridworks.tar.gz
+  cd gridworks
+  ./gridworks
+
+this will start gridworks and open your browser to starting page.
+
+=Troubleshooting=
+
+See the [FAQ] to know how to run Gridworks with more memory, etc.
