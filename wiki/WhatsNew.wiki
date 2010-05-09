@@ -1,0 +1,5 @@
+#summary Announcements of the latest features
+
+=May 2010=
+
+Freebase Gridworks 1.0 is released.
