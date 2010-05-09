@@ -1,0 +1,51 @@
+#summary How to use Freebase Gridworks
+
+If you haven't done so already, we strongly suggest you to watch the [http://vimeo.com/groups/gridworks/videos screencasts] first as they will give you an idea of how to use Gridworks.
+
+=Paradigm=
+
+We liken using Gridworks to using Photoshop: in the former you deal with a lot of data cells and in the latter you deal with a lot of pixels. Using Photoshop typically involves selecting one or more patches of pixels and then applying some effects on them to change them en masse. Similarly, using Gridworks typically involves filtering down to some subset of rows (effectively selecting those rows) and then applying some changes to those rows en masse. So, just remember
+
+    Filter (select) then Edit.
+
+To filter, create one or more facets for some columns and making selections in those facets.
+
+=Work Flow=
+
+Gridworks imposes no particular work flow. There are several power tools that you can use in any combination and any order to get the job done. You will probably discover some work flow on your own that is convenient for you, or suitable for the kind of data you often deal with. You might also learn effective work flows from your peers. Along that line, we ourselves have gotten used to the following work flow, which you might want to adopt: play, fix, reconcile, align, extend, and load.
+
+==Play==
+
+The first thing to do after loading a data set into Gridworks is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves creating various facets (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
+
+==Fix==
+
+While playing with the data, you will probably discover inconsistencies within the data.
+
+  * Hover your mouse over one cell and click on the "edit" button to edit its content; in the popup, you might also want to apply the same change to all other cells that have the same content.
+  * Hover over a text facet choice and edit that choice, causing all cells containing that choice's text to get edited.
+  * Use the common transforms in the column header menu to apply fixing transforms that we often find useful. 
+  * Use the Transform command in the column header menu and specify your own transform.
+  * Use the Cluster & Edit command in the column header menu (Edit Cells -> Cluster & Edit ...). This is a powerful utility that analyzes cells' text and groups them into clusters, and lets you set all choices in each cluster to some common value. 
+
+For any column in which a cell can contain a list of things, e.g., "Foo, bar, baz", "Foo / bar / baz", you can use the Split Multi-valued Cells command to separate them out into different cells, and then fix those cells.
+
+You can also create new column based on one or more existing columns.
+
+Use facets to narrow down to just the rows that you want your changes to affect.
+
+==Reconcile==
+
+For each column that contains topics that should be in Freebase, reconcile its cells to Freebase. The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually and use your own judgment to match them.
+
+==Align==
+
+Use the {{{Schemas -> Edit Schema Alignment Skeleton}}} command in the main menu bar to create a schema alignment skeleton to specify how to transform your grid-shaped data into graph-shaped data. Make sure you switch to the TripleLoader Preview tab to double-check the result of the transformation.
+
+==Iterate==
+
+Rinse and repeat the steps Play, Fix, Reconcile, and Align in any order and as many times as you need until you've done your best to make data appear clean and consistent and aligned to you. Use facets to get big pictures of the data set.
+
+==Extend==
+
+Once your data is reconciled again Freebase, you can use it to augment your own data with data that is contained there. To do that, click on the drop-down menu on the column that contains the reconciled information that you wish to augment, select the {{{Edit Column -> Add Columns from Freebase}}} and follow the instructions.
