@@ -1,6 +1,5 @@
   * [WhatsNew What's New?]
   * [GettingStarted Getting Started]
-
   * Users's Resources
     * [UserGuide How to Use Gridworks]
     * [Recipes Recipes]
@@ -12,7 +11,6 @@
     * Data
       * [SampleDatasets Sample Datasets]
       * [DataSources Data Sources]
-
   * Developers' Resources
     * [DevelopersGuide Developer's Guide]
     * [Roadmap Roadmap]
