@@ -14,6 +14,12 @@ To filter, create one or more facets for some columns and making selections in t
 
 Gridworks imposes no particular work flow. There are several power tools that you can use in any combination and any order to get the job done. You will probably discover some work flow on your own that is convenient for you, or suitable for the kind of data you often deal with. You might also learn effective work flows from your peers. Along that line, we ourselves have gotten used to the following work flow, which you might want to adopt: play, fix, reconcile, align, extend, and load.
 
+==Load==
+
+Gridworks can load both individual data files as well as tarred and zipped archives (.zip, .tar.gz, .tgz, .tar.bz2, .gz, .bz2). For an archive file, Gridworks detects the most common file extension in it and loads all files with that extension into a single project.
+
+For individual files, Gridworks can handle non-delimited fixed length text files, comma-separated value (CSV) files, tab-separated value (TSV) files, or text files in which the columns are separated by some character you specify. Gridworks can also handle Excel files and XML files, including .rss and .atom files and uniform .rdf files.
+
 ==Play==
 
 The first thing to do after loading a data set into Gridworks is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves creating various facets (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
