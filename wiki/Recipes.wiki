@@ -1,4 +1,5 @@
 #summary Useful recipes for achieving certain tasks in Gridworks
+#labels Featured
 
 This page collects Gridworks recipes, small workflows and code fragments that show you how to achieve specific things with Gridworks.
 
