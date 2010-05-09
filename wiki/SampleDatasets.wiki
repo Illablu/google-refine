@@ -1,0 +1,14 @@
+#summary List of sample datasets that you can use to try out Gridworks
+
+A good place to start is the list of [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/tests/data datasets] that we use ourselves to test Gridworks.
+
+== Sample Data Sets ==
+
+  * [http://infochimps.org/datasets/disasters-wordwide-from-1900-2008 Disasters worldwide from 1900-2008 at Infochimps]
+  * [http://www.sos.louisiana.gov/tabid/136/Default.aspx Louisiana elected officials] - must use Excel itself to convert the .xls file to a .tsv file first, because Java lib for dealing with .xls files doesn't like this particular .xls file
+  * [http://www.data.gov/raw/8 Clean Air Status and Trends Network (CASTNET): Ozone] - 500K rows, 6 columns
+  * [http://www.data.gov/raw/1175 Federal Advisory Committee Act (FACA) Committee Member List-2004] - 65K rows, 25 columns
+  * [http://www.data.gov/raw/1554 U.S. Overseas Loans and Grants (Greenbook)] - 2K rows
+  * [http://drop.io/NFDC_02_2010 NFDC Airport data] - HUGE non-delimited rows, APT.txt, use splitByLengths with pattern:  
+  3,11,13,4,10,3,4,2,20,21,2,40,42,2,2,35,72,45,16,35,72,45,16,15,12,15,12,1,5,1,3,4,4,30,2,3,5,4,3,30,4,3,30,1,4,30,16,16,4,30,16,4,1,7,2,15,7,13,1,1,1,1,18,6,2,1,8,8,40,5,5,8,8,9,1,42,7,4,3,1,1,3,3,3,3,3,3,3,6,6,6,6,6,6,10,16,10,16,10,1,12,71,3,7
+  * [http://drop.io/geologic_time Geologic Time Periods] - 749 rows, 5 columns
