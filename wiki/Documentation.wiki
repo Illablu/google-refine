@@ -1,4 +1,0 @@
-#summary Freebase Gridworks documentation redirection page
-
-Proceed to the [http://wiki.freebase.com/wiki/Gridworks Freebase Gridworks documentation].
- 
