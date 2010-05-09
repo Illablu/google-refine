@@ -65,7 +65,7 @@ To build the distributions type
   ./gridworks dist <version>
 }}}
 
-where '<version>' is the release version.
+where <version> is the release version.
 
 == Troubleshooting ==
 
