@@ -1,0 +1,1 @@
+<wiki:gadget url="http://gridworks-gadgets.freebaseapps.com/gadget/download_try" width="700" height="1000" border="0" />
