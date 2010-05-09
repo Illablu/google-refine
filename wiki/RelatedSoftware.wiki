@@ -1,0 +1,9 @@
+#summary List of other software products that can be used with or instead of Gridworks
+
+  * [http://rapid-i.com/content/view/181/190/lang,en/ Rapid Miner]
+  * [http://www.talend.com/ Talend]
+  * [http://rattle.togaware.com/ Rattle], based on R, by [http://www.freebase.com/view/guid/9202a8c04000641f8000000014d02334 Dr. Graham Williams]
+  * [http://www.tableausoftware.com/ Tableau]
+  * [http://spotfire.tibco.com/ Spotfire]
+
+Feel free to add suggestions in the comments.
