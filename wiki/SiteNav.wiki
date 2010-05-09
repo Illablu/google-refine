@@ -1,7 +1,7 @@
-  * Whats New?
+  * [WhatsNew What's New?]
   * [GettingStarted Getting Started]
   * GEL
-  ** Expressions
-  ** Functions
+    * Expressions
+    * Functions
   * [DevelopersGuide Developer's Guide]
-  
+  * [FAQ FAQ]
