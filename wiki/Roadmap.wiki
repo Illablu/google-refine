@@ -1,0 +1,34 @@
+#summary Gridworks Roadmap
+
+===Planned Features ===
+
+  * JSON importer
+  * other importer options
+  ** fixed length columns
+  * exporter options
+  ** which columns to export
+  * fix extend data dialog box to support constraints
+  * more convenient way to split a column
+  * Support for grouping columns
+  ** Support mouse selection for creating new column groups
+  * Data set joins - this is quite compelling but needs more architectural thinking
+  * emql extension? mql support?
+  * RABJ integration
+  * Better machinery to guess and re-encode cell values (useful for fixing encoding issues)
+  * map + timeline facets
+  * gadget-like skeleton emergence from tree-shaped data
+  * "merge columns" command (possibly including ranges and open ended ones as well, say both [3,5] meaning merge   column 3,4,5 together and [10,] meaning from the 10th column onward)
+  * optional regexp parsing at import
+
+==Feature Requests, Bugs, Comments, Etc.==
+
+  * after splitting multi-valued cells containing something like "1997 / 1998 / 1999", try to parse individual result into numbers
+  * if you create a numeric facet based on a column, and then kill the column, the facet would cause the collection to go blank (try the year facet from the Start column of the disasters data set)
+  * after splitting multi-valued cells, you can't filter by the context columns anymore, e.g., filter film director by from original country
+  * long running processes should serialize their intermediate results and recover later, too.
+  * support flagging in addition to starring rows
+  * when applying operations, try to fix common json errors, like missing or extraneous commas and missing top level brackets. This is probably important for inexperienced (aka non-programming) users.
+  * After splitting a row, doing a custom transform where you refer to another column seems to only apply to the first row
+  ** This requires adding a "context" variable to the evaluation environment. "context[column name]" would return the context cell in column "column name".
+  * ability to move columns
+  * ability to cluster records -- to look for records that look alike and might actually be the same (useful for de-duplication)
