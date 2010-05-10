@@ -1,9 +1,17 @@
 #summary List of other software products that can be used with or instead of Gridworks
 
+(in no particular order)
+
+  * [http://www.powerpivot.com/ Microsoft PowerPivot]
   * [http://rapid-i.com/content/view/181/190/lang,en/ Rapid Miner]
   * [http://www.talend.com/ Talend]
-  * [http://rattle.togaware.com/ Rattle], based on R, by [http://www.freebase.com/view/guid/9202a8c04000641f8000000014d02334 Dr. Graham Williams]
+  * [http://rattle.togaware.com/ Rattle]
   * [http://www.tableausoftware.com/ Tableau]
   * [http://spotfire.tibco.com/ Spotfire]
+  * [http://www.pentaho.com Pentaho] 
+  * [http://www.cloveretl.com CloverETL]
+  * [http://www.informatica.com/PRODUCTS_SERVICES/POWERCENTER/OPTIONS/METADATA/Pages/metadata_exchange_features.aspx Informatica Powercenter]
+  * [http://www.elixirtech.com/products/DataETL.html Elixir Repertoire]
+  * [http://www.pervasive.com/ Pervasive Datarush]
 
 Feel free to add suggestions in the comments.
