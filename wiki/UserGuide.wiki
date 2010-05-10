@@ -23,7 +23,7 @@ For individual files, Gridworks can handle non-delimited fixed length text files
 
 ==Play==
 
-The first thing to do after loading a data set into Gridworks is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves creating various facets (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
+The first thing to do after loading a data set into Gridworks is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves [Faceting] (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
 
 ==Fix==
 
