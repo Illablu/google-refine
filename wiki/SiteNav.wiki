@@ -13,6 +13,8 @@
     * Data
       * [SampleDatasets Sample Datasets]
       * [DataSources Data Sources]
+    * Recipes
+      * [RecipeApacheLogs Analyzing Apache Logs]
   * Developers' Resources
     * [DevelopersGuide Developer's Guide]
     * [Testing Testing]
