@@ -1,10 +1,9 @@
-[[Gridworks|&laquo; Gridworks]]
-
 Import the log file:
-* without splitting into columns
-* with # header lines set 0
-* then apply the following operations
+  * without splitting into columns
+  * with # header lines set 0
+  * then apply the following operations
 
+{{{
   [
     {
       "op": "column-split",
@@ -118,10 +117,12 @@ Import the log file:
       "columnName": "Column 3"
     }
   ]
-
+}}}
 
 ==Facets==
 
 To create a referrer domain facet, use this expression on the Referer column:
 
+{{{
   if(value == "-", value, value.partition("://")[2].partition("/")[0])
+}}}
