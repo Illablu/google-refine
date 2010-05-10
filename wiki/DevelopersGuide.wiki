@@ -81,8 +81,10 @@ On Windows, Gridworks requires [http://www.cygwin.com/ Cygwin] and [http://java.
 
 Open the Cygwin bash shell. Navigate to your installation directory, then run gridworks
 
+{{{
    # cd 'C:\\path_to_installation_directory'
    # ./gridworks
+}}}
 
 If you receive a message `Could not find the main class: com.metaweb.gridworks.Gridworks. Program will exit.` this means that the `JAVA_HOME` variable is likely not set correctly.
 
