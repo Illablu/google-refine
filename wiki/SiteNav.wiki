@@ -2,23 +2,23 @@
   * [GettingStarted Getting Started]
   * [FAQ FAQ]
 
-==Users's Resources==
-  * [UserGuide How to Use Gridworks]
-  * [Recipes Quick Recipes]
-  * [Faceting Faceting]
-  * Expressions
-    * Gridworks Expression Language (GEL)
-      * [GELReference GEL Reference]
-      * [GELFunctions GEL Functions]
-    * [Jython Jython]
-  * Data
-    * [SampleDatasets Sample Datasets]
-    * [DataSources Data Sources]
-  * All Recipes
-    * [RecipeApacheLogs Analyzing Apache Logs]
-  * [RelatedSoftware Related Software]
+  * Users's Resources
+    * [UserGuide How to Use Gridworks]
+    * [Recipes Quick Recipes]
+    * [Faceting Faceting]
+    * Expressions
+      * Gridworks Expression Language (GEL)
+        * [GELReference GEL Reference]
+        * [GELFunctions GEL Functions]
+      * [Jython Jython]
+    * Data
+      * [SampleDatasets Sample Datasets]
+      * [DataSources Data Sources]
+    * All Recipes
+      * [RecipeApacheLogs Analyzing Apache Logs]
+    * [RelatedSoftware Related Software]
 
-==Developers' Resources==
-  * [DevelopersGuide Developer's Guide]
-  * [Testing Testing]
-  * [Roadmap Roadmap]
+  * Developers' Resources
+    * [DevelopersGuide Developer's Guide]
+    * [Testing Testing]
+    * [Roadmap Roadmap]
