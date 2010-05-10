@@ -1,0 +1,72 @@
+Gridworks supports faceted browsing as a mechanism for 
+  * exploring your data
+  * filtering down to just the subset of rows that you want to edit en masse.
+
+There are several types of facet: text, numeric, text search.
+
+=Text Facets=
+
+You can think of a text facet as a grouping summary of the rows in a data set. For example, given the data set like this
+
+|| president || died in office || party ||
+||  Abraham Lincoln || yes || Republican ||
+||  Andrew Johnson || no ||  Democratic ||
+||  Ulysses Grant || no || Republican ||
+||  Rutherford Hayes || no || Republican ||
+||  James Garfield || yes || Republican ||
+||  Chester Arthur || no || Republican ||
+||  Grover Cleveland || no || Democratic ||
+||  Benjamin Harrison || no || Republican ||
+||  William McKinley || yes || Republican ||
+||  Theodore Roosevelt || no || Republican ||
+||  William Taft || no || Republican ||
+||  Woodrow Wilson || no || Democratic ||
+||  Warren Harding ||  yes || Republican ||
+||  Calvin Coolidge || no || Republican ||
+|| ... || ... || ... ||
+
+creating a standard text facet on the party column yields something like this
+
+|| choice || count ||
+|| Democratic || 15 ||
+|| Republican || 18 ||
+|| ... || ... ||
+
+Just by creating such a text facet, you already gain some insight into your data set: there are 15 democrats, 18 republicans, and so forth. The facet essentially groups the rows by their party cells, and counts the rows in each group.
+
+What's more: when you click on Democratic in the facet, the data table will show only the 15 rows in which the party cells contain "Democratic". That is, picking a choice in the facet performs a filter.
+
+You can also create several facets at the same time, say, a text facet on the "party" column as well as a text facet on the "died in office" column. Selecting "yes" in the "died in office" column filters the rows down to just the 8 rows in which the "died in office" cells contain "yes"--that is, you're now seeing just the eight presidents who died while in office. This action also updates the "party" facet, which should now show something like this:
+
+|| choice || count ||
+|| Democratic || 2 ||
+|| Republican || 4 ||
+|| ... || ... ||
+
+This means that out of the 8 presidents who died in office, two were democrats, four republicans, and so forth. You've gained just another insight, now by using several facets together.
+
+After selecting "yes" in the "died in office" facet, you can also select, say, "Republican" in the "party" facet to filter for those four republican presidents who died while in office. By making selections in several facets, you can effectively perform a sophisticated query over the rows.
+
+==Numeric Facets==
+
+You can also think of a numeric facet as a grouping summary, except that the grouping happens differently than in a text facet. A numeric facet groups rows by numbers contained in cells in some column. The numbers are put into some bins, and then for each bin the rows corresponding to it are counted. The bins are plotted in a histogram.
+
+==Text Search Facets==
+
+==Custom Facets==
+
+==Reconcile Facets==
+
+By Judgement - ???
+
+Best Candidate's Relevance Score - ???
+
+Best Candidate's Type Match - True / False concerning whether the best candidate topic has the type expected (the type you specify when you start the recon process)
+
+Best Candidate's Name Match - name match is string match (not case sensitive) on reconciled cell
+
+Best Candidate's Name Edit Distance - shows the number of character changes necessary to get the cell's text to look like the best candidate topic's name
+
+Best Candidate's Name Word Similarity - word similarity is a fraction of words that are the same; ( "foo bar baz" and "bar and foo" is 0.6666 similar, I believe. )
+
+Best Candidate's Types - Lists Freebase types of the first candidate topic for each cell
