@@ -55,6 +55,12 @@ or, if you want to run only the client side portion of the tests run
   ./gridworks ui_test
 }}}
 
+==== Testing on Windows ====
+
+In addition to Python, the [http://sourceforge.net/projects/pywin32/ Python for Windows extensions] are required to run Windmill on Windows. Without it Windmills fails to respond and/or gives an `ImportError?: No module named win32api`
+
+Curl is also required, but you can install it when you install Cygwin (there is a module for it).
+
 == Distributions ==
 
 The Gridworks build system automates the creation of the installation packages for the different operating systems. They are currently optimized to run on Macosx which is the only platform capable of creating the packages for all the three OS that we support.
