@@ -4,7 +4,7 @@ Gridworks supports faceted browsing as a mechanism for
 
 There are several types of facet: text, numeric, text search.
 
-(The results of individual facets panels can also be exported as TSV by clicking the link in the top left corner of each panel)
+(The results of individual facet panels can also be exported as TSV by clicking the link in the top left corner of each panel)
 
 ==Text Facets==
 
