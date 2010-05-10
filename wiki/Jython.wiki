@@ -1,4 +1,4 @@
-Expressions in jython must have a <code>return</code> statement, e.g.,
+Expressions in jython must have a `return` statement, e.g.,
 
   return value[[1:-1]]
 
