@@ -22,6 +22,12 @@ Once you have downloaded the "tar.gz" file, open a shell and type
 
 this will start gridworks and open your browser to starting page.
 
+=Loading Data=
+
+Gridworks can load both individual data files as well as tarred and zipped archives (.zip, .tar.gz, .tgz, .tar.bz2, .gz, .bz2). For an archive file, Gridworks detects the most common file extension in it and loads all files with that extension into a single project.
+
+For individual files, Gridworks can handle non-delimited fixed length text files, comma-separated value (CSV) files, tab-separated value (TSV) files, or text files in which the columns are separated by some character you specify. Gridworks can also handle Excel files and XML files, including .rss and .atom files and uniform .rdf files.
+
 =Troubleshooting=
 
 See the [FAQ] to know how to run Gridworks with more memory, etc.
