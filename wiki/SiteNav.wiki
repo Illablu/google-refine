@@ -19,5 +19,4 @@
     * [RelatedSoftware Related Software]
   * Developers' Resources
     * [DevelopersGuide Developer's Guide]
-    * [Testing Testing]
     * [Roadmap Roadmap]
