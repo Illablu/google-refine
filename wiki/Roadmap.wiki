@@ -32,3 +32,4 @@
   ** This requires adding a "context" variable to the evaluation environment. "context[column name]" would return the context cell in column "column name".
   * ability to move columns
   * ability to cluster records -- to look for records that look alike and might actually be the same (useful for de-duplication)
+  * option or preference to only show Freebase /common types in dropdowns for type and property suggestions.
