@@ -1,7 +1,6 @@
   * [WhatsNew What's New?]
   * [GettingStarted Getting Started]
   * [FAQ FAQ]
-
   * Users's Resources
     * [UserGuide How to Use Gridworks]
     * [Recipes Quick Recipes]
@@ -17,7 +16,6 @@
     * All Recipes
       * [RecipeApacheLogs Analyzing Apache Logs]
     * [RelatedSoftware Related Software]
-
   * Developers' Resources
     * [DevelopersGuide Developer's Guide]
     * [Testing Testing]
