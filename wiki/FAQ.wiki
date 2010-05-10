@@ -8,18 +8,17 @@ This is a collection of frequently asked questions on Gridworks. Feel free to ad
 All your projects are stored on your own computer:
 
 MacOSX:
-  * ~/Library/Application Support/Gridworks/
+  * `~/Library/Application Support/Gridworks/`
 
 Windows: depending on the Windows version, the data is in one of these directories
-  * C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks
-  * C:\Users\(user id)\AppData\Roaming\Gridworks
-  * C:\Users\(user id)\Gridworks
+  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks`
+  * `C:\Users\(user id)\AppData\Roaming\Gridworks`
+  * `C:\Users\(user id)\Gridworks`
 
 Linux:
-  * ~/.local/share/gridworks/
+  * `~/.local/share/gridworks/`
 
-== I get java.lang.OutOfMemoryError: Java heap space errors, ==
-== or it feels SLOW - How do I expand the memory that Gridworks can use? ==
+==I get java.lang.OutOfMemoryError: Java heap space errors,<br/>or it feels SLOW - How do I expand the memory that Gridworks can use? ==
 
 Since Gridworks is a Java application that utilizes the JVM, you might need to allocate enough memory to handle processing large files and avoid java.lang.OutOfMemoryError: Java heap space errors.  But, you will also need to balance that allocation with the needs of your OS to prevent disk caching problems.
 
