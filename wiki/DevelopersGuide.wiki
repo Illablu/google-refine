@@ -32,8 +32,8 @@ Gridworks' source comes with [http://www.eclipse.org/ eclipse] project files. So
 
 Since Gridworks is composed of two parts, a server and a in-browser UI, the testing system reflects that:
 
-* on the server side, it's powered by JUnit and the unit tests are written in Java
-* on the client side, it's powered by Windmill and the unit tests are written in Javascript
+  * on the server side, it's powered by JUnit and the unit tests are written in Java
+  * on the client side, it's powered by Windmill and the unit tests are written in Javascript
 
 To run the testing framework, simply type
 
@@ -41,7 +41,7 @@ To run the testing framework, simply type
   ./gridworks test
 }}}
 
-The above command requires you to have a "python" and "curl" installed on your machine (which you probably already do).
+The above command requires you to have [http://www.python.org/ python] and [http://curl.haxx.se/ curl] installed on your machine and available in the path (you might already do, even if you don't know about it so just try it once and see what errors you get).
 
 if you want to run only the server side portion of the tests run
 
@@ -69,11 +69,22 @@ where 'version' is the release version (for example, 1.3b3).
 
 == Troubleshooting ==
 
+=== Windows ===
+
+On Windows, Gridworks requires [http://www.cygwin.com/ Cygwin] and [http://java.sun.com/javase/downloads/index.jsp Java JDK] to be installed. Once these are installed you then need to [http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows Set the `JAVA_HOME` environment variable]. You may need to reboot your machine after setting this environment variable.
+
+Open the Cygwin bash shell. Navigate to your installation directory, then run gridworks
+
+   # cd 'C:\\path_to_installation_directory'
+   # ./gridworks
+
+If you receive a message `Could not find the main class: com.metaweb.gridworks.Gridworks. Program will exit.` this means that the `JAVA_HOME` variable is likely not set correctly.
+
 === Linux ===
 
 ==== Installing Java ====
 
-If your linux distro doesn't have java installed and you have support for apt-get (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program.
+If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program.
 
 ==== Warning: sun.misc.Signal ====
 
