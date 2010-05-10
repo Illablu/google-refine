@@ -5,9 +5,11 @@
     * [Recipes Recipes]
     * [FAQ FAQ]
     * [RelatedSoftware Related Software]
-    * Gridworks Expression Language (GEL)
-      * [GELReference GEL Reference]
-      * [GELFunctions GEL Functions]
+    * Expressions
+      * Gridworks Expression Language (GEL)
+        * [GELReference GEL Reference]
+        * [GELFunctions GEL Functions]
+      * [Jython Jython]
     * Data
       * [SampleDatasets Sample Datasets]
       * [DataSources Data Sources]
