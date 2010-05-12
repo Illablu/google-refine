@@ -1,6 +1,26 @@
 #summary Gridworks Developer's Guide
 
-== How to build Gridworks from source ==
+= How to build Gridworks from source =
+
+== IDE Support (Easier) ==
+
+Gridworks' source comes with [http://www.eclipse.org/ eclipse] project files (which can also be imported into netbeans). So, the simplest way to create a project in Eclipse with Gridworks' source is to just follow the instructions on how to [http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-importproject.htm import an existing project].
+
+Here is what you need to do to run gridworks from inside eclipse or netbeans:
+
+1) make sure to import the eclipse project and not start one from scratch (either from the "import" command in the File menu, or thru importing directly via svn)
+
+2) in the "run" configuration, in the "(x)= arguments" tab, you need to place this line in the VM configuration (VM Options if netbeans) text area:
+
+-Dgridworks.autoreloading=true  -Dgridworks.webapp=src/main/webapp
+
+3) apply, close the dialog and then click the green run button and voila', you should see it run and open your default browser. (recommend Firefox or Google Chrome at this point)
+
+If you want gridworks logs to be more verbose, append this to the line above
+
+ -Dgridworks.verbosity=TRACE
+
+== Command Line Support (Harder) ==
 
 The Gridworks build system requires you to have a unix shell. On Macosx and Linux, just use bash or sh. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run bash.
 
@@ -11,10 +31,6 @@ To see what functions are supported by the Gridwork's build system, type
 }}}
 
 to get a list of them.
-
-== IDE Support ==
-
-Gridworks' source comes with [http://www.eclipse.org/ eclipse] project files. So, the simplest way to create a project in Eclipse with Gridworks' source is to just follow the instructions on how to [http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-importproject.htm import an existing project].
 
 == Building ==
 
