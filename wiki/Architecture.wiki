@@ -1,0 +1,18 @@
+#summary Gridworks' architecture.
+
+Gridworks is a web application that is intended, unlike most web applications, to run on one's own machine and used by oneself. Its server-side is written entirely in Java, and its client-side in HTML, CSS, and Javascript. The server-side maintains states of the data (undo/redo history, long-running processes) while the client-side maintains states of the user interface (facets and their selections, view pagination, etc.). The client-side makes GET and POST ajax calls to cause changes to the data and to fetch updated data from the server-side.
+
+=Server-Side Architecture=
+
+==Data Model==
+
+==Change Model==
+
+==Processes and Operations==
+
+==Expressions==
+
+
+=Client-Side Architecture=
+
+==Faceted Browsing==
