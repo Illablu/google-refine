@@ -20,3 +20,4 @@
   * Developers' Resources
     * [DevelopersGuide Developer's Guide]
     * [Roadmap Roadmap]
+    * [Architecture Architecture]
