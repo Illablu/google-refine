@@ -50,7 +50,7 @@ public class History implements Jsonizable {
         return (Change) load.invoke(null, reader, pool);
     }
     
-    static public void writeOneChange(OutputStream out, Change change, Pool pool) throws IOException {
+    static public void writeOneChange(OutputStream out, Change change, Pool pool) throws Exception {
         Writer writer = new OutputStreamWriter(out);
         try {
             History.writeOneChange(writer, change, pool);
@@ -59,18 +59,14 @@ public class History implements Jsonizable {
         }
     }
     
-    static public void writeOneChange(Writer writer, Change change, Pool pool) throws IOException {
+    static public void writeOneChange(Writer writer, Change change, Pool pool) throws Exception {
+        writer.write(Gridworks.getVersion()); writer.write('\n');
+        writer.write(change.getClass().getName()); writer.write('\n');
+            
         Properties options = new Properties();
         options.setProperty("mode", "save");
         options.put("pool", pool);
         
-        writeOneChange(writer, change, options);
-    }
-    
-    static public void writeOneChange(Writer writer, Change change, Properties options) throws IOException {
-        writer.write(Gridworks.getVersion()); writer.write('\n');
-        writer.write(change.getClass().getName()); writer.write('\n');
-            
         change.save(writer, options);
     }
     

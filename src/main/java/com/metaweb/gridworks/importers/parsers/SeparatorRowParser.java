@@ -1,6 +1,5 @@
 package com.metaweb.gridworks.importers.parsers;
 
-import java.io.LineNumberReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class SeparatorRowParser extends RowParser {
         this.sep = sep;
     }
     
-    public List<String> split(String line, LineNumberReader lineReader) {
+    public List<String> split(String line) {
         String[] cells = StringUtils.splitPreserveAllTokens(line, sep);
         
         List<String> results = new ArrayList<String>();
@@ -31,7 +30,7 @@ public class SeparatorRowParser extends RowParser {
         return results;
     }
     
-    public boolean parseRow(Row row, String line, boolean guessValueType, LineNumberReader lineReader) {
+    public boolean parseRow(Row row, String line, boolean guessValueType) {
         boolean hasData = false;
         
         String[] cells = StringUtils.splitPreserveAllTokens(line, sep);

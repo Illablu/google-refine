@@ -229,9 +229,9 @@ tools_prepare() {
 ant_prepare() {
     tools_prepare
 
-    ANT_URL="http://archive.apache.org/dist/ant/binaries/apache-ant-1.8.1-bin.tar.gz"
+    ANT_URL="http://www.apache.org/dist/ant/binaries/apache-ant-1.8.0-bin.tar.gz"
     ANT_FILE=`echo $ANT_URL | sed 's|.*/||'`
-    ANT_DIR="apache-ant-1.8.1"
+    ANT_DIR="apache-ant-1.8.0"
     
     ANT="`which ant 2> /dev/null`"
     if [ -z "$ANT" ]; then
@@ -316,7 +316,7 @@ windmill_prepare() {
         fi
         
         if [ ! -f "$WINDMILL" ]; then
-            "$PYTHON_INSTALL" windmill
+            $PYTHON_INSTALL windmill
         fi
     fi    
 }
@@ -500,9 +500,9 @@ ui_test() {
     
     echo "Starting Windmill... (press COMMAND-c or CTRL-c to exit)"
     if [ -z "$INTERACTIVE" ]; then
-        "$WINDMILL" firefox http://${GRIDWORKS_HOST}:${GRIDWORKS_PORT}/ jsdir=$GRIDWORKS_TEST_DIR/windmill/js > /dev/null
+        $WINDMILL firefox http://${GRIDWORKS_HOST}:${GRIDWORKS_PORT}/ jsdir=$GRIDWORKS_TEST_DIR/windmill/js > /dev/null
     else
-        "$WINDMILL" firefox http://${GRIDWORKS_HOST}:${GRIDWORKS_PORT}/ > /dev/null
+        $WINDMILL firefox http://${GRIDWORKS_HOST}:${GRIDWORKS_PORT}/ > /dev/null
     fi
     
     echo ""
@@ -513,13 +513,15 @@ ui_test() {
 }
 
 server_test() {
-    ant build_tests
-    echo ""
+    if [ ! -d "$GRIDWORKS_TEST_DIR/java/classes" ]; then
+        ant build_tests
+        echo ""
+    fi
     
     CLASSPATH="$GRIDWORKS_BUILD_DIR/classes${SEP}$GRIDWORKS_WEBAPP/WEB-INF/classes${SEP}$GRIDWORKS_TEST_DIR/java/classes${SEP}$GRIDWORKS_TEST_DIR/java/lib/*${SEP}$GRIDWORKS_LIB_DIR/*${SEP}$GRIDWORKS_WEBAPP/WEB-INF/lib/*"
 
     if [ -z "$1" ]; then
-        cd "$GRIDWORKS_TEST_DIR/java/classes"
+        cd $GRIDWORKS_TEST_DIR/java/classes
         TESTS=`find . -name '*.class' | sed s@/@.@g | sed s@.class@@ | sed s@..@@`
         cd ../../..
     else 

@@ -107,9 +107,6 @@ licenses/icu4j.LICENSE.txt
 licenses/json.LICENSE.txt
     json
 
-licenses/mockito.LICENSE.txt
-    mockito
-
 Others
 ------
 

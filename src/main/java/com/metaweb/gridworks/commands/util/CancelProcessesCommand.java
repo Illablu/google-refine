@@ -17,7 +17,7 @@ public class CancelProcessesCommand extends Command {
         
         try {
             Project project = getProject(request);
-            project.getProcessManager().cancelAll();
+            project.processManager.cancelAll();
             
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Type", "application/json");
