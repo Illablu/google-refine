@@ -1,8 +1,18 @@
 #summary Gridworks' architecture.
 
-Gridworks is a web application that is intended, unlike most web applications, to run on one's own machine and used by oneself. Its server-side is written entirely in Java, and its client-side in HTML, CSS, and Javascript. The server-side maintains states of the data (undo/redo history, long-running processes) while the client-side maintains states of the user interface (facets and their selections, view pagination, etc.). The client-side makes GET and POST ajax calls to cause changes to the data and to fetch updated data from the server-side.
+Gridworks is a web application, but unlike 99% of web applications, it is intended to be run on one's own machine and used by oneself. The server-side maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side maintains states of the user interface (facets and their selections, view pagination, etc.). The client-side makes GET and POST ajax calls to cause changes to the data and to fetch data and data-related states from the server-side.
+
+This architecture has emerged from our experience building similar systems such as Simile Longwell CSI, a faceted browser for RDF data. It provides a good separation of concerns (data vs. UI) and also makes it quick and easy to implement user interface features using familiar web technologies. In the future, it's possible to make the server-side scriptable from the command line.
 
 =Server-Side Architecture=
+
+Gridworks' server-side is written entirely in Java (`src/main/java/`) and its entry point is the Java servlet `com.metaweb.gridworks.GridworksServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `src/server/java/com.metaweb.gridworks.Gridworks`. Note that the server class itself is under `src\server\`, not `src\main\`; this separation leaves the possibility of hosting `GridworksServlet` in a different servlet container.
+
+The web server configuration is in `src/main/webapp/WEB-INF/web.xml`; that's where `GridworksServlet` is hooked up. `GridworksServlet` itself is simple: it just reacts to requests from the client-side by routing them to the right `Command` class in the packages `com.metaweb.gridworks.commands.*`.
+
+As mentioned before, the server-side maintains states of the data, and the primary class involved is `com.metaweb.gridworks.ProjectManager`.
+
+==Project Management==
 
 ==Data Model==
 
@@ -14,5 +24,7 @@ Gridworks is a web application that is intended, unlike most web applications, t
 
 
 =Client-Side Architecture=
+
+Gridworks' client-side is in HTML, CSS, and Javascript and uses jQuery and jQuery UI.
 
 ==Faceted Browsing==
