@@ -5,7 +5,7 @@ Gridworks aims to be a truly diverse and open development community of people in
 
 There are several ways you can participate, even without being a software developer.
 
-  * *most of the communication happens over email*, over at the [http://groups.google.com/group/freebase-gridworks freebase-gridworks] google group. Follow the link to subscribe (and note that you have the option to subscribe even just to digest daily emails or no email at all and you can read the messages from the web if you feel your inbox is already overflowing).
+  * *most of the communication happens over email*, over at the [http://groups.google.com/group/freebase-gridworks/ freebase-gridworks] and [http://groups.google.com/group/freebase-gridworks-dev/ freebase-gridworks-dev] google groups. Follow the link to subscribe (and note that you have the option to subscribe even just to digest daily emails or no email at all and you can read the messages from the web if you feel your inbox is already overflowing).
 
   * if you need more synchronicity (although there is no guarantee you'll get it ;-), a good place to hang out is the *#gridworks IRC chatroom over at Freenode.net* (irc://irc.freenode.net/#gridworks) If you're not an IRC user, it's basically like IM but with multiple people. There are plenty of very good IRC clients available for any operating system, so just look for one [http://en.wikipedia.org/wiki/Comparison_of_Internet_Relay_Chat_clients here] if you don't have it.
 
