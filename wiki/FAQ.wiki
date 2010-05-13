@@ -30,9 +30,23 @@ Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only
 
 Open a "command prompt", 'cd' to the folder where Gridworks is installed, then type
 
-  gridworks \m 2048m
+{{{gridworks.bat /m 2048m}}}
 
 where "2048m" is the maximum amount of memory (in Mb) that you want Gridworks to use.
+
+If you decide to use the gridworks.EXE, then set your parameters in the .ini file found in the same folder.
+
+{{{# Launch4j runtime config}}}
+
+{{{# initial memory heap size}}}
+{{{-Xms256M}}}
+
+{{{# max memory memory heap size}}}
+{{{-Xmx7500M}}}
+
+{{{{#-XX:+UseLargePages}}}
+{{{{#-Dsomevar="%SOMEVAR%"}}}}
+
 
 === Mac ===
 
