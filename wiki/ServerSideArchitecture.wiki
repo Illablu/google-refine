@@ -63,6 +63,13 @@ As mentioned before, a change contains only the diff and does not actually compu
 
 As the user interacts with the UI on the client-side, their interactions trigger ajax calls to the server-side. Some calls are meant to modify the project. Those are handled by commands that instantiates processes. Processes are queued in a first-in-first-out basis. The first-in process gets run and until it is done all the other processes are stuck in the queue.
 
+A process can effect a change in one thing in the project (e.g., edit one particular cell, star one particular row), or a process can effect changes in _potentially_ many things in the project (e.g., edit zero or more cells sharing the same content, starring all rows filtered by some facets). The latter kind of process is generalizable: it is meaningful to apply them on another similar project. Such a process is associated with an _abstract operation_ `com.metaweb.gridworks.model.AbstractOperation` that encodes the information necessary to create another instance of that process, but potentially for a different project. When you click "extract" in the History panel, these abstract operations are called to serialize their information to JSON; and when you click "apply" in the History panel, the JSON you paste in is used to re-construct these abstract operations, which in turn create processes, which get run sequentially in a queue to generate change object and history entry pairs.
 
+In summary,
+  * change objects store diffs
+  * history entries store metadata of change objects
+  * processes compute diffs and create change object and history entry pairs
+  * some processes are long-running and some are immediate; processes are run sequentially in a queue
+  * generalizable processes can be re-constructed from abstract operations
 
 ==Expressions==
