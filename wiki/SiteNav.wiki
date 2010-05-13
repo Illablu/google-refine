@@ -21,3 +21,5 @@
     * [DevelopersGuide Developer's Guide]
     * [Roadmap Roadmap]
     * [Architecture Architecture]
+      * [ServerSideArchitecture Server-Side]
+      * [ClientSideArchitecture Client-Side]
