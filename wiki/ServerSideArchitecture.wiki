@@ -43,10 +43,15 @@ Gridworks can capture our knowledge of this transformation from grid to tree usi
 
 Blank cells play a very important role. The blank cell in a key column of a row (e.g., cell "character" on row 4) makes that row (row 4) _depend_ on the first preceding row with that column filled in (row 3). This means that "Best Comedy Perf" on row 4 applies to "Dr. Evil" on row 3. Row 3 is said to be a _context row_ for row 4. Similarly, since rows 2 - 6 all have blank cells in the first column, they all depend on row 1, and all their data ultimately applies to the movie Austin Powers. Row 1 depends on no other row and is said to be a _record row_. Rows 1 - 6 together form one _record_.
 
+(As of 2010/05/13, only the XML importer creates column groups. The data table view does display column groups but it doesn't support modifying them.)
+
 ===Protograph===
 
-==History Model==
+The _protograph model_ is similar to column groups, but it's intended to transform the grid-shaped data to fit Freebase graph schemas for loading into Freebase. Protograph is the internal technical term; in the UI, it's referred to as the schema alignment skeleton.
 
-==Processes and Operations==
+Ideally, the protograph model should be more closely connected with the column groups, so that changes to one would somehow be propagated to the other. For example, creating the protograph would also create column groups if they don't already exist; and creating column groups would create a protograph with the same shape (but without Freebase schema information). As of 2010/05/13, the protograph model and the column groups are not connected in any way.
+
+==Changes, History, Processes, and Operations==
+
 
 ==Expressions==
