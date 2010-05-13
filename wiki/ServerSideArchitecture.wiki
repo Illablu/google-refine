@@ -53,5 +53,16 @@ Ideally, the protograph model should be more closely connected with the column g
 
 ==Changes, History, Processes, and Operations==
 
+Changes to a project's metadata (e.g., name) are not tracked. Only changes to the project's data are tracked. Changes are stored as `com.metaweb.gridworks.history.Change` objects. `com.metaweb.gridworks.history.Change` is an interface, and implementing classes are in `com.metaweb.gridworks.model.changs.*`. Each change object stores enough data to modify the project's data when its `apply()` method is called, and enough data to revert its effect when its `revert()` method is called. It's only supposed to _store_ data, not to actually _compute_ the change. In this way, it's like a .diff patch file for a code base.
+
+Some change objects can be huge, as huge as the project itself. So change objects are not kept in memory except when they are to be applied or reverted. However, since we still need to show the user some information about changes (as displayed in the History panel in the UI), we keep metadata of changes separate from the change objects. For each change object there is one corresponding `com.metaweb.gridworks.history.HistoryEntry` for storing its metadata, such as the change's human-friendly description and timestamp.
+
+Each project has a `com.metaweb.gridworks.history.History` object that contains an ordered list of all `HistoryEntry` objects storing metadata for all changes that have been done since after the project was created. Actually, there are 2 ordered lists: one for done changes that can be reverted (undone), an done for undone changes that can be re-applied (redone). Changes must be done or redone in their exact orders in these lists because each change makes certain assumptions about the state of the project before and after it is applied. As changes cannot be undone/redone out of order, when one change fails to revert, it blocks the whole history from being reverted to any state preceding that change (as happened in Issue #2).
+
+As mentioned before, a change contains only the diff and does not actually compute that diff. The computation is performed by a `com.metaweb.gridworks.process.Process` object--every change object is created by a process object. A process can be immediate, producing its change object synchronously within a very short period of time (e.g., starring one row); or a process can be long-running, producing its change object after a long time and a lot of computation, including network calls (e.g., reconciling a column).
+
+As the user interacts with the UI on the client-side, their interactions trigger ajax calls to the server-side. Some calls are meant to modify the project. Those are handled by commands that instantiates processes. Processes are queued in a first-in-first-out basis. The first-in process gets run and until it is done all the other processes are stuck in the queue.
+
+
 
 ==Expressions==
