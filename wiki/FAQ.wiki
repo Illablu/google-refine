@@ -35,18 +35,21 @@ Open a "command prompt", 'cd' to the folder where Gridworks is installed, then t
 where "2048m" is the maximum amount of memory (in Mb) that you want Gridworks to use.
 
 If you decide to use the gridworks.EXE, then set your parameters in the .ini file found in the same folder.
+{{{
+# Launch4j runtime config
 
-{{{# Launch4j runtime config}}}
+# initial memory heap size
 
-{{{# initial memory heap size}}}
-{{{-Xms256M}}}
+-Xms256M
 
-{{{# max memory memory heap size}}}
-{{{-Xmx7500M}}}
+# max memory memory heap size
 
-{{{{#-XX:+UseLargePages}}}
-{{{{#-Dsomevar="%SOMEVAR%"}}}}
+-Xmx2048M
 
+# -XX:+UseLargePages
+
+# -Dsomevar="%SOMEVAR%"
+}}}
 
 === Mac ===
 
