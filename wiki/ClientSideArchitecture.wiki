@@ -1,0 +1,5 @@
+#summary Gridworks' client-side architecture
+
+Gridworks' client-side is in HTML, CSS, and Javascript and uses jQuery and jQuery UI.
+
+==Faceted Browsing==
