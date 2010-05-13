@@ -8,13 +8,26 @@ As mentioned before, the server-side maintains states of the data, and the prima
 
 ==Projects and Project Management==
 
-In Gridworks there's the concept of a workspace similar to that in Eclipse. When you run Gridworks it manages projects within a single workspace, and the workspace is stored as a file directory, which by default is specified [FAQ#Where_is_the_Data_Stored? here]. You could get Gridworks to use a different directory by specifying a -d parameter at the command line.
+In Gridworks there's the concept of a workspace similar to that in Eclipse. When you run Gridworks it manages projects within a single workspace, and the workspace is embodied in a file directory with sub-directories, which by default is specified [FAQ#Where_is_the_Data_Stored? here]. You could get Gridworks to use a different directory by specifying a -d parameter at the command line.
 
-The class `ProjectManager` is what manages the workspace. It keeps in memory the metadata of every project (in the class `ProjectMetadata`). This metadata includes the project's name and last modified date, and any other information necessary to present and interact with the project as a whole. Only when the user decides to look at the project's data would `ProjectManager` load the project's actual data. The separation of project metadata and data is to minimize the amount of stuff loaded into memory.
+The class `ProjectManager` is what manages the workspace. It keeps in memory the metadata of every project (in the class `ProjectMetadata`). This metadata includes the project's name and last modified date, and any other information necessary to present and let the user interact with the project as a whole. Only when the user decides to look at the project's data would `ProjectManager` load the project's actual data. The separation of project metadata and data is to minimize the amount of stuff loaded into memory.
 
 A project's _actual_ data includes the columns, rows, cells, reconciliation records, and history entries.
 
 ==Data Model==
+
+A project's data consists of
+  * _raw data_: a list of rows, each row consisting of a list of cells
+  * _models_ on top of that raw data that give high-level presentation or interpretation of that data.
+This design lets the same raw data be viewed in different ways by different models, and let the models be changed without costly changes to the data.
+
+===Column Model===
+
+Cells in rows are not named and can only be addressed by their list position indices. So, a _column model_ is needed to give a name to each list position. The column model also stores other metadata for each column, including the Freebase type that cells in the column have been reconciled to and the overall reconciliation statistics of those cells.
+
+Each column also acts as a cache for data computed from the raw data related to that column.
+
+Columns in the column model can be removed and re-ordered without changing the raw data--the cells in the rows. This makes column removal and ordering operations really quick.
 
 ==History Model==
 
