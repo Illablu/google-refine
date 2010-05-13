@@ -6,7 +6,7 @@ The web server configuration is in `src/main/webapp/WEB-INF/web.xml`; that's whe
 
 As mentioned before, the server-side maintains states of the data, and the primary class involved is `com.metaweb.gridworks.ProjectManager`.
 
-==Projects and Project Management==
+==Projects==
 
 In Gridworks there's the concept of a workspace similar to that in Eclipse. When you run Gridworks it manages projects within a single workspace, and the workspace is embodied in a file directory with sub-directories, which by default is specified [FAQ#Where_is_the_Data_Stored? here]. You could get Gridworks to use a different directory by specifying a -d parameter at the command line.
 
@@ -14,12 +14,14 @@ The class `ProjectManager` is what manages the workspace. It keeps in memory the
 
 A project's _actual_ data includes the columns, rows, cells, reconciliation records, and history entries.
 
+A project is loaded into memory when it needs to be displayed or modified, and it remains in memory until 1 hour after the last time it gets modified. Periodically the project manager tries to save modified projects, and it saves as many modified projects as possible within 30 seconds.
+
 ==Data Model==
 
 A project's data consists of
   * _raw data_: a list of rows, each row consisting of a list of cells
   * _models_ on top of that raw data that give high-level presentation or interpretation of that data.
-This design lets the same raw data be viewed in different ways by different models, and let the models be changed without costly changes to the data.
+This design lets the same raw data be viewed in different ways by different models, and let the models be changed without costly changes to the raw data.
 
 ===Column Model===
 
@@ -28,6 +30,20 @@ Cells in rows are not named and can only be addressed by their list position ind
 Each column also acts as a cache for data computed from the raw data related to that column.
 
 Columns in the column model can be removed and re-ordered without changing the raw data--the cells in the rows. This makes column removal and ordering operations really quick.
+
+====Column Groups====
+
+Consider the following data:
+
+[http://freebase-gridworks.googlegroups.com/web/Gridworks-row-groups.png?gsc=HfBWviMAAADmKupvm6NLMZKrfX8wiTziMS12ItRK21105q9SpgEhHa0IoyLhPG2x5smOr2otMGI]
+
+Although the data is in a grid, we humans can understand that it is a tree. First of all, all rows contain data ultimately linked to the movie Austin Powers, although only one row contains the text "Austin Powers" in the "movie title" column. We also know that "USA" and "Germany" are not related to Elizabeth Hurley and Mike Myers respectively (say, as their nationality), but rather, "USA" and "Germany" are related to the movie (where it was released). We know that Mike Myers played both the character "Austin Powers" and the character "Dr. Evil"; and for the latter he received 2 awards. We humans can understand how to interpret the grid as a tree based on its visual layout as well as some knowledge we have about the movie domain but is not encoded in the table.
+
+Gridworks can capture our knowledge of this transformation from grid to tree using _column groups_, also stored in the column model. Each column group illustrated as a blue bracket above specifies which columns are grouped together, as well as which of those columns is the key column in that group (blue triangle). One column group can span over columns grouped by another column group, and in this way, column groups form a hierarchy determined by which column group envelopes another. This hierarchy of column groups allows the 2-dimensional (grid-shaped) table of rows and cells to be interpreted as a list of hierarchical (tree-shaped) data records.
+
+Blank cells play a very important role. The blank cell in a key column of a row (e.g., cell "character" on row 4) makes that row (row 4) _depend_ on the first preceding row with that column filled in (row 3). This means that "Best Comedy Perf" on row 4 applies to "Dr. Evil" on row 3. Row 3 is said to be a _context row_ for row 4. Similarly, since rows 2 - 6 all have blank cells in the first column, they all depend on row 1, and all their data ultimately applies to the movie Austin Powers. Row 1 depends on no other row and is said to be a _record row_. Rows 1 - 6 together form one _record_.
+
+===Protograph===
 
 ==History Model==
 
