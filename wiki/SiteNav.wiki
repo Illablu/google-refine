@@ -23,3 +23,4 @@
     * [Architecture Architecture]
       * [ServerSideArchitecture Server-Side]
       * [ClientSideArchitecture Client-Side]
+      * [FacetedBrowsingArchitecture Faceted Browsing]
