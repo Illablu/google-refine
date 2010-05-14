@@ -49,3 +49,7 @@ In the code, the faceted browsing state, or faceted browsing query, is actually 
     "includeDependent": false
   }
 }}}
+
+From that engine configuration, the server-side faceted browsing subsystem is capable of producing:
+  * an iteration over the rows matching the facets' constraints
+  * information on how to render the facets (e.g., choice and count pairs for a list facet, histogram for a numeric range facet)
