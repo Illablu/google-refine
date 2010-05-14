@@ -1,0 +1,5 @@
+#summary Faceted browsing architecture.
+
+Faceted browsing support is very core to Gridworks as it is the mechanism for filtering to a subset of rows on which to do something en masse. Without faceted browsing or an equivalent querying mechanism, you can only change one thing at a time (one cell or row) or else change everything all at once; both mechanisms are practically useless.
+
+In Gridworks, different components of the code need to know which rows to process from the faceted browsing state (how the facets are constrained). For example, when the user applies some facet selections and then exports the data, the exporter serializes only the matching rows, not all rows in the project. Thus, faceted browsing isn't only hooked up to the data view for displaying data to the user, but also it is also hooked up to almost all other parts of the system.
