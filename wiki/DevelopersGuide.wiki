@@ -1,28 +1,31 @@
 #summary Gridworks Developer's Guide
 
-= How to build Gridworks from source =
+= Guide for Gridworks Developers =
 
-== IDE Support (Easier) ==
+== Build and Run Gridworks from an IDE (easier) ==
 
-Gridworks' source comes with [http://www.eclipse.org/ eclipse] project files (which can also be imported into netbeans). So, the simplest way to create a project in Eclipse with Gridworks' source is to just follow the instructions on how to [http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-importproject.htm import an existing project].
+Gridworks' source comes with [http://www.eclipse.org/ Eclipse] project files (which can also be imported into [http://netbeans.org/ NetBeans]). So, the simplest way to create a project in Eclipse with Gridworks' source is to just follow the instructions on how to [http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-importproject.htm import an existing project].
 
 Here is what you need to do to run gridworks from inside eclipse or netbeans:
 
-1) make sure to import the eclipse project and not start one from scratch (either from the "import" command in the File menu, or thru importing directly via svn)
-
-2) in the "run" configuration, in the "(x)= arguments" tab, you need to place this line in the VM configuration (VM Options if netbeans) text area:
-
+  # make sure to import the eclipse project and not start one from scratch (either from the "import" command in the File menu, or thru importing directly via svn)
+  # in the "run" configuration, in the "(x)= arguments" tab, you need to place this line in the VM configuration (VM Options in NetBeans) text area:
+{{{
 -Dgridworks.autoreloading=true  -Dgridworks.webapp=src/main/webapp
-
-3) apply, close the dialog and then click the green run button and voila', you should see it run and open your default browser. (recommend Firefox or Google Chrome at this point)
+}}}
+  # apply, close the dialog and then click the green run button and voila', you should see it run and open your default browser.
 
 If you want gridworks logs to be more verbose, append this to the line above
 
+{{{
  -Dgridworks.verbosity=TRACE
+}}}
 
-== Command Line Support (Harder) ==
+Note that the above steps are already packaged for you if you look for the `Gridworks.launch` file in the `ide/eclipse` folder inside the Gridworks source code. To execute, right click on that file, select "Run As...", then click on "Gridworks", this should run Gridworks with the above parameters already set. After the first execution, this command should be updated automatically to your list of Run launches so you can find it there.
 
-The Gridworks build system requires you to have a unix shell. On Macosx and Linux, just use bash or sh. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run bash.
+== Build and Run Gridworks from the command line (harder but more comprehensive) ==
+
+The Gridworks build system requires you to have a unix shell. On Macosx and Linux, just use whatever shell compatible with `/bin/sh`. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run `sh` or `bash`.
 
 To see what functions are supported by the Gridwork's build system, type
 
@@ -48,18 +51,18 @@ to get a list of them.
 
 Since Gridworks is composed of two parts, a server and a in-browser UI, the testing system reflects that:
 
-  * on the server side, it's powered by JUnit and the unit tests are written in Java
-  * on the client side, it's powered by Windmill and the unit tests are written in Javascript
+  * on the server side, it's powered by [http://testng.org/ TestNG] and the unit tests are written in Java;
+  * on the client side, it's powered by [http://www.getwindmill.com/ Windmill] and the [http://wiki.github.com/windmill/windmill/javascript-tests functional tests are written in Javascript];
 
-To run the testing framework, simply type
+To run the complete testing harness, simply type
 
 {{{
   ./gridworks test
 }}}
 
-The above command requires you to have [http://www.python.org/ python] and [http://curl.haxx.se/ curl] installed on your machine and available in the path (you might already do, even if you don't know about it so just try it once and see what errors you get).
+The above command requires you to have [http://www.python.org/ python] and [http://curl.haxx.se/ curl] installed on your machine and available in the path (you might already do, even if you don't know about it so just try it once and see what errors you get). Note that you don't need to have windmill installed, the script will install it for you and build a proper python [http://pypi.python.org/pypi/virtualenv virtualenv] so that you don't have to worry about version collisions or polluting your existing python installation.
 
-if you want to run only the server side portion of the tests run
+If you want to run only the server side portion of the tests run
 
 {{{
   ./gridworks server_test
@@ -70,6 +73,16 @@ or, if you want to run only the client side portion of the tests run
 {{{
   ./gridworks ui_test
 }}}
+
+==== Testing in Eclipse ====
+
+You can also run the server-side part of the tests directly from Eclipse. To do that you need to have the TestNG launcher plugin installed. If you don't have it, you can get it by [http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-124.htm installing new software] from this update URL
+
+{{{
+ http://beust.com/eclipse
+}}}
+
+Once the TestNG launching plugin is installed in your Eclipse, look for the `GridworksTests.launch` file in the `ide/eclipse` folder inside the Gridworks source code, right click on it, select "Run As..." then "GridworksTests". This should open a new tab with the TestNG launcher running the Gridworks tests.
 
 ==== Testing on Windows ====
 
@@ -109,13 +122,3 @@ If you receive a message `Could not find the main class: com.metaweb.gridworks.G
 ==== Installing Java ====
 
 If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program.
-
-==== Warning: sun.misc.Signal ====
-
-If you get warnings while compiling Gridworks that look like this
-
-{{{
-    [javac] /.../SignalHandlerWrapper.java:xx: warning: sun.misc.Signal is Sun proprietary API and may be removed in a future release
-}}}
-
-go ahead and ignore them.  Unfortunately, there is no way around this and no way to turn them off (see [http://1060.org/blogxter/entry?publicid=F1BD9808599F72B829BE11499203685A here])
