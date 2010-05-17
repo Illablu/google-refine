@@ -1,6 +1,6 @@
 #summary Server-side architecture.
 
-Gridworks' server-side is written entirely in Java (`src/main/java/`) and its entry point is the Java servlet `com.metaweb.gridworks.GridworksServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `src/server/java/com.metaweb.gridworks.Gridworks`. Note that the server class itself is under `src\server\`, not `src\main\`; this separation leaves the possibility of hosting `GridworksServlet` in a different servlet container.
+Gridworks' server-side is written entirely in Java (`src/main/java/`) and its entry point is the Java servlet `com.metaweb.gridworks.GridworksServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `src/server/java/com.metaweb.gridworks.Gridworks`. Note that the server class itself is under `src/server/`, not `src/main/`; this separation leaves the possibility of hosting `GridworksServlet` in a different servlet container.
 
 The web server configuration is in `src/main/webapp/WEB-INF/web.xml`; that's where `GridworksServlet` is hooked up. `GridworksServlet` itself is simple: it just reacts to requests from the client-side by routing them to the right `Command` class in the packages `com.metaweb.gridworks.commands.*`.
 
