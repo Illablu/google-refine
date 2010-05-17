@@ -43,7 +43,13 @@ Use facets to narrow down to just the rows that you want your changes to affect.
 
 ==Reconcile==
 
-For each column that contains topics that should be in Freebase, reconcile its cells to Freebase. The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually and use your own judgment to match them.
+For each column that contains topics that should be in Freebase, reconcile its cells to Freebase.
+
+Topics matched will show a relevance score in parentheses after the topic name, eg. Harry Potter (59).
+
+If using the recon service then it shows 3 decimal digits, eg. Harry Potter (.244)
+
+ The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually and use your own judgment to match them.
 
 ==Align==
 
