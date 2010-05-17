@@ -1,18 +1,26 @@
 Expressions in jython must have a `return` statement, e.g.,
 
+{{{
   return value[[1:-1]]
+}}}
 
 Fields have to be accessed using the bracket operator rather than the dot operator
 
+{{{
   return cells["col1"]["value"]
+}}}
 
 Accesing the Levenshtein distance between the reconciled value and the cell value (?):
 
+{{{
   return cell["recon"]["features"]["nameLevenshtein"]
+}}}
 
 It seems as though you can make use of a wide range of Jython structures.  To return the lower case of value (if the value is not null):
 
+{{{
   if value is not None:
     return value.lower()
   else:
     return None
+}}}
