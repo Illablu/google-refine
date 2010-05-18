@@ -3,6 +3,7 @@
 ===Planned Features ===
 
   * JSON importer
+  * RDF importer
   * other importer options
   ** fixed length columns
   * exporter options
@@ -22,6 +23,7 @@
 
 ==Feature Requests, Bugs, Comments, Etc.==
 
+Please go to the [http://code.google.com/p/freebase-gridworks/issues/list issues tracker] for the most up to-date list.
   * after splitting multi-valued cells containing something like "1997 / 1998 / 1999", try to parse individual result into numbers
   * if you create a numeric facet based on a column, and then kill the column, the facet would cause the collection to go blank (try the year facet from the Start column of the disasters data set)
   * after splitting multi-valued cells, you can't filter by the context columns anymore, e.g., filter film director by from original country
