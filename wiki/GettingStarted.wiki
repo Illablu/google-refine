@@ -4,29 +4,31 @@ Gridworks is implemented as a Java-based local web server, serving at http://loc
 
 ==Windows==
 
-Once you have downloaded the ZIP file, decompress it into a folder somewhere, and run the .exe file in that folder. You should see the command line window in which Gridworks runs. Pressing Ctrl-C in that window should terminate Gridworks gracefully.
+Once you have downloaded the `.zip` file, decompress it into a folder somewhere, and run the `.exe` file in that folder. You should see the command line window in which Gridworks runs. Pressing `Ctrl-C` in that window terminates Gridworks gracefully.
 
 ==Mac OSX==
 
-Once you have downloaded the DMG file, open it, and drag the Gridworks icon into the Applications folder (just like you would normally install Mac applications). To launch Gridworks, go to the Applications folder and double click the Gridworks app. You should see the Gridworks app on the dock.
+Once you have downloaded the `.dmg` file, open it, and drag the Gridworks icon into the Applications folder (just like you would normally install Mac applications). To launch Gridworks, go to the Applications folder and double click the Gridworks app. You'll see the Gridworks app appear in your dock.
 
-You can switch to the Gridworks app to shut it down, or to re-open a browser window pointing to its web server in case you have accidentally closed its browser window.
+You can switch to the Gridworks app to shut it down (using its menu items even if it has no window of its own!), or to re-open a browser window pointing to its web server in case you have accidentally closed its browser window.
 
 ==Linux==
 
-Once you have downloaded the "tar.gz" file, open a shell and type
+Once you have downloaded the `tar.gz` file, open a shell and type
 
+{{{
   tar xzf gridworks.tar.gz
   cd gridworks
   ./gridworks
+}}}
 
-this will start gridworks and open your browser to starting page.
+this will start Gridworks and open your browser to its starting page.
 
 =Loading Data=
 
-Gridworks can load both individual data files as well as tarred and zipped archives (.zip, .tar.gz, .tgz, .tar.bz2, .gz, .bz2). For an archive file, Gridworks detects the most common file extension in it and loads all files with that extension into a single project.
+Gridworks can load both individual data files as well as tarred and zipped archives (`.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, `.bz2`). For an archive file, Gridworks detects the most common file extension in it and loads all files with that extension into a single project.
 
-For individual files, Gridworks can handle non-delimited fixed length text files, comma-separated value (CSV) files, tab-separated value (TSV) files, or text files in which the columns are separated by some character you specify. Gridworks can also handle Excel files and XML files, including .rss and .atom files and uniform .rdf files.
+For individual files, Gridworks can handle non-delimited fixed length text files, comma-separated value (`CSV`) files, tab-separated value (`TSV`) files, or text files in which the columns are separated by some character you specify. Gridworks can also handle Excel files, `.xml` files (including `.rss` and `.atom`) and `.rdf` files.
 
 =Troubleshooting=
 
