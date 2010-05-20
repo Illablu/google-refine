@@ -6,6 +6,7 @@
     * [UserGuide How to Use Gridworks]
     * [Recipes Quick Recipes]
     * [Faceting Faceting]
+    * [Clustering Clustering]
     * Expressions
       * Gridworks Expression Language (GEL)
         * [GELReference GEL Reference]
