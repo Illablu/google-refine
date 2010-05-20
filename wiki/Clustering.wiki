@@ -89,7 +89,7 @@ For example, "Paris" and "paris" have an edit distance of 1 as changing P into p
 
 In practice, this distance is useful to spot typos, spelling mistakes or anything that the previous methods didn't catch, although high distances yield many false positives (especially for small strings) and are not as useful.
 
-It's worth noting that there are many flavors of edit-based distance functions (say, the [http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance Damerau-Levenshtein distance, which considers 'transposition' as a single operation) but in practice, for clustering purposes, they tend to be equally functional (as long as the user has control over the distance threshold).
+It's worth noting that there are many flavors of edit-based distance functions (say, the [http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance Damerau-Levenshtein distance], which considers 'transposition' as a single operation) but in practice, for clustering purposes, they tend to be equally functional (as long as the user has control over the distance threshold).
 
 === PPM ===
 
