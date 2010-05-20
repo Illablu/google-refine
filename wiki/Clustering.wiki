@@ -2,39 +2,39 @@
 
 = Introduction =
 
-In Gridworks, clustering refers to the operation of "finding groups of  different values that might be alternative representations of the same thing". For example, the two strings "New York" and "new york" are very likely to refer to the same concept and just have capitalization differences, while "Gödel" and "Godel" might refer to the concept.
+In Gridworks, clustering refers to the operation of "finding groups of  different values that might be alternative representations of the same thing". For example, the two strings "New York" and "new york" are very likely to refer to the same concept and just have capitalization differences, while "Gödel" and "Godel" probably refer to the same person.
 
-It is worth noting that clustering in Gridworks work only on the syntactic level of the character composition of the cell value and while very useful to spot errors, typos and inconsistencies, it's by no means enough to perform effective semantically-aware reconciliation (which is why Gridworks uses Freebase and its semantically-aware reconciliation services for that).
+It is worth noting that clustering in Gridworks works only on the syntactic level, the character composition of the cell value and while very useful to spot errors, typos and inconsistencies, it's by no means enough to perform effective semantically-aware reconciliation. This is why Gridworks uses Freebase and its semantically-aware reconciliation services to compensate the deficiencies of syntax-level clustering alone.
 
 = Methodologies =
 
-In order to strike a balance between general applicability and usefulness, Gridworks ships with a selected number of clustering methods and algorithms that have been proved effective and fast enough to use on a wide variety of situations.
+In order to strike a balance between general applicability and usefulness, Gridworks ships with a selected number of clustering methods and algorithms that have been proved effective and fast enough to use on a wide variety of situations and are ordered from strict to lax and should be used in this order.
 
 == Key Collision Methods ==
 
-"Key Collision" methods are based on the idea of creating an alternative representation of a value (a "key") that contains only the most valuable or meaningful part of the string and 'bucket' (or 'bin' as it's described inside Gridworks' code) together different strings based on the fact that their key is the same (hence the name "key collision")
+"Key Collision" methods are based on the idea of creating an alternative representation of a value (a "key") that contains only the most valuable or meaningful part of the string and 'bucket' (or 'bin' as it's described inside Gridworks' code) together different strings based on the fact that their key is the same (hence the name "key collision").
 
 This class of methods is the fastest in Gridworks because its computational complexity is linear with the amount of values processed and can produce results in seconds even with millions of values to cluster.
 
 === Fingerprint ===
 
-The fingerprinting method is fast and simple yet works relatively well in a variety of contexts and it's the least likely to produce false positives. 
+The fingerprinting method is fast and simple yet works relatively well in a variety of contexts and it's the least likely to produce false positives, which is why is the default method.
 
-Here is the process that generates the key out of a string value (note how the order of these operations is significant):
+The process that generates the key from a string value is the following (note how the order of these operations is significant):
 
   * remove leading and trailing whitespace
   * change all characters to their lowercase representation
   * remove all punctuation and control characters
   * split the string in whitespace-separated tokens
-  * order fragments and remove duplicates
-  * join back together the fragments with a single space separator
+  * order the tokens and remove duplicates
+  * join back together the tokens
   * normalize extended western characters to their ASCII representation (for example "gödel" -> "godel")
 
-or [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/FingerprintKeyer.java look at the code] to see how this is performed.
+If you're curious, the code that performs this [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/FingerprintKeyer.java here].
 
 There are several factors that play a role in this fingerprint:
 
-  * because whitespace is normalized, characters are lowercased and punctuation is removed, those don't play a differentiation role in the fingerprint. Because these attributes of the string are the least significant in terms of meaning differentiation, these turn out to be the most varying parts of the strings and removing them has a substantial benefit in emerging clusters.
+  * because whitespace is normalized, characters are lowercased and punctuation is removed, those parts don't play a differentiation role in the fingerprint. Because these attributes of the string are the least significant in terms of meaning differentiation, these turn out to be the most varying parts of the strings and removing them has a substantial benefit in emerging clusters.
   * because the string parts are sorted, the order of tokens doesn't matter (so "Cruise, Tom" and "Tom Cruise" both end up with a fingerprint "cruise tom" and therefore end up in the same cluster)
   * normalizing extended western characters plays the role of reproducing data entry mistakes performed when entering extended charsets with an ASCII-only keyboard. Note that this procedure could also lead to false positives, for example "gödel" and "godél" both would end up with "godel" as a key but they're likely to be different names, so this might work less effectively for datasets where extended characters play substantial differentiation role.
 
@@ -42,7 +42,7 @@ There are several factors that play a role in this fingerprint:
 
 The [http://en.wikipedia.org/wiki/N-gram n-gram] fingerprint method is similar to the fingerprint method described above but instead of using whitespace separated tokens, it uses n-grams, where the `n` (or the size in chars of the token) can be specified by the user.
 
-Here is what it does (or check the code if you're curious about the details, again the order is significant):
+Here is what it does (or [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/NGramFingerprintKeyer.java check the code] if you're curious about the details, again the order is significant):
 
   * change all characters to their lowercase representation
   * remove all punctuation, whitespace and control characters
@@ -53,9 +53,9 @@ Here is what it does (or check the code if you're curious about the details, aga
 
 So, for example, the 2-gram fingerprint of "Paris" is "arispari" and the 1-gram fingerprint is "aiprs".
 
-Why is this useful, you might wonder? In practice, using big values for n-grams doesn't yield any advantage over the previous fingerprint method, but using 2-grams and 1-grams, while yielding many false positives, can find clusters that the previous method didn't find.
+Why is this useful? In practice, using big values for n-grams doesn't yield any advantage over the previous fingerprint method, but using 2-grams and 1-grams, while yielding many false positives, can find clusters that the previous method didn't find even with strings that have small differences, with a very small performance price.
 
-Here is an example we've encountered: "Krzysztof", "Kryzysztof" and "Krzystof" have different length and different regular fingerprints, but share the same 1-gram fingerprint because they use the same letters.
+For example "Krzysztof", "Kryzysztof" and "Krzystof" have different length and different regular fingerprints, but share the same 1-gram fingerprint because they use the same letters.
 
 === Metaphone Fingerprint ===
 
@@ -67,13 +67,13 @@ For example, "Reuben Gevorkiantz" and "Ruben Gevorkyants" share the same phoneti
 
 While key collisions methods are very fast, they tend to be either too strict or too lax with no way to fine tune how much difference between strings we are willing to tolerate.
 
-The [http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm Nearest Neighbor] methods (also known as kNN), on the other hand, provide a parameter which represents a distance threshold: any pair of strings that is closer than a certain value will be binned together.
+The [http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm Nearest Neighbor] methods (also known as kNN), on the other hand, provide a parameter (the radius, or `k`) which represents a distance threshold: any pair of strings that is closer than a certain value will be binned together.
 
-Unfortunately, given n strings, there are `n(n-1)/2` pairs of strings (and relative distance) that need to be evaluated and this turns out to be too slow even for small datasets (3000 rows require 4.5 million distance calculations!)
+Unfortunately, given n strings, there are `n(n-1)/2` pairs of strings (and relative distance) that need to be evaluated and this turns out to be too slow even for small datasets (a dataset with 3000 rows require 4.5 million distance calculations!)
 
 We have tried various methods to speed up this process but the one that works the best is called 'blocking' and is, in fact, a hybrid between key collision and kNN. This works by performing a first pass over the sequence of strings to evaluate and obtain 'blocks' in which all strings share a substring of a given 'blocking size' (which defaults to 6 chars in Gridworks).
 
-Blocking doesn't change the computational complexity of the kNN method but drastically reduces the size of the strings that will be matched against one another. So instead of `n(n-1)/2`  we have `nm(m-1)/2` where `n` is the number of blocks and `m` is the average size of the block. In practice, this turns out to be dramatically faster as for 3000 strings, you can have a thousand blocks composed of 10 strings each, which requires 45k distances to calculate instead of 4.5M!
+Blocking doesn't change the computational complexity of the kNN method but drastically reduces the size of the strings that will be matched against one another (because strings are matched only inside the block that contains them). So instead of `n(n-1)/2` we now have `nm(m-1)/2` but `n` is the number of blocks and `m` is the average size of the block. In practice, this turns out to be dramatically faster because the block size is comparable to the number of strings and the blocks are normally much smaller. For example, for 3000 strings, you can have a thousand blocks composed of 10 strings each, which requires 45k distances to calculate instead of 4.5M!
 
 And if you're not in a hurry, Gridworks lets you select the size of the blocking substring and you can lower it down to 2 or 1 and make sure that blocking is not hiding a potential pair from your search... although in practice, anything lower than 3 normally turns out to be a waste of time.
 
@@ -93,7 +93,7 @@ It's worth noting that there are many flavors of edit-based distance functions (
 
 === PPM ===
 
-This distance is an implementation of [http://arxiv.org/abs/cs/0111054 a seminal paper] about the use of the [http://en.wikipedia.org/wiki/Kolmogorov_complexity  Kolmogorov complexity] to estimate 'similarity' between strings which has received wide application in comparing strings originating from DNA sequencing.
+This distance is an implementation of [http://arxiv.org/abs/cs/0111054 a seminal paper] about the use of the [http://en.wikipedia.org/wiki/Kolmogorov_complexity  Kolmogorov complexity] to estimate 'similarity' between strings and has received wide application in comparing strings originating from DNA sequencing.
 
 The idea is that because text compressors work by estimating the information content of a string, if two strings A and B are identical, compressing A or compressing A+B (concatenating the strings) should yield very little difference (ideally, a single extra bit to indicate the presence of the redundant information). On the other hand, if A and B are very different, compressing A and compressing A+B should yield dramatic differences in length.
 
@@ -109,7 +109,7 @@ While many different compressors can be used, the closer to Kolmogorov optimalit
 
 For this reason we have used [http://en.wikipedia.org/wiki/Prediction_by_Partial_Matching Prediction by Partial Matching] as the compressor algorithm which is one of the most effective compression algorithms for text and works by performing statistical analysis and predicting what character will come next in a string.
 
-In practice, this method is very lax even for small radius values and tends to generate many false positives, but because it operates at a sub-character level it is capable of finding substructures that are not easily identifiable by distances that work at the character level. So it should be used as a 'last resort' clustering method.
+In practice, this method is very lax even for small radius values and tends to generate many false positives, but because it operates at a sub-character level it is capable of finding substructures that are not easily identifiable by distances that work at the character level. So it should be used as a 'last resort' clustering method and it's why is listed last here even if it has phenomenal efficacy in other realms.
 
 It is also important to note that in practice similarity distances are more effective on longer strings than on shorter ones; this is mostly an artifact of the need for the statistical compressors to 'warm up' and gather enough statistics to 
 start performing well.
