@@ -69,11 +69,11 @@ While key collisions methods are very fast, they tend to be either too strict or
 
 The [http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm Nearest Neighbor] methods (also known as kNN), on the other hand, provide a parameter which represents a distance threshold: any pair of strings that is closer than a certain value will be binned together.
 
-Unfortunately, given n strings, there are n*(n-1)/2 pairs of strings (and relative distance) that need to be evaluated and this turns out to be too slow even for small datasets (3000 rows require 4.5 million distance calculations!)
+Unfortunately, given n strings, there are `n(n-1)/2` pairs of strings (and relative distance) that need to be evaluated and this turns out to be too slow even for small datasets (3000 rows require 4.5 million distance calculations!)
 
 We have tried various methods to speed up this process but the one that works the best is called 'blocking' and is, in fact, a hybrid between key collision and kNN. This works by performing a first pass over the sequence of strings to evaluate and obtain 'blocks' in which all strings share a substring of a given 'blocking size' (which defaults to 6 chars in Gridworks).
 
-Blocking doesn't change the computational complexity of the kNN method but drastically reduces the size of the strings that will be matched against one another. So instead of n*(n-1)/2  we have n * m*(m-1)/2 where n is the number of blocks and m is the average size of the block. In practice, this turns out to be dramatically faster as for 3000 strings, you can have a thousand blocks composed of 10 strings each, which requires 45k distances to calculate instead of 4.5M!
+Blocking doesn't change the computational complexity of the kNN method but drastically reduces the size of the strings that will be matched against one another. So instead of `n(n-1)/2`  we have `nm(m-1)/2` where `n` is the number of blocks and `m` is the average size of the block. In practice, this turns out to be dramatically faster as for 3000 strings, you can have a thousand blocks composed of 10 strings each, which requires 45k distances to calculate instead of 4.5M!
 
 And if you're not in a hurry, Gridworks lets you select the size of the blocking substring and you can lower it down to 2 or 1 and make sure that blocking is not hiding a potential pair from your search... although in practice, anything lower than 3 normally turns out to be a waste of time.
 
