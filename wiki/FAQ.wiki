@@ -7,15 +7,15 @@ This is a collection of frequently asked questions on Gridworks. Feel free to ad
 
 All your projects are stored on your own computer:
 
-MacOSX:
+*MacOSX:*
   * `~/Library/Application Support/Gridworks/`
 
-Windows: depending on the Windows version, the data is in one of these directories
+*Windows:* depending on the Windows version, the data is in one of these directories
   * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks`
   * `C:\Users\(user id)\AppData\Roaming\Gridworks`
   * `C:\Users\(user id)\Gridworks`
 
-Linux:
+*Linux:*
   * `~/.local/share/gridworks/`
 
 ==I get java.lang.OutOfMemoryError: Java heap space errors,<br/>or it feels SLOW - How do I expand the memory that Gridworks can use? ==
@@ -26,11 +26,11 @@ A typical best practice is to start with no more than 50% of your available phys
 
 Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only have 1 gig of physical memory left over.  Starting with a setting of 512m (50% of 1 Gig) can avoid disk caching problems processing large files with many rows and columns. (A 200 meg text file of 331,000 rows x 50 columns)
 
-=== Windows ===
+*Windows:*
 
 Open a "command prompt", 'cd' to the folder where Gridworks is installed, then type
 
-{{{gridworks.bat /m 2048m}}}
+`gridworks.bat /m 2048m`
 
 where "2048m" is the maximum amount of memory (in Mb) that you want Gridworks to use.
 
@@ -51,7 +51,7 @@ If you decide to use the gridworks.EXE, then set your parameters in the .ini fil
 # -Dsomevar="%SOMEVAR%"
 }}}
 
-=== Mac ===
+*Mac:*
 
 If you have downloaded the ".dmg" package and you start Gridworks by double clicking on it, follow these instructions
 
@@ -66,11 +66,11 @@ If you have downloaded the ".dmg" package and you start Gridworks by double clic
   * save file
   * start gridworks again
 
-=== Linux (or Mac) ===
+*Linux (or Mac):*
 
 If you have downloaded the ".tar.gz" package and you start Gridworks from the command line, use the "-m xxxM" parameter like this
 
-   ./gridworks -m 1024m
+`./gridworks -m 1024m`
 
 == What syntax of regular expression (regex) does Gridworks support ? ==
 
@@ -87,3 +87,27 @@ Example to replace "Rd" abbreviation with "Road".
     value.replace(/\brd\b/i, "Road")
 
 It should also handle "capture groups".
+
+== How can one assign Freebase types in Gridworks?  Or does this only happen implicitly as the result of making a property connection? ==
+
+In the schema skeleton, you can actually specify a link with the property /type/object/type and the target node of an existing Freebase topic, which happens to be a type.
+
+==When is it going to be possible to load things into the production graph, directly or indirectly?==
+
+We're working on this. The general idea is that you first load your data onto Freebase's sandbox. Then some QA is done on that data to make sure it is good. You can go back, fix the data, and do another sandbox load. When the latest load is good enough, you can then "replay" the load on the production graph.
+
+==My "schema alignment skeleton" gets totally reorganized whenever I go back and check on it. What's going on ?==
+
+When you create a new schema skeleton it's filled in with all the columns but they are not connected with properties. So when you save and close the dialog, those links without properties specified are discarded.  Right now you can only start the schema skeleton with one root node, but originally we thought of supporting several root nodes.
+
+==How can I delete a whole row? It would be useful if there was a way to do that in Gridworks.==
+
+You can!
+
+  # Flag (or star) the offending row
+  # In the dropdown above the flag you can get a facet, by going to Facet > Facet by flag.
+  # From the facet that opens select the 'true' option.
+  # In the dropdown menu above the flag you can go to Edit Rows > Remove all matching rows.
+
+This should delete all the flagged rows.
+Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Gridworks, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool.
