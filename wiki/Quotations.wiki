@@ -4,8 +4,6 @@ onyxfish: .@fbase's Gridworks has taken a good day and made it truly epic. http:
 
 kleinmatic: I think @thejefflarson is going to name a dog after Gridworks. [http://twitter.com/kleinmatic/statuses/14253552041 view]
 
-sprocketonline: RT @thejefflarson: @kleinmatic My first child will be named Gridworks. [http://twitter.com/sprocketonline/statuses/14277348775 view]
-
 LookBackMaps: Gridworks is a gamechanger, no doubt! RT @stefanomaz theory and practice behind clustering in Gridworks http://bit.ly/b0EyyB [http://twitter.com/LookBackMaps/statuses/14338170478 view]
 
 gromgull: I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do. [http://twitter.com/gromgull/statuses/14348680235 view]
@@ -13,6 +11,8 @@ gromgull: I'm done here - after google (prediction-api) and metaweb (gridworks) 
 peterdesmet: http://bit.ly/93pTSL @judell "Freebase Gridworks will make you weep with joy' (via @rdmpage) Wow! Why wasn't this invented earlier
 
 zacwitte: Freebase releases Gridworks 1.0 This is a the most useful tool I have seen in a long time. http://bit.ly/c8emxf
+
+rdhyee: I've had so much fun alpha testing Freebase Gridworks. It is very much the powertool for working with datasets I had been waiting for. [http://twitter.com/rdhyee/status/13404067036 view]
 
 delineator: @JeniT freebase gridworks proves you don't need RDF to be semantic :) used it heavily over the weekend [http://twitter.com/delineator/statuses/14630650064 view]
 
