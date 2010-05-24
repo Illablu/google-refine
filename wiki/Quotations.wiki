@@ -1,0 +1,17 @@
+=Tweets=
+
+symroe: Using gridworks to clean up @farmsubsidy data. This is fun :) [http://twitter.com/symroe/statuses/14619696804 view]
+
+delineator: @JeniT freebase gridworks proves you don't need RDF to be semantic :) used it heavily over the weekend [http://twitter.com/delineator/statuses/14630650064 view]
+
+eyeseast: Freebase Gridworks is like crack for data junkies http://bit.ly/ddglKi [http://twitter.com/eyeseast/statuses/14451895341 view]
+
+gromgull: I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do. [http://twitter.com/gromgull/statuses/14348680235 view]
+
+LookBackMaps: Gridworks is a gamechanger, no doubt! RT @stefanomaz theory and practice behind clustering in Gridworks http://bit.ly/b0EyyB [http://twitter.com/LookBackMaps/statuses/14338170478 view]
+
+sprocketonline: RT @thejefflarson: @kleinmatic My first child will be named Gridworks. [http://twitter.com/sprocketonline/statuses/14277348775 view]
+
+spellboundblog: I <3 scatterplot matrix and scatterfacets! Don't know what they are? Watch this gridworks screencast: http://vimeo.com/11854491 [http://twitter.com/spellboundblog/statuses/14264336609 view]
+
+kleinmatic: I think @thejefflarson is going to name a dog after Gridworks. [http://twitter.com/kleinmatic/statuses/14253552041 view]
