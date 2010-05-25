@@ -1,9 +1,15 @@
 #summary Gridworks Roadmap
 
+===Introduction===
+Gridworks has a few key features which should be maintained in any future incarnation.
+  * data comes first and structure is added to it later.
+  * Gridworks doesn't impose or enforce any type of workflow
+  * full and persistent undo/redo
+  * subsets of data accessed through faceted browsing
+
 ===Planned Features ===
 
   * JSON importer
-  * RDF importer
   * other importer options
   ** fixed length columns
   * exporter options
@@ -28,7 +34,6 @@ Please go to the [http://code.google.com/p/freebase-gridworks/issues/list issues
   * if you create a numeric facet based on a column, and then kill the column, the facet would cause the collection to go blank (try the year facet from the Start column of the disasters data set)
   * after splitting multi-valued cells, you can't filter by the context columns anymore, e.g., filter film director by from original country
   * long running processes should serialize their intermediate results and recover later, too.
-  * support flagging in addition to starring rows
   * when applying operations, try to fix common json errors, like missing or extraneous commas and missing top level brackets. This is probably important for inexperienced (aka non-programming) users.
   * After splitting a row, doing a custom transform where you refer to another column seems to only apply to the first row
   ** This requires adding a "context" variable to the evaluation environment. "context[column name]" would return the context cell in column "column name".
