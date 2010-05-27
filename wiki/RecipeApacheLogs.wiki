@@ -119,6 +119,11 @@ Import the log file:
   ]
 }}}
 
+
+Here is how to apply the operations:
+
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/ApplyOperations.png]
+
 ==Facets==
 
 To create a referrer domain facet, use this expression on the Referer column:
