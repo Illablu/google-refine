@@ -3,6 +3,9 @@ Import the log file:
   * with # header lines set 0
   * then apply the following operations
 
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/ApacheLogsImport.png]
+
+
 {{{
   [
     {
