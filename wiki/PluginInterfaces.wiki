@@ -8,14 +8,15 @@ Gridworks does not currently support plugins, but they are planned for a future 
 == Possible Interfaces ==
 
 ===Commands===
-  * GridworkServlet is the class which deals with registering commands
+  * GridworkServlet is the class which creates and calls commands
 
 ===Importers===
-  * CreateProjectCommand is the class which registers importers
+  * CreateProjectCommand is the class which creates and calls importers
 
 ===Exporters===
-  * ExportRowsCommand is the class which registers exporters
+  * ExportRowsCommand is the class which creates and calls exporters
 
-===Facet Scripts===
-  * Jython
-  * Clojure
+===Expression Languages===
+  * MetaParser is the class which creates and calls expression languages
+    * Jython
+    * Clojure
