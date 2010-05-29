@@ -1,5 +1,11 @@
 #summary Announcements of the latest features
 
-=May 2010=
+==May 2010==
+===May 28th, 2010===
+Freebase Gridworks 1.1 is released.
 
+===May 12th, 2010===
+Freebase Gridworks 1.0.1 is released.
+
+===May 5th, 2010===
 Freebase Gridworks 1.0 is released.
