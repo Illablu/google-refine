@@ -22,7 +22,7 @@ Pick Existing Projects into Workspace
 
   [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects2.png]
 
-Locate the directory where you've checked out gridworks. Eclipse should detect the sub-projects "main", "server", etc.
+Locate the directory where you've checked out gridworks. Eclipse should detect the sub-projects "gridworks", "gridworks server", etc.
 
   [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects3.png]
 
