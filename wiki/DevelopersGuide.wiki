@@ -4,9 +4,29 @@
 
 == Build and Run Gridworks from an IDE (easier) ==
 
-Gridworks' source comes with [http://www.eclipse.org/ Eclipse] project files (which can also be imported into [http://netbeans.org/ NetBeans]). So, the simplest way to create a project in Eclipse with Gridworks' source is to just follow the instructions on how to [http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-importproject.htm import an existing project].
+Gridworks' source comes with [http://www.eclipse.org/ Eclipse] project files (which can also be imported into [http://netbeans.org/ NetBeans]). 
 
-Here is what you need to do to run gridworks from inside eclipse or netbeans:
+=== Eclipse ===
+
+At the command line, go to a directory *not* under your Eclipse workspace directory and check out the source:
+
+{{{
+svn co https://freebase-gridworks.googlecode.com/svn/trunk gridworks
+}}}
+
+Then in Eclipse, invoke the Import ... command
+
+  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects.png]
+
+Pick Existing Projects into Workspace
+
+  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects2.png]
+
+Locate the directory where you've checked out gridworks. Eclipse should detect the sub-projects "main", "server", etc.
+
+  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects3.png]
+
+=== Netbeans ===
 
   # make sure to import the eclipse project and not start one from scratch (either from the "import" command in the File menu, or thru importing directly via svn)
   # in the "run" configuration, in the "(x)= arguments" tab, you need to place this line in the VM configuration (VM Options in NetBeans) text area:
