@@ -26,6 +26,7 @@ Gridworks has a few key features which should be maintained in any future incarn
   * gadget-like skeleton emergence from tree-shaped data
   * "merge columns" command (possibly including ranges and open ended ones as well, say both [3,5] meaning merge   column 3,4,5 together and [10,] meaning from the 10th column onward)
   * optional regexp parsing at import
+  * [PluginInterfaces Plugins] using OSGi
 
 ==Feature Requests, Bugs, Comments, Etc.==
 
