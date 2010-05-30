@@ -1,0 +1,8 @@
+.DS_Store
+build/
+server/classes/
+main/webapp/WEB-INF/classes/
+main/tests/server/classes/
+main/test-output/
+appengine/classes/
+tools/
