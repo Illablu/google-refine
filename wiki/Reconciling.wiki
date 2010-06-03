@@ -2,7 +2,7 @@
 Reconciling allows you to easily match a column of your data against topics in Freebase.
 It currently uses 2 types of reconciling services available in Freebase.
 
- # Relevance service (part of the Search API)
+ # Relevance service (also known as Freebase Search API)
  # Recon service (currently usable as a Freebase Labs project)
  # MQLread API
 
