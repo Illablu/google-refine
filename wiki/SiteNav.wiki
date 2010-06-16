@@ -26,3 +26,4 @@
       * [ServerSideArchitecture Server-Side]
       * [ClientSideArchitecture Client-Side]
       * [FacetedBrowsingArchitecture Faceted Browsing]
+      * [SampleExtension Sample Extension]
