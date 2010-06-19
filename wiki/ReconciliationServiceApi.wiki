@@ -12,7 +12,7 @@ Note: Reconciliation in Gridworks does not have to involve calling a reconciliat
 
 A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It operates in 2 modes: single query mode and multiple query mode. The second is for optimization (reducing number of HTTP calls).
 
-=Request=
+=Query Request=
 
 ==Single Query Mode==
 
@@ -73,7 +73,8 @@ The json object literal has zero or more arbitrary key, each of which has a valu
 
 "q1" and "q2" can be arbitrary strings. 
 
-=Response=
+
+=Query Response=
 
 The response for a single query is a json literal object
 
@@ -107,3 +108,34 @@ For multiple queries, the response is a json literal object with the same keys a
 }}}
 
 The service should also support JSONP through a callback parameter.
+
+
+=Service Metadata=
+
+When a service is called without any parameter (or with just a callback parameter), then it returns its metadata as a json object literal with at least 2 fields "name" and "identity-space". Two more fields are optional.
+
+{{{
+  {
+    "name" : "Freebase Official Reconciliation Service",
+    "identity-space" : "http://rdf.freebase.com/ns/type.object.mid",
+    "url-template" : "http://www.freebase.com/view{{id}}",
+    "preview-template" : "http://www.freebase.com/widget/topic{{id}}?mode=content"
+  }
+}}}
+
+Note that Freebase itself supports at least 3 identity spaces:
+
+  * human-friendly IDs such as /en/apple_inc
+  * machine ID (mid) such as /m/0k8z
+  * GUID such as #9202a8c04000641f800000000000451e (deprecated)
+
+Thus, it's not enough to say that the identity space is http://www.freebase.com/; we have to use the URI of the specific property (in this case, mid).
+
+The other two fields are for formulating URLs to a full topic page and to a small preview page for a given entity.
+
+
+=Gridworks Integration=
+
+Gridworks' UI will include a mechanism for entering a standard reconciliation service API's URL.
+
+Each column in Gridworks should only be reconciled against one identity space.
