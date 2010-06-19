@@ -16,62 +16,63 @@ The json object literal has a few fields
 
 || "query" || a string to search for ||
 || "limit" || optional, an integer to specify how many results to return ||
-|| "type" || optional, a single string, or an array of strings, specifying the types of result
-e.g., person, product, ...
-The actual format of each type depends on the service (full URI for your case) ||
+|| "type" || optional, a single string, or an array of strings, specifying the types of result e.g., person, product, ... The actual format of each type depends on the service (e.g., "/government/policician" as a Freebase type) ||
 || "type_strict" || optional, a string, one of "any", "all", "should" ||
-|| "properties" || optional, array of json object literals
+|| "properties" || optional, array of json object literals ||
+
+Each json object literal of the "properties" array is of this form
+
 {{{
-        {
-            "name" : string, property name, e.g., "country"
-            "value" : string or number, e.g., "Japan", or object literal to carry a reconciled id
-                {
-                    "id" : string
-                }
-        }
-}}} ||
+  {
+    "name" : string, property name, e.g., "country"
+    "value" : string or number, e.g., "Japan", or object literal to carry a reconciled id
+      {
+        "id" : string
+      }
+    }
+}}}
 
 ==Multiple Query Mode==
 
 {{{
-    http://foo.com/bar/reconcile?queries={...json object literal...}
+  http://foo.com/bar/reconcile?queries={...json object literal...}
 }}}
 
 The json object literal has zero or more arbitrary key, each of which has a value in the same format as a single query, e.g.
 
 {{{
-    http://foo.com/bar/reconcile?queries={ "q1" : { "query" : "foo" }, "q2" : { "query" : "bar" } }
+  http://foo.com/bar/reconcile?queries={ "q1" : { "query" : "foo" }, "q2" : { "query" : "bar" } }
 }}}
 
 The response for a single query is a json literal object
 
 {{{
-    {
-        "result" : [
-            {
-                "id" : ... string, database ID ...
-                "name" : ... string ...
-                "type" : ... array of strings ...
-                "score" : ... double ...
-                "match" : ... boolean, true if the service is quite confident about the match ...
-            },
-            ... more results ...
-        ],
-        ... potentially some useful envelope data, such as timing stats ...
-    }
+  {
+    "result" : [
+      {
+        "id" : ... string, database ID ...
+        "name" : ... string ...
+        "type" : ... array of strings ...
+        "score" : ... double ...
+        "match" : ... boolean, true if the service is quite confident about the match ...
+      },
+      ... more results ...
+    ],
+    ... potentially some useful envelope data, such as timing stats ...
+  }
 }}}
 
 For multiple queries, the response is a json literal object with the same keys as in the request
 
 {{{
-    {
-        "q1" : {
-            "result" : { ... }
-        },
-        "q2" : {
-            "result" : { ... }
-        }
+  {
+    "q1" : {
+      "result" : { ... }
+    },
+    "q2" : {
+      "result" : { ... }
     }
+  }
 }}}
 
 And supporting JSONP through a callback parameter is a bonus.
