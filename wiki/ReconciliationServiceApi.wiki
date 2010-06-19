@@ -34,12 +34,27 @@ Each json object literal of the "properties" array is of this form
 
 {{{
   {
-    "name" : string, property name, e.g., "country"
-    "value" : string or number, e.g., "Japan", or object literal to carry a reconciled id
-      {
-        "id" : string
-      }
-    }
+    "p" : string, property name, e.g., "country", or
+    "pid" : string, property ID, e.g., "/people/person/nationality" in the Freebase ID space
+    "v" : a single, or an array of, string or number or object literal, e.g., "Japan"
+  }
+}}}
+
+A "v" object literal would have a single key "id" whose value is an identifier resolved previously to the same identity space.
+
+Here is an example of a full query parameter:
+
+{{{
+  {
+    "query" : "Ford Taurus",
+    "limit" : 3,
+    "type" : "/automotive/model",
+    "type_strict" : "any",
+    "properties" : [
+      { "p" : "year", "v" : 2009 },
+      { "pid" : "/automotive/model/make" , "v" : { "id" : "/en/ford" } }
+    ]
+  }
 }}}
 
 ==Multiple Query Mode==
