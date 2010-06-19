@@ -12,6 +12,8 @@ Note: Reconciliation in Gridworks does not have to involve calling a reconciliat
 
 A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It operates in 2 modes: single query mode and multiple query mode. The second is for optimization (reducing number of HTTP calls).
 
+(Much of this standard is based on the [http://api.freebase.com/api/service/search?help Freebase relevance service] and the [http://data.labs.freebase.com/recon/ Freebase experimental recon service].)
+
 =Query Request=
 
 ==Single Query Mode==
