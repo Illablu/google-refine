@@ -1,12 +1,22 @@
 #summary Specification for a standard reconciliation service API.
 
-A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identity space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak.
+=Introduction=
+
+A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identity space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identity spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Gridworks.)
+
+Each reconciliation service can only reconcile to one single identify space, but several reconciliation services can reconcile to the same identity space.
 
 So that it will be easy for users to plug in a variety of interchangeable reconciliation services, we define the API for a standard reconciliation service here.
 
+Note: Reconciliation in Gridworks does not have to involve calling a reconciliation service through HTTP. It might involve opening a JDBC connection to a local SQL database. However, if you implement a standard reconciliation service API, then it can be used with the existing UI in Gridworks; users only need to plug in your API's URL.
+
 A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It operates in 2 modes: single query mode and multiple query mode. The second is for optimization (reducing number of HTTP calls).
 
+=Request=
+
 ==Single Query Mode==
+
+A call to a standard reconciliation service API for a single query looks like this:
 
 {{{
   http://foo.com/bar/reconcile?query={...json object literal...}
@@ -34,6 +44,8 @@ Each json object literal of the "properties" array is of this form
 
 ==Multiple Query Mode==
 
+A call to a standard reconciliation service API for multiple queries looks like this:
+
 {{{
   http://foo.com/bar/reconcile?queries={...json object literal...}
 }}}
@@ -43,6 +55,10 @@ The json object literal has zero or more arbitrary key, each of which has a valu
 {{{
   http://foo.com/bar/reconcile?queries={ "q1" : { "query" : "foo" }, "q2" : { "query" : "bar" } }
 }}}
+
+"q1" and "q2" can be arbitrary strings. 
+
+=Response=
 
 The response for a single query is a json literal object
 
@@ -75,4 +91,4 @@ For multiple queries, the response is a json literal object with the same keys a
   }
 }}}
 
-And supporting JSONP through a callback parameter is a bonus.
+The service should also support JSONP through a callback parameter.
