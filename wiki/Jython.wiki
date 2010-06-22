@@ -3,7 +3,9 @@ Expressions in jython must have a `return` statement, e.g.,
 {{{
   return value[[1:-1]]
 }}}
-
+{{{
+  return rowIndex%2
+}}}
 Fields have to be accessed using the bracket operator rather than the dot operator
 
 {{{
