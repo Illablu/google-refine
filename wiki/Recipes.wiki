@@ -213,3 +213,7 @@ To cluster or group rows by 1000 use the following custom text facet:
 {{{
 floor(rowIndex/1000)
 }}}
+To group by even or odd rows use Jython and modulo operator '%' in custom text facet:
+{{{
+return rowIndex%2
+}}}
