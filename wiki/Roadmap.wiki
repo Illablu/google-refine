@@ -11,38 +11,45 @@ Gridworks has a few key features which should be maintained in any future develo
   * full and *persistent undo/redo*
   * subsets of data accessed through *faceted browsing*
   * *Extensible* modular [PluginInterfaces plugin] architecture
+  * *Data augmentation and reconciliation* from multiple external sources
 
 ===Planned Features ===
 
-  * JSON importer
-  * other importer options
-  ** fixed length columns
-  * exporter options
-  ** which columns to export
-  * fix extend data dialog box to support constraints
-  * more convenient way to split a column
-  * Support for grouping columns
-  ** Support mouse selection for creating new column groups
-  * Data set joins - this is quite compelling but needs more architectural thinking
-  * emql extension? mql support?
-  * RABJ integration
+  * Issue 83: JSON importer
+  * Issue 84: Textbox importer
+  * Issue 85: graphical manipulation of widths of fixed-width column data
+  * Issue 98: optional regexp parsing at import
   * Better machinery to guess and re-encode cell values (useful for fixing encoding issues)
-  * map + timeline facets
-  * gadget-like skeleton emergence from tree-shaped data
-  * "merge columns" command (possibly including ranges and open ended ones as well, say both [3,5] meaning merge   column 3,4,5 together and [10,] meaning from the 10th column onward)
-  * optional regexp parsing at import
+
+  * Issue 97: TSV/CSV exporter should allow option on which columns to export
+
+  * Issue 96: Data set joins - this is quite compelling but needs more architectural thinking
+  * Issue 68: "merge columns" command.
+  * Issue 86: parse cell values after column split
+  * Issue 87: long running processes should serialize their intermediate results and recover later, too.
+
+  * RABJ integration
+  * Issue 90: ability to cluster records -- to look for records that look alike and might actually be the same (useful for de-duplication)
+
+  * Issue 92: extend data dialog box should support constraints
+  * Issue 91: option or preference to only show Freebase /common types in dropdowns for type and property suggestions.
+
+  * Issue 89: ability to move columns
+  * Issue 93: Display column groups
+  * Issue 94: map facet
+  * Issue 95: timeline facet
+
+  * Issue 88: when applying operations, try to fix common json errors, like missing or extraneous commas and missing top level brackets. This is probably important for inexperienced (aka non-programming) users.
 
 
 ==Feature Requests, Bugs, Comments, Etc.==
 
 Please go to the [http://code.google.com/p/freebase-gridworks/issues/list issues tracker] for the most up to-date list.
-  * after splitting multi-valued cells containing something like "1997 / 1998 / 1999", try to parse individual result into numbers
-  * if you create a numeric facet based on a column, and then kill the column, the facet would cause the collection to go blank (try the year facet from the Start column of the disasters data set)
+
+====miscellaneous====
+Are the below still required?  (Please create a [http://code.google.com/p/freebase-gridworks/issues/entry new issue report] if so)
+
   * after splitting multi-valued cells, you can't filter by the context columns anymore, e.g., filter film director by from original country
-  * long running processes should serialize their intermediate results and recover later, too.
-  * when applying operations, try to fix common json errors, like missing or extraneous commas and missing top level brackets. This is probably important for inexperienced (aka non-programming) users.
   * After splitting a row, doing a custom transform where you refer to another column seems to only apply to the first row
   ** This requires adding a "context" variable to the evaluation environment. "context[column name]" would return the context cell in column "column name".
-  * ability to move columns
-  * ability to cluster records -- to look for records that look alike and might actually be the same (useful for de-duplication)
-  * option or preference to only show Freebase /common types in dropdowns for type and property suggestions.
+  
