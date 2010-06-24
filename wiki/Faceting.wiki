@@ -56,19 +56,31 @@ You can also think of a numeric facet as a grouping summary, except that the gro
 ==Text Search Facets==
 
 ==Custom Facets==
+To find 2 or more occurrences of a "," comma character in a string:
+{{{
+value.split(",").length() > 2
+}}}
+To cluster or group rows by 1000 use the following custom text facet:
+{{{
+floor(rowIndex/1000)
+}}}
+To group by even or odd rows use Jython and modulo operator '%' in custom text facet:
+{{{
+return rowIndex%2
+}}}
 
 ==Reconcile Facets==
 
-By Judgement - ???
+*By Judgement* - display a facet showing reconciled and unreconciled matches.
 
-Best Candidate's Relevance Score - ???
+*Best Candidate's Relevance Score* - display a facet showing relevance scores from reconciling services.
 
-Best Candidate's Type Match - True / False concerning whether the best candidate topic has the type expected (the type you specify when you start the recon process)
+*Best Candidate's Type Match* - True / False concerning whether the best candidate topic has the type expected (the type you specify when you start the recon process).
 
-Best Candidate's Name Match - name match is string match (not case sensitive) on reconciled cell
+*Best Candidate's Name Match* - name match is string match (not case sensitive) on reconciled cell.
 
-Best Candidate's Name Edit Distance - shows the number of character changes necessary to get the cell's text to look like the best candidate topic's name
+*Best Candidate's Name Edit Distance* - shows the number of character changes necessary to get the cell's text to look like the best candidate topic's name.
 
-Best Candidate's Name Word Similarity - word similarity is a fraction of words that are the same; ( "foo bar baz" and "bar and foo" is 0.6666 similar, I believe. )
+*Best Candidate's Name Word Similarity* - word similarity is a fraction of words that are the same; ( "foo bar baz" and "bar and foo" is 0.6666 similar, I believe. )
 
-Best Candidate's Types - Lists Freebase types of the first candidate topic for each cell
+*Best Candidate's Types* - Lists Freebase types of the first candidate topic for each cell.
