@@ -180,30 +180,3 @@ To do this, there is a special numeric facet called "Unicode charcode Facet" tha
 == Spot Values Potentially Placed in the wrong Column ==
 
 Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem.
-
-== Reconciliation (Reconciling) recipes ==
-
-=== Filtering cells not yet sent for reconciliation ===
-
-Often you may only send part of a dataset for reconciliation.  To filter parts of the dataset which have been sent for reconciliation (whether or not they have been subsequently judged) from those that haven't, please use the following custom text filter:
-
-{{{
-  isNull(cell.recon)
-}}}
-
-You may also need to determine candidates length for closer inspection:
-
-{{{
- cell.recon.candidates.length()
-}}}
-
-Other times, you may want to see if your first cell's word matches with any recon subjects:
-
-{{{
- value.partition(" ")[0] == cell.recon.best.name.partition(" ")[0]
-}}}
-
-=== Additional Reconciliation recipes ===
-{{{
-if(cell.value.toLowercase() != cell.recon.match.name.toLowercase(), cell.value, null)
-}}}
