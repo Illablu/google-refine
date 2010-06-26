@@ -3,11 +3,12 @@
 ===Introduction===
 
 <img src="http://freebase-gridworks.googlecode.com/svn/wiki/images/BenFry-CID-2004-process.png" width="400" align="right" alt="Process of Computational Information Design - copyright Ben Fry 2004" />
-Gridworks is a tool for [Dataparsing parsing], [Datafiltering filtering] and [Datamining mining] data.
+Gridworks is a tool for [Dataparsing parsing], [Datafiltering filtering] and [Datamining mining] data.  It also provides reconciliation and augmentation of data.
 
 Gridworks has a few key features which should be maintained in any future development.
   * *data comes first* and structure is added to it later.
   * Gridworks doesn't impose or enforce *any type of workflow*
+  * Gridworks *intelligently determines* the data type and encoding
   * full and *persistent undo/redo*
   * subsets of data accessed through *faceted browsing*
   * *Extensible* modular [PluginInterfaces plugin] architecture
