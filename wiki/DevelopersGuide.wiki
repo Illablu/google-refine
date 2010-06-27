@@ -26,6 +26,8 @@ Locate the directory where you've checked out gridworks. Eclipse should detect t
 
   [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects3.png]
 
+Note that the above steps are already packaged for you if you look for the `Gridworks.launch` file in the `ide/eclipse` folder inside the Gridworks source code. To execute, right click on that file, select "Run As...", then click on "Gridworks", this should run Gridworks with the above parameters already set. After the first execution, this command should be updated automatically to your list of Run launches so you can find it there.
+
 === Netbeans ===
 
   # make sure to import the eclipse project and not start one from scratch (either from the "import" command in the File menu, or thru importing directly via svn)
@@ -41,7 +43,6 @@ If you want gridworks logs to be more verbose, append this to the line above
  -Dgridworks.verbosity=TRACE
 }}}
 
-Note that the above steps are already packaged for you if you look for the `Gridworks.launch` file in the `ide/eclipse` folder inside the Gridworks source code. To execute, right click on that file, select "Run As...", then click on "Gridworks", this should run Gridworks with the above parameters already set. After the first execution, this command should be updated automatically to your list of Run launches so you can find it there.
 
 == Build and Run Gridworks from the command line (harder but more comprehensive) ==
 
