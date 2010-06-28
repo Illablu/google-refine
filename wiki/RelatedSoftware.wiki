@@ -13,5 +13,6 @@
   * [http://www.informatica.com/PRODUCTS_SERVICES/POWERCENTER/OPTIONS/METADATA/Pages/metadata_exchange_features.aspx Informatica Powercenter]
   * [http://www.elixirtech.com/products/DataETL.html Elixir Repertoire]
   * [http://www.pervasivedatarush.com/Pages/default.aspx Pervasive Datarush]
+  * [http://www.palantirtech.com/ Palantir]
 
 Feel free to add suggestions in the comments.
