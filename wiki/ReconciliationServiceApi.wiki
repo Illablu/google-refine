@@ -2,9 +2,9 @@
 
 =Introduction=
 
-A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identity space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identity spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Gridworks.)
+A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identifier space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identifier spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Gridworks.)
 
-Each reconciliation service can only reconcile to one single identify space, but several reconciliation services can reconcile to the same identity space.
+Each reconciliation service can only reconcile to one single identifier space, but several reconciliation services can reconcile to the same identifier space.
 
 So that it will be easy for users to plug in a variety of interchangeable reconciliation services, we define the API for a standard reconciliation service here.
 
@@ -114,26 +114,56 @@ The service should also support JSONP through a callback parameter.
 
 =Service Metadata=
 
-When a service is called without any parameter (or with just a callback parameter), then it returns its metadata as a json object literal with at least 2 fields "name" and "identity-space". Two more fields are optional.
+When a service is called without any parameter (or with just a callback parameter), then it returns its metadata as a json object literal with at least 3 fields "name", "identifierSpace", and "schemaSpace". Other fields are optional.
 
 {{{
-  {
-    "name" : "Freebase Official Reconciliation Service",
-    "identity-space" : "http://rdf.freebase.com/ns/type.object.mid",
-    "url-template" : "http://www.freebase.com/view{{id}}",
-    "preview-template" : "http://www.freebase.com/widget/topic{{id}}?mode=content"
-  }
+{
+  "name" : "Netflix Reconciliation through Freebase",
+  "identifierSpace" : "http://rdf.freebase.com/ns/authority.netflix.movie",
+  "schemaSpace" : "http://rdf.freebase.com/ns/type.object.id",
+  "view" : {
+    "url" : "http://www.netflix.com/WiMovie//{{id}}"
+  },
+  "preview" : {
+    "url" : "http://netflix-reconcile.freebaseapps.com/preview/{{id}}",
+    "width" : 430,
+    "height" : 300
+  },
+  "suggest" : {
+    "type" : {
+      "service_url" : "http://netflix-reconcile.freebaseapps.com",
+      "service_path" : "/suggest_type",
+      "flyout_service_url" : "http://www.freebase.com"
+    },
+    "property" : {
+      "service_url" : "http://netflix-reconcile.freebaseapps.com",
+      "service_path" : "/suggest_property",
+      "flyout_service_url" : "http://www.freebase.com"
+    },
+    "entity" : {
+      "service_url" : "http://netflix-reconcile.freebaseapps.com",
+      "service_path" : "/suggest",
+      "flyout_service_path" : "/flyout"
+    }
+  },
+  "defaultTypes" : []
+}
 }}}
 
-Note that Freebase itself supports at least 3 identity spaces:
+Note that Freebase itself supports at least 3 identifier spaces:
 
   * human-friendly IDs such as /en/apple_inc
   * machine ID (mid) such as /m/0k8z
   * GUID such as #9202a8c04000641f800000000000451e (deprecated)
 
-Thus, it's not enough to say that the identity space is http://www.freebase.com/; we have to use the URI of the specific property (in this case, mid).
+Thus, it's not enough to say that the identifier space is http://www.freebase.com/; we have to use the URI of the specific property (in this case, mid).
 
-The other two fields are for formulating URLs to a full topic page and to a small preview page for a given entity.
+The schema space is the identifier space for types and properties. It might be different from the entities' identifier space.
+
+The other fields are for
+
+  * formulating URLs to a full topic page or to a small preview page for a given entity
+  * customizing the suggest widgets used in various places in the reconciliation UI
 
 
 =Gridworks Integration=
