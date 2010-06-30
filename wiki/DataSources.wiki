@@ -6,6 +6,7 @@
   * [http://data.worldbank.org/ The World Bank] 
   * [http://www.data.gov/ The U.S. Government's Data]
   * [http://data.gov.uk/ The U.K. Government's Data]
+  * [http://ec.europa.eu/beneficiaries/fts/find_en.htm# European Community Financial Transparency System]
   * [http://www.gapminder.org/data/ Gapminder]
   * [http://infochimps.org/ Infochimps]
   * [http://manyeyes.alphaworks.ibm.com/manyeyes/datasets Many Eyes]
