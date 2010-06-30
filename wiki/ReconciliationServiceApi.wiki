@@ -18,13 +18,16 @@ A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It
 
 ==Single Query Mode==
 
-A call to a standard reconciliation service API for a single query looks like this:
+A call to a standard reconciliation service API for a single query looks like either of these:
 
 {{{
+  http://foo.com/bar/reconcile?query=...string...
   http://foo.com/bar/reconcile?query={...json object literal...}
 }}}
 
-The json object literal has a few fields
+If the query parameter is a string, then it's an abbreviate of `query={"query":...string...}`.
+
+The query json object literal has a few fields
 
 || "query" || a string to search for ||
 || "limit" || optional, an integer to specify how many results to return ||
