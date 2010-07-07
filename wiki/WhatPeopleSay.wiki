@@ -1,4 +1,5 @@
 #summary Curated list of quotes, references, uses and extensions about Gridworks in the wild
+#labels Featured
 
 = Quotes =
 
