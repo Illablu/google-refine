@@ -1,4 +1,5 @@
   * [WhatsNew What's New?]
+  * [WhatPeopleSay What People Say and Do]
   * [HowToParticipate How to Participate]
   * [GettingStarted Getting Started]
   * [FAQ FAQ]
