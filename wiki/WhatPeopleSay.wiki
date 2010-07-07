@@ -76,7 +76,7 @@
 [http://twitter.com/rdhyee Raymond Yee] [http://twitter.com/rdhyee/status/13404067036 view]
 
     @JeniT freebase gridworks proves you don't need RDF to be semantic :) used it heavily over the weekend 
-[http://twitter.com/delineator Rob ?] [http://twitter.com/delineator/statuses/14630650064 view]
+[http://twitter.com/delineator Rob McKinnon] [http://twitter.com/delineator/statuses/14630650064 view]
 
     Using gridworks to clean up @farmsubsidy data. This is fun :) 
 [http://twitter.com/symroe Sym Roe] [http://twitter.com/symroe/statuses/14619696804 view]
