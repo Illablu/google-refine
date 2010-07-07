@@ -1,7 +1,7 @@
 #summary Curated list of quotes, references, uses and extensions about Gridworks in the wild
 #labels Featured
 
-= Quotes =
+= Blog Posts =
 
     As the open data juggernaut picks up steam, a lot of folks are going to discover what some of us have known all 
     along. Much of the data that’s lying around is a mess. That’s partly because nobody has ever really looked at it. 
@@ -42,22 +42,62 @@
 [http://www.linkedin.com/in/dtunkelang Daniel Tunkelang] (Google) - [http://thenoisychannel.com/2010/06/20/gridworks-and-needlebase/ Gridworks and Needlebase]
 
 
+= Tweets =
 
     Gridworks is like crack for data junkies
 
-[http://twitter.com/eyeseast Chris Amico] ([http://www.pbs.org/newshour/ PBS NewsHour]) [http://twitter.com/eyeseast/status/14451895341 tweet]
-
-
+[http://twitter.com/eyeseast Chris Amico] ([http://www.pbs.org/newshour/ PBS NewsHour]) [http://twitter.com/eyeseast/status/14451895341 view]
 
     I think @thejefflarson is going to name a dog after Gridworks (speaking of his colleague Jeff Larson)
 
-[http://twitter.com/kleinmatic Scott Klein] ([http://www.propublica.org/ ProPublica]) [http://twitter.com/kleinmatic/statuses/14253552041 tweet]
-
-
+[http://twitter.com/kleinmatic Scott Klein] ([http://www.propublica.org/ ProPublica]) [http://twitter.com/kleinmatic/statuses/14253552041 view]
 
     I just got to know old data all over again using Freebase Gridworks
 
-[http://twitter.com/drapetomaniac Rich Vázquez] ([http://impactnews.com/ ImpactNews]) [http://twitter.com/drapetomaniac/statuses/13756191891 tweet]
+[http://twitter.com/drapetomaniac Rich Vázquez] ([http://impactnews.com/ ImpactNews]) [http://twitter.com/drapetomaniac/statuses/13756191891 view]
+
+    @fbase's Gridworks has taken a good day and made it truly epic. http://bit.ly/c9Ttdv Thanks for the boost guys. 
+
+[http://twitter.com/onyxfish Christopher Groskopf] [http://twitter.com/onyxfish/status/13741775910 view]
+
+    Gridworks is a gamechanger, no doubt! RT @stefanomaz theory and practice behind clustering in Gridworks http://bit.ly/b0EyyB 
+[http://twitter.com/LookBackMaps  Jon Voss] [http://twitter.com/LookBackMaps/statuses/14338170478 view]
+
+    I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do. 
+[http://twitter.com/gromgull Gunnar Grimnes] [http://twitter.com/gromgull/statuses/14348680235 view]
+
+    http://bit.ly/93pTSL @judell "Freebase Gridworks will make you weep with joy' (via @rdmpage) Wow! Why wasn't this invented earlier
+[http://twitter.com/peterdesmet Peter Desmet] [http://twitter.com/peterdesmet/status/13791307008 view]
+
+    Freebase releases Gridworks 1.0 This is a the most useful tool I have seen in a long time. http://bit.ly/c8emxf
+[http://twitter.com/zacwitte Zac Witte] [http://twitter.com/zacwitte/status/13746563538 view]
+
+    I've had so much fun alpha testing Freebase Gridworks. It is very much the powertool for working with datasets I had been waiting for. 
+[http://twitter.com/rdhyee Raymond Yee] [http://twitter.com/rdhyee/status/13404067036 view]
+
+    @JeniT freebase gridworks proves you don't need RDF to be semantic :) used it heavily over the weekend 
+[http://twitter.com/delineator Rob ?] [http://twitter.com/delineator/statuses/14630650064 view]
+
+    Using gridworks to clean up @farmsubsidy data. This is fun :) 
+[http://twitter.com/symroe Sym Roe] [http://twitter.com/symroe/statuses/14619696804 view]
+
+    I <3 scatterplot matrix and scatterfacets! Don't know what they are? Watch this gridworks screencast: http://vimeo.com/11854491 
+[http://twitter.com/spellboundblog Jeanne Kramer-Smyth] [http://twitter.com/spellboundblog/statuses/14264336609 view]
+
+    Freebase Gridworks very impressive http://bit.ly/cjx3ZX, covers many features we want in pub workbench (discovered via @JeniT) 
+[http://twitter.com/der42 Dave Reynolds] [http://twitter.com/der42/status/11188314594 view]
+
+    Gridworks looks amazing. Great UI for data cleansing, record linkage, schema mapping. We need this for #linkeddata! http://bit.ly/diAw4a 
+[http://twitter.com/cygri Richard Cyganiak] [http://twitter.com/cygri/status/11492299667 view]
+
+    Well, @stefanomaz. Haven't got as excited as I just did from Gridworks since… Cocoon in 1999!!! I'm OLD! Congrats! 
+[http://twitter.com/Vincent_Olivier Vincent Olivier] [http://twitter.com/Vincent_Olivier/status/14202326806 view]
+
+    Getting over excited about using Freebase Gridworks for data cleanup, munging, and maybe, just maybe easy generation... http://ff.im/k73kf 
+[http://twitter.com/CameronNeylon Cameron Neylon] [http://twitter.com/CameronNeylon/statuses/13731457745 view]
+
+    Judging by the number of people searching for Freebase Gridworks and landing on my mini-review, it's getting some use. http://bit.ly/cvsSTh
+[http://twitter.com/AnthonyDB Anthony DeBarros] [http://twitter.com/AnthonyDB/status/17620349275 view]
 
 
 
