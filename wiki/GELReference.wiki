@@ -80,7 +80,7 @@ There are inline controls to support branching and essentially looping. They loo
 
 ===if===
 
-`if(eTest, eTrue, eFalse)` : expression `eTest` is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.
+`if(eTest, eTrue, eFalse)` : expression `eTest` is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.  if(condition, if_true, if_false) is the same as (condition) ? if_true : if_false in C-like languages
 
 Examples:
   * `if(value.startsWith("A"), value.substring(1), value)` : removes leading "A" from the cell's value, if any
