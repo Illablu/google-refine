@@ -10,7 +10,7 @@
   * More documentation and testing on the standard reconciliation service stuff - dfhuynh
   * Performance - the /project page seems to be slow now
 
-==Nice-to-have==
+==1.5.1==
 
 Can be in 1.5.1 release.
 
@@ -26,7 +26,7 @@ Medium
   * Issue 36:	[Wishlist] Seamless conversion of arrays into multiple columns
     * which will solve Issue 37: [Wishlist] match() function to turn results of regexp groups into an array
 
-==Probably 1.6==
+==1.6==
 
   * Issue 82: Add Pivot function to GEL - could be tricky implementation
   * Issue 84: Add a cut and paste textbox importer ? - mostly design work
