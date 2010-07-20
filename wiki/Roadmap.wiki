@@ -26,7 +26,7 @@ Summer 2010.
   * Issue 88: when applying operations, try to fix common json errors, like missing or extraneous commas and missing top level brackets. This is probably important for inexperienced (aka non-programming) users.
   * Issue 97: TSV/CSV exporter should allow option on which columns to export
   * Issue 98: optional regexp parsing at import
-  * Issue 101: Collaborative editing support
+  * Issue 101: (Broker) Collaborative editing support 
 
 ====Milestone 2.x====
   * Issue 68: "merge columns" command.
