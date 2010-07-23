@@ -14,9 +14,12 @@ Each expression is typically evaluated against one row at a time, and said to be
 
 || name || meaning ||
 || row || the current row ||
+|| cells || the cells of the current row ||
 || cell || the cell in the base column of the current row ||
+|| recon || the recon object of a cell returned from a reconciliation service or provider ||
+|| record || one or more rows grouped together ||
 || value || the value of the cell in the base column of the current row ||
-|| cells || the cells the current row ||
+
 
 ===Row===
 
