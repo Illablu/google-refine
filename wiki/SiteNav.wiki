@@ -28,5 +28,5 @@
       * [ServerSideArchitecture Server-Side]
       * [ClientSideArchitecture Client-Side]
       * [FacetedBrowsingArchitecture Faceted Browsing]
-      * [ReconciliationServiceAPI Reconciliation Service API]
+      * [ReconciliationServiceApi Reconciliation Service API]
       * [SampleExtension Sample Extension]
