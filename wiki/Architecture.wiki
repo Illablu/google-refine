@@ -8,4 +8,4 @@ This architecture has emerged from our experience building similar systems such 
   * [ClientSideArchitecture Client-Side]: how the UI is built
   * [FacetedBrowsingArchitecture Faceted Browsing]: how faceted browsing is implemented (this straddles the client and the server)
   * [TechnologyStack Technology Stack]: a list of external libraries used and the purpose in which they are used
-  * [ReconciliationServiceApi Reconciliation Service Api]: describes a standard reconciliation service structure.
+  * [ReconciliationServiceApi Reconciliation Service API]: describes a standard reconciliation service structure.
