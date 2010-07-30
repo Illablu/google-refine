@@ -17,6 +17,7 @@
     * Data
       * [SampleDatasets Sample Datasets]
       * [DataSources Data Sources]
+      * [ReconcilableDataSources Reconcilable Data Sources]
     * All Recipes
       * [RecipeApacheLogs Analyzing Apache Logs]
     * [RelatedSoftware Related Software]
