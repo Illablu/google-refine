@@ -22,20 +22,18 @@ A typical extension sits under the extensions directory and has this layout:
 
 The file named module.properties (see [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. Also of importance is the dependency
 
-{{{  requires = more}}}
+{{{
+  requires = core
+}}}
 
 which makes sure that the core module of Gridworks is loaded before the extension attempts to hook into it.
 
-The file named controller.js is responsible for registering the extension's hooks into Gridworks. Look at the sample-extension extension's [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/controller.js controller.js] file for an example.
-
-{{{
-  function init() {
-    ...
-  }
-}}}
+The file named controller.js is responsible for registering the extension's hooks into Gridworks. Look at the sample-extension extension's [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/controller.js controller.js] file for an example. It should have a function called init() that does the hook registrations.
 
 
 =Javascript and CSS=
+
+The UI in Gridworks for working with a project is coded in [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/modules/core/project.vt this file]. The file is quite small, and that's because almost all of its content is to be expanded dynamically through the Velocity variables $scriptInjection and $styleInjection.
 
 =Main Menu=
 
