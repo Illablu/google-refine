@@ -1,0 +1,43 @@
+#summary How extensions can hook into various points in Gridworks (1.5 or later).
+
+This document is for the upcoming version 1.5 and later only.
+
+=Extension File Layout=
+
+A typical extension sits under the extensions directory and has this layout:
+
+{{{
+  extensions/
+    [extension-name]/
+      module/
+        scripts/
+        styles/
+        images/
+        MOD-INF/
+          lib/
+          classes/
+          controller.js
+}}}
+
+The file named controller.js is responsible for registering the extension's hooks into Gridworks.
+
+{{{
+  function init() {
+    ...
+  }
+}}}
+
+
+=Javascript and CSS=
+
+=Main Menu=
+
+=Column Header Menu=
+
+=Ajax Commands=
+
+=Importers=
+
+=Exporters=
+
+=Scripting Languages=
