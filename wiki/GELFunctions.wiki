@@ -255,6 +255,10 @@ Returns part of a date.
 
 Returns the type of the object o.
 
+===unique()===
+
+(TODO: needs documentation from David)
+
 ===cross(cell c, string projectName, string columnName)===
 
 Returns an array of zero or more rows in the project projectName for which the cells in their column columnName have the same content as cell c. The typical use case is creating a custom text facet with an expression like this:
