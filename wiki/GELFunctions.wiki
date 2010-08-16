@@ -255,7 +255,7 @@ Returns part of a date.
 
 Returns the type of the object o.
 
-===unique()===
+===uniques()===
 
 (TODO: needs documentation from David)
 
