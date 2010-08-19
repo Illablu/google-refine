@@ -1,5 +1,4 @@
-= Uploading to Freebase =
-(SHARE YOUR DATA...feel good about your accuracy!)
+= SHARE YOUR DATA...feel good about your accuracy! =
 
 Gridworks currently only allows uploading to the [http://wiki.freebase.com/wiki/Sandbox Sandbox] on Freebase and not the Production servers immediately in order to help you with your accuracy.
 
