@@ -9,6 +9,9 @@
     * [Faceting Faceting]
     * [Clustering Clustering]
     * [Reconciling]
+    * [Scheme Alignment]
+    * [Uploading to Freebase]
+    * [Review of Uploads]
     * Expressions
       * Gridworks Expression Language (GEL)
         * [GELReference GEL Reference]
