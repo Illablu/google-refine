@@ -1,27 +1,26 @@
 #summary How extensions can hook into various points in Gridworks (1.5 or later).
 
-This document is for the upcoming version 1.5 and later only.
+This document is for the upcoming version 1.5 and later only. This is still in flux.
 
 Extensions that come with the code base are located under [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/extensions the extensions subdirectory], but when you develop your own extension, you can put its code anywhere as long as you refer to that directory in [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties the butterfly.properites file] through a `butterfly.modules.path` setting.
 
 =Extension File Layout=
 
-A typical extension sits in a file directory with this layout:
+A typical extension sits in a file directory that contains the following files and sub-directories:
 
 {{{
-  [extension-name]/
-    src/
+  src/
       com/foo/bar/... *.java source files
-    module/
+  module/
       *.html, *.vt files
-      scripts/
-      styles/
-      images/
+      scripts/... *.js files
+      styles/... *.css and *.less files
+      images/... image files
       MOD-INF/
-        lib/*.jar files
-        classes/... java class files
-        module.properties
-        controller.js
+          lib/*.jar files
+          classes/... java class files
+          module.properties
+          controller.js
 }}}
 
 The file named module.properties (see [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. This can be different from the extension's directory name.
