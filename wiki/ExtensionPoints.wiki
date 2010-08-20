@@ -142,12 +142,37 @@ That function takes in the column object (which contains the column's name), the
     ]);
 }}}
 
-To see what IDs you can use, see the function `DataTableColumnHeaderUI.prototype._createMenuForColumnHeader` in  [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/modules/core/scripts/views/data-table/column-header-ui.js this file].
+In addition to `MenuSystem.appendTo`, you can also call `MenuSystem.insertBefore` and `MenuSystem.insertAfter` which the same 3 arguments. To see what IDs you can use, see the function `DataTableColumnHeaderUI.prototype._createMenuForColumnHeader` in  [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/modules/core/scripts/views/data-table/column-header-ui.js this file].
 
 =Server-side Extension Points=
 
-Ajax Commands
+==Ajax Commands==
 
+The client-side of Gridworks gets things done by calling AJAX commands on the server-side. These commands must be registered with the Gridworks servlet, so that the servlet knows how to route AJAX calls from the client-side. This can be done inside the `init` function in your extension's `controller.js` file, e.g.,
+
+{{{
+  function init() {
+      var GridworksServlet = Packages.com.google.gridworks.GridworksServlet;
+      GridworksServlet.registerCommand("my-command", new Packages.com.foo.bar.MyCommand());
+  }
+}}}
+
+
+==GEL==
+
+GEL can be extended with new functions. This is also done in the `init` function in `controller.js`, e.g.,
+
+{{{
+  Packages.com.google.gridworks.gel.ControlFunctionRegistry.registerFunction(
+        "functionName", new Packages.com.foo.bar.TheFunctionClass());
+}}}
+
+You might also want to provide new variables (beyond just `value`, `cells`, `row`, etc.) available to expressions. This is done by registering a binder that implements the interface `com.google.gridworks.expr.Binder`:
+
+{{{
+  Packages.com.google.gridworks.expr.ExpressionUtils.registerBinder(
+        new Packages.com.foo.bar.MyBinder());
+}}}
 
 =Importers and Exporters=
 
