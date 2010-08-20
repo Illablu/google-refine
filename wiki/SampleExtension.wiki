@@ -48,3 +48,5 @@ The `init()` function in `controller.js` allows the extension to register variou
 Butterfly is able to locate the sample extension because of [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties?r=984#23 the path provided in butterfly.properties]. Butterfly simply descends into each of those paths and look for `MOD-INF` directories.
 
 It is also necessary to specify where in the URL space the extension's client-side resources are served. This is done [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/modules.properties?r=984#9 here]: that's how you can access [http://localhost:3333/extensions/sample/ this URL] and [http://localhost:3333/extensions/sample/scripts/project-injection.js this URL].
+
+For more information, see [ExtensionPoints].
