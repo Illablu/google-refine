@@ -60,9 +60,7 @@ In the registration call, the variable `module` is already available to your cod
 
 You can specify one or more files for registration, and their paths are relative to the `module` subdirectory of your extension. They are included in the order listed.
 
-===Javascript Bundling===
-
-Note that `project.vt` belongs to the core module and is thus under the control of the core module's
+Javascript Bundling: Note that `project.vt` belongs to the core module and is thus under the control of the core module's
 [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/modules/core/MOD-INF/controller.js controller.js file]. The Javascript files to be included in `project.vt` are by default bundled together for performance. When debugging, you can prevent this bundling behavior by setting `bundle` to `false` near the top of that `controller.js` file. (If you have commit access to this code base, be sure not to check that change in.)
 
 
@@ -93,12 +91,58 @@ Beside Javascript, CSS, and images, your extension might also include HTML templ
 `DOM.loadHTML` returns the content of the file as a string, and `$(...)` turns it into a DOM fragment. Where `"core"` is, you would want your extension's name. The path of the HTML file is relative to your extension's `module` subdirectory.
 
 
-=Project UI Extension Points
+=Project UI Extension Points=
+
+Getting your extension's Javascript code included in `project.vt` doesn't accomplish much by itself unless your code also registers hooks into the UI. For example, you can surely implement an exporter in Javascript, but unless you add a corresponding menu command in the UI, your user can't use your exporter.
 
 ==Main Menu==
 
+The main menu can be extended by calling any one of the methods `MenuBar.appendTo`, `MenuBar.insertBefore`, and `MenuBar.insertAfter`. Each method takes 2 arguments: an array of strings that identify a particular existing menu item or submenu, and one new single menu item or submenu or an array of menu items and submenus. For example, to insert 2 menu items and a menu separator before the menu item Project > Export Filtered Rows > Templating..., write this Javascript code wherever that would execute when your Javascript files get loaded:
+
+{{{
+    MenuBar.insertBefore(
+        [ "core/project", "core/export", "core/export-templating" ],
+        [
+            {
+                "label":"Menu item 1",
+                "click": function() { ... }
+            },
+            {
+                "label":"Menu item 2",
+                "click": function() { ... }
+            },
+            {} // separator
+        ]
+    );
+}}}
+
+The array `[ "core/project", "core/export", "core/export-templating" ]` pinpoints the reference menu item.
+
+See the beginning of [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/modules/core/scripts/project/menu-bar.js this file] for IDs of menu items and submenus.
+
 ==Column Header Menu==
 
+The drop-down menu of each column can also be extended, but the mechanism is slightly different compared to the main menu. Because the drop-down menu for a particular column is constructed on the fly when the user actually clicks the drop-down menu button, extending the column header menu can't really be done once at start-up time, but must be done every time a column header menu gets created. So, registration in this case involves providing a function that gets called each such time:
+
+{{{
+  DataTableColumnHeaderUI.extendMenu(function(column, columnHeaderUI, menu) { ... do stuff to menu ... });
+}}}
+
+That function takes in the column object (which contains the column's name), the column header UI object (generally not so useful), and the menu to extend. In the previous code line where it says "do stuff to menu", you can write something like this:
+
+{{{
+    MenuSystem.appendTo(menu, [ "core/facet" ], [
+        {
+            id: "core/text-facet",
+            label: "My Facet on " + column.name,
+            click: function() {
+                ... use column.name and do something ...
+            }
+        },
+    ]);
+}}}
+
+To see what IDs you can use, see the function `DataTableColumnHeaderUI.prototype._createMenuForColumnHeader` in  [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/modules/core/scripts/views/data-table/column-header-ui.js this file].
 
 =Server-side Extension Points=
 
