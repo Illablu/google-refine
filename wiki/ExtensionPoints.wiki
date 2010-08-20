@@ -2,25 +2,31 @@
 
 This document is for the upcoming version 1.5 and later only.
 
+Extensions that come with the code base are located under [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/extensions the extensions subdirectory], but when you develop your own extension, you can put its code anywhere as long as you refer to that directory in [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties the butterfly.properites file] through a `butterfly.modules.path` setting.
+
 =Extension File Layout=
 
-A typical extension sits under the extensions directory and has this layout:
+A typical extension sits in a file directory with this layout:
 
 {{{
-  extensions/
-    [extension-name]/
-      module/
-        scripts/
-        styles/
-        images/
-        MOD-INF/
-          lib/
-          classes/
-          module.properties
-          controller.js
+  [extension-name]/
+    src/
+      com/foo/bar/... *.java source files
+    module/
+      *.html, *.vt files
+      scripts/
+      styles/
+      images/
+      MOD-INF/
+        lib/*.jar files
+        classes/... java class files
+        module.properties
+        controller.js
 }}}
 
-The file named module.properties (see [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. Also of importance is the dependency
+The file named module.properties (see [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. This can be different from the extension's directory name.
+
+Also of importance is the dependency
 
 {{{
   requires = core
