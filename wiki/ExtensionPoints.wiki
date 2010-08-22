@@ -116,9 +116,11 @@ The client-side of Gridworks gets things done by calling AJAX commands on the se
 {{{
   function init() {
       var GridworksServlet = Packages.com.google.gridworks.GridworksServlet;
-      GridworksServlet.registerCommand("my-command", new Packages.com.foo.bar.MyCommand());
+      GridworksServlet.registerCommand(module, "my-command", new Packages.com.foo.bar.MyCommand());
   }
 }}}
+
+Your command will then be accessible at http://127.0.0.1:3333/command/my-extension/my-command.
 
 
 ==GEL==
