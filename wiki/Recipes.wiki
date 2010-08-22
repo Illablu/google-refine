@@ -19,15 +19,15 @@ basically replacing what you don't want with the empty string.
 
 Note that "replace" replaces all instances of that first string in the cell value so see the next recipe for that case.
 
-=== "blah_2342_blah_1232" -> "2342_blah_1232"  ===
+=== "blah2342blah1232" -> "2342blah1232"  ===
 
-Here we can't replace "blah_" with "" because it would change the second occurrence as well. So we can use this
+Here we can't replace "blah" with "" because it would change the second occurrence as well. So we can use this
 
 {{{
-   value.partition("blah_")[2]
+   value.partition("blah")[2]
 }}}
 
-that will chop the value in an array of three strings ["", "blah_", "2342_blah_1232" ] and we get the 3rd value (remember that the arrays in gridworks, like in most programming languages start from 0, so [2] is actually the third value).
+that will chop the value in an array of three strings ["", "blah", "2342blah1232" ] and we get the 3rd value (remember that the arrays in gridworks, like in most programming languages start from 0, so value.partition()[2] is actually the third value).
 
 === "a:b:c:d:e" -> "b:c:d" ===
 
