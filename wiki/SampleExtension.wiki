@@ -1,5 +1,7 @@
 #summary Explains the sample extension.
 
+The sample extension is included in the code base so that you can copy it and get started on writing your own extension. After you copy it, make sure you change its name inside its `module/MOD-INF/controller.js` file.
+
 =Basic Structure=
 
 The sample extension's code is in `gridworks/extensions/sample-extension/`. In that directory, Java source code is contained under the `src` sub-directory, and webapp code is under the `sample-extension` sub-directory. Here is the full directory layout:
