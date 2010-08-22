@@ -42,6 +42,11 @@
 [http://www.linkedin.com/in/dtunkelang Daniel Tunkelang] (Google) - [http://thenoisychannel.com/2010/06/20/gridworks-and-needlebase/ Gridworks and Needlebase]
 
 
+    Gridworks is a simply amazing tool for data cleansing, analysis and, as we’ve seen, transformation. It’s set to become more so for our purposes in the near future, as it comes to support the mapping of names for things to URIs using configurable reconciliation services (which might allow it to automatically map Government Department names to URIs, for example), and the creation of RDF using a more intuitive and user-friendly approach than the templates that I’ve illustrated here.
+
+Jeni Tennison - [http://www.jenitennison.com/blog/node/145 Using Freebase Gridworks to Create Linked Data]
+
+
 = Tweets =
 
     Gridworks is like crack for data junkies
