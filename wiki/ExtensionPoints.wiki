@@ -192,14 +192,14 @@ The first string is the prefix that gets prepended to each expression so that we
 ==Importers==
 
 {{{
-  Packages.com.google.gridworks.commands.project.CreateProjectCommand.registerExporter(
+  Packages.com.google.gridworks.importers.ImporterRegistry.registerExporter(
       "format", new Packages.com.foo.bar.MyImporter());
 }}}
 
 ==Exporters==
 
 {{{
-  Packages.com.google.gridworks.commands.project.ExportRowsCommand.registerExporter(
+  Packages.com.google.gridworks.exporters.ExporterRegistry.registerExporter(
       "format", new Packages.com.foo.bar.MyExporter());
 }}}
 
