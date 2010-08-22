@@ -30,7 +30,7 @@ The process that generates the key from a string value is the following (note ho
   * join back together the tokens
   * normalize extended western characters to their ASCII representation (for example "gödel" -> "godel")
 
-If you're curious, the code that performs this [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/FingerprintKeyer.java here].
+If you're curious, the code that performs this is [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/FingerprintKeyer.java here].
 
 There are several factors that play a role in this fingerprint:
 
