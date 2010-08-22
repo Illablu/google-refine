@@ -1,44 +1,35 @@
 #summary Explains the sample extension.
 
-Gridworks post 1.1 uses the [http://code.google.com/p/simile-butterfly/ Butterfly framework] to support extensions.
-
-Butterfly was chosen over OSGi because 
-
-  * Butterfly modules can contain both Java code (server-side) as well as webapp code (client-side); and
-  * unlike OSGi plugins, Butterfly modules don't have to be jarred and copied into one specific directory--both of which tasks make development very painful.
-
-A Gridworks extension is implemented as a Butterfly module. "Extension" and "module" might be used interchangeably in this document.
-
-=Basic Structure of the Sample Extension=
+=Basic Structure=
 
 The sample extension's code is in `gridworks/extensions/sample-extension/`. In that directory, Java source code is contained under the `src` sub-directory, and webapp code is under the `sample-extension` sub-directory. Here is the full directory layout:
 
 {{{
-  gridworks/extensions/sample-extensions/
-    build.xml (ant build script)
-    src/
-      com/metaweb/gridworks/sampleExtension/
-        ... Java source code ...
-    sample-extensions/ (what Butterfly considers to be a Butterfly module)
-      MOD-INF/
-        module.properties (module settings)
-        controller.js (module init and routing logic in Javascript)
-      classes/
-        ... compiled Java classes ...
-      lib/
-        ... Java jars ...
-      ... velocity templates (.vt) ...
-      ... LESS css files ...
-      ... client-side files (.html, .css, .js, image files) ...
+  gridworks/extensions/sample-extension/
+      build.xml (ant build script)
+      src/
+          com/google/gridworks/sampleExtension/
+              ... Java source code ...
+      module/
+          MOD-INF/
+              module.properties (module settings)
+              controller.js (module init and routing logic in Javascript)
+          classes/
+              ... compiled Java classes ...
+          lib/
+              ... Java jars ...
+          ... velocity templates (.vt) ...
+          ... LESS css files ...
+          ... client-side files (.html, .css, .js, image files) ...
 }}}
 
-The reason for the `sample-extension/sample-extension` naming scheme is because Butterfly will automatically refer to the module (extension) by the name of the directory containing `MOD-INF`. `MOD-INF` contains the Butterfly module's metadata and is what Butterfly looks for when it scans directories for modules. `MOD-INF` serves similar functions as `WEB-INF` in other web frameworks.
+The sub-directory `MOD-INF` contains the Butterfly module's metadata and is what Butterfly looks for when it scans directories for modules. `MOD-INF` serves similar functions as `WEB-INF` in other web frameworks.
 
 Java code is built into the sub-directory `classes` inside `MOD-INF`, and supporting external Java jars are in the `lib` sub-directory. Those will be automatically loaded by Butterfly. (The build.xml script is wired to compile into the `classes` sub-directory.)
 
 Client-side code is in the inner `sample-extension` sub-directory. They can be plain old .html, .css, .js, and image files, or they can be [http://lesscss.org/ LESS] files that get processed into CSS. There are also Velocity .vt files, but they need to be routed inside `MOD-INF/controller.js`.
 
-`MOD-INF/controller.js` lets you configure the extension's initialization and URL routing in Javascript rather than in Java. For example, when the requested URL path is either `/` or an empty string, we process and return `MOD-INF/index.vt` ([http://localhost:3333/extensions/sample/ see that page here] if Gridworks is running).
+`MOD-INF/controller.js` lets you configure the extension's initialization and URL routing in Javascript rather than in Java. For example, when the requested URL path is either `/` or an empty string, we process and return `MOD-INF/index.vt` ([http://localhost:3333/sample-extensions/ see that page here] if Gridworks is running).
 
 The `init()` function in `controller.js` allows the extension to register various client-side handlers for augmenting pages served by Gridworks' core. These handlers are feature-specific. For example, [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/jython/module/MOD-INF/controller.js?r=965#4 here is where and how] the jython extension adds its parser. As for the sample extension, it adds its script `project-injection.js` and style `project-injection.less` into the `/project` page. If you [view-source:http://localhost:3333/project view source the /project page], you'd see references to those two files.
 
@@ -46,7 +37,5 @@ The `init()` function in `controller.js` allows the extension to register variou
 =Wiring Up the Extension=
 
 Butterfly is able to locate the sample extension because of [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties?r=984#23 the path provided in butterfly.properties]. Butterfly simply descends into each of those paths and look for `MOD-INF` directories.
-
-It is also necessary to specify where in the URL space the extension's client-side resources are served. This is done [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/modules.properties?r=984#9 here]: that's how you can access [http://localhost:3333/extensions/sample/ this URL] and [http://localhost:3333/extensions/sample/scripts/project-injection.js this URL].
 
 For more information, see [ExtensionPoints].
