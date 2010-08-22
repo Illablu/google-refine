@@ -1,0 +1,56 @@
+#summary How to start writing an extension
+
+This document is for the upcoming version 1.5 and later only. This is still in flux.
+
+Gridworks makes use of the [http://code.google.com/p/simile-butterfly/ Butterfly framework] to provide an extension architecture. Gridworks extensions are Butterfly modules. You don't really need to know about Butterfly itself, but you might encounter "butterfly" here and there in the code base.
+
+Note that Butterfly was chosen over OSGi because 
+
+  * Butterfly modules can contain both Java code (server-side) as well as webapp code (client-side); and
+  * Unlike OSGi plugins, Butterfly modules don't have to be jarred and copied into one specific directory--both of which tasks make development very painful.
+
+Extensions that come with the code base are located under [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/extensions the extensions subdirectory], but when you develop your own extension, you can put its code anywhere as long as you point Butterfly to it. That is done by any one of the following methods
+
+  * refer to your extension's directory in [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties the butterfly.properites file] through a `butterfly.modules.path` setting.
+  * specify -Dbutterfly.modules.path=/path/to/your/extension when you run Gridworks from the command line
+ 
+
+=Directory Layout=
+
+A Gridworks extension (implemented as a Butterfly module) sits in a file directory that contains the following files and sub-directories:
+
+{{{
+  build.xml
+  src/
+      com/foo/bar/... *.java source files
+  module/
+      *.html, *.vt files
+      scripts/... *.js files
+      styles/... *.css and *.less files
+      images/... image files
+      MOD-INF/
+          lib/*.jar files
+          classes/... java class files
+          module.properties
+          controller.js
+}}}
+
+The file named module.properties (see [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. This can be different from the extension's directory name. We'll use `my-extension` as an example for the rest of this document:
+
+{{{
+  name = my-extension
+}}}
+
+Also of importance is the dependency
+
+{{{
+  requires = core
+}}}
+
+which makes sure that the core module of Gridworks is loaded before the extension attempts to hook into it.
+
+The file named controller.js is responsible for registering the extension's hooks into Gridworks. Look at the sample-extension extension's [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/controller.js controller.js] file for an example. It should have a function called init() that does the hook registrations.
+
+The `build.xml` file is an [http://ant.apache.org/ Apache Ant] build file. You can make a copy of the sample extension's `build.xml` file to get started. The important point here is that the Java classes should be built into the `module/MOD-INF/classes` sub-directory.
+
+Note that your extension's Java code would need to reference some libraries used in Gridworks and Gridworks' Java classes themselves. The libraries are in [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/main/webapp/WEB-INF/lib gridworks/main/webapp/WEB-INF/lib/] and Gridworks' classes are in gridworks/main/webapp/modules/core/MOD-INF/classes/.
