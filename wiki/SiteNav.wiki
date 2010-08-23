@@ -23,6 +23,7 @@
       * [ReconcilableDataSources Reconcilable Data Sources]
     * All Recipes
       * [RecipeApacheLogs Analyzing Apache Logs]
+    * [GetDevelopmentVersion Get the Development Version]
     * [RelatedSoftware Related Software]
   * Developers' Resources
     * [DevelopersGuide Developer's Guide]
