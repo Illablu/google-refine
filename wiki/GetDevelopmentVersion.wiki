@@ -35,7 +35,7 @@ You would see a lot of lines scroll past as the source is getting downloaded.
 
 =Building the Source=
 
-Change into the `gridworks directory by typing into the Terminal window
+Change into the `gridworks` directory by typing into the Terminal window
 
 {{{
   cd gridworks
@@ -44,14 +44,14 @@ Change into the `gridworks directory by typing into the Terminal window
 Then build the source code:
 
   * on Windows, type: `gridworks build`
-  * on MacOSX or *nix, type: `./gridworks build`
+  * on MacOSX or `*`nix, type: `./gridworks build`
 
 =Running=
 
 To run, in the Terminal window
 
   * on Windows, type: `gridworks`
-  * on MacOSX or *nix, type: `./gridworks`
+  * on MacOSX or `*`nix, type: `./gridworks`
 
 =Shutting Down=
 
