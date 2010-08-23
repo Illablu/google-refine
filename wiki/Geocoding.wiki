@@ -38,3 +38,21 @@ Give the new column to be created a name, such as "latlng", and hit OK.
 =Cleaning Up=
 
 You can delete the `geocodingResponse` column after you have already extracted the lat/lng coordinates.
+
+=Batching=
+
+If you have more rows than the per-day limit, then you can work on one small batch of row per day. First, create a Custom Numeric Facet with an expression like this:
+
+{{{
+  floor(rowIndex / 2000)
+}}}
+
+Replace 2000 with some number below the per-day limit. Then use this facet to select a batch of rows to process.
+
+At the end, you will have created several columns for the several batches. Say, the columns are named `response1`, `response2`, and `response3`. Merge all of them together by creating a new column using this expression
+
+{{{
+  forNonBlank(cells.response1.value, v1, v1, forNonBlank(cells.response2.value, v2, v2, forNonBlank(cells.response3.value, v3, v3, null)))
+}}}
+
+You can then delete the original 3 columns and use the merged one.
