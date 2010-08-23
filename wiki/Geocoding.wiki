@@ -10,7 +10,7 @@ One geocoding service to use is the [http://code.google.com/apis/maps/documentat
 
     the Geocoding API may only be used in conjunction with a Google map; geocoding results without displaying them on a map is prohibited. For complete details on allowed usage, consult the [http://code.google.com/apis/maps/terms.html#section_10_12 Maps API Terms of Service License Restrictions].
 
-It is your responsibility to observe the terms of service.
+It is your responsibility to observe the terms of service, such as, in this case, plotting your data on a Google map eventually.
 
 This document will use the Google Geocoding API as an example. Note that to geocode such an address as "77 Massachusetts Ave, Cambridge, MA", you call this URL:
 
