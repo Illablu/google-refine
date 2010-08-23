@@ -23,7 +23,7 @@ Then, parse the HTTP response body as JSON, and retrieve the lat/lng coordinates
 
 Say your project has a column named `address` that contains street addresses. Click on that column's dropdown menu and invoke Edit Column > Add Column by Fetching URLs... and enter this expression
 
-  "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" + escape(value, "url")
+  `"http://maps.google.com/maps/api/geocode/json?sensor=false&address=" + escape(value, "url")`
 
 Give the new column to be created a name, such as `geocodingResponse`, adjust the throttle delay if you wish, and click OK. The process will take a while depending on the delay.
 
@@ -31,7 +31,7 @@ Give the new column to be created a name, such as `geocodingResponse`, adjust th
 
 When the fetching process is done, you should see the new column `geocodingResponse` with a lot of JSON blobs. Invoke that column's dropdown menu Edit Column > Add Column based on This Column... and enter this expression
 
-  with(value.parseJson().results[0].geometry.location, pair, pair.lat +", " + pair.lng)
+  `with(value.parseJson().results[0].geometry.location, pair, pair.lat +", " + pair.lng)`
 
 Give the new column to be created a name, such as "latlng", and hit OK.
 
