@@ -1,0 +1,18 @@
+#summary How to install extensions.
+
+This is applicable to version 1.5 and later only.
+
+Step 1. Shut down Gridworks.
+
+Step 2. Download the extension .zip file and unzip it to a directory.
+
+Step 3. Copy that directory you've just unzipped to the `extensions` directory, which can be found 
+
+  * On Mac OSX: switch to the Finder application and invoke its menu Go > Go to Folder. Enter
+{{{
+  /Applications/Gridworks.app/Contents/Resources/webapp/extensions
+}}}
+  * On Windows: TODO
+  * On `*`nix: TODO
+
+Step 4. Start Gridworks up again.
