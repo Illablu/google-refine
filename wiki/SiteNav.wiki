@@ -12,6 +12,7 @@
     * [SchemaAlignment Schema Alignment]
     * [Geocoding Geocoding]
     * [UploadingToFreebase Uploading to Freebase]
+    * [InstallingExtensions Installing Extensions]
     * Expressions
       * Gridworks Expression Language (GEL)
         * [GELReference GEL Reference]
