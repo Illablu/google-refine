@@ -122,6 +122,25 @@ The client-side of Gridworks gets things done by calling AJAX commands on the se
 
 Your command will then be accessible at http://127.0.0.1:3333/command/my-extension/my-command.
 
+==Operations==
+
+You can register an operation *class* in the `init` function as follows:
+
+{{{
+  Packages.com.google.gridworks.operations.OperationRegistry.registerOperation(
+      module, 
+      "operation-name",
+      Packages.com.foo.bar.MyOperation
+  );
+}}}
+
+Do not call `new` to construct an operation instance. You must register the class itself. The class should have a static function for reconstructing an operation instance from a JSON blob:
+
+{{{
+  static public AbstractOperation reconstruct(Project project, JSONObject obj) throws Exception {
+      ...
+  }
+}}}
 
 ==GEL==
 
@@ -138,21 +157,6 @@ You might also want to provide new variables (beyond just `value`, `cells`, `row
   Packages.com.google.gridworks.expr.ExpressionUtils.registerBinder(
         new Packages.com.foo.bar.MyBinder());
 }}}
-
-==Scripting Languages==
-
-A scripting language (such as Jython) can be registered as follows:
-
-{{{
-    Packages.com.google.gridworks.expr.MetaParser.registerLanguageParser(
-        "jython",
-        "Jython",
-        Packages.com.google.gridworks.jython.JythonEvaluable.createParser(),
-        "return value"
-    );
-}}}
-
-The first string is the prefix that gets prepended to each expression so that we know which language the expression is in. This should be short, unique, and identifying. The second string is a user-friendly name of the language. The third is an object that implements the interface `com.google.gridworks.expr.LanguageSpecificParser`. The final string is the default expression in that language that would return the cell's value.
 
 ==Importers==
 
@@ -172,3 +176,19 @@ The first string is the prefix that gets prepended to each expression so that we
 ==Overlay Models==
 
 TODO
+
+
+==Scripting Languages==
+
+A scripting language (such as Jython) can be registered as follows:
+
+{{{
+    Packages.com.google.gridworks.expr.MetaParser.registerLanguageParser(
+        "jython",
+        "Jython",
+        Packages.com.google.gridworks.jython.JythonEvaluable.createParser(),
+        "return value"
+    );
+}}}
+
+The first string is the prefix that gets prepended to each expression so that we know which language the expression is in. This should be short, unique, and identifying. The second string is a user-friendly name of the language. The third is an object that implements the interface `com.google.gridworks.expr.LanguageSpecificParser`. The final string is the default expression in that language that would return the cell's value.
