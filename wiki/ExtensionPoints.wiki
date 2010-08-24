@@ -160,22 +160,52 @@ You might also want to provide new variables (beyond just `value`, `cells`, `row
 
 ==Importers==
 
+You can register an importer as follows:
+
 {{{
-  Packages.com.google.gridworks.importers.ImporterRegistry.registerExporter(
-      "format", new Packages.com.foo.bar.MyImporter());
+  Packages.com.google.gridworks.importers.ImporterRegistry.registerImporter(
+      "importer-name", new Packages.com.foo.bar.MyImporter());
 }}}
+
+The string `"importer-name"` isn't important at all. It's not really related to file extension or mime-type. Just use something unique. Your importer will be explicitly called to test if it can import something.
 
 ==Exporters==
 
+You can register an exporter as follows:
+
 {{{
   Packages.com.google.gridworks.exporters.ExporterRegistry.registerExporter(
-      "format", new Packages.com.foo.bar.MyExporter());
+      "exporter-name", new Packages.com.foo.bar.MyExporter());
 }}}
+
+The string `"exporter-name"` isn't important at all. It's only used by the client-side to tell the server-side which exporter to use. Just use something unique and, of course, relevant.
 
 
 ==Overlay Models==
 
-TODO
+Overlay models are objects attached onto a core Project object to store and manage additional data for that project. For example, the schema alignment skeleton is managed by the Protograph overlay model. An overlay model implements the interface `com.google.gridworks.model.OverlayModel` and can be registered like so:
+
+{{{
+  Packages.com.google.gridworks.model.Project.registerOverlayModel(
+      "model-name",
+      Packages.com.foo.bar.MyOverlayModel);
+}}}
+
+Note that you register the *class*, not an instance. The class should implement the following static method for reconstructing an overlay model instance from a JSON blob:
+
+{{{
+  static public OverlayModel reconstruct(JSONObject o) throws JSONException {
+      ...
+  }
+}}}
+
+When the project gets saved, the overlay model instance's `write` method will be called:
+
+{{{
+  public void write(JSONWriter writer, Properties options) throws JSONException {
+      ...
+  }
+}}}
 
 
 ==Scripting Languages==
