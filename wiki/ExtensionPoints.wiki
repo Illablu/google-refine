@@ -124,6 +124,8 @@ Your command will then be accessible at http://127.0.0.1:3333/command/my-extensi
 
 ==Operations==
 
+Most commands change the project's data. Most of them do so by creating abstract operations. See the Changes, History, Processes, and Operations section of the [ServerSideArchitecture Server-side Architecture] document.
+
 You can register an operation *class* in the `init` function as follows:
 
 {{{
