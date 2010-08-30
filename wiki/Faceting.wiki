@@ -55,6 +55,14 @@ After selecting "yes" in the "died in office" facet, you can also select, say, "
 
 You can also think of a numeric facet as a grouping summary, except that the grouping happens differently than in a text facet. A numeric facet groups rows by numbers contained in cells in some column. The numbers are put into some bins, and then for each bin the rows corresponding to it are counted. The bins are plotted in a histogram.
 
+Perform a custom numeric facet on a column and enter your expression, such as
+{{{
+value==459822  //this will match any rows that have number 459822 in the column
+}}}
+or
+{{{
+value>=10000  //this will match any rows that are greater than or equal to the number 10000.
+}}}
 ==Text Search Facets==
 
 ==Custom Facets==
