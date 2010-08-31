@@ -70,3 +70,11 @@ The trunk version will get updated as we work on it. To get the latest updates, 
 }}}
 
 Then follow the instructions to build and then to run.
+
+Note: if you run into issues, the first thing to do is to clean your local copy with this command
+
+{{{
+  ./gridworks clean
+}}}
+
+and then build again.
