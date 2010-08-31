@@ -4,7 +4,7 @@
 
   * Support for QA context in data loads (in progress) - dfhuynh
     * Schema skeleton must allow some links to be marked as not for loading (but just for context)
-   * Support for users to add extensions to their own installations of Gridworks - stefanom
+  * Support for users to add extensions to their own installations of Gridworks - stefanom
   * More documentation and testing on the standard reconciliation service stuff - dfhuynh
   * Performance - the /project page seems to be slow now
 
@@ -21,12 +21,10 @@ Easy
 Medium
 
   * Issue 36:	[Wishlist] Seamless conversion of arrays into multiple columns
-    * which will solve Issue 37: [Wishlist] match() function to turn results of regexp groups into an array
-
+ 
 ==1.6==
 
-  * Issue 82: Add Pivot function to GEL - could be tricky implementation
-  * Issue 84: Add a cut and paste textbox importer ? - mostly design work
+   * Issue 84: Add a cut and paste textbox importer ? - mostly design work
   * Issue 85: Fixed width column importer - seems easy
   * Issue 87: Long running processes should serialize intermediate results ? - hard (dfhuynh)
   * Issue 92: Add Columns From Freebase dialog should support constraints - design work
@@ -35,4 +33,4 @@ Medium
 ==1.7==
 
   * Views: map, timeline, protovis charts
-  * Issue 40: Facet by date - hard design
+ 
