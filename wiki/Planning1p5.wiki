@@ -4,8 +4,7 @@
 
   * Support for QA context in data loads (in progress) - dfhuynh
     * Schema skeleton must allow some links to be marked as not for loading (but just for context)
-  * Allow extensions to be disabled during development (need butterfly support) - stefanom
-  * Support for users to add extensions to their own installations of Gridworks - stefanom
+   * Support for users to add extensions to their own installations of Gridworks - stefanom
   * More documentation and testing on the standard reconciliation service stuff - dfhuynh
   * Performance - the /project page seems to be slow now
 
@@ -15,7 +14,6 @@ Can be in 1.5.1 release.
 
 Easy
 
-  * Issue 29: Delievered "Collapse whitespace" transformation does not work
   * Issue 74: Saveable Templates
   * Issue 75: Saveable reconciliation mappings
   * Issue 86: Parse cells after splitting columns
