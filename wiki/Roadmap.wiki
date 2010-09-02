@@ -8,7 +8,6 @@ Please be aware that none of this is carved in stone and can change any time, so
 
   * Support for QA context in data loads (in progress) - dfhuynh
     * Schema skeleton must allow some links to be marked as not for loading (but just for context)
-  * Support for users to add extensions to their own installations of Gridworks - stefanom
   * More documentation and testing on the standard reconciliation service stuff - dfhuynh
   * Performance - the /project page seems to be slow now
 
