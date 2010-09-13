@@ -30,7 +30,7 @@ The process that generates the key from a string value is the following (note ho
   * join back together the tokens
   * normalize extended western characters to their ASCII representation (for example "gödel" -> "godel")
 
-If you're curious, the code that performs this is [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/FingerprintKeyer.java here].
+If you're curious, the code that performs this is [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/src/com/google/gridworks/clustering/binning/FingerprintKeyer.java here].
 
 There are several factors that play a role in this fingerprint:
 
@@ -42,7 +42,7 @@ There are several factors that play a role in this fingerprint:
 
 The [http://en.wikipedia.org/wiki/N-gram n-gram] fingerprint method is similar to the fingerprint method described above but instead of using whitespace separated tokens, it uses n-grams, where the `n` (or the size in chars of the token) can be specified by the user.
 
-Here is what it does (or [http://code.google.com/p/freebase-gridworks/source/browse/trunk/src/main/java/com/metaweb/gridworks/clustering/binning/NGramFingerprintKeyer.java check the code] if you're curious about the details, again the order is significant):
+Here is what it does (or [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/src/com/google/gridworks/clustering/binning/NGramFingerprintKeyer.java check the code] if you're curious about the details, again the order is significant):
 
   * change all characters to their lowercase representation
   * remove all punctuation, whitespace and control characters
