@@ -12,8 +12,8 @@ Note that Butterfly was chosen over OSGi because
 Extensions that come with the code base are located under [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/extensions the extensions subdirectory], but when you develop your own extension, you can put its code anywhere as long as you point Butterfly to it. That is done by any one of the following methods
 
   * refer to your extension's directory in [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties the butterfly.properites file] through a `butterfly.modules.path` setting.
-  * specify -Dbutterfly.modules.path=/path/to/your/extension when you run Gridworks from the command line
- 
+  * specify the butterfly.modules.path property on the command line when you run Gridworks.  This overrides the values in the property file, so you need to include the default values first e.g. `-Dbutterfly.modules.path=modules,../../extensions,/path/to/your/extension`
+
 
 =Directory Layout=
 
