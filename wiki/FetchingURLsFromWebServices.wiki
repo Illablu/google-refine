@@ -1,12 +1,10 @@
 #summary Examples of fetching URLs from web services and processing them within Gridworks
 
-** In Progress **
-
 = Introduction =
 
 Gridworks supports the ability to fetch JSON from any web service based on values in a Gridworks project and create a new column out of it.  Once you have the JSON, you can use the parseJson() function to create new columns, transform cell values, or even create new facets.
 
-In this article, I'll show a detailed example how it's done, starting with a very simple project with only 3 columns and 19 rows.  (There's a link to this data in Excel format at the end of this post.)  I'll illustrate how to call the Facebook Graph API and the Google Translate API to annotate the project with extra information you can use to manipulate, analyze, and cleanse your dataset.
+In this article, I'll show a detailed example how it's done, starting with a very simple project with only 3 columns and 19 rows.  I'll illustrate how to call the Facebook Graph API and the Google Translate API to annotate the project with extra information you can use to manipulate, analyze, and cleanse your dataset.
 
 = Details =
 
@@ -38,4 +36,53 @@ There is a lot of information in the JSON you might be interested in, but let's 
 value.parseJson()["link"]
 }}}
 
-When it's done, there will be a new column with the contents of the "link" element extracted from the JSON returned from the Graph API.
+When it's done, there will be a new column with the contents of the "link" element extracted from the JSON returned from the Graph API:
+
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-LinkExtracted.png]
+
+Note that these pages do not appear to be in English.  But what language(s) are they in?  The Google Language APIs can help determine an answer.  First, we need to find an element in the JSON that has sufficient text.  The plot_outline element is a good candidate, although not every page has one.  We can extract that into a new column using the following formula:
+
+{{{
+value.parseJson()["plot_outline"]
+}}}
+
+Note that Gridworks has taken care of any text encoding during the parsing/extraction process:
+
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-PlotOutlineExtracted.png]
+
+The RESTful URL syntax for the Google Language APIs isn't as well documented as it is for using it in languages such as Javascript, but it's not too hard to figure out.  The URL syntax for the Google Language Detection API looks like this:
+
+{{{
+http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&key=<api_key>&q=<text>
+}}}
+
+That looks easy enough, but there are some things to keep in mind:
+
+ * You need your own Google API key.  You can sign up for one [http://code.google.com/apis/ajaxsearch/signup.html here].
+ * Since you're sending non-English text via a URL, you must encode it, and you must ensure you don't send it too much text or the API will return an error.  Since encoding it generally makes it longer, that constrains how much text extracted from the plot_outline element you can use.  Fortunately, the translate APIs don't require too much.
+
+Use the following formula for the "Add Column By Fetching URLs..." command on the *Plot Outline* column, replacing your own API key for `<api_key>` and using a throttle delay of 200 ms:
+
+{{{
+"http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&key=<api_key>&q=" + escape(value.substring(0,128),"url")
+}}}
+
+After Gridworks calls the URL for each row, it should look something like this:
+
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-GoogleTranslate.png]
+
+Note that the information we really want is inside the responseData "envelope" so let's extract it using the following formula with the "Edit Cells > Transform..." command on the *Lang Detect* column:
+
+{{{
+value.parseJson()["responseData"]
+}}}
+
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-StripEnvelope.png]
+
+(This step is optional, but makes it easier to type formulas to extract data from JSON.)
+
+In practice, you'll want to pay attention to the confidence percentage and the isReliable flag, which is true if confidence is > 50% (0.5).  But for now, we have everything we need; let's group our dataset by ISO639 language code, using the following formula with the "Facet > Custom Text Facet..." command (the Plot Outline and Graph JSON columns have been collapsed for readability):
+
+[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FacetByLang.png]
+
+That's it!  Gridworks makes it easy to annotate datasets with data fetched from any web service which returns JSON -- a very powerful and useful feature.
