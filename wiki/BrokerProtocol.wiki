@@ -77,4 +77,4 @@ In order to perform authentication and authorization of the Gridworks user, the 
 
 In the 'delegated oauth' model, a Gridworks client will sign a request against Freebase's "user_info" web service and transmit the signed request along the web service payload. The broker will replay the user_info request against the Freebase web service and obtain information about the user Gridworks is operating for.
 
-NOTE: this is currently work in progress and might change without notice.
+NOTE: this is currently work in progress and might change without notice. 

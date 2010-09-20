@@ -61,4 +61,4 @@ Rinse and repeat the steps Play, Fix, Reconcile, and Align in any order and as m
 
 ==Extend==
 
-Once your data is reconciled again Freebase, you can use it to augment your own data with data that is contained there. To do that, click on the drop-down menu on the column that contains the reconciled information that you wish to augment, select the {{{Edit Column -> Add Columns from Freebase}}} and follow the instructions.
+Once your data is reconciled again Freebase, you can use it to augment your own data with data that is contained there. To do that, click on the drop-down menu on the column that contains the reconciled information that you wish to augment, select the {{{Edit Column -> Add Columns from Freebase}}} and follow the instructions. 

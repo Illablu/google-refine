@@ -9,4 +9,4 @@ The review process involves a number of [http://wiki.freebase.com/wiki/Acre Free
   # Gridworks sends the data over to [http://wiki.freebase.com/wiki/FreeQ FreeQ Triple Loader]
   # [http://wiki.freebase.com/wiki/FreeQ FreeQ] then loads it into [http://sandbox.freebase.com sandbox.freebase.com]
   # Then generates [http://wiki.freebase.com/wiki/RABJ RABJ] queues for QA purposes and eventually, community review.
-  # The queues (eventually) will show up on [http://gridworks-loads.freebaseapps.com/ Gridworks Loads Dashboard] that shares some technology from [http://wiki.freebase.com/wiki/Peacock Peacock], an alternate data load review page.
+  # The queues (eventually) will show up on [http://gridworks-loads.freebaseapps.com/ Gridworks Loads Dashboard] that shares some technology from [http://wiki.freebase.com/wiki/Peacock Peacock], an alternate data load review page. 

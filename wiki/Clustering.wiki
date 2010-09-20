@@ -125,4 +125,4 @@ start performing well.
 
 A lot of the code that Gridworks uses for clustering originates on research done by the [http://simile.mit.edu/ SIMILE Project] at MIT which later [http://code.google.com/p/simile-vicino/ graduated as the Vicino project] ('vicino', pronounced "vitch-ee-no", means 'near' in italian).
 
-For more info on clustering methods and related research we suggest you to look at the [http://code.google.com/p/simile-vicino/source/browse/#svn/trunk/papers bibliography of the Vicino project].
+For more info on clustering methods and related research we suggest you to look at the [http://code.google.com/p/simile-vicino/source/browse/#svn/trunk/papers bibliography of the Vicino project]. 

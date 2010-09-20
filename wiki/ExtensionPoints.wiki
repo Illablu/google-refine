@@ -223,4 +223,4 @@ A scripting language (such as Jython) can be registered as follows:
     );
 }}}
 
-The first string is the prefix that gets prepended to each expression so that we know which language the expression is in. This should be short, unique, and identifying. The second string is a user-friendly name of the language. The third is an object that implements the interface `com.google.gridworks.expr.LanguageSpecificParser`. The final string is the default expression in that language that would return the cell's value.
+The first string is the prefix that gets prepended to each expression so that we know which language the expression is in. This should be short, unique, and identifying. The second string is a user-friendly name of the language. The third is an object that implements the interface `com.google.gridworks.expr.LanguageSpecificParser`. The final string is the default expression in that language that would return the cell's value. 

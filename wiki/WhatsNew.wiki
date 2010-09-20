@@ -44,4 +44,4 @@ Freebase Gridworks 1.0.1 is released.
     * {partial fix} Issue 19: "CSV import is too basic" - fixed for CSV, not for TSV
 
 ===May 5th, 2010===
-Freebase Gridworks 1.0 is released.
+Freebase Gridworks 1.0 is released. 

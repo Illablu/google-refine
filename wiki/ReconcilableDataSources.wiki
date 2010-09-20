@@ -10,4 +10,4 @@ If you would like to help with coding a reconciling extension for any, please co
 
   * [http://www.marinespecies.org/aphia.php?p=webservice WoRMS] - World Register of Marine Species provides web service for marine taxa. 
   * [http://chroniclingamerica.loc.gov/about/api/ Historical Newspapers] - Library of Congress' Chronicling America provides Json, RDF, XML & Linked Data with an easy to use API.
-  * [http://cactus.nci.nih.gov/chemical/structure/documentation Chemical Identifier Resolver] - Over 96 million chemical structures hosted by NCI/NIH, provides names, conversions, & various formats even XML output.
+  * [http://cactus.nci.nih.gov/chemical/structure/documentation Chemical Identifier Resolver] - Over 96 million chemical structures hosted by NCI/NIH, provides names, conversions, & various formats even XML output. 

@@ -85,4 +85,4 @@ In practice, you'll want to pay attention to the confidence percentage and the i
 
 [http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FacetByLang.png]
 
-That's it!  Gridworks makes it easy to annotate datasets with data fetched from any web service which returns JSON -- a very powerful and useful feature.
+That's it!  Gridworks makes it easy to annotate datasets with data fetched from any web service which returns JSON -- a very powerful and useful feature. 

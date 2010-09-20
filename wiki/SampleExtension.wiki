@@ -40,4 +40,4 @@ The `init()` function in `controller.js` allows the extension to register variou
 
 Butterfly is able to locate the sample extension because of [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties?r=984#23 the path provided in butterfly.properties]. Butterfly simply descends into each of those paths and look for `MOD-INF` directories.
 
-For more information, see [ExtensionPoints].
+For more information, see [ExtensionPoints]. 

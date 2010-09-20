@@ -56,4 +56,4 @@ Please be aware that none of this is carved in stone and can change any time, so
 
 ==Feature Requests, Bugs, Comments, Etc.==
 
-Please add more to the [http://code.google.com/p/freebase-gridworks/issues/list issues tracker] and they will end up here once they are acknowledged and assigned.
+Please add more to the [http://code.google.com/p/freebase-gridworks/issues/list issues tracker] and they will end up here once they are acknowledged and assigned. 

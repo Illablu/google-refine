@@ -495,4 +495,4 @@ and try to reinterpret them as UTF-8 which is the most common encoding.
 
       (type "value.reinterpret('utf8')")
 
-and voila', all the content is now uniformly encoded.
+and voila', all the content is now uniformly encoded. 

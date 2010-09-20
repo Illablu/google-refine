@@ -133,4 +133,4 @@ To create a referrer domain facet, use this expression on the Referer column:
 
 {{{
   if(value == "-", value, value.partition("://")[2].partition("/")[0])
-}}}
+}}} 

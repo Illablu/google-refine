@@ -72,4 +72,4 @@ In summary,
   * some processes are long-running and some are immediate; processes are run sequentially in a queue
   * generalizable processes can be re-constructed from abstract operations
 
-==Expressions==
+==Expressions== 

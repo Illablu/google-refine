@@ -25,4 +25,4 @@ It seems as though you can make use of a wide range of Jython structures.  To re
     return value.lower()
   else:
     return None
-}}}
+}}} 

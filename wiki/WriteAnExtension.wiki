@@ -55,4 +55,4 @@ The file named controller.js is responsible for registering the extension's hook
 
 The `build.xml` file is an [http://ant.apache.org/ Apache Ant] build file. You can make a copy of the sample extension's `build.xml` file to get started. The important point here is that the Java classes should be built into the `module/MOD-INF/classes` sub-directory.
 
-Note that your extension's Java code would need to reference some libraries used in Gridworks and Gridworks' Java classes themselves. The libraries are in [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/main/webapp/WEB-INF/lib gridworks/main/webapp/WEB-INF/lib/] and Gridworks' classes are in gridworks/main/webapp/modules/core/MOD-INF/classes/.
+Note that your extension's Java code would need to reference some libraries used in Gridworks and Gridworks' Java classes themselves. The libraries are in [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/main/webapp/WEB-INF/lib gridworks/main/webapp/WEB-INF/lib/] and Gridworks' classes are in gridworks/main/webapp/modules/core/MOD-INF/classes/. 

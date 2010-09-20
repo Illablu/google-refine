@@ -117,4 +117,4 @@ Example:
 
 ===isBlank, isNonBlank, isNull, isNotNull, isNumeric===
 
-`isX(e)` : evaluates expression `e` and returns whether its value is `X`.
+`isX(e)` : evaluates expression `e` and returns whether its value is `X`. 

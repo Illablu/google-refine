@@ -3,4 +3,4 @@
 Gridworks' client-side is in HTML, CSS, and Javascript and uses jQuery and jQuery UI.
 
 ==Schema Alignment Skeleton==
-The schema alignment skeleton uses gridworks-helper to offer suggestions for it's middle column "property?"  
+The schema alignment skeleton uses gridworks-helper to offer suggestions for it's middle column "property?"   

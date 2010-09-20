@@ -24,4 +24,4 @@ Several projects provide the functionality to read and write custom format files
 
 String clustering is provided by the [http://code.google.com/p/simile-vicino/ SIMILE Vicino] project.
 
-OAuth functionality is provided by the [http://code.google.com/p/oauth-signpost/ Signpost] project.
+OAuth functionality is provided by the [http://code.google.com/p/oauth-signpost/ Signpost] project. 

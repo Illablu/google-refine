@@ -118,4 +118,4 @@ Jeni Tennison - [http://www.jenitennison.com/blog/node/145 Using Freebase Gridwo
 
 [http://www.linkedin.com/in/jayluker Jay Luker] ([http://www.cfa.harvard.edu/ Harvard-Smithsonian Center for Astrophysics]) - *[http://blog.reallywow.com/archives/135 Exploring Astronomy Dataset Links with GridWorks]*
 
-[http://www.linkedin.com/in/paolociccarese Paolo Ciccarese] ([http://hms.harvard.edu/ Harvard Medical School]) - *[http://hcklab.blogspot.com/2010/04/first-steps-with-gridworks-1.html First Steps with Gridworks - part 1]* ([http://hcklab.blogspot.com/2010/04/first-steps-with-gridworks-2.html part 2], [http://hcklab.blogspot.com/2010/04/first-steps-with-gridworks-3.html part3])
+[http://www.linkedin.com/in/paolociccarese Paolo Ciccarese] ([http://hms.harvard.edu/ Harvard Medical School]) - *[http://hcklab.blogspot.com/2010/04/first-steps-with-gridworks-1.html First Steps with Gridworks - part 1]* ([http://hcklab.blogspot.com/2010/04/first-steps-with-gridworks-2.html part 2], [http://hcklab.blogspot.com/2010/04/first-steps-with-gridworks-3.html part3]) 

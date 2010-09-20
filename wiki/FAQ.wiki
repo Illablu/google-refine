@@ -110,4 +110,4 @@ You can!
   # In the dropdown menu above the flag you can go to Edit Rows > Remove all matching rows.
 
 This should delete all the flagged rows.
-Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Gridworks, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool.
+Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Gridworks, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool. 

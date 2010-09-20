@@ -142,4 +142,4 @@ If you receive a message `Could not find the main class: com.metaweb.gridworks.G
 
 ==== Installing Java ====
 
-If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program.
+If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program. 

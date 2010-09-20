@@ -185,4 +185,4 @@ To do this, there is a special numeric facet called "Unicode charcode Facet" tha
 
 == Spot Values Potentially Placed in the wrong Column ==
 
-Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem.
+Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem. 

@@ -16,3 +16,4 @@ Step 3. Copy that directory you've just unzipped to the `extensions` directory, 
   * On `*`nix: TODO
 
 Step 4. Start Gridworks up again.
+ 

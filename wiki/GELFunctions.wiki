@@ -265,4 +265,4 @@ Returns an array of zero or more rows in the project projectName for which the c
 
 {{{
   cell.cross("proj", "keyCol").cells.col2.value
-}}}
+}}} 

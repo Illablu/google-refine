@@ -173,4 +173,4 @@ The other fields are for
 
 Gridworks' UI will include a mechanism for entering a standard reconciliation service API's URL.
 
-Each column in Gridworks should only be reconciled against one identity space.
+Each column in Gridworks should only be reconciled against one identity space. 

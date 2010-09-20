@@ -24,4 +24,4 @@ If you choose the *recon* service on the *Heuristic* tab then it shows 3 decimal
 
 The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually using the single or double red check mark and use your own judgment to match them.
 
-(more details regarding matching after reconciling go here, perhaps link to further recipes)
+(more details regarding matching after reconciling go here, perhaps link to further recipes) 

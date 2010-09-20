@@ -1,1 +1,1 @@
-<wiki:gadget url="http://gridworks-gadgets.freebaseapps.com/gadget/downloads" width="700" height="600" border="0" />
+<wiki:gadget url="http://gridworks-gadgets.freebaseapps.com/gadget/downloads" width="700" height="600" border="0" /> 

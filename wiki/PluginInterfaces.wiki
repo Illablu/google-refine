@@ -19,4 +19,4 @@ Gridworks does not currently support plugins, but they are planned for a future 
 ===Expression Languages===
   * MetaParser is the class which creates and calls expression languages
     * Jython
-    * Clojure
+    * Clojure 
