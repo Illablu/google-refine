@@ -24,6 +24,8 @@
       * [ReconcilableDataSources Reconcilable Data Sources]
     * All Recipes
       * [RecipeApacheLogs Analyzing Apache Logs]
+      * [FetchingURLsFromWebServices Fetching URLs From Web Services]
+      * [StrippingHTML Stripping HTML Tags]
     * [GetDevelopmentVersion Get the Development Version]
     * [RelatedSoftware Related Software]
   * Developers' Resources
