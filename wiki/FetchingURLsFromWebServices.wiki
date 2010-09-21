@@ -24,13 +24,13 @@ Next, enter the information in the "Fetch URLs" dialog as follows:
 
 Note the following:
  * Many systems prevent you from making too many requests per second.  To avoid this problem, set the throttle delay, which tells Google Refine to wait the specified number of milliseconds between URL requests. 
- * Before pressing OK, copy/paste a URL or two from the right column in the dialog and test it in another browser tab to make sure it works.
+ * Before pressing OK, copy/paste a URL or two from the right column in the dialog and test them in another browser tab to make sure they work.
 
 When it's done, it will look something like this:
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe/AfterFacebookFetch.png]
 
-There is a lot of information in the JSON you might be interested in, but let's extract the information from the "link" element and the plot_outline element.  To do this, click on the dropdown menu for *Graph JSON" and use the "Edit Column > Add Column Based on This Column..." command.  Use the following formula:
+There is a lot of information in the JSON you might be interested in, but let's extract the information from the "link" element and the "plot_outline" element.  To do this, click on the dropdown menu for *Graph JSON* and use the "Edit Column > Add Column Based on This Column..." command.  Use the following expression:
 
 {{{
 value.parseJson()["link"]
@@ -40,7 +40,7 @@ When it's done, there will be a new column with the contents of the "link" eleme
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe/LinkExtracted.png]
 
-Note that these pages do not appear to be in English.  But what language(s) are they in?  The Google Language APIs can help determine an answer.  First, we need to find an element in the JSON that has sufficient text.  The plot_outline element is a good candidate, although not every page has one.  We can extract that into a new column using the following formula:
+Note that these pages do not appear to be in English.  But what language(s) are they in?  The Google Language APIs can help determine an answer.  First, we need to find an element in the JSON that has sufficient text.  The plot_outline element is a good candidate, although not every page has one.  We can extract that into a new column using the following expression:
 
 {{{
 value.parseJson()["plot_outline"]
@@ -58,10 +58,10 @@ http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&key=<api_key>&q=<
 
 That looks easy enough, but there are some things to keep in mind:
 
- * You need your own Google API key.  You can sign up for one [http://code.google.com/apis/ajaxsearch/signup.html here].
+ * You will need your own Google API key.  You can sign up for one [http://code.google.com/apis/ajaxsearch/signup.html here].
  * Since you're sending non-English text via a URL, you must encode it, and you must ensure you don't send it too much text or the API will return an error.  Since encoding it generally makes it longer, that constrains how much text extracted from the plot_outline element you can use.  Fortunately, the translate APIs don't require too much.
 
-Use the following formula for the "Add Column By Fetching URLs..." command on the *Plot Outline* column, replacing your own API key for `<api_key>` and using a throttle delay of 200 ms:
+Use the following expression for the "Add Column By Fetching URLs..." command on the *Plot Outline* column, replacing your own API key for `<api_key>` and using a throttle delay of 200 ms:
 
 {{{
 "http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&key=<api_key>&q=" + escape(value.substring(0,128),"url")
@@ -71,7 +71,7 @@ After Google Refine calls the URL for each row, it should look something like th
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe/GoogleTranslate.png]
 
-Note that the information we really want is inside the responseData "envelope" so let's extract it using the following formula with the "Edit Cells > Transform..." command on the *Lang Detect* column:
+Note that the information we really want is inside the responseData "envelope" so let's extract it using the following expression with the "Edit Cells > Transform..." command on the *Lang Detect* column:
 
 {{{
 value.parseJson()["responseData"]
@@ -79,9 +79,9 @@ value.parseJson()["responseData"]
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe/StripEnvelope.png]
 
-(This step is optional, but makes it easier to type subsequent formulas to extract data from JSON.)
+(This step is optional, but makes it easier to type subsequent expressions to extract data from JSON.)
 
-In practice, you'll want to pay attention to the confidence percentage and the isReliable flag, which is true if confidence is > 50% (0.5).  But for now, we have everything we need; let's group our dataset by ISO639 language code, using the following formula with the "Facet > Custom Text Facet..." command (the Plot Outline and Graph JSON columns have been collapsed for readability):
+In practice, you'll want to pay attention to the confidence percentage and the isReliable flag, which is true if confidence is > 50% (0.5).  But for now, we have everything we need; let's group our dataset by ISO 639-1 language code, using the expression `value.parseJson()["language"]` with the "Facet > Custom Text Facet..." command on the *Lang Detect* column (the *Plot Outline* and *Graph JSON* columns have been collapsed for readability):
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe/FacetByLang.png]
 
