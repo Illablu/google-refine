@@ -10,17 +10,17 @@ In this article, I'll show a detailed example how it's done, starting with a ver
 
 Here's the initial dataset, created from information found [http://www.facebook.com/pages/#!/pages/?browse&ps=89 here]:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-InitialDataset.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-InitialDataset.png]
 
 First, let's get more information about these pages using the [http://developers.facebook.com/docs/api Facebook Open Graph API].  For example, you retrieve the JSON for the first row with this URL: [http://graph.facebook.com/105911579453084].  
 
 Gridworks can retrieve this information for all the rows at once using the "Add Column By Fetching URLs..." command, accessed via the dropdown menu to the left of the *Facebook ID* column:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FetchUrlsMenu.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FetchUrlsMenu.png]
 
 Next, enter the information in the "Fetch URLs" dialog as follows:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FetchUrlsDialog.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FetchUrlsDialog.png]
 
 Note the following:
  * Many systems prevent you from making too many requests per second.  To avoid this problem, set the throttle delay, which tells Gridworks to wait the specified number of milliseconds between URL requests. 
@@ -28,7 +28,7 @@ Note the following:
 
 When it's done, it will look something like this:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-AfterFacebookFetch.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-AfterFacebookFetch.png]
 
 There is a lot of information in the JSON you might be interested in, but let's extract the information from the "link" element and the plot_outline element.  To do this, click on the dropdown menu for *Graph JSON" and use the "Edit Column > Add Column Based on This Column..." command.  Use the following formula:
 
@@ -38,7 +38,7 @@ value.parseJson()["link"]
 
 When it's done, there will be a new column with the contents of the "link" element extracted from the JSON returned from the Graph API:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-LinkExtracted.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-LinkExtracted.png]
 
 Note that these pages do not appear to be in English.  But what language(s) are they in?  The Google Language APIs can help determine an answer.  First, we need to find an element in the JSON that has sufficient text.  The plot_outline element is a good candidate, although not every page has one.  We can extract that into a new column using the following formula:
 
@@ -48,9 +48,9 @@ value.parseJson()["plot_outline"]
 
 Note that Gridworks has taken care of any text encoding during the parsing/extraction process:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-PlotOutlineExtracted.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-PlotOutlineExtracted.png]
 
-The RESTful URL syntax for the Google Language APIs isn't as well documented as it is for using it in languages such as Javascript, but it's not too hard to figure out.  The URL syntax for the Google Language Detection API looks like this:
+The RESTful URL syntax for the Google Language APIs isn't as [http://code.google.com/apis/ajaxlanguage/documentation/ well documented] as it is for using it in languages such as Javascript, but it's not too hard to figure out.  The URL syntax for the Google Language Detection API looks like this:
 
 {{{
 http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&key=<api_key>&q=<text>
@@ -69,7 +69,7 @@ Use the following formula for the "Add Column By Fetching URLs..." command on th
 
 After Gridworks calls the URL for each row, it should look something like this:
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-GoogleTranslate.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-GoogleTranslate.png]
 
 Note that the information we really want is inside the responseData "envelope" so let's extract it using the following formula with the "Edit Cells > Transform..." command on the *Lang Detect* column:
 
@@ -77,12 +77,12 @@ Note that the information we really want is inside the responseData "envelope" s
 value.parseJson()["responseData"]
 }}}
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-StripEnvelope.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-StripEnvelope.png]
 
-(This step is optional, but makes it easier to type formulas to extract data from JSON.)
+(This step is optional, but makes it easier to type subsequent formulas to extract data from JSON.)
 
 In practice, you'll want to pay attention to the confidence percentage and the isReliable flag, which is true if confidence is > 50% (0.5).  But for now, we have everything we need; let's group our dataset by ISO639 language code, using the following formula with the "Facet > Custom Text Facet..." command (the Plot Outline and Graph JSON columns have been collapsed for readability):
 
-[http://freebase-gridworks.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FacetByLang.png]
+[http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FacetByLang.png]
 
 That's it!  Gridworks makes it easy to annotate datasets with data fetched from any web service which returns JSON -- a very powerful and useful feature. 
