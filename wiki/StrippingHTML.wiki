@@ -1,0 +1,20 @@
+#summary Converting HTML markup to plain text
+
+= Introduction =
+
+At some point you may have a dataset where one or more of the columns contain HTML markup.  The markup tags may interfere with data extraction/cleansing, word counts, etc.
+
+It's very easy to create a new column with the HTML tags removed using Google Refine's support for regular expressions.
+
+_Attribution note: the regular expression below comes from [http://haacked.com/archive/2004/10/25/usingregularexpressionstomatchhtml.aspx Phil Haack's blog]._
+
+
+= Details =
+
+Assume you have a column *Col1* containing HTML markup.  Click on the dropdown next to *Col1* and choose "Edit Column > Add Column Based On This Column...".  Pick a name for the new column, and use the following expression:
+
+{{{
+replace(value,/<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/,'')
+}}}
+
+Press OK, and you'll soon have a new column with the plain text extracted from *Col1*.
