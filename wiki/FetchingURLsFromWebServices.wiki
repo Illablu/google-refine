@@ -1,8 +1,8 @@
-#summary Examples of fetching URLs from web services and processing them within Gridworks
+#summary Examples of fetching URLs from web services and processing them within Google Refine
 
 = Introduction =
 
-Gridworks supports the ability to fetch JSON from any web service based on values in a Gridworks project and create a new column out of it.  Once you have the JSON, you can use the parseJson() function to create new columns, transform cell values, or even create new facets.
+Google Refine supports the ability to fetch JSON from any web service based on values in a Google Refine project and create a new column out of it.  Once you have the JSON, you can use the parseJson() function to create new columns, transform cell values, or even create new facets.
 
 In this article, I'll show a detailed example how it's done, starting with a very simple project with only 3 columns and 19 rows.  I'll illustrate how to call the Facebook Graph API and the Google Translate API to annotate the project with extra information you can use to manipulate, analyze, and cleanse your dataset.
 
@@ -14,7 +14,7 @@ Here's the initial dataset, created from information found [http://www.facebook.
 
 First, let's get more information about these pages using the [http://developers.facebook.com/docs/api Facebook Open Graph API].  For example, you retrieve the JSON for the first row with this URL: [http://graph.facebook.com/105911579453084].  
 
-Gridworks can retrieve this information for all the rows at once using the "Add Column By Fetching URLs..." command, accessed via the dropdown menu to the left of the *Facebook ID* column:
+Google Refine can retrieve this information for all the rows at once using the "Add Column By Fetching URLs..." command, accessed via the dropdown menu to the left of the *Facebook ID* column:
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FetchUrlsMenu.png]
 
@@ -23,7 +23,7 @@ Next, enter the information in the "Fetch URLs" dialog as follows:
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FetchUrlsDialog.png]
 
 Note the following:
- * Many systems prevent you from making too many requests per second.  To avoid this problem, set the throttle delay, which tells Gridworks to wait the specified number of milliseconds between URL requests. 
+ * Many systems prevent you from making too many requests per second.  To avoid this problem, set the throttle delay, which tells Google Refine to wait the specified number of milliseconds between URL requests. 
  * Before pressing OK, copy/paste a URL or two from the right column in the dialog and test it in another browser tab to make sure it works.
 
 When it's done, it will look something like this:
@@ -46,7 +46,7 @@ Note that these pages do not appear to be in English.  But what language(s) are 
 value.parseJson()["plot_outline"]
 }}}
 
-Note that Gridworks has taken care of any text encoding during the parsing/extraction process:
+Note that Google Refine has taken care of any text encoding during the parsing/extraction process:
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-PlotOutlineExtracted.png]
 
@@ -67,7 +67,7 @@ Use the following formula for the "Add Column By Fetching URLs..." command on th
 "http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&key=<api_key>&q=" + escape(value.substring(0,128),"url")
 }}}
 
-After Gridworks calls the URL for each row, it should look something like this:
+After Google Refine calls the URL for each row, it should look something like this:
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-GoogleTranslate.png]
 
@@ -85,4 +85,4 @@ In practice, you'll want to pay attention to the confidence percentage and the i
 
 [http://google-refine.googlecode.com/svn/wiki/images/FetchUrlsRecipe-FacetByLang.png]
 
-That's it!  Gridworks makes it easy to annotate datasets with data fetched from any web service which returns JSON -- a very powerful and useful feature. 
+That's it!  Google Refine makes it easy to annotate datasets with data fetched from any web service which returns JSON -- a very powerful and useful feature. 
