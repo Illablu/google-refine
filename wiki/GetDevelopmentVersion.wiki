@@ -4,7 +4,7 @@ If you're a user who just wants the latest features even if they have not been r
 
 =Precautions=
 
-The trunk version supposedly offers certain features that you want. You probably want those features only one some particular existing projects. We recommend that you export those projects (as .tar.gz files) using your current released Gridworks version, and then re-import them when you run the trunk version. Then work on that new copy using the trunk version. You can always shutdown the trunk version and start up the released version and work with the old project. Or if things go really bad, you can scrap everything and re-import the saved .tar.gz files.
+The trunk version supposedly offers certain features that you want. You probably want those features only one some particular existing projects. We recommend that you export those projects (as .tar.gz files) using your current released Google Refine version, and then re-import them when you run the trunk version. Then work on that new copy using the trunk version. You can always shutdown the trunk version and start up the released version and work with the old project. Or if things go really bad, you can scrap everything and re-import the saved .tar.gz files.
 
 =What You Need=
 
@@ -25,45 +25,45 @@ Open a Terminal window. On Windows, this is done by
 
 On MacOSX, use Spotlight to find "Terminal".
 
-In the Terminal window, change directory to wherever you want to put the Gridworks source code. If you don't know what that means, you don't have to do anything.
+In the Terminal window, change directory to wherever you want to put the Google Refine source code. If you don't know what that means, you don't have to do anything.
 
 Then in the Terminal window, type
 
 {{{
-  svn co https://freebase-gridworks.googlecode.com/svn/trunk gridworks
+  svn co https://google-refine.googlecode.com/svn/trunk grefine
 }}}
 
 You would see a lot of lines scroll past as the source is getting downloaded.
 
 =Building the Source=
 
-Change into the `gridworks` directory by typing into the Terminal window
+Change into the `grefine` directory by typing into the Terminal window
 
 {{{
-  cd gridworks
+  cd grefine
 }}}
 
 Then build the source code:
 
-  * on Windows, type: `gridworks build`
-  * on MacOSX or `*`nix, type: `./gridworks build`
+  * on Windows, type: `refine build`
+  * on MacOSX or `*`nix, type: `./refine build`
 
 =Running=
 
 To run, in the Terminal window
 
-  * on Windows, type: `gridworks`
-  * on MacOSX or `*`nix, type: `./gridworks`
+  * on Windows, type: `refine`
+  * on MacOSX or `*`nix, type: `./refine`
 
 =Shutting Down=
 
-To shut down Gridworks, in the same Terminal window, press the key combination Ctrl-C.
+To shut down Google Refine, in the same Terminal window, press the key combination Ctrl-C.
 
-You can shut down Gridworks at any time. You can even close the Terminal window altogether. To re-start Gridworks, open a new Terminal window if you already closed the old one, change to the directory where you put `gridworks`, and just following the instruction to run in the previous section.
+You can shut down Google Refine at any time. You can even close the Terminal window altogether. To re-start Google Refine, open a new Terminal window if you already closed the old one, change to the directory where you put `grefine`, and just following the instruction to run in the previous section.
 
 =Updating=
 
-The trunk version will get updated as we work on it. To get the latest updates, shut down Gridworks if it's running. Then in a Terminal window, already changed to the `gridworks` directory, type
+The trunk version will get updated as we work on it. To get the latest updates, shut down Google Refine if it's running. Then in a Terminal window, already changed to the `grefine` directory, type
 
 {{{
   svn up
@@ -74,7 +74,7 @@ Then follow the instructions to build and then to run.
 Note: if you run into issues, the first thing to do is to clean your local copy with this command
 
 {{{
-  ./gridworks clean
+  ./refine clean
 }}}
 
-and then build again. 
+and then build again.
