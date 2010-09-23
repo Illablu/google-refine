@@ -1,57 +1,57 @@
-#summary Gridworks Developer's Guide
+#summary Google Refine Developer's Guide
 
-= Guide for Gridworks Developers =
+= Guide for Google Refine Developers =
 
-== Build and Run Gridworks from an IDE (easier) ==
+== Build and Run Google Refine from an IDE (easier) ==
 
-Gridworks' source comes with [http://www.eclipse.org/ Eclipse] project files (which can also be imported into [http://netbeans.org/ NetBeans]). 
+Google Refine' source comes with [http://www.eclipse.org/ Eclipse] project files (which can also be imported into [http://netbeans.org/ NetBeans]). 
 
 === Eclipse ===
 
 At the command line, go to a directory *not* under your Eclipse workspace directory and check out the source:
 
 {{{
-svn co https://freebase-gridworks.googlecode.com/svn/trunk gridworks
+svn co https://google-refine.googlecode.com/svn/trunk grefine
 }}}
 
 Then in Eclipse, invoke the Import ... command
 
-  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects.png]
+  [http://google-refine.googlecode.com/svn/wiki/images/ImportSeveralProjects.png]
 
 Pick Existing Projects into Workspace
 
-  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects2.png]
+  [http://google-refine.googlecode.com/svn/wiki/images/ImportSeveralProjects2.png]
 
-Locate the directory where you've checked out gridworks. Eclipse should detect the sub-projects "gridworks", "gridworks server", etc.
+Locate the directory where you've checked out Google Refine. Eclipse should detect the sub-projects "grefine", "grefine-server", etc.
 
-  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ImportSeveralProjects3.png]
+  [http://google-refine.googlecode.com/svn/wiki/images/ImportSeveralProjects3.png]
 
-Note that the above steps are already packaged for you if you look for the `Gridworks.launch` file in the `ide/eclipse` folder inside the Gridworks source code. To execute, right click on that file, select "Run As...", then click on "Gridworks", this should run Gridworks with the above parameters already set. After the first execution, this command should be updated automatically to your list of Run launches so you can find it there.
+Note that the above steps are already packaged for you if you look for the `Refine.launch` file in the `server/IDEs/eclipse` folder inside the Google Refine source code. To execute, right click on that file, select "Run As...", then click on "Refine", this should run Google Refine with the above parameters already set. After the first execution, this command should be updated automatically to your list of Run launches so you can find it there.
 
 === Netbeans ===
 
   # make sure to import the eclipse project and not start one from scratch (either from the "import" command in the File menu, or thru importing directly via svn)
   # in the "run" configuration, in the "(x)= arguments" tab, you need to place this line in the VM configuration (VM Options in NetBeans) text area:
 {{{
--Dgridworks.autoreloading=true  -Dgridworks.webapp=src/main/webapp
+-Drefine.autoreloading=true  -Drefine.webapp=src/main/webapp
 }}}
   # apply, close the dialog and then click the green run button and voila', you should see it run and open your default browser.
 
-If you want gridworks logs to be more verbose, append this to the line above
+If you want Google Refine logs to be more verbose, append this to the line above
 
 {{{
- -Dgridworks.verbosity=TRACE
+ -Drefine.verbosity=TRACE
 }}}
 
 
-== Build and Run Gridworks from the command line (harder but more comprehensive) ==
+== Build and Run Google Refine from the command line (harder but more comprehensive) ==
 
-The Gridworks build system requires you to have a unix shell. On Macosx and Linux, just use whatever shell compatible with `/bin/sh`. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run `sh` or `bash`.
+The Google Refine build system requires you to have a unix shell. On Macosx and Linux, just use whatever shell compatible with `/bin/sh`. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run `sh` or `bash`.
 
 To see what functions are supported by the Gridwork's build system, type
 
 {{{
-   ./gridworks -h
+   ./refine -h
 }}}
 
 to get a list of them.
@@ -59,18 +59,18 @@ to get a list of them.
 == Building ==
 
 {{{
-  ./gridworks build
+  ./refine build
 }}}
 
 == Running ==
 
 {{{
-  ./gridworks
+  ./refine
 }}}
 
 == Testing == 
 
-Since Gridworks is composed of two parts, a server and a in-browser UI, the testing system reflects that:
+Since Google Refine is composed of two parts, a server and a in-browser UI, the testing system reflects that:
 
   * on the server side, it's powered by [http://testng.org/ TestNG] and the unit tests are written in Java;
   * on the client side, it's powered by [http://www.getwindmill.com/ Windmill] and the [http://wiki.github.com/windmill/windmill/javascript-tests functional tests are written in Javascript];
@@ -78,7 +78,7 @@ Since Gridworks is composed of two parts, a server and a in-browser UI, the test
 To run the complete testing harness, simply type
 
 {{{
-  ./gridworks test
+  ./refine test
 }}}
 
 The above command requires you to have [http://www.python.org/ python] and [http://curl.haxx.se/ curl] installed on your machine and available in the path (you might already do, even if you don't know about it so just try it once and see what errors you get). Note that you don't need to have windmill installed, the script will install it for you and build a proper python [http://pypi.python.org/pypi/virtualenv virtualenv] so that you don't have to worry about version collisions or polluting your existing python installation.
@@ -86,13 +86,13 @@ The above command requires you to have [http://www.python.org/ python] and [http
 If you want to run only the server side portion of the tests run
 
 {{{
-  ./gridworks server_test
+  ./refine server_test
 }}}
 
 or, if you want to run only the client side portion of the tests run
 
 {{{
-  ./gridworks ui_test
+  ./refine ui_test
 }}}
 
 ==== Testing in Eclipse ====
@@ -103,7 +103,7 @@ You can also run the server-side part of the tests directly from Eclipse. To do 
  http://beust.com/eclipse
 }}}
 
-Once the TestNG launching plugin is installed in your Eclipse, look for the `GridworksTests.launch` file in the `ide/eclipse` folder inside the Gridworks source code, right click on it, select "Run As..." then "GridworksTests". This should open a new tab with the TestNG launcher running the Gridworks tests.
+Once the TestNG launching plugin is installed in your Eclipse, look for the `GoogleRefineTests.launch` file in the `main/IDEs/eclipse` folder inside the Google Refine source code, right click on it, select "Run As..." then "GoogleRefineTests". This should open a new tab with the TestNG launcher running the Google Refine tests.
 
 ==== Testing on Windows ====
 
@@ -113,12 +113,12 @@ Curl is also required, but you can install it when you install Cygwin (there is 
 
 == Distributions ==
 
-The Gridworks build system automates the creation of the installation packages for the different operating systems. They are currently optimized to run on Macosx which is the only platform capable of creating the packages for all the three OS that we support.
+The Google Refine build system automates the creation of the installation packages for the different operating systems. They are currently optimized to run on Macosx which is the only platform capable of creating the packages for all the three OS that we support.
 
 To build the distributions type
 
 {{{
-  ./gridworks dist <version>
+  ./refine dist <version>
 }}}
 
 where 'version' is the release version (for example, 1.3b3).
@@ -127,19 +127,19 @@ where 'version' is the release version (for example, 1.3b3).
 
 === Windows ===
 
-On Windows, Gridworks requires [http://www.cygwin.com/ Cygwin] and [http://java.sun.com/javase/downloads/index.jsp Java JDK] to be installed. Once these are installed you then need to [http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows Set the `JAVA_HOME` environment variable]. You may need to reboot your machine after setting this environment variable.
+On Windows, Google Refine requires [http://www.cygwin.com/ Cygwin] and [http://java.sun.com/javase/downloads/index.jsp Java JDK] to be installed. Once these are installed you then need to [http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows Set the `JAVA_HOME` environment variable]. You may need to reboot your machine after setting this environment variable.
 
-Open the Cygwin bash shell. Navigate to your installation directory, then run gridworks
+Open the Cygwin bash shell. Navigate to your installation directory, then run Google Refine
 
 {{{
    # cd 'C:\\path_to_installation_directory'
-   # ./gridworks
+   # ./refine
 }}}
 
-If you receive a message `Could not find the main class: com.metaweb.gridworks.Gridworks. Program will exit.` this means that the `JAVA_HOME` variable is likely not set correctly.
+If you receive a message `Could not find the main class: com.google.refine.Refine. Program will exit.` this means that the `JAVA_HOME` variable is likely not set correctly.
 
 === Linux ===
 
 ==== Installing Java ====
 
-If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program. 
+If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program.
