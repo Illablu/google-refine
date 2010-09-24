@@ -1,5 +1,5 @@
-var GridworksReleases = {
-    "homepage" : "http://code.google.com/p/freebase-gridworks/wiki/Downloads",
+var releases = {
+    "homepage" : "http://code.google.com/p/google-refine/wiki/Downloads",
     "releases" : [
         {
             "description": "Gridworks 1.1",
@@ -15,11 +15,9 @@ var GridworksReleases = {
             "description": "Gridworks 1.0",
             "version": "1.0",
             "revision": "r667"
-        },
-        {
-            "description": "Gridworks 1.0",
-            "version": "1.0",
-            "revision": "r655"
         }
     ]
 };
+
+// This is for back compatibility... remove this after Gridworks usage phases out
+var GridworksReleases = releases;
