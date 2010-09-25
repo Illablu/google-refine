@@ -1,26 +1,26 @@
 #summary Frequently Asked Questions
 #labels Featured
 
-This is a collection of frequently asked questions on Gridworks. Feel free to add your own question to the comments, we'll try to answer to the best of our abilities and add them to this list.
+This is a collection of frequently asked questions on Google Refine. Feel free to add your own question to the comments, we'll try to answer to the best of our abilities and add them to this list.
 
 == Where is the Data Stored? ==
 
 All your projects are stored on your own computer:
 
 *MacOSX:*
-  * `~/Library/Application Support/Gridworks/`
+  * `~/Library/Application Support/Google/Refine/`
 
 *Windows:* depending on the Windows version, the data is in one of these directories
-  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks`
-  * `C:\Users\(user id)\AppData\Roaming\Gridworks`
-  * `C:\Users\(user id)\Gridworks`
+  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
+  * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
+  * `C:\Users\(user id)\Google\Refine`
 
 *Linux:*
-  * `~/.local/share/gridworks/`
+  * `~/.local/share/google-refine/`
 
-==I get java.lang.OutOfMemoryError: Java heap space errors,<br/>or it feels SLOW - How do I expand the memory that Gridworks can use? ==
+==I get java.lang.OutOfMemoryError: Java heap space errors,<br/>or it feels SLOW - How do I expand the memory that Google Refine can use? ==
 
-Since Gridworks is a Java application that utilizes the JVM, you might need to allocate enough memory to handle processing large files and avoid java.lang.OutOfMemoryError: Java heap space errors.  But, you will also need to balance that allocation with the needs of your OS to prevent disk caching problems.
+Since Google Refine is a Java application that utilizes the JVM, you might need to allocate enough memory to handle processing large files and avoid java.lang.OutOfMemoryError: Java heap space errors.  But, you will also need to balance that allocation with the needs of your OS to prevent disk caching problems.
 
 A typical best practice is to start with no more than 50% of your available physical memory, since certain OS's will utilize up to 1 Gig or more of physical RAM.
 
@@ -28,13 +28,13 @@ Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only
 
 *Windows:*
 
-Open a "command prompt", 'cd' to the folder where Gridworks is installed, then type
+Open a "command prompt", 'cd' to the folder where Google Refine is installed, then type
 
-`gridworks.bat /m 2048m`
+`refine.bat /m 2048m`
 
-where "2048m" is the maximum amount of memory (in Mb) that you want Gridworks to use.
+where "2048m" is the maximum amount of memory (in Mb) that you want Google Refine to use.
 
-If you decide to use the gridworks.EXE, then set your parameters in the .ini file found in the same folder.
+If you decide to use the refine.exe, then set your parameters in the .ini file found in the same folder.
 {{{
 # Launch4j runtime config
 
@@ -53,10 +53,10 @@ If you decide to use the gridworks.EXE, then set your parameters in the .ini fil
 
 *Mac:*
 
-If you have downloaded the ".dmg" package and you start Gridworks by double clicking on it, follow these instructions
+If you have downloaded the ".dmg" package and you start Google Refine by double clicking on it, follow these instructions
 
-  * close gridworks
-  * "control-click" on the gridworks icon (opens the contextual menu)
+  * close Google Refine
+  * "control-click" on the Google Refine icon (opens the contextual menu)
   * click on "show package content" (a finder window opens)
   * open the "Contents" folder
   * double click on the "Info.plist" file (a Property List Editor app comes up)
@@ -64,15 +64,15 @@ If you have downloaded the ".dmg" package and you start Gridworks by double clic
   * double click on the "VMOptions" content (the right end side)
   * change "${java.options}" with "-Xms256M -Xmx1024M"
   * save file
-  * start gridworks again
+  * start Google Refine again
 
 *Linux (or Mac):*
 
-If you have downloaded the ".tar.gz" package and you start Gridworks from the command line, use the "-m xxxM" parameter like this
+If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
 
-`./gridworks -m 1024m`
+`./refine -m 1024m`
 
-== What syntax of regular expression (regex) does Gridworks support ? ==
+== What syntax of regular expression (regex) does Google Refine support ? ==
 
 The regular expression syntax is that of Java regex, not of Javascript.
 
@@ -80,7 +80,7 @@ http://java.sun.com/docs/books/tutorial/essential/regex/index.html
 
 ^ and $ should also work in the regex mode.
 
-Note that the Gridworks expression language (GEL) also supports regex, e.g.,
+Note that the Google Refine Expression Language (GREL) also supports regex, e.g.,
 
 Example to replace "Rd" abbreviation with "Road".
 
@@ -88,7 +88,7 @@ Example to replace "Rd" abbreviation with "Road".
 
 It should also handle "capture groups".
 
-== How can one assign Freebase types in Gridworks?  Or does this only happen implicitly as the result of making a property connection? ==
+== How can one assign Freebase types in Google Refine?  Or does this only happen implicitly as the result of making a property connection? ==
 
 In the schema skeleton, you can actually specify a link with the property /type/object/type and the target node of an existing Freebase topic, which happens to be a type.
 
@@ -100,7 +100,7 @@ We're working on this. The general idea is that you first load your data onto Fr
 
 When you create a new schema skeleton it's filled in with all the columns but they are not connected with properties. So when you save and close the dialog, those links without properties specified are discarded.  Right now you can only start the schema skeleton with one root node, but originally we thought of supporting several root nodes.
 
-==How can I delete a whole row? It would be useful if there was a way to do that in Gridworks.==
+==How can I delete a whole row? It would be useful if there was a way to do that in Google Refine.==
 
 You can!
 
@@ -110,4 +110,5 @@ You can!
   # In the dropdown menu above the flag you can go to Edit Rows > Remove all matching rows.
 
 This should delete all the flagged rows.
-Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Gridworks, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool. 
+
+Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Google Refine, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool.
