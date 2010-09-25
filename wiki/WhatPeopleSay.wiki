@@ -20,11 +20,11 @@ sense tingle in a way I haven’t felt for a long time.
 
     [http://en.wikipedia.org/wiki/Simon_Willison Simon Willison] - [http://simonwillison.net/2010/Mar/27/gridworks/ Preview: Freebase Gridworks] 
 
- This is a tremendous contribution to the community, especially given that comparable commercial products 
- are priced well out of range of small businesses, independent developers, and newsrooms. While we can’t tell 
- you about any of the projects we are using it on just yet, we can say that its changing the way we look at data 
- on a daily basis. We really can’t say enough about what a great application Gridworks is and about its myriad 
- uses for hacker journalists and data-nerds of all stripes.
+This is a tremendous contribution to the community, especially given that comparable commercial products 
+are priced well out of range of small businesses, independent developers, and newsrooms. While we can’t tell 
+you about any of the projects we are using it on just yet, we can say that its changing the way we look at data 
+on a daily basis. We really can’t say enough about what a great application Gridworks is and about its myriad 
+uses for hacker journalists and data-nerds of all stripes.
 
     [http://www.linkedin.com/in/christophergroskopf Christopher Groskopf] (Chicago Tribune) - [http://blog.apps.chicagotribune.com/2010/05/17/the-gift-of-freebase-gridworks/ Data normalization par excellence–the gift of Freebase Gridworks]
 
