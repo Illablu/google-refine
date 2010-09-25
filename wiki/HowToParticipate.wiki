@@ -1,15 +1,15 @@
-#summary How to Participate to the Gridworks ecosystem
+#summary How to Participate to the Google Refine ecosystem
 #labels Featured
 
-Gridworks aims to be a truly diverse and open development community of people interested in doing cool things with the increasingly overwhelming amount of data that can be found lying around the web.
+Google Refine aims to be a truly diverse and open development community of people interested in doing cool things with the increasingly overwhelming amount of data that can be found lying around the web.
 
 There are several ways you can participate, even without being a software developer.
 
-  * *most of the communication happens over email*, over at the [http://groups.google.com/group/freebase-gridworks/ freebase-gridworks] and [http://groups.google.com/group/freebase-gridworks-dev/ freebase-gridworks-dev] google groups. Follow the link to subscribe (and note that you have the option to subscribe even just to digest daily emails or no email at all and you can read the messages from the web if you feel your inbox is already overflowing).
+  * *most of the communication happens over email*, over at the [http://groups.google.com/group/google-refine/ google-refine] and [http://groups.google.com/group/google-refine-dev/ google-refine-dev] google groups. Follow the link to subscribe (and note that you have the option to subscribe even just to digest daily emails or no email at all and you can read the messages from the web if you feel your inbox is already overflowing).
 
-  * if you need more synchronicity (although there is no guarantee you'll get it ;-), a good place to hang out is the *#gridworks IRC chatroom over at Freenode.net* (irc://irc.freenode.net/#gridworks) If you're not an IRC user, it's basically like IM but with multiple people. There are plenty of very good IRC clients available for any operating system, so just look for one [http://en.wikipedia.org/wiki/Comparison_of_Internet_Relay_Chat_clients here] if you don't have it.  An IRC web-based client is also available from [http://java.freenode.net/]
+  * if you need more synchronicity (although there is no guarantee you'll get it ;-), a good place to hang out is the *#grefine IRC chatroom over at Freenode.net* (irc://irc.freenode.net/#grefine) If you're not an IRC user, it's basically like IM but with multiple people. There are plenty of very good IRC clients available for any operating system, so just look for one [http://en.wikipedia.org/wiki/Comparison_of_Internet_Relay_Chat_clients here] if you don't have it.  An IRC web-based client is also available from [http://java.freenode.net/]
 
-  * if you don't want a conversation but you're just expressing something about Gridworks, *you can use Twitter or your blog*, we track all tweets that contain the word `gridworks` (which also reacts to `#gridworks`) using Twitter's own search and all blog posts that contain the words `freebase` and `gridworks` using Google Blog Search and show them in the front page of this project.
+  * if you don't want a conversation but you're just expressing something about Google Refine, *you can use Twitter or your blog*, we track all tweets that contain the word `grefine` (which also reacts to `#grefine`) using Twitter's own search and all blog posts that contain the words `freebase` and `grefine` using Google Blog Search and show them in the front page of this project.
 
   * if you are a programmer, we strongly believe that once you have version control, a good test suite and a healthy community watching over your shoulders, one can be lax about giving write access to the code repository. In practice, this means that *we'll likely to give you write access after you send us a few reasonable patches*. So don't be shy.
 
@@ -17,8 +17,8 @@ There are several ways you can participate, even without being a software develo
   
   * if you're more into writing than editing and polishing, *we're always looking for new recipes, tutorials, howto's, guides or whatever* you can think of that others might like to read and learn from your experience. Feel free to send us whatever text over email and we'll post it in the wiki (and give you write access to it so that you can continue on your own next time you feel that urge).
 
-  * if you're not really sure you know enough to teach others, *you can contribute your success stories*: what you did with Gridworks, what you liked or hated about it, what it allowed you to achieve that was harder before with other tools, what you wish it did that it currently doesn't, etc. You can either use the issue tracker or send us email, but again, don't be shy: we strongly believe in the power of user-driven innovation and we are very open minded about suggestions and even strong criticism. The worst thing that you can do to us is avoid giving your feedback when you think there is something wrong or suboptimal. So, please, let us know where we were wrong or fell short... yeah, we mean it!
+  * if you're not really sure you know enough to teach others, *you can contribute your success stories*: what you did with Google Refine, what you liked or hated about it, what it allowed you to achieve that was harder before with other tools, what you wish it did that it currently doesn't, etc. You can either use the issue tracker or send us email, but again, don't be shy: we strongly believe in the power of user-driven innovation and we are very open minded about suggestions and even strong criticism. The worst thing that you can do to us is avoid giving your feedback when you think there is something wrong or suboptimal. So, please, let us know where we were wrong or fell short... yeah, we mean it!
 
-And if there still isn't anything in this list that you'd like to do, well, *just tell people about Gridworks* and give demos to people around you or point them to the screencasts and help us get as much traction as possible. This is because the better and more diverse the community around Gridworks becomes, the better the software and ultimately, this benefits you too.
+And if there still isn't anything in this list that you'd like to do, well, *just tell people about Google Refine* and give demos to people around you or point them to the screencasts and help us get as much traction as possible. This is because the better and more diverse the community around Google Refine becomes, the better the software and ultimately, this benefits you too.
 
-Thanks in advance! 
+Thanks in advance!
