@@ -1,11 +1,11 @@
-#summary How to use Freebase Gridworks
+#summary How to use Google Refine
 #labels Featured
 
-If you haven't done so already, we strongly suggest you to watch the [http://vimeo.com/groups/gridworks/videos screencasts] first as they will give you an idea of how to use Gridworks.
+If you haven't done so already, we strongly suggest you to watch the [http://vimeo.com/groups/gridworks/videos screencasts] first as they will give you an idea of how to use Google Refine.
 
 =Paradigm=
 
-We liken using Gridworks to using Photoshop: in the former you deal with a lot of data cells and in the latter you deal with a lot of pixels. Using Photoshop typically involves selecting one or more patches of pixels and then applying some effects on them to change them en masse. Similarly, using Gridworks typically involves filtering down to some subset of rows (effectively selecting those rows) and then applying some changes to those rows en masse. So, just remember
+We liken using Google Refine to using Photoshop: in the former you deal with a lot of data cells and in the latter you deal with a lot of pixels. Using Photoshop typically involves selecting one or more patches of pixels and then applying some effects on them to change them en masse. Similarly, using Google Refine typically involves filtering down to some subset of rows (effectively selecting those rows) and then applying some changes to those rows en masse. So, just remember
 
     Filter (select) then Edit.
 
@@ -13,17 +13,17 @@ To filter, create one or more facets for some columns and making selections in t
 
 =Work Flow=
 
-Gridworks imposes no particular work flow. There are several power tools that you can use in any combination and any order to get the job done. You will probably discover some work flow on your own that is convenient for you, or suitable for the kind of data you often deal with. You might also learn effective work flows from your peers. Along that line, we ourselves have gotten used to the following work flow, which you might want to adopt: play, fix, reconcile, align, extend, and load.
+Google Refine imposes no particular work flow. There are several power tools that you can use in any combination and any order to get the job done. You will probably discover some work flow on your own that is convenient for you, or suitable for the kind of data you often deal with. You might also learn effective work flows from your peers. Along that line, we ourselves have gotten used to the following work flow, which you might want to adopt: play, fix, reconcile, align, extend, and load.
 
 ==Load==
 
-Gridworks can load both individual data files as well as tarred and zipped archives (.zip, .tar.gz, .tgz, .tar.bz2, .gz, .bz2). For an archive file, Gridworks detects the most common file extension in it and loads all files with that extension into a single project.
+Google Refine can load both individual data files as well as tarred and zipped archives (.zip, .tar.gz, .tgz, .tar.bz2, .gz, .bz2). For an archive file, Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
 
-For individual files, Gridworks can handle non-delimited fixed length text files, comma-separated value (CSV) files, tab-separated value (TSV) files, or text files in which the columns are separated by some character you specify. Gridworks can also handle Excel files and XML files, including .rss and .atom files and uniform .rdf files.
+For individual files, Google Refine can handle non-delimited fixed length text files, comma-separated value (CSV) files, tab-separated value (TSV) files, or text files in which the columns are separated by some character you specify. Google Refine can also handle Excel files and XML files, including .rss and .atom files and uniform .rdf files.
 
 ==Play==
 
-The first thing to do after loading a data set into Gridworks is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves [Faceting] (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
+The first thing to do after loading a data set into Google Refine is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves [Faceting] (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
 
 ==Fix==
 
@@ -49,7 +49,7 @@ Topics matched will show a relevance score in parentheses after the topic name, 
 
 If using the recon service then it shows 3 decimal digits, eg. Harry Potter (.244)
 
- The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually and use your own judgment to match them.
+The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually and use your own judgment to match them.
 
 ==Align==
 
@@ -61,4 +61,4 @@ Rinse and repeat the steps Play, Fix, Reconcile, and Align in any order and as m
 
 ==Extend==
 
-Once your data is reconciled again Freebase, you can use it to augment your own data with data that is contained there. To do that, click on the drop-down menu on the column that contains the reconciled information that you wish to augment, select the {{{Edit Column -> Add Columns from Freebase}}} and follow the instructions. 
+Once your data is reconciled again Freebase, you can use it to augment your own data with data that is contained there. To do that, click on the drop-down menu on the column that contains the reconciled information that you wish to augment, select the {{{Edit Column -> Add Columns from Freebase}}} and follow the instructions.
