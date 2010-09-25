@@ -4,7 +4,7 @@
   * [GettingStarted Getting Started]
   * [FAQ FAQ]
   * Users's Resources
-    * [UserGuide How to Use Gridworks]
+    * [UserGuide How to Use Google Refine]
     * [Recipes Quick Recipes]
     * [Faceting Faceting]
     * [Clustering Clustering]
@@ -14,9 +14,9 @@
     * [UploadingToFreebase Uploading to Freebase]
     * [InstallingExtensions Installing Extensions]
     * Expressions
-      * Gridworks Expression Language (GEL)
-        * [GELReference GEL Reference]
-        * [GELFunctions GEL Functions]
+      * Google Refine Expression Language (GREL)
+        * [GELReference GREL Reference]
+        * [GELFunctions GREL Functions]
       * [Jython Jython]
     * Data
       * [SampleDatasets Sample Datasets]
