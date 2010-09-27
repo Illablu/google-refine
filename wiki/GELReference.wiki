@@ -1,10 +1,10 @@
 #summary Gridworks Expression Language Reference
 
-Gridworks expression language (abbreviated as GEL in various places) is used to create custom facets, to create new columns based on existing ones, and to perform cell transformations.
+Gridworks expression language (abbreviated as GREL in various places) is used to create custom facets, to create new columns based on existing ones, and to perform cell transformations.
 
 ==Syntax==
 
-GEL has Javascript's syntax, but it only has expressions, not statements. There is no statement in GEL: that is, you won't find the typical statements such as `if-else`, `while`, `for` in Javascript in GEL, though there are some equivalent ways to do branching and looping using "controls".
+GREL has Javascript's syntax, but it only has expressions, not statements. There is no statement in GREL: that is, you won't find the typical statements such as `if-else`, `while`, `for` in Javascript in GEL, though there are some equivalent ways to do branching and looping using "controls".
 
 Objects with fields can be accessed with the dot notation, e.g., `foo.bar`, or the square bracket notation, e.g., `foo["bar"]`. One deviation from Javascript syntax is the support for range indices: `aStringOrArray[from, to]`.
 
