@@ -1,4 +1,4 @@
-#summary Gridworks Roadmap
+#summary Google Refine Roadmap
 
 This is a very rough outline of the future of this project.
 
