@@ -1,0 +1,120 @@
+#summary Google Refine Expression Language (GREL) Reference
+
+Gridworks expression language (abbreviated as GREL in various places) is used to create custom facets, to create new columns based on existing ones, and to perform cell transformations.
+
+==Syntax==
+
+GREL has Javascript's syntax, but it only has expressions, not statements. There is no statement in GREL: that is, you won't find the typical statements such as `if-else`, `while`, `for` in Javascript in GEL, though there are some equivalent ways to do branching and looping using "controls".
+
+Objects with fields can be accessed with the dot notation, e.g., `foo.bar`, or the square bracket notation, e.g., `foo["bar"]`. One deviation from Javascript syntax is the support for range indices: `aStringOrArray[from, to]`.
+
+==Variables and Object Model==
+
+Each expression is typically evaluated against one row at a time, and said to be based on a particular column. For example, when you try to create a custom facet on a column, that column is the "base column".
+
+|| name || meaning ||
+|| row || the current row ||
+|| cells || the cells of the current row ||
+|| cell || the cell in the base column of the current row ||
+|| recon || the recon object of a cell returned from a reconciliation service or provider ||
+|| record || one or more rows grouped together ||
+|| value || the value of the cell in the base column of the current row ||
+
+
+===Row===
+
+A `row` object has a few fields, which can be accessed with a dot operator or with square brackets: `row.index`, `row["index"]`, much like in Javascript.
+
+|| name || meaning ||
+|| index || zero-based index of the current row ||
+|| cells || the cells of the row, same as the "cells" variable above ||
+|| starred || boolean, indicating if the row is starred ||
+|| flagged || boolean, indicating if the row is flagged ||
+|| record || the Record object containing the current row ||
+
+===Cells===
+
+The `cells` object, which can also be accessed as `row.cells`, has fields that correspond to the data column names. For example, `cells.Foo` returns a `cell` object representing the cell in the column named Foo of the current row. If the column name has spaces, use the square bracket method, e.g., `cells["Postal Code"]`.
+
+
+===Cell===
+
+A `cell` object has two fields
+
+|| name || meaning ||
+|| value || the value in the cell, which can be null, a string, a number, or a boolean ||
+|| recon || an object encapsulating the reconciliation results for that cell ||
+
+===Recon===
+
+A `recon` object has a few fields
+
+|| name || meaning ||
+|| judgment || a string that is one of: "matched", "new", "none" || 
+|| matched || a boolean, true iff judgment is "matched" || 
+|| match || null, or the recon candidate that has been matched against this cell || 
+|| best || null, or the best recon candidate|| 
+|| features || an object encapsulating reconciliation features ||
+
+A recon candidate object has a few fields: `id`, `guid`, `name`, `type`, and `score`, whose meanings are obvious. `type` is an array of type IDs.
+
+A `features` object has the following fields:
+  * typeMatch, nameMatch: booleans
+  * nameLevenshtein, nameWordDistance: numbers
+
+Facets based on reconciliation features can thus be created with such an expression as `cell.recon.features.typeMatch`.
+
+===Record===
+
+A `record` object encapsulates one or more rows that are grouped together. For example, the following data set has 2 records, the first grouping 2 rows and the second grouping 3 rows:
+
+|| row || author || book || date ||
+|| 1. || Neal Stephenson || Anathem || 2009 ||
+|| 2. || || Snow Crash || 2000 ||  
+|| 3. || J.K. Rowlings || Harry Potter and the Half-Blood Prince || 2006 ||
+|| 4. || || Harry Potter and the Order of the Phoenix (Book 5) || 2005 ||
+|| 5. || || Harry Potter and the Chamber of Secrets (Book 2) || 2000 || 
+
+A `record` object has one field, `cells`, which can be used to access the zero or more cells in a particular column. For example, evaluating `row.record.cells.book.value` on row 2 returns `[ "Anathem", "Snow Crash" ]`.
+
+==Controls==
+
+There are inline controls to support branching and essentially looping. They look like functions, but unlike functions, their arguments don't all get evaluated down to value before they get run. Each control decides which of their arguments to evaluate to value, and how.
+
+===if===
+
+`if(eTest, eTrue, eFalse)` : expression `eTest` is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.  if(condition, if_true, if_false) is the same as (condition) ? if_true : if_false in C-like languages
+
+Examples:
+  * `if(value.startsWith("A"), value.substring(1), value)` : removes leading "A" from the cell's value, if any
+  * `if(cells.Synonym.value.startsWith("common"),cells.Synonym.value,null)` : this statement when run as a text transform on a column, checks if cells in another Column named "Synonym" start with the term "common" and if so sets (copies) that value into the current columns' cells being transformed, otherwise sets the current columns' cells to null. This is equivalent to the notation (condition) ? if_true : if_false;
+
+===with===
+
+`with(e1, v, e2)` : expression `e1` is evaluated to a value. A new environment is created in which that value is bound to the variable name `v`. In that new environment, expression `e2` is evaluated, and its result is the value of the whole `with` expression.
+
+Examples:
+  * `with("twenty", s, s.substring(0, s.length() / 2))` returns "twe". If `with` is not used, then we have to repeat `"twenty"` like so: `"twenty".substring(0, "twenty".length() / 2)`.
+
+===forEach===
+
+`forEach(eArray, v, eEach)` : expression `eArray` is evaluated, presumably to an array. Then for each element of that array, a new environment is created in which that element is bound to the variable name `v`, and in that new environment the expression `eEach` is evaluated, yielding a value. Thus, a value is generated from each element of that array, yielding another array, which is the result of the whole `forEach` expression.
+
+Example:
+  * `forEach("one;two;three".split(";"), x, x.length())` returns `[ 3, 3, 5 ]`.
+
+===forNonBlank===
+
+`forNonBlank(e, v, eNonBlank, eBlank)`: expression `e` is evaluated, yielding a value. If that value is blank (null or an empty string), then `eBlank` is evaluated and its result is the result of the whole `forNonBlank` expression. Otherwise, a new environment is created in which the value is bound to the variable name `v`. In that new environment, expression `eNonBlank` is evaluated and its result is the result of the whole `forNonBlank` expression.
+
+`forNonBlank(e, v, eNonBlank, eBlank)` is the same as
+`with(e, vTemp, if(isNonBlank(vTemp), with(vTemp, v, eNonBlank), eBlank))`.
+
+Example:
+  * `forNonBlank("foo", n, n + "bar", "nothing")` returns "foobar".
+  * `forNonBlank("", n, n + "bar", "nothing")` returns "nothing".
+  * `forNonBlank("", n, n + "bar", n + "nothing")` returns null (`n` is not bound in `n + "nothing"`, causing that expression to fail).
+
+===isBlank, isNonBlank, isNull, isNotNull, isNumeric===
+
+`isX(e)` : evaluates expression `e` and returns whether its value is `X`. 
