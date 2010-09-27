@@ -2,7 +2,7 @@
 
 Available on the upcoming version 1.5 and later only.
 
-You can use Gridworks to translate street addresses to lat/lng coordinates to plot data on maps. While there is no native geocoding command in Gridworks, you can still accomplish this task calling HTTP-based geocoding services using the command Add Column by Fetching URLs and then parsing the returned HTTP responses to extract the lat/lng coordinates.
+You can use Google Refine to translate street addresses to lat/lng coordinates to plot data on maps. While there is no native geocoding command in Refine, you can still accomplish this task calling HTTP-based geocoding services using the command Add Column by Fetching URLs and then parsing the returned HTTP responses to extract the lat/lng coordinates.
 
 =Google Geocoding Service=
 
