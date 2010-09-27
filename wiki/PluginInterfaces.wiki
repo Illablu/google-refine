@@ -2,13 +2,13 @@
 
 == Introduction ==
 
-Gridworks does not currently support plugins, but they are planned for a future release.  This page keeps track of possible areas which could be exposed as plugin interfaces.
+Google Refine does not currently support plugins, but they are planned for a future release.  This page keeps track of possible areas which could be exposed as plugin interfaces.
 
 
 == Possible Interfaces ==
 
 ===Commands===
-  * GridworkServlet is the class which creates and calls commands
+  * RefineServlet is the class which creates and calls commands
 
 ===Importers===
   * CreateProjectCommand is the class which creates and calls importers
