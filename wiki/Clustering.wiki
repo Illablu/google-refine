@@ -2,7 +2,7 @@
 
 = Introduction =
 
-In Google Refine, clustering refers to the operation of "finding groups of  different values that might be alternative representations of the same thing". For example, the two strings "New York" and "new york" are very likely to refer to the same concept and just have capitalization differences, while "Gödel" and "Godel" probably refer to the same person.
+In Google Refine, clustering refers to the operation of "finding groups of  different values that might be alternative representations of the same thing". For example, the two strings "New York" and "new york" are very likely to refer to the same concept and just have capitalization differences, and "Gödel" and "Godel" probably refer to the same person.
 
 It is worth noting that clustering in Google Refine works only on the syntactic level, the character composition of the cell value and while very useful to spot errors, typos and inconsistencies, it's by no means enough to perform effective semantically-aware reconciliation. This is why Google Refine uses Freebase and its semantically-aware reconciliation services to compensate the deficiencies of syntax-level clustering alone.
 
