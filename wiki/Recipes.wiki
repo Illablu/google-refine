@@ -121,6 +121,43 @@ which will take care of them both.
 
 Note that sometimes a string can get escaped several times: "AT&amp;amp;amp;amp;amp;T" (yes, trust us, we've seen that in presumably good data sets). When you do a transform on such cells, make sure you check the "Re-transform until no change" checkbox. This causes the expression to get run on each cell's content until the output is the same as the input (or up to 10 times).
 
+=== XML parsing & stripping ===
+
+Suppose you have XML or ATOM feed data in your cells that you may have gathered with the Add Column by Fetching URLs feature in Refine or some other source and you need to parse and strip certain tag elements such as:
+
+{{{  
+    <entry>
+        <title>San Francisco chronicle.</title>
+        <link href="http://chroniclingamerica.loc.gov/lccn/sn82003402/" />
+        <id>info:lccn/sn82003402</id>
+        <author><name>Library of Congress</name></author>
+        <updated>2010-09-03T00:01:07-04:00</updated>
+    </entry>
+    
+    <entry>
+        <title>The San Francisco call.</title>
+        <link href="http://chroniclingamerica.loc.gov/lccn/sn85066387/" />
+        <id>info:lccn/sn85066387</id>
+        <author><name>Library of Congress</name></author>
+        <updated>2010-09-03T00:18:25-04:00</updated>
+    </entry>
+}}}
+
+You can strip out the elements that your interested in from any XML or ATOM feed and create an array of those elements values for further processing.  In the above example, I only want the lccn id and title for all the *entry* records.  This is useful when working with the http://chroniclingamerica.loc.gov API or any XML or ATOM feed.
+
+{{{
+forEach(value.split("<entry>"), v, v.partition("<id>info:lccn/")[2].partition("</id>")[0]+
+","+v.partition("<title>")[2].partition("</title>")[0])
+}}}
+The above basically says that for each entry record (which creates an array), I want only the string partition between my *id* tags and *title* tags.  The resulting output then looks something like:
+{{{
+[ ",Chronicling America Title Search Results",
+ "sn82003402,San Francisco chronicle.",
+ "sn85066387,The San Francisco call.",
+ "sn86091369,San Francisco Sunday examiner &amp; chronicle.",
+ "sn82006825,The San Francisco examiner." ]
+}}}
+
 === "AÃ¯n TÃ©muchent" ---> "Aïn Témuchent" ===
 
 Sometimes content is aggregated from various sources and some where improperly decoded. This results in strings that contain 'garbled' content in the form of weird spurious characters. Fixing that is normally a very tedious and time consuming process, but Google Refine contains a handy GEL command specifically for that
@@ -187,4 +224,5 @@ To do this, there is a special numeric facet called "Unicode charcode Facet" tha
 
 == Spot Values Potentially Placed in the wrong Column ==
 
-Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem. 
+Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem.
+
