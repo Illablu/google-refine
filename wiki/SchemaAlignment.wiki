@@ -1,4 +1,4 @@
-= Schema Alignment in Gridworks =
+= Schema Alignment in Google Refine =
 
 Add your content here.
 
