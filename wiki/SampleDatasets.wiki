@@ -1,7 +1,7 @@
-#summary List of sample datasets that you can use to try out Gridworks
+#summary List of sample datasets that you can use to try out Google Refine.
 #labels Featured
 
-A good place to start is the list of [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/tests/data datasets] that we use ourselves to test Gridworks. Also consider these [DataSources Data Sources].
+A good place to start is the list of [http://code.google.com/p/google-refine/source/browse/#svn/trunk/tests/data datasets] that we use ourselves to test Google Refine. Also consider these [DataSources Data Sources].
 
 == Sample Data Sets ==
 
