@@ -112,3 +112,7 @@ You can!
 This should delete all the flagged rows.
 
 Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Google Refine, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool.
+
+==How Do I Make a Text Facet Show More Than 2000 Choices==
+
+From version 2.0, you can go to http://127.0.0.1:3333/preferences and set the facet limit using the preference key "ui.browsing.listFacet.limit".
