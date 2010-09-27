@@ -3,9 +3,9 @@
 
 = Reconcilable Data Sources =
 
-In Gridworks we currently have a [ReconciliationServiceApi].
+In Google Refine we currently have a [ReconciliationServiceApi].
 
-The following are data sources that could provide useful reconciling within Gridworks.
+The following are data sources that could provide useful reconciling within Google Refine.
 If you would like to help with coding a reconciling extension for any, please contact our mailing list.  We would love to see some of these happen!
 
   * [http://www.marinespecies.org/aphia.php?p=webservice WoRMS] - World Register of Marine Species provides web service for marine taxa. 
