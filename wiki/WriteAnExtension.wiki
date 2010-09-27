@@ -2,22 +2,22 @@
 
 This document is for the upcoming version 1.5 and later only. This is still in flux.
 
-Gridworks makes use of the [http://code.google.com/p/simile-butterfly/ Butterfly framework] to provide an extension architecture. Gridworks extensions are Butterfly modules. You don't really need to know about Butterfly itself, but you might encounter "butterfly" here and there in the code base.
+Google Refine makes use of the [http://code.google.com/p/simile-butterfly/ Butterfly framework] to provide an extension architecture. Google Refine extensions are Butterfly modules. You don't really need to know about Butterfly itself, but you might encounter "butterfly" here and there in the code base.
 
 Note that Butterfly was chosen over OSGi because 
 
   * Butterfly modules can contain both Java code (server-side) as well as webapp code (client-side); and
   * Unlike OSGi plugins, Butterfly modules don't have to be jarred and copied into one specific directory--both of which tasks make development very painful.
 
-Extensions that come with the code base are located under [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/extensions the extensions subdirectory], but when you develop your own extension, you can put its code anywhere as long as you point Butterfly to it. That is done by any one of the following methods
+Extensions that come with the code base are located under [http://code.google.com/p/google-refine/source/browse/#svn/trunk/extensions the extensions subdirectory], but when you develop your own extension, you can put its code anywhere as long as you point Butterfly to it. That is done by any one of the following methods
 
-  * refer to your extension's directory in [http://code.google.com/p/freebase-gridworks/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties the butterfly.properites file] through a `butterfly.modules.path` setting.
-  * specify the butterfly.modules.path property on the command line when you run Gridworks.  This overrides the values in the property file, so you need to include the default values first e.g. `-Dbutterfly.modules.path=modules,../../extensions,/path/to/your/extension`
+  * refer to your extension's directory in [http://code.google.com/p/google-refine/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties the butterfly.properites file] through a `butterfly.modules.path` setting.
+  * specify the butterfly.modules.path property on the command line when you run Google Refine.  This overrides the values in the property file, so you need to include the default values first e.g. `-Dbutterfly.modules.path=modules,../../extensions,/path/to/your/extension`
 
 
 =Directory Layout=
 
-A Gridworks extension (implemented as a Butterfly module) sits in a file directory that contains the following files and sub-directories:
+A Google Refine extension (implemented as a Butterfly module) sits in a file directory that contains the following files and sub-directories:
 
 {{{
   build.xml
@@ -35,7 +35,7 @@ A Gridworks extension (implemented as a Butterfly module) sits in a file directo
           controller.js
 }}}
 
-The file named module.properties (see [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. This can be different from the extension's directory name.
+The file named module.properties (see [http://code.google.com/p/google-refine/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. This can be different from the extension's directory name.
 
 {{{
   name = my-extension
@@ -49,10 +49,10 @@ Also of importance is the dependency
   requires = core
 }}}
 
-which makes sure that the core module of Gridworks is loaded before the extension attempts to hook into it.
+which makes sure that the core module of Google Refine is loaded before the extension attempts to hook into it.
 
-The file named controller.js is responsible for registering the extension's hooks into Gridworks. Look at the sample-extension extension's [http://code.google.com/p/freebase-gridworks/source/browse/trunk/extensions/sample-extension/module/MOD-INF/controller.js controller.js] file for an example. It should have a function called init() that does the hook registrations.
+The file named controller.js is responsible for registering the extension's hooks into Google Refine. Look at the sample-extension extension's [http://code.google.com/p/google-refine/source/browse/trunk/extensions/sample-extension/module/MOD-INF/controller.js controller.js] file for an example. It should have a function called init() that does the hook registrations.
 
 The `build.xml` file is an [http://ant.apache.org/ Apache Ant] build file. You can make a copy of the sample extension's `build.xml` file to get started. The important point here is that the Java classes should be built into the `module/MOD-INF/classes` sub-directory.
 
-Note that your extension's Java code would need to reference some libraries used in Gridworks and Gridworks' Java classes themselves. The libraries are in [http://code.google.com/p/freebase-gridworks/source/browse/#svn/trunk/main/webapp/WEB-INF/lib gridworks/main/webapp/WEB-INF/lib/] and Gridworks' classes are in gridworks/main/webapp/modules/core/MOD-INF/classes/. 
+Note that your extension's Java code would need to reference some libraries used in Google Refine and Refine's Java classes themselves. The libraries are in [http://code.google.com/p/google-refine/source/browse/#svn/trunk/main/webapp/WEB-INF/lib trunk/main/webapp/WEB-INF/lib/] and Refine's classes are in [http://code.google.com/p/google-refine/source/browse/#svn/trunk/main/webapp/modules/core/MOD-INF/classes trunk/main/webapp/modules/core/MOD-INF/classes/. 
