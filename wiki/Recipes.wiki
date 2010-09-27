@@ -1,11 +1,11 @@
-#summary Useful recipes for achieving certain tasks in Gridworks
+#summary Useful recipes for achieving certain tasks in Google Refine
 #labels Featured
 
-This page collects Gridworks recipes, small workflows and code fragments that show you how to achieve specific things with Gridworks.
+This page collects Google Refine recipes, small workflows and code fragments that show you how to achieve specific things with Google Refine.
 
 == String Manipulation ==
 
-Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Gridworks Expression Language (GEL)
+Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Google Refine Expression Language (GEL)
 
 === "someprefix_a2343" -> "a2343" ===
 
@@ -33,7 +33,7 @@ that will chop the value in an array of three strings
    ["", "blah_", "2342_blah_1232" ]
 }}}
 
-and we get the 3rd value (remember that the arrays in gridworks, like in most programming languages start from 0, so [2] is actually the third value).
+and we get the 3rd value (remember that the arrays in Google Refine, like in most programming languages start from 0, so [2] is actually the third value).
 
 === "a:b:c:d:e" -> "b:c:d" ===
 
@@ -103,7 +103,7 @@ You'd need to use the 'cells' variable:
 
 === "AT&amp;amp;T" --> "AT&T" ===
 
-Sometimes you get content that was extracted from web pages or XML documents and contain entities. These are very hard to deal with manually, mostly because there are tons of potential string values between "&" and ";". Gridworks provides you a convenient command to do this in GEL
+Sometimes you get content that was extracted from web pages or XML documents and contain entities. These are very hard to deal with manually, mostly because there are tons of potential string values between "&" and ";". Google Refine provides you a convenient command to do this in GEL
 
 {{{
   value.unescape("html")
@@ -121,7 +121,7 @@ Note that sometimes a string can get escaped several times: "AT&amp;amp;amp;amp;
 
 === "AÃ¯n TÃ©muchent" ---> "Aïn Témuchent" ===
 
-Sometimes content is aggregated from various sources and some where improperly decoded. This results in strings that contain 'garbled' content in the form of weird spurious characters. Fixing that is normally a very tedious and time consuming process, but Gridworks contains a handy GEL command specifically for that
+Sometimes content is aggregated from various sources and some where improperly decoded. This results in strings that contain 'garbled' content in the form of weird spurious characters. Fixing that is normally a very tedious and time consuming process, but Google Refine contains a handy GEL command specifically for that
 
 {{{
   value.reinterpret("utf-8")
@@ -129,7 +129,7 @@ Sometimes content is aggregated from various sources and some where improperly d
 
 that does exactly that.
 
-As a tip, if you see two weird characters where you think there should be one, try reinterpreting with "utf-8" which normally solves it. Other encoding values that are useful to try are "latin-1" (for european content), "Big5" (for chinese content"), etc. You can get a list of all the supported encodings [http://java.sun.com/j2se/1.5.0/docs/guide/intl/encoding.doc.html here].  Re-encoding can also be done outside of Gridworks with text tools such as PSPad, Notepad++, etc.
+As a tip, if you see two weird characters where you think there should be one, try reinterpreting with "utf-8" which normally solves it. Other encoding values that are useful to try are "latin-1" (for european content), "Big5" (for chinese content"), etc. You can get a list of all the supported encodings [http://java.sun.com/j2se/1.5.0/docs/guide/intl/encoding.doc.html here].  Re-encoding can also be done outside of Google Refine with text tools such as PSPad, Notepad++, etc.
 
 == Numerical Conversions ==
 
@@ -179,7 +179,7 @@ What forNonBlank does is test its first argument and decides what to do based on
 
 == Spot Potential Encoding Issues ==
 
-While Gridworks offers a convenient way to fix encoding issues with the "reinterpret" GEL command, it also helps you find where these problems could be since they can be hidden if most of the content has been properly decoded.
+While Google Refine offers a convenient way to fix encoding issues with the "reinterpret" GEL command, it also helps you find where these problems could be since they can be hidden if most of the content has been properly decoded.
 
 To do this, there is a special numeric facet called "Unicode charcode Facet" that generates a distribution of which unicode characters are used in a particular column. That distribution will allow you to spot outliers, meaning characters that are used infrequently and that might suggest encoding issues. You can use that char distribution facet to 'scan' and inspect the values for yourself and then use fix their encoding with the 'reinterpret' GEL function.
 
