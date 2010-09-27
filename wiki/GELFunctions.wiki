@@ -1,8 +1,8 @@
-#summary List of functions supported by the Gridworks Expression Language
+#summary List of functions supported by the Google Refine Expression Language (GREL)
 
 <wiki:toc max_depth="1" />
 
-Function invocation in Gridworks expression language has 2 forms:
+Function invocation in Google Refine expression language has 2 forms:
 
   * `functionName(arg0, arg1, ...)`
   * `arg0.functionName(arg1, ...)`
