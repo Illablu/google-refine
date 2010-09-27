@@ -2,7 +2,7 @@ Import the log file:
   * without splitting into columns
   * with # header lines set 0
 
-  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ApacheLogsImport.png]
+  [http://google-refine.googlecode.com/svn/wiki/images/ApacheLogsImport.png]
 
 Then apply the following operations
 
@@ -125,7 +125,7 @@ Then apply the following operations
 
 Here is how to apply the operations:
 
-  [http://freebase-gridworks.googlecode.com/svn/wiki/images/ApplyOperations.png]
+  [http://google-refine.googlecode.com/svn/wiki/images/ApplyOperations.png]
 
 ==Facets==
 
