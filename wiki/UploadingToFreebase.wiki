@@ -1,12 +1,12 @@
 = SHARE YOUR DATA...feel good about your accuracy! =
 
-Gridworks currently only allows uploading to the [http://wiki.freebase.com/wiki/Sandbox Sandbox] on Freebase and not the Production servers immediately in order to help you with your accuracy.
+Google Refine currently only allows uploading to the [http://wiki.freebase.com/wiki/Sandbox Sandbox] on Freebase and not the Production servers immediately in order to help you with your accuracy.
 
 Currently there is a work-in-progress to incorporate a rich community review process for uploads. (but uploads can be done NOW to Sandbox)
 
 The review process involves a number of [http://wiki.freebase.com/wiki/Acre Freebase Acre apps] and subsystems which handle the processing flow.  This current processing flow is subject to change as we continue refining based on community feedback from you:
 
-  # Gridworks sends the data over to [http://wiki.freebase.com/wiki/FreeQ FreeQ Triple Loader]
+  # Google Refine sends the data over to [http://wiki.freebase.com/wiki/FreeQ FreeQ Triple Loader]
   # [http://wiki.freebase.com/wiki/FreeQ FreeQ] then loads it into [http://sandbox.freebase.com sandbox.freebase.com]
   # Then generates [http://wiki.freebase.com/wiki/RABJ RABJ] queues for QA purposes and eventually, community review.
-  # The queues (eventually) will show up on [http://gridworks-loads.freebaseapps.com/ Gridworks Loads Dashboard] that shares some technology from [http://wiki.freebase.com/wiki/Peacock Peacock], an alternate data load review page. 
+  # The queues (eventually) will show up on [refinery.freebaseapps.com Google Refine Loads Dashboard] that shares some technology from [http://wiki.freebase.com/wiki/Peacock Peacock], an alternate data load review page. 
