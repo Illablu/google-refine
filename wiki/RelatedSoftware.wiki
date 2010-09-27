@@ -1,4 +1,4 @@
-#summary List of other software products that can be used with or instead of Gridworks
+#summary List of other software products that can be used with or instead of Google Refine
 
 (in no particular order)
 
