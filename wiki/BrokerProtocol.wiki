@@ -1,28 +1,30 @@
-#summary The protocol Gridworks instances use to communicate with a Broker.
+#summary The protocol Google Refine instances use to communicate with a Broker.
+
+NOTE: this is still work in progress and not currently implemented in Google Refine.
 
 = Introduction =
 
-Gridworks instances communicate with a Broker in order to guarantee modification consistency and a linear modification history when multiple people are collaborating over the same dataset.
+Google Refine instances communicate with a Broker in order to guarantee modification consistency and a linear modification history when multiple people are collaborating over the same dataset.
 
-This page describes the protocol used by Gridworks instances to communicate with a coordinating broker.
+This page describes the protocol used by Google Refine instances to communicate with a coordinating broker.
 
 = Protocol Design =
 
-One of the key functionalities of Gridworks is the ability to record all activity as a linear list of transformations. Not only this makes it natural to 'undo' and 'redo' such operations, but it allows users to 'record' such streams of operations and replay them against a similar dataset later.
+One of the key functionalities of Google Refine is the ability to record all activity as a linear list of transformations. Not only this makes it natural to 'undo' and 'redo' such operations, but it allows users to 'record' such streams of operations and replay them against a similar dataset later.
 
-Any coordination system that allows multiple Gridworks to operate on the same dataset concurrently needs obviously to make the grid content eventually consistent, but also to maintain the history linear and each operation performed by each operator undoable.
+Any coordination system that allows multiple Google Refine to operate on the same dataset concurrently needs obviously to make the content eventually consistent, but also to maintain the history linear and each operation performed by each operator undoable.
 
-Popular collaboration coordination systems such as version control systems (subversion, git, mercurial) or operational transformation systems (subethaedit, etherpad, google wave), make it possible to make the grid content eventually consistent, but fail to provide a way to guarantee that the history of operation is always linear and all operations are undoable. For version control systems, this is because branching and merging destroys the linearity of the history. For operational transformation systems, this is because while state is eventually consistent across all peers, the outcome is uncertain as it strongly depends on the timing of the input events. This fact is not a problem for text where single characters are the state transitions, but it becomes problematic in Gridworks since operations can modify multiple cells at ones and may alter cause-effect perception enough to puzzle the user and give off a sense of fragility in the coordination.
+Popular collaboration coordination systems such as version control systems (subversion, git, mercurial) or operational transformation systems (subethaedit, etherpad, google wave, google docs), make it possible to make the grid content eventually consistent, but fail to provide a way to guarantee that the history of operation is always linear and all operations are undoable. For version control systems, this is because branching and merging destroys the linearity of the history. For operational transformation systems, this is because while state is eventually consistent across all peers, the outcome is uncertain as it strongly depends on the timing of the input events. This fact is not a problem for text where single characters are the state transitions, but it becomes problematic in Google Refine since operations can modify multiple cells at ones and may alter cause-effect perception enough to puzzle the user and give off a sense of fragility in the coordination.
 
-To solve both the grid consistency and the history linearity, the Gridworks brokering protocol borrows and improves on the idea of a 'token ring': a Gridworks instance needs to obtain a lock on a given part of the grid that it wants to modify because it can be allowed to do so. 
+To solve both the grid consistency and the history linearity, the Google Refine brokering protocol borrows and improves on the idea of a 'token ring': a Google Refine instance needs to obtain a lock on a given part of the grid that it wants to modify because it can be allowed to do so. 
 
 = Overall Description =
 
-The Gridworks brokering protocol is composed of a set of HTTP web services that return a JSON payload.
+The Google Refine brokering protocol is composed of a set of HTTP web services that return a JSON payload.
 
 = Lock Management = 
 
-The Gridworks Broker knows of three types of locks:
+The Google Refine Broker knows of three types of locks:
 
   * 0 (aka ALL) is the lock that is needed to perform an operation that changes the entire project. For example, an ALL lock is required to start a new project, or to add/remove a column from an existing project.
   * 1 (aka COL) is the lock needed to perform an operation on a given column. Note that a lock only works on the column it was linked to when created and can't be used to write on another. Also, while a user owns a lock on one column, it is possible for another user to obtain a lock on another. Since transformations operating on different columns are guaranteed to result in identical results no matter their order, there is no need for ALL synchronization when column isolation can be achieved.
@@ -35,7 +37,7 @@ There are two web services that interact with the lock system:
 
 = Project Management = 
 
-A 'project' in Gridworks is a rectangular dataset and a linear set of transformations that were applied to it. To minimize storage requirements, network transmission and coordination latency, brokers only stores the initial dataset and the transformation descriptions. The state of the grid is then regenerated by each Gridworks independently.
+A 'project' in Google Refine is a dataset and a linear set of transformations that were applied to it. To minimize storage requirements, network transmission and coordination latency, brokers only stores the initial dataset and the transformation descriptions. The state of the data is then regenerated by each Google Refine independently.
 
 In order to create a new project, the 'start' web service is called
 
@@ -43,7 +45,7 @@ In order to create a new project, the 'start' web service is called
 
 Note how a user needs to obtain an ALL lock on the given project before it can successfully call this service (yes, it's possible to obtain a lock on a project that doesn't yet exist).
 
-In order to modify a project, a Gridworks instance needs to call the 'transform' web service
+In order to modify a project, a Google Refine instance needs to call the 'transform' web service
 
   * POST transform(project_id, lock_id, transformations)
 
@@ -61,20 +63,18 @@ where transformation is a JSON serialization of an array of objects that describ
 
 where "op_type" indicates the type of lock required to perform such operation, "op_value" indicates the value of the lock and 'value' is the actual JSON object that describes the operation.
 
-In order to obtain an existing project, a Gridworks instance uses the 'open' web service
+In order to obtain an existing project, a Google Refine instance uses the 'open' web service
 
   * GET open(project_id) -> project_info
 
-And in order to obtain the status of the project and whether it has changed, Gridworks instances can poll the broker using the 'get_state' service
+And in order to obtain the status of the project and whether it has changed, Google Refine instances can poll the broker using the 'get_state' service
 
   * GET getState(project_id, revision) -> project_state
 
-where 'revision' is the size of the transformation history in the querying Gridworks instance. The broker will return a list of the existing locks on the project and their respective owners and a list of transformations that were applied to the project since this instance last obtained the project state.
+where 'revision' is the size of the transformation history in the querying Google Refine instance. The broker will return a list of the existing locks on the project and their respective owners and a list of transformations that were applied to the project since this instance last obtained the project state.
 
 == User Authentication and Authorization ==
 
-In order to perform authentication and authorization of the Gridworks user, the Gridworks clients will use 'delegated oauth' against the broker.
+In order to perform authentication and authorization of the Google Refine user, the Google Refine clients will use 'delegated oauth' against the broker.
 
-In the 'delegated oauth' model, a Gridworks client will sign a request against Freebase's "user_info" web service and transmit the signed request along the web service payload. The broker will replay the user_info request against the Freebase web service and obtain information about the user Gridworks is operating for.
-
-NOTE: this is currently work in progress and might change without notice. 
+In the 'delegated oauth' model, a Google Refine client will sign a request against Freebase's "user_info" web service and transmit the signed request along the web service payload. The broker will replay the user_info request against the Freebase web service and obtain information about the user Google Refine is operating for.
