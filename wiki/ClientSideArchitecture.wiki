@@ -1,6 +1,6 @@
-#summary Gridworks' client-side architecture
+#summary Google Refine's client-side architecture
 
-Gridworks' client-side is in HTML, CSS, and Javascript and uses jQuery and jQuery UI.
+Google Refine's client-side is in HTML, CSS, and Javascript and uses jQuery and jQuery UI.
 
 ==Schema Alignment Skeleton==
 The schema alignment skeleton uses gridworks-helper to offer suggestions for it's middle column "property?"   
