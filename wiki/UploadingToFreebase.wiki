@@ -1,6 +1,6 @@
 = SHARE YOUR DATA...feel good about your accuracy! =
 
-Google Refine currently only allows uploading to the [http://wiki.freebase.com/wiki/Sandbox Sandbox] on Freebase and not the Production servers immediately in order to help you with your accuracy.
+Google Refine only allows uploading to the [http://wiki.freebase.com/wiki/Sandbox Sandbox] on Freebase and not the Production servers immediately in order to help you with your accuracy.
 
 Currently there is a work-in-progress to incorporate a rich community review process for uploads. (but uploads can be done NOW to Sandbox)
 
