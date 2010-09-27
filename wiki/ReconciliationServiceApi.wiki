@@ -2,13 +2,13 @@
 
 =Introduction=
 
-A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identifier space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identifier spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Gridworks.)
+A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identifier space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identifier spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Google Refine.)
 
 Each reconciliation service can only reconcile to one single identifier space, but several reconciliation services can reconcile to the same identifier space.
 
 So that it will be easy for users to plug in a variety of interchangeable reconciliation services, we define the API for a standard reconciliation service here.
 
-Note: Reconciliation in Gridworks does not have to involve calling a reconciliation service through HTTP. It might involve opening a JDBC connection to a local SQL database. However, if you implement a standard reconciliation service API, then it can be used with the existing UI in Gridworks; users only need to plug in your API's URL.
+Note: Reconciliation in Google Refine does not have to involve calling a reconciliation service through HTTP. It might involve opening a JDBC connection to a local SQL database. However, if you implement a standard reconciliation service API, then it can be used with the existing UI in Google Refine; users only need to plug in your API's URL.
 
 A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It operates in 2 modes: single query mode and multiple query mode. The second is for optimization (reducing number of HTTP calls).
 
@@ -169,8 +169,8 @@ The other fields are for
   * customizing the suggest widgets used in various places in the reconciliation UI
 
 
-=Gridworks Integration=
+=Google Refine Integration=
 
-Gridworks' UI will include a mechanism for entering a standard reconciliation service API's URL.
+Google Refine's UI will include a mechanism for entering a standard reconciliation service API's URL.
 
-Each column in Gridworks should only be reconciled against one identity space. 
+Each column in Google Refine should only be reconciled against one identity space. 
