@@ -101,6 +101,8 @@ You'd need to use the 'cells' variable:
   cells["col1"].value + ", " + cells["col2"].value
 }}}
 
+If any of cells in the columns are blank, the merge will fail for that row. To fix, create a facet of blank cells with "Text Facet" ⇒ "Customized Facets" ⇒ "Facet by Blank". Then use "Edit Cells" ⇒ "Transform ..." and enter a string with a space: {{{' '}}}. 
+
 === "AT&amp;amp;T" --> "AT&T" ===
 
 Sometimes you get content that was extracted from web pages or XML documents and contain entities. These are very hard to deal with manually, mostly because there are tons of potential string values between "&" and ";". Google Refine provides you a convenient command to do this in GEL
