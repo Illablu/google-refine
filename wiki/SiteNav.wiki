@@ -15,8 +15,8 @@
     * [InstallingExtensions Installing Extensions]
     * Expressions
       * Google Refine Expression Language (GREL)
-        * [GELReference GREL Reference]
-        * [GELFunctions GREL Functions]
+        * [GRELReference GREL Reference]
+        * [GRELFunctions GREL Functions]
       * [Jython Jython]
     * Data
       * [SampleDatasets Sample Datasets]
