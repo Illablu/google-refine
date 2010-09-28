@@ -25,7 +25,7 @@ Because it would be easy to flood Freebase with vast quantities of poorly reconc
   * load the data into a system that behaves exactly like Freebase and see it in context (this is the sandbox)
   * provide a way to estimate the data quality before it can be allowed in the main Freebase repository
 
-This conduit is called the "refinery" and primarily takes care of operating the machinery that loads the assertions originating from your data in Google Refine into the sandbox. 
+This conduit is called the [http://refinery.freebaseapps.com/ Freebase Refinery] and takes care of operating the machinery that loads the assertions originating from your data in Google Refine into the sandbox and performing the quality assurance evaluation on the data when it's ready to be loaded in Freebase.
 
 Note that this process is not synchronous: when you submit a load, the refinery will schedule it to be loaded with the internal data loading manager. Depending on how many other processes are loading data and how big are those loads, it might take a few seconds or a few hours. 
 
