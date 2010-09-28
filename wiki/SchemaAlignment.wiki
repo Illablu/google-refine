@@ -1,4 +1,4 @@
-#labels Features
+#labels Features,SchemaAlignment
 = Schema Alignment in Google Refine =
 
 Add your content here.
