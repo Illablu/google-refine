@@ -9,7 +9,7 @@ There are several ways you can participate, even without being a software develo
 
   * if you need more synchronicity (although there is no guarantee you'll get it ;-), a good place to hang out is the *#grefine IRC chatroom over at Freenode.net* (irc://irc.freenode.net/#grefine) If you're not an IRC user, it's basically like IM but with multiple people. There are plenty of very good IRC clients available for any operating system, so just look for one [http://en.wikipedia.org/wiki/Comparison_of_Internet_Relay_Chat_clients here] if you don't have it.  An IRC web-based client is also available from [http://java.freenode.net/]
 
-  * if you don't want a conversation but you're just expressing something about Google Refine, *you can use Twitter or your blog*, we track all tweets that contain the word `grefine` (which also reacts to `#grefine`) using Twitter's own search and all blog posts that contain the words `freebase` and `grefine` using Google Blog Search and show them in the front page of this project.
+  * if you don't want a conversation but you're just expressing something about Google Refine, *you can use Twitter or your blog*, we track all tweets that contain the word `grefine` (which also reacts to `#grefine`) using Twitter's own search.
 
   * if you are a programmer, we strongly believe that once you have version control, a good test suite and a healthy community watching over your shoulders, one can be lax about giving write access to the code repository. In practice, this means that *we'll likely to give you write access after you send us a few reasonable patches*. So don't be shy.
 
