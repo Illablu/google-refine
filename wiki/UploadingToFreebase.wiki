@@ -1,13 +1,51 @@
 #labels Features
-= SHARE YOUR DATA...feel good about your accuracy! =
+= Using Google Refine to upload data to Freebase =
 
-Google Refine only allows uploading to the [http://wiki.freebase.com/wiki/Sandbox Sandbox] on Freebase and not the Production servers immediately in order to help you with your accuracy.
+[http://www.freebase.com/ Freebase] is a open repository of relational factual data and is used by Google Refine both to help cleaning up data via semantically-aware reconciliation and by augmenting your data.
 
-Currently there is a work-in-progress to incorporate a rich community review process for uploads. (but uploads can be done NOW to Sandbox)
+But Freebase is an open database, meaning that anybody can submit new data that is currently missing. Google Refine not only can read but can also write data to Freebase.
 
-The review process involves a number of [http://wiki.freebase.com/wiki/Acre Freebase Acre apps] and subsystems which handle the processing flow.  This current processing flow is subject to change as we continue refining based on community feedback from you:
+== Prevision vs. Recall ==
 
-  # Google Refine sends the data over to [http://wiki.freebase.com/wiki/FreeQ FreeQ Triple Loader]
-  # [http://wiki.freebase.com/wiki/FreeQ FreeQ] then loads it into [http://sandbox.freebase.com sandbox.freebase.com]
-  # Then generates [http://wiki.freebase.com/wiki/RABJ RABJ] queues for QA purposes and eventually, community review.
-  # The queues (eventually) will show up on [refinery.freebaseapps.com Google Refine Loads Dashboard] that shares some technology from [http://wiki.freebase.com/wiki/Peacock Peacock], an alternate data load review page. 
+Unlike many other sources of data on the web, Freebase focuses on precision and not on recall. In practice, this means that Freebase would want less data with higher quality than more data with lower quality. This is mainly for two reasons:
+
+  # the higher the internal consistency of a dataset, the easier it is to reconcile against it (for example, if a dataset contains 20 different identifiers for the same concept, which one should we pick?), therefore the easier it is to load more data to it (think of it as a crystal growing from a seed and keeping its structural consistency as it grows)
+  # errors accumulate with each join when queried. Unlike web pages or wiki articles where poor or false assertions don't affect neighboring pages, every relational assertion could potentially be instrumental to the solution of many queries aggregating lots of information.
+
+== The Freebase Sandbox ==
+
+The focus on precision has one major drawback: loading data in Freebase needs a lot of care.
+
+For this reason, Freebase provides a "[http://www.sandbox-freebase.com/ sandbox]" where users can experiment freely with loading data, and safely make mistakes, easily loading whatever data they want and see it in context, but without worrying about damaging others in doing so. The sandbox is a copy of the main Freebase system that gets thrown away and repopulated every week with the data from the main Freebase (this reset normally happens on Mondays).
+
+== The Freebase Refinery ==
+
+Because it would be easy to flood Freebase with vast quantities of poorly reconciled and misaligned data using power tools like Google Refine (either by mistake or maliciously), a special 'loading conduit' was created to allow such tools to both:
+
+  * load the data into a system that behaves exactly like Freebase and see it in context (this is the sandbox)
+  * provide a way to estimate the data quality before it can be allowed in the main Freebase repository
+
+This conduit is called the "refinery" and primarily takes care of operating the machinery that loads the assertions originating from your data in Google Refine into the sandbox. 
+
+Note that this process is not synchronous: when you submit a load, the refinery will schedule it to be loaded with the internal data loading manager. Depending on how many other processes are loading data and how big are those loads, it might take a few seconds or a few hours. 
+
+When you perform a load, Google Refine will send you to the refinery web page that is the dashboard for your load and you can observe its status from there.
+
+== Quality Assurance (QA) ==
+
+The Freebase Refinery is also capable of replaying the same data load against the main Freebase system, but this ability is available only if the data has been analyzed for quality and has been considered acceptable.
+
+Starting from version 2.0, Google Refine provides a way to instructs the refinery that a load is considered ready to be loaded in Freebase and the user doing the load requests the initialization of the QA process.
+
+The QA process works like this:
+
+  * the refinery will analyze the loaded data, understand how many different types of reconciliations were performed, randomly sample some of those assertions from the various columns and create a queue for each of those samples
+  * these queues are then fed to a web application operated by human judges that independently perform the same reconciliation (using a tool called [http://matchmaker.freebaseapps.com/ Matchmaker] that Freebase uses for these kind of tasks)
+  * the refinery watches over the judgments cast in the queues by the human judges as they are happening and calculates the corresponding QA score
+  * once all the questions in the queues have been answered and the cumulative QA score passes the required *99% accuracy threshold* (for the sample!), then a "Load to Freebase" button will be enabled and the load owner can press the button and tell the refinery to replay the same load against Freebase (the refinery already knows the data for this load so it doesn't have be submitted again).
+
+Note: to protect the loader's privacy, only the load owner (and Freebase staff members) are allowed to see the QA scores for the loads, but this is a screenshot of how the dashboard looks like for one of our test loads:
+
+   <coming soon>
+
+Warning: none of this is carved in stone and it will probably adapt the workflow as we gain more real-world usage information on it.
