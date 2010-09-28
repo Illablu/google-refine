@@ -5,7 +5,7 @@
   * [FAQ FAQ]
   * Users's Resources
     * [UserGuide How to Use Google Refine]
-    * [Basic Features Help]
+    * [BasicFeaturesHelp Basic Features Help]
     * [Recipes Quick Recipes]
     * [Faceting Faceting]
     * [Clustering Clustering]
