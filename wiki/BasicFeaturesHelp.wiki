@@ -1,0 +1,171 @@
+#summary Help Documentation on basic features and menus items in Google Refine
+#labels Help
+
+= Start Page (Home) =
+
+== Open a Project ==
+
+Shows previously opened projects or empty if starting Google Refine for the first time.  
+Click on a previous project name to open it.
+Clicking on the circled X will delete projects.
+Clicking on rename will allow you to conquer the world, just kidding, actually it blows it up. (rename your projects a different name)
+
+== Create a New Project ==
+
+  * Advanced Options - 
+    * Limit load to:
+    * When parsing text files:
+
+== Import an Existing Project ==
+
+You can Import an existing Google Refine .tar or .tar.gz file which Google Refine will automatically extract, expand, & open.  This files can also be saved using the Project 
+
+= Google Refine Project Page (Refining your data) =
+
+== Header bar ==
+
+  * Freebase Logo - link to Freebase homepage
+  * Google Refine - takes you back to Refine start page for opening or creating project.
+  * project link - link to current projects' url
+  * permalink - (facet saving, bookmarking, or sharing)
+
+
+== Main Menu bar ==
+
+=== Project ===
+
+  * Rename
+  * Export Filtered Rows
+    * Tab-Separated Value
+    * Comma-Separated Value
+    * HTML Table
+    * Excel
+    * TripleLoader
+    * MQLWrite
+    * Templating...
+  * Export Project
+  * Open Workspace Directory
+
+=== Schemas ===
+
+  * Edit Schema Alignment Skeleton...
+  * Reset Schema Alignment Skeleton...
+  * Load into Freebase...
+  * Browse to Data Load...
+  * Import QA Data
+
+== Facet Panel ==
+
+=== Facet/Filter ===
+
+  * Browse by rows
+  * Browse by records
+
+=== Undo/Redo ===
+
+  * Extract -
+  * Apply -
+
+== Column / Row Panel ==
+
+==== Facet ====
+
+  * Text Facet
+  * Numeric Facet
+  * Timeline Facet
+  * Scatterplot Facet
+  * Custom Text Facet...
+  * Custom Numeric Facet...
+  * Customized Facets
+    * Word Facet
+    * Numeric Log Facet
+    * 1-bounded Numeric Log Facet
+    * Text Length Facet
+    * Log of Text Length Facet
+    * Unicode Char-code Facet
+    * Facet by Error
+    * Facet by Blank
+
+==== Text Filter ====
+
+Allows filtering by Case Sensitive and Regular Expression strings.
+
+==== Edit Cells ====
+  
+  * Transform
+
+  * Common Transforms
+    * Unescape HTML entities -
+    * Collapse whitespace - replaces each sequence of several whitespace characters to just one whitespace char.  Example:  "foo         bar" -> "foo bar"
+    * To Titlecase
+    * To Uppercase
+    * To Lowercase
+    * To Blank
+
+  * Fill Down
+  * Blank Down
+  * Split Multi-Valued Cells...
+  * Join Multi-Valued Cells...
+  * Cluster & Edit...
+
+==== Edit Column ====
+
+  * Split into Several Columns...
+
+  * Add Column Based on This Column...
+
+  * Add Columns From Freebase...
+
+  * Add Column By Fetching URLs...
+
+  * Rename this Column
+  * Remove this Column
+  * Move Column to Beginning
+  * Move Column to End
+  * Move Column Left
+  * Move Column Right
+
+==== Transpose ====
+
+  * Cells Across Columns into Rows
+  * Cells in Rows into Columns
+
+==== Sort... ====
+
+
+==== View ====
+
+  * Collapse This Column
+  * Collapse All Other Columns
+  * Collapse All Columns to Left
+  * Collapse All Columns to Right
+
+==== Reconcile ====
+
+  * Start Reconciling...
+
+  * Facets
+    * By Judgement -
+    * Best Candidate's Relevance Score -
+    * Best Candidate's Type Match -
+    * Best Candidate's Name Match -
+    * Best Candidate's Name Edit Distance -
+    * Best Candidate's Name Word Similarity -
+    * Best Candidate's Types -
+
+  * QA Facets
+    * QA Results -
+    * Judgment Actions -
+    * Judgment History Entries -
+
+  * Actions
+    * Match Each Cell to Its Best Candidate -
+    * Create a New Topic for Each Cell -
+    * Create One New Topic for Similar Cells -
+
+    * Match All Filtered Cells to...
+
+    * Discard Reconciliation Judgments
+
+== Additional (Reserved for Extensions) ==
+  * placeholder for quick help on any included extensions
