@@ -7,7 +7,6 @@ This architecture has emerged from our experience building similar systems such 
   * [ServerSideArchitecture Server-Side]: how the data is modeled, stored, changed, etc.
   * [ClientSideArchitecture Client-Side]: how the UI is built
   * [FacetedBrowsingArchitecture Faceted Browsing]: how faceted browsing is implemented (this straddles the client and the server)
-  * [TechnologyStack Technology Stack]: a list of external libraries used and the purpose in which they are used
   * [ReconciliationServiceApi Reconciliation Service API]: describes a standard reconciliation service structure.
 
 == Technology Stack ==
