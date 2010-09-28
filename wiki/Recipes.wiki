@@ -7,6 +7,11 @@ This page collects Google Refine recipes, small workflows and code fragments tha
 
 Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Google Refine Expression Language (GEL)
 
+=== Trim whitespace from beginning and end of values ===
+{{{
+  value.trim()
+}}}
+
 === "someprefix_a2343" -> "a2343" ===
 
 You can use 
@@ -225,4 +230,3 @@ To do this, there is a special numeric facet called "Unicode charcode Facet" tha
 == Spot Values Potentially Placed in the wrong Column ==
 
 Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem.
-
