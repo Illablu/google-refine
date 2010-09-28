@@ -1,11 +1,11 @@
 #labels Features
 = Using Google Refine to upload data to Freebase =
 
-[http://www.freebase.com/ Freebase] is a open repository of relational factual data and is used by Google Refine both to help cleaning up data via semantically-aware reconciliation and by augmenting your data.
+[http://www.freebase.com/ Freebase] is a open repository of relational factual data and is used by Google Refine both to help clean up data via semantically-aware reconciliation and by augmenting your data.
 
 But Freebase is an open database, meaning that anybody can submit new data that is currently missing. Google Refine not only can read but can also write data to Freebase.
 
-== Prevision vs. Recall ==
+== Precision vs. Recall ==
 
 Unlike many other sources of data on the web, Freebase focuses on precision and not on recall. In practice, this means that Freebase would want less data with higher quality than more data with lower quality. This is mainly for two reasons:
 
@@ -35,14 +35,14 @@ When you perform a load, Google Refine will send you to the refinery web page th
 
 The Freebase Refinery is also capable of replaying the same data load against the main Freebase system, but this ability is available only if the data has been analyzed for quality and has been considered acceptable.
 
-Starting from version 2.0, Google Refine provides a way to instructs the refinery that a load is considered ready to be loaded in Freebase and the user doing the load requests the initialization of the QA process.
+Starting from version 2.0, Google Refine provides a way to instruct the refinery that a load is considered ready to be loaded in Freebase and the user doing the load requests the initialization of the QA process.
 
 The QA process works like this:
 
   * the refinery will analyze the loaded data, understand how many different types of reconciliations were performed, randomly sample some of those assertions from the various columns and create a queue for each of those samples
   * these queues are then fed to a web application operated by human judges that independently perform the same reconciliation (using a tool called [http://matchmaker.freebaseapps.com/ Matchmaker] that Freebase uses for these kind of tasks)
   * the refinery watches over the judgments cast in the queues by the human judges as they are happening and calculates the corresponding QA score
-  * once all the questions in the queues have been answered and the cumulative QA score passes the required *99% accuracy threshold* (for the sample!), then a "Load to Freebase" button will be enabled and the load owner can press the button and tell the refinery to replay the same load against Freebase (the refinery already knows the data for this load so it doesn't have be submitted again).
+  * once all the questions in the queues have been answered and the cumulative QA score passes the required *99% accuracy threshold* (for the sample!), then a "Load to Freebase" button will be enabled and the load owner can press the button and tell the refinery to replay the same load against Freebase (the refinery already knows the data for this load so it doesn't have to be submitted again).
 
 Note: to protect the loader's privacy, only the load owner (and Freebase staff members) are allowed to see the QA scores for the loads, but this is a screenshot of how the dashboard looks like for one of our test loads:
 
