@@ -1,4 +1,5 @@
 #summary Methods and theory behind the clustering functionality in Google Refine.
+#labels Features
 
 = Introduction =
 
