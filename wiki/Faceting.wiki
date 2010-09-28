@@ -4,6 +4,8 @@ Google Refine supports faceted browsing as a mechanism for
 
 (Currently faceting panels have a hard limit of 2000 values shown, and may give an error if exceeded, you will have to partition your data to overcome this limit and be able to display the facet effectively)
 
+You can *save interesting facets* in your project by bookmarking using the *permalink* on Refine's header bar menu.  And even sharing this and your exported project with others.
+
 There are several types of facet: text, numeric, text search.
 
 (The results of individual facet panels can also be exported as TSV by clicking the link in the top left corner of each panel)
