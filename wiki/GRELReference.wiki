@@ -1,6 +1,6 @@
 #summary Google Refine Expression Language (GREL) Reference
 
-Gridworks expression language (abbreviated as GREL in various places) is used to create custom facets, to create new columns based on existing ones, and to perform cell transformations.
+Google Refine Expression Language (abbreviated as *GREL* in various places) is used to create custom facets, to create new columns based on existing ones, and to perform cell transformations.
 
 ==Syntax==
 
