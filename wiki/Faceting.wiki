@@ -1,3 +1,4 @@
+#labels Features
 Google Refine supports faceted browsing as a mechanism for 
   * exploring your data
   * filtering down to just the subset of rows that you want to edit en masse.
