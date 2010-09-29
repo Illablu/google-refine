@@ -1,5 +1,5 @@
 #summary Frequently Asked Questions
-#labels Featured
+#labels Featured,Troubleshooting
 
 This is a collection of frequently asked questions on Google Refine. Feel free to add your own question to the comments, we'll try to answer to the best of our abilities and add them to this list.
 
@@ -71,6 +71,11 @@ If you have downloaded the ".dmg" package and you start Google Refine by double 
 If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
 
 `./refine -m 1024m`
+
+== Google Refine opens my browser then waits a long time trying to connect to the server at 165.135.222.96 or another address I don't recognize ==
+
+  * Try to run Refine /i 127.0.0.1
+  * Double check your Chrome or Firefox proxy settings - In Firefox options/advanced/network/connection/settings and switch from "use system proxy settings" to "auto-detect proxy settings for this network"
 
 == What syntax of regular expression (regex) does Google Refine support ? ==
 
