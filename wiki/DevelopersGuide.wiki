@@ -48,7 +48,7 @@ If you want Google Refine logs to be more verbose, append this to the line above
 
 The Google Refine build system requires you to have a unix shell. On Mac OS X and Linux, just use whatever shell compatible with `/bin/sh`. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run `sh` or `bash`.
 
-To see what functions are supported by the Gridwork's build system, type
+To see what functions are supported by the Google Refine's build system, type
 
 {{{
    ./refine -h
