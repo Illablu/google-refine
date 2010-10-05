@@ -55,4 +55,7 @@ At the end, you will have created several columns for the several batches. Say, 
   forNonBlank(cells.response1.value, v1, v1, forNonBlank(cells.response2.value, v2, v2, forNonBlank(cells.response3.value, v3, v3, null)))
 }}}
 
-You can then delete the original 3 columns and use the merged one. 
+You can then delete the original 3 columns and use the merged one.
+
+== Additional References, Tests, & Software for GeoData & Coordinate Systems ==
+  * http://earth-info.nga.mil/GandG/
