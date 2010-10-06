@@ -15,4 +15,7 @@
   * [http://www.pervasivedatarush.com/Pages/default.aspx Pervasive Datarush]
   * [http://www.palantirtech.com/ Palantir]
 
+From the academia
+  * [http://control.cs.berkeley.edu/abc/ Potter's Wheel] ([http://control.cs.berkeley.edu/abc/abc-rel/1.3/snapshots/ screenshots])by Vijayshankar Raman and Joseph M. Hellerstein
+
 Feel free to add suggestions in the comments. 
