@@ -1,5 +1,5 @@
   * [WhatsNew What's New?]
-  * [WhatPeopleSay What People Say and Do] - ([TwitterTracker live on Twitter])
+  * [WhatPeopleSay What People Say and Do] - ([http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view twitter])
   * [HowToParticipate How to Participate]
   * [GettingStarted Getting Started]
   * [FAQ FAQ]
