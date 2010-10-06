@@ -17,5 +17,6 @@
 
 From the academia
   * [http://control.cs.berkeley.edu/abc/ Potter's Wheel] ([http://control.cs.berkeley.edu/abc/abc-rel/1.3/snapshots/ screenshots]) by Vijayshankar Raman and Joseph M. Hellerstein (UCBerkeley)
+  * [http://web.tagus.ist.utl.pt/~helena.galhardas/ajax.html AJAX] by H.Galhardas, D. Florescu, D. Shasha, E. Simon, J.P. Matsumoto, C.A. Saita
 
 Feel free to add suggestions in the comments. 
