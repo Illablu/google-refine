@@ -1,0 +1,3 @@
+#summary Tracking Google Refine mine on Twitter
+
+<wiki:gadget url="http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view" height="500px" border="0" width="70%" />
