@@ -5,7 +5,7 @@ This page collects Google Refine recipes, small workflows and code fragments tha
 
 == String Manipulation ==
 
-Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Google Refine Expression Language (GEL)
+Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Google Refine Expression Language (GREL)
 
 === Trim whitespace from beginning and end of values ===
 {{{
@@ -110,7 +110,7 @@ If any of cells in the columns are blank, the merge will fail for that row. To f
 
 === "AT&amp;amp;T" --> "AT&T" ===
 
-Sometimes you get content that was extracted from web pages or XML documents and contain entities. These are very hard to deal with manually, mostly because there are tons of potential string values between "&" and ";". Google Refine provides you a convenient command to do this in GEL
+Sometimes you get content that was extracted from web pages or XML documents and contain entities. These are very hard to deal with manually, mostly because there are tons of potential string values between "&" and ";". Google Refine provides you a convenient command to do this in GREL
 
 {{{
   value.unescape("html")
@@ -165,7 +165,7 @@ The above basically says that for each entry record (which creates an array), I 
 
 === "AÃ¯n TÃ©muchent" ---> "Aïn Témuchent" ===
 
-Sometimes content is aggregated from various sources and some where improperly decoded. This results in strings that contain 'garbled' content in the form of weird spurious characters. Fixing that is normally a very tedious and time consuming process, but Google Refine contains a handy GEL command specifically for that
+Sometimes content is aggregated from various sources and some where improperly decoded. This results in strings that contain 'garbled' content in the form of weird spurious characters. Fixing that is normally a very tedious and time consuming process, but Google Refine contains a handy GREL command specifically for that
 
 {{{
   value.reinterpret("utf-8")
@@ -223,9 +223,9 @@ What forNonBlank does is test its first argument and decides what to do based on
 
 == Spot Potential Encoding Issues ==
 
-While Google Refine offers a convenient way to fix encoding issues with the "reinterpret" GEL command, it also helps you find where these problems could be since they can be hidden if most of the content has been properly decoded.
+While Google Refine offers a convenient way to fix encoding issues with the "reinterpret" GREL command, it also helps you find where these problems could be since they can be hidden if most of the content has been properly decoded.
 
-To do this, there is a special numeric facet called "Unicode charcode Facet" that generates a distribution of which unicode characters are used in a particular column. That distribution will allow you to spot outliers, meaning characters that are used infrequently and that might suggest encoding issues. You can use that char distribution facet to 'scan' and inspect the values for yourself and then use fix their encoding with the 'reinterpret' GEL function.
+To do this, there is a special numeric facet called "Unicode charcode Facet" that generates a distribution of which unicode characters are used in a particular column. That distribution will allow you to spot outliers, meaning characters that are used infrequently and that might suggest encoding issues. You can use that char distribution facet to 'scan' and inspect the values for yourself and then use fix their encoding with the 'reinterpret' GREL function.
 
 == Spot Values Potentially Placed in the wrong Column ==
 
