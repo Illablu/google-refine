@@ -27,7 +27,7 @@ In the code, the faceted browsing state, or faceted browsing query, is actually 
         "type": "list",
         "name": "Shrt_Desc",
         "columnName": "Shrt_Desc",
-        "expression": "gel:value.toLowercase().split(\",\")",
+        "expression": "grel:value.toLowercase().split(\",\")",
         "omitBlank": false,
         "omitError": false,
         "selection": [],
