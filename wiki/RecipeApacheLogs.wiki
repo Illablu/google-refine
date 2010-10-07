@@ -25,7 +25,7 @@ Then apply the following operations
     },
     {
       "op": "column-addition",
-      "description": "Create column Time at index 3 based on column Column 3 using expression gel:value[2,value.indexOf(\"]\")].toDate(\"dd/MMM/yyyy:hh:mm:ss\")",
+      "description": "Create column Time at index 3 based on column Column 3 using expression grel:value[2,value.indexOf(\"]\")].toDate(\"dd/MMM/yyyy:hh:mm:ss\")",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -33,12 +33,12 @@ Then apply the following operations
       "newColumnName": "Time",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:value[2,value.indexOf(\"]\")].toDate(\"dd/MMM/yyyy:hh:mm:ss\")",
+      "expression": "grel:value[2,value.indexOf(\"]\")].toDate(\"dd/MMM/yyyy:hh:mm:ss\")",
       "onError": "set-to-blank"
     },
     {
       "op": "column-addition",
-      "description": "Create column Method at index 3 based on column Column 3 using expression gel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[0]",
+      "description": "Create column Method at index 3 based on column Column 3 using expression grel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[0]",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -46,12 +46,12 @@ Then apply the following operations
       "newColumnName": "Method",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[0]",
+      "expression": "grel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[0]",
       "onError": "set-to-blank"
     },
     {
       "op": "column-addition",
-      "description": "Create column Path at index 3 based on column Column 3 using expression gel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[1]",
+      "description": "Create column Path at index 3 based on column Column 3 using expression grel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[1]",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -59,12 +59,12 @@ Then apply the following operations
       "newColumnName": "Path",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[1]",
+      "expression": "grel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[1]",
       "onError": "set-to-blank"
     },
     {
       "op": "column-addition",
-      "description": "Create column Agent at index 3 based on column Column 3 using expression gel:value.rpartition('\"')[0].rpartition('\"')[2]",
+      "description": "Create column Agent at index 3 based on column Column 3 using expression grel:value.rpartition('\"')[0].rpartition('\"')[2]",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -72,12 +72,12 @@ Then apply the following operations
       "newColumnName": "Agent",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:value.rpartition('\"')[0].rpartition('\"')[2]",
+      "expression": "grel:value.rpartition('\"')[0].rpartition('\"')[2]",
       "onError": "set-to-blank"
     },
     {
       "op": "column-addition",
-      "description": "Create column ResponseCode at index 3 based on column Column 3 using expression gel:with(value.partition('\" ')[2], s, s.partition(\" \")[0])",
+      "description": "Create column ResponseCode at index 3 based on column Column 3 using expression grel:with(value.partition('\" ')[2], s, s.partition(\" \")[0])",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -85,12 +85,12 @@ Then apply the following operations
       "newColumnName": "ResponseCode",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:with(value.partition('\" ')[2], s, s.partition(\" \")[0])",
+      "expression": "grel:with(value.partition('\" ')[2], s, s.partition(\" \")[0])",
       "onError": "set-to-blank"
     },
     {
       "op": "column-addition",
-      "description": "Create column ContentLength at index 3 based on column Column 3 using expression gel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(\" \")[0])",
+      "description": "Create column ContentLength at index 3 based on column Column 3 using expression grel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(\" \")[0])",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -98,12 +98,12 @@ Then apply the following operations
       "newColumnName": "ContentLength",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(\" \")[0])",
+      "expression": "grel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(\" \")[0])",
       "onError": "set-to-blank"
     },
     {
       "op": "column-addition",
-      "description": "Create column Referer at index 3 based on column Column 3 using expression gel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(' \"')[2].partition('\" ')[0])",
+      "description": "Create column Referer at index 3 based on column Column 3 using expression grel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(' \"')[2].partition('\" ')[0])",
       "engineConfig": {
         "facets": [],
         "includeDependent": false
@@ -111,7 +111,7 @@ Then apply the following operations
       "newColumnName": "Referer",
       "columnInsertIndex": 3,
       "baseColumnName": "Column 3",
-      "expression": "gel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(' \"')[2].partition('\" ')[0])",
+      "expression": "grel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(' \"')[2].partition('\" ')[0])",
       "onError": "set-to-blank"
     },
     {
