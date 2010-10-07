@@ -144,12 +144,12 @@ Do not call `new` to construct an operation instance. You must register the clas
   }
 }}}
 
-==GEL==
+==GREL==
 
-GEL can be extended with new functions. This is also done in the `init` function in `controller.js`, e.g.,
+GREL can be extended with new functions. This is also done in the `init` function in `controller.js`, e.g.,
 
 {{{
-  Packages.com.google.refine.gel.ControlFunctionRegistry.registerFunction(
+  Packages.com.google.refine.grel.ControlFunctionRegistry.registerFunction(
         "functionName", new Packages.com.foo.bar.TheFunctionClass());
 }}}
 
