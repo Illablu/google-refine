@@ -255,9 +255,13 @@ Returns part of a date.
 
 Returns the type of the object o.
 
-===uniques()===
+===uniques(array a)===
 
-(TODO: needs documentation from David)
+Returns array a with duplicates removed
+
+===hasField()===
+
+TODO (needs documentation)
 
 ===cross(cell c, string projectName, string columnName)===
 
