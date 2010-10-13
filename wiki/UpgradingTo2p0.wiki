@@ -4,30 +4,22 @@ If you have been using Freebase Gridworks 1.1 or earlier and you are now going t
 
 Freebase Gridworks 1.1 or earlier store its projects as sub-directories of a "workspace" directory. Where the workspace directory is depends on your OS:
 
-*MacOSX:*
-  * `~/Library/Application Support/Gridworks/`
+  * MacOSX: `~/Library/Application Support/Gridworks/`
+  * Windows: depending on the Windows version, the data is in one of these directories
+    * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks`
+    * `C:\Users\(user id)\AppData\Roaming\Gridworks`
+    * `C:\Users\(user id)\Gridworks`
+  * Linux: `~/.local/share/gridworks/`
 
-*Windows:* depending on the Windows version, the data is in one of these directories
-  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks`
-  * `C:\Users\(user id)\AppData\Roaming\Gridworks`
-  * `C:\Users\(user id)\Gridworks`
-
-*Linux:*
-  * `~/.local/share/gridworks/`
-
-*Make a copy* of that workspace directory. Don't *move* the directory.
+*Make a copy* of that workspace directory. *Don't move* that directory.
 
 After you install Google Refine 2.0 and run it for the first time, it will attempt to rename that workspace directory
 
-*MacOSX:*
-  * `~/Library/Application Support/Google/Refine/`
-
-*Windows:* depending on the Windows version, the data is in one of these directories
-  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
-  * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
-  * `C:\Users\(user id)\Google\Refine`
-
-*Linux:*
-  * `~/.local/share/google-refine/`
+  * MacOSX: `~/Library/Application Support/Google/Refine/`
+  * Windows: depending on the Windows version, the data is in one of these directories
+    * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
+    * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
+    * `C:\Users\(user id)\Google\Refine`
+  * Linux: `~/.local/share/google-refine/`
 
 If all goes well, the existing projects will be available in Google Refine 2.0.
