@@ -43,6 +43,7 @@ Love it so much?
   * Google Refine Expression Language (GREL)
     * [GRELReference GREL Reference]
     * [GRELFunctions GREL Functions]
+    * [GRELRegex GREL Regular Expressions]
   * [Jython Jython]
 
 
