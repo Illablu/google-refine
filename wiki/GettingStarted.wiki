@@ -1,35 +1,17 @@
 #summary How to get started with Google Refine
 
-Google Refine is implemented as a Java-based local web server, serving at http://localhost:3333/. You use Google Refine by interacting with it in your web browser. When you start Google Refine, it starts the web server and also opens a browser window automatically. But just like you can open several browser windows pointing to a single web site, you can open several browser windows pointing to Google Refine.
+=Welcome!=
 
-==Windows==
+If you're here for the first time:
 
-Once you have downloaded the `.zip` file, decompress it into a folder somewhere, and run the `.exe` file in that folder. You should see the command line window in which Google Refine runs. Pressing `Ctrl-C` in that window terminates Google Refine gracefully.
+  * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter])
 
-==Mac OSX==
+and get started with
 
-Once you have downloaded the `.dmg` file, open it, and drag the Google Refine icon into the Applications folder (just like you would normally install Mac applications). To launch Google Refine, go to the Applications folder and double click the Google Refine app. You'll see the Google Refine app appear in your dock.
+  * [InstallationInstructions Installation Instructions]
+  * [DocumentationForUsers Documentation]
 
-You can switch to the Google Refine app to shut it down (using its menu items even if it has no window of its own!), or to re-open a browser window pointing to its web server in case you have accidentally closed its browser window.
+If you're back for more:
 
-==Linux==
-
-Once you have downloaded the `tar.gz` file, open a shell and type
-
-{{{
-  tar xzf google-refine.tar.gz
-  cd google-refine
-  ./refine
-}}}
-
-this will start Google Refine and open your browser to its starting page.
-
-=Loading Data=
-
-Google Refine can load both individual data files as well as tarred and zipped archives (`.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, `.bz2`). For an archive file, Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
-
-For individual files, Google Refine can handle non-delimited fixed length text files, comma-separated value (`CSV`) files, tab-separated value (`TSV`) files, or text files in which the columns are separated by some character you specify. Google Refine can also handle Excel files, `.xml` files (including `.rss` and `.atom`) and `.rdf` files.
-
-=Troubleshooting=
-
-See the [FAQ] to know how to run Google Refine with more memory, etc.
+  * [WhatsNew See what's new lately]
+  * [UpgradingTo2p0 Understand how to upgrade] from Freebase Gridworks 1.1 to Google Refine 2.0 (still to be released)
