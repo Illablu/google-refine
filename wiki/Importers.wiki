@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+Google Refine can load both individual data files as well as tarred and zipped archives (`.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, `.bz2`). For an archive file, Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
+
+For individual files, Google Refine can handle non-delimited fixed length text files, comma-separated value (`CSV`) files, tab-separated value (`TSV`) files, or text files in which the columns are separated by some character you specify. Google Refine can also handle Excel files, `.xml` files (including `.rss` and `.atom`) and `.rdf` files.
