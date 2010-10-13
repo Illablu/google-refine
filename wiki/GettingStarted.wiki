@@ -2,8 +2,11 @@
 
 =Welcome!=
 
-If you're here for the first time:
+<blockquote>*Pardon the mess while we're preparing to release version 2.0*</blockquote>
 
+==Here for the First Time?==
+
+  * Watch these screencasts to understand what's possible with Google Refine
   * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter]
 
 and get started with
@@ -11,7 +14,7 @@ and get started with
   * [InstallationInstructions Installation Instructions]
   * [DocumentationForUsers Documentation]
 
-If you're back for more:
+==Back for More==
 
   * [WhatsNew See what's new lately]
   * [UpgradingTo2p0 Understand how to upgrade] from Freebase Gridworks 1.1 to Google Refine 2.0 (still to be released)
