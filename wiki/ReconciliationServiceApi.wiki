@@ -29,8 +29,8 @@ A call to a standard reconciliation service API for a single query looks like ei
 
 If the query parameter is a string, then it's an abbreviation of `query={"query":...string...}`. Here are two live examples:
 
-  [http://standard-reconcile.freebaseapps.com/reconcile?query=boston http://standard-reconcile.freebaseapps.com/reconcile?query=boston]
-  [http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22} http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22}]
+  http://standard-reconcile.freebaseapps.com/reconcile?query=boston
+  http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22}
 
 The query json object literal has a few fields
 
@@ -83,7 +83,7 @@ The json object literal has zero or more arbitrary key, each of which has a valu
 
 "q1" and "q2" can be arbitrary strings. Here is a live example:
 
-  [http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q1%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q2%22:{%22query%22:%22jaguar%22}} http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q1%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q2%22:{%22query%22:%22jaguar%22}}]
+  http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q1%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q2%22:{%22query%22:%22jaguar%22}}
 
 
 =Query Response=
@@ -181,7 +181,8 @@ The preview service API (complementary to the reconciliation service API) is qui
 
 If there is no preview service specified in the reconciliation service's metadata, and if the entity identifier space is a Freebase ID or Mid identifier space, then Google Refine knows to use Freebase's topicblock service. Here is an example of how an entity's preview looks like
 
-  [http://www.freebase.com/widget/topic/en/apple_inc?mode=content http://www.freebase.com/widget/topic/en/apple_inc?mode=content]
+  http://www.freebase.com/widget/topic/en/apple_inc?mode=content
+
 
 ==Suggest APIs==
 
@@ -196,6 +197,7 @@ These suggest APIs are required to work with a modified version of the [http://c
   * translate what the user type into a ranked list of entities (and this is similar to the core reconciliation service and might share the same implementation)
   * render a flyout when an entity is moused over or highlighted using arrow keys (and this is similar to the preview API and might share the same implementation)
 
+The metadata for each suggest API (type, property, or entity) is as follows:
 
 {{{
 {
@@ -206,6 +208,13 @@ These suggest APIs are required to work with a modified version of the [http://c
 }
 }}}
 
+The `service_url` field is required and it should look like this: `http://foo.com`. There should be no trailing / at the end. The other fields are optional and have defaults if not provided:
+
+  * `service_path` defaults to `/private/suggest`
+  * `flyout_service_url` defaults to the provided `service_url` field
+  * `flyout_service_path` defaults to `/private/flyout`
+
+The Freebase Suggest widgets embedded in Google Refine will concatenate `_url` and `_path` to make the full URL. Refer to [SuggestApi the specification for a Suggest API] for details.
 
 
 =Google Refine Integration=
