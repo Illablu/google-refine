@@ -4,7 +4,7 @@
 
 If you're here for the first time:
 
-  * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter])
+  * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter]
 
 and get started with
 
