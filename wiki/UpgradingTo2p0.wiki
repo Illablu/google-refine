@@ -23,3 +23,5 @@ After you install Google Refine 2.0 and run it for the first time, it will attem
   * Linux: `~/.local/share/google-refine/`
 
 If all goes well, the existing projects will be available in Google Refine 2.0.
+
+If the directory renaming is successful but some particular projects are broken, you can move that copy you have made of the old directory back to exactly where it was before, and then shut down Google Refine 2.0 and start up Freebase Gridworks 1.1 to access those projects. Because there is already a Refine workspace directory, the next time Google Refine is run, it will *not* attempt to rename the old Gridworks workspace directory. Thus, you can use both Freebase Gridworks 1.1 and Google Refine 2.0 on the same computer. But note that they will not share their projects.
