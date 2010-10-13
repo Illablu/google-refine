@@ -28,7 +28,11 @@ Logically NOT a boolean to yield another boolean.
 ===`chomp(string s, string sep)`===
 
 Removes sep from the end of s if it's there, otherwise leave it alone.
-
+{{{
+Example: St. Augustine*
+value.chomp("*") or chomp(value,"*")
+Result: St. Augustine
+}}}
 ===`substring(o, number from, optional number to)`===
 
 If o is an array, returns o[from, to]. If o is a string, returns o.substring(from, to).
