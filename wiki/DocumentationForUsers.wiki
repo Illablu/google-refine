@@ -13,25 +13,40 @@ Love it so much?
 
 =Feature Areas=
 
-Bread and Butter
+*Essential:* These are the features you'd use 80% of the time when you use Refine. They help you clean up your data, extend it, and export it out for other tools to consume.
 
   * [Importers Importing]
-  * [Faceting Faceting]
+  * [Faceting Filtering / Faceting]
+  * Editing: [CellEditing Cells], [ColumnEditing Columns], [RowEditing Rows]
   * [Clustering Clustering]
+  * [ExtendingData Extending Data]
   * [Exporters Exporting]
 
-Intermediate
+*Reconciliation and Data Loading:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs).
 
   * [Reconciling]
+    * [ReconcilableDataSources Reconcilable Data Sources]
   * [SchemaAlignment Schema Alignment]
   * [UploadingToFreebase Uploading to Freebase]
 
-Extensions and Plug-ins
+*Extensions and Plug-ins:*
 
-    * [InstallingExtensions Installing Extensions]
-    * [ReconcilableDataSources Reconcilable Data Sources]
+  * [InstallingExtensions Installing Extensions]
 
-=Recipes=
+
+=Reference=
+
+==Commands==
+
+==Expressions==
+
+  * Google Refine Expression Language (GREL)
+    * [GRELReference GREL Reference]
+    * [GRELFunctions GREL Functions]
+  * [Jython Jython]
+
+
+==Recipes==
 
 There are *[Recipes Quick Recipes]* and there are full recipes:
 
@@ -39,14 +54,3 @@ There are *[Recipes Quick Recipes]* and there are full recipes:
   * [FetchingURLsFromWebServices Fetching URLs From Web Services] - grabbing from the Web more data related to the data you already have
   * [StrippingHTML Stripping HTML Tags]
   * [RecipeApacheLogs Analyzing Apache Logs]
-
-=Reference=
-
-Commands
-
-Expressions
-
-  * Google Refine Expression Language (GREL)
-    * [GRELReference GREL Reference]
-    * [GRELFunctions GREL Functions]
-  * [Jython Jython]
