@@ -1,15 +1,25 @@
-#summary One-sentence summary of this page.
+#summary Documentation hub for developers
 
-    * [DevelopersGuide Developer's Guide]
-    * [Roadmap Roadmap]
-    * [Architecture Architecture]
-      * [ServerSideArchitecture Server-Side]
-      * [ClientSideArchitecture Client-Side]
-      * [FacetedBrowsingArchitecture Faceted Browsing]
-    * Extensions
-      * [WriteAnExtension Write an Extension]
-      * [SampleExtension Sample Extension]
-      * [ExtensionPoints Extension Points]
-    * Service Plug-ins
-      * [ReconciliationServiceApi Reconciliation Service API]
-      * [SuggestApi Suggest API]
+[DevelopersGuide Developer's Guide] - how to check out the code, build, run, and test
+
+==Architecture==
+
+  * [Architecture Architecture overview]
+  * [ServerSideArchitecture Server-Side]
+  * [ClientSideArchitecture Client-Side]
+  * [FacetedBrowsingArchitecture Faceted Browsing]
+
+==Extensions==
+
+  * [WriteAnExtension Write an Extension]
+  * [SampleExtension Sample Extension]
+  * [ExtensionPoints Extension Points]
+
+==Service Plug-ins==
+
+  * [ReconciliationServiceApi Reconciliation Service API]
+  * [SuggestApi Suggest API]
+
+==Miscellaneous==
+
+  * [Roadmap Roadmap] - outdated
