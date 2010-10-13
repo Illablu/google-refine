@@ -2,7 +2,7 @@
 
 =Introduction=
 
-A reconciliation service is a service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identifier space. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identifier spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Google Refine.)
+A reconciliation service is a web service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. Entities are identified by strong identifiers in some particular identifier space. In the same identifier space, identifiers follow the same syntax. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identifier spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Google Refine.)
 
 Each reconciliation service can only reconcile to one single identifier space, but several reconciliation services can reconcile to the same identifier space.
 
@@ -25,7 +25,10 @@ A call to a standard reconciliation service API for a single query looks like ei
   http://foo.com/bar/reconcile?query={...json object literal...}
 }}}
 
-If the query parameter is a string, then it's an abbreviate of `query={"query":...string...}`.
+If the query parameter is a string, then it's an abbreviation of `query={"query":...string...}`. Here are two live examples:
+
+  [http://standard-reconcile.freebaseapps.com/reconcile?query=boston http://standard-reconcile.freebaseapps.com/reconcile?query=boston]
+  [http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22} http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22}]
 
 The query json object literal has a few fields
 
@@ -76,7 +79,9 @@ The json object literal has zero or more arbitrary key, each of which has a valu
   http://foo.com/bar/reconcile?queries={ "q1" : { "query" : "foo" }, "q2" : { "query" : "bar" } }
 }}}
 
-"q1" and "q2" can be arbitrary strings. 
+"q1" and "q2" can be arbitrary strings. Here is a live example:
+
+  [http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q1%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q2%22:{%22query%22:%22jaguar%22}} http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q1%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q2%22:{%22query%22:%22jaguar%22}}]
 
 
 =Query Response=
@@ -155,7 +160,7 @@ When a service is called without any parameter (or with just a callback paramete
 
 Note that Freebase itself supports at least 3 identifier spaces:
 
-  * human-friendly IDs such as /en/apple_inc
+  * human-friendly IDs such as /en/apple_inc and /government/politician
   * machine ID (mid) such as /m/0k8z
   * GUID such as #9202a8c04000641f800000000000451e (deprecated)
 
@@ -168,6 +173,15 @@ The other fields are for
   * formulating URLs to a full topic page or to a small preview page for a given entity
   * customizing the suggest widgets used in various places in the reconciliation UI
 
+==Preview API==
+
+The preview service API (complementary to the reconciliation service API) is quite simple. Pass it an identifier and it renders information about the corresponding entity in an HTML page, which will be shown in an iframe inside Google Refine. The given width and height dimensions tell Google Refine how to size that iframe.
+
+If there is no preview service specified in the reconciliation service's metadata, and if the entity identifier space is a Freebase ID or Mid identifier space, then Google Refine knows to use Freebase's topicblock service. Here is an example of how an entity's preview looks like
+
+  [http://www.freebase.com/widget/topic/en/apple_inc?mode=content http://www.freebase.com/widget/topic/en/apple_inc?mode=content]
+
+==Suggest APIs==
 
 =Google Refine Integration=
 
