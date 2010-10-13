@@ -1,11 +1,51 @@
 #summary Documentation hub for users
 
-=Loading Data=
+Where to start?
 
-Google Refine can load both individual data files as well as tarred and zipped archives (`.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, `.bz2`). For an archive file, Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
+  * [InstallationInstructions How to install and run]
+  * [UserGuide How to Use Google Refine] - a brief description of how you use Google Refine
+  * [BasicFeaturesHelp Basic Features Help] - an overview of where things are in the app
 
-For individual files, Google Refine can handle non-delimited fixed length text files, comma-separated value (`CSV`) files, tab-separated value (`TSV`) files, or text files in which the columns are separated by some character you specify. Google Refine can also handle Excel files, `.xml` files (including `.rss` and `.atom`) and `.rdf` files.
+Love it so much?
 
-=Troubleshooting=
+  * [HowToParticipate Join in] with the development or help spread the meme about GoogleRefine
+  * [GetDevelopmentVersion Get the development version] so you can play with all the latest and greatest features, but if you are not afraid of bugs
 
-See the [FAQ] to know how to run Google Refine with more memory, etc.
+=Feature Areas=
+
+Bread and Butter
+
+  * [Importers Importing]
+  * [Faceting Faceting]
+  * [Clustering Clustering]
+
+Intermediate
+
+  * [Reconciling]
+  * [SchemaAlignment Schema Alignment]
+  * [UploadingToFreebase Uploading to Freebase]
+
+Extensions and Plug-ins
+
+    * [InstallingExtensions Installing Extensions]
+    * [ReconcilableDataSources Reconcilable Data Sources]
+
+=Recipes=
+
+There are *[Recipes Quick Recipes]* and there are full recipes:
+
+  * [Geocoding Geocoding] - translating street addresses to lat/lng coordinates
+  * [FetchingURLsFromWebServices Fetching URLs From Web Services] - grabbing from the Web more data related to the data you already have
+  * [StrippingHTML Stripping HTML Tags]
+  * [RecipeApacheLogs Analyzing Apache Logs]
+
+=Reference=
+
+Commands
+
+Expressions
+
+  * Google Refine Expression Language (GREL)
+    * [GRELReference GREL Reference]
+    * [GRELFunctions GREL Functions]
+  * [Jython Jython]
