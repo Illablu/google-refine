@@ -1,0 +1,53 @@
+#summary FAQ: How to allocate more memory?
+
+Since Google Refine is a Java application that utilizes the JVM, you might need to allocate enough memory to handle processing large files and avoid java.lang.OutOfMemoryError: Java heap space errors.  But, you will also need to balance that allocation with the needs of your OS to prevent disk caching problems.
+
+A typical best practice is to start with no more than 50% of your available physical memory, since certain OS's will utilize up to 1 Gig or more of physical RAM.
+
+Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only have 1 gig of physical memory left over.  Starting with a setting of 512m (50% of 1 Gig) can avoid disk caching problems processing large files with many rows and columns. (A 200 meg text file of 331,000 rows x 50 columns)
+
+*Windows:*
+
+Open a "command prompt", 'cd' to the folder where Google Refine is installed, then type
+
+`refine.bat /m 2048m`
+
+where "2048m" is the maximum amount of memory (in Mb) that you want Google Refine to use.
+
+If you decide to use the refine.exe, then set your parameters in the .ini file found in the same folder.
+{{{
+# Launch4j runtime config
+
+# initial memory heap size
+
+-Xms256M
+
+# max memory memory heap size
+
+-Xmx2048M
+
+# -XX:+UseLargePages
+
+# -Dsomevar="%SOMEVAR%"
+}}}
+
+*Mac:*
+
+If you have downloaded the ".dmg" package and you start Google Refine by double clicking on it, follow these instructions
+
+  * close Google Refine
+  * "control-click" on the Google Refine icon (opens the contextual menu)
+  * click on "show package content" (a finder window opens)
+  * open the "Contents" folder
+  * double click on the "Info.plist" file (a Property List Editor app comes up)
+  * expand the "java" section at the bottom
+  * double click on the "VMOptions" content (the right end side)
+  * change "${java.options}" with "-Xms256M -Xmx1024M"
+  * save file
+  * start Google Refine again
+
+*Linux (or Mac):*
+
+If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
+
+`./refine -m 1024m`
