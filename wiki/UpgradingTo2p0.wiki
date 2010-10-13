@@ -20,7 +20,7 @@ After you install Google Refine 2.0 and run it for the first time, it will attem
     * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
     * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
     * `C:\Users\(user id)\Google\Refine`
-  * Linux: `~/.local/share/google-refine/`
+  * Linux: `~/.local/share/google/refine/`
 
 If all goes well, the existing projects will be available in Google Refine 2.0.
 
