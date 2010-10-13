@@ -1,0 +1,25 @@
+#summary How to install Google Refine
+
+Google Refine is implemented as a Java-based local web server, serving at http://localhost:3333/. You use Google Refine by interacting with it in your web browser. When you start Google Refine, it starts the web server and also opens a browser window automatically. But just like you can open several browser windows pointing to a single web site, you can open several browser windows pointing to Google Refine.
+
+==Windows==
+
+Once you have downloaded the `.zip` file, decompress it into a folder somewhere, and run the `.exe` file in that folder. You should see the command line window in which Google Refine runs. Pressing `Ctrl-C` in that window terminates Google Refine gracefully.
+
+==Mac OSX==
+
+Once you have downloaded the `.dmg` file, open it, and drag the Google Refine icon into the Applications folder (just like you would normally install Mac applications). To launch Google Refine, go to the Applications folder and double click the Google Refine app. You'll see the Google Refine app appear in your dock.
+
+You can switch to the Google Refine app to shut it down (using its menu items even if it has no window of its own!), or to re-open a browser window pointing to its web server in case you have accidentally closed its browser window.
+
+==Linux==
+
+Once you have downloaded the `tar.gz` file, open a shell and type
+
+{{{
+  tar xzf google-refine.tar.gz
+  cd google-refine
+  ./refine
+}}}
+
+this will start Google Refine and open your browser to its starting page.
