@@ -1,45 +1,8 @@
-  * [WhatsNew What's New?]
-  * [WhatPeopleSay What People Say and Do] - ([http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view twitter])
+  * [GettingStarted Getting Started] - [FAQ FAQ]
+  * [DocumentationForUsers Documentation for Users]
+  * [DocumentationForDevelopers Documentation for Developers]
   * [HowToParticipate How to Participate]
-  * [GettingStarted Getting Started]
-  * [FAQ FAQ]
-  * Users's Resources
-    * [UserGuide How to Use Google Refine]
-    * [BasicFeaturesHelp Basic Features Help]
-    * [Recipes Quick Recipes]
-    * [Faceting Faceting]
-    * [Clustering Clustering]
-    * [Reconciling]
-    * [SchemaAlignment Schema Alignment]
-    * [Geocoding Geocoding]
-    * [UploadingToFreebase Uploading to Freebase]
-    * [InstallingExtensions Installing Extensions]
-    * Expressions
-      * Google Refine Expression Language (GREL)
-        * [GRELReference GREL Reference]
-        * [GRELFunctions GREL Functions]
-      * [Jython Jython]
-    * Data
-      * [SampleDatasets Sample Datasets]
-      * [DataSources Data Sources]
-      * [ReconcilableDataSources Reconcilable Data Sources]
-    * All Recipes
-      * [RecipeApacheLogs Analyzing Apache Logs]
-      * [FetchingURLsFromWebServices Fetching URLs From Web Services]
-      * [StrippingHTML Stripping HTML Tags]
-    * [GetDevelopmentVersion Get the Development Version]
+  * Other Resources
     * [RelatedSoftware Related Software]
-  * Developers' Resources
-    * [DevelopersGuide Developer's Guide]
-    * [Roadmap Roadmap]
-    * [Architecture Architecture]
-      * [ServerSideArchitecture Server-Side]
-      * [ClientSideArchitecture Client-Side]
-      * [FacetedBrowsingArchitecture Faceted Browsing]
-    * Extensions
-      * [WriteAnExtension Write an Extension]
-      * [SampleExtension Sample Extension]
-      * [ExtensionPoints Extension Points]
-    * Service Plug-ins
-      * [ReconciliationServiceApi Reconciliation Service API]
-      * [SuggestApi Suggest API]
+    * [SampleDatasets Sample Datasets]
+    * [DataSources Data Sources]
