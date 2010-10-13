@@ -1,0 +1,33 @@
+#summary Notes on upgrading to version 2.0
+
+If you have been using Freebase Gridworks 1.1 or earlier and you are now going to download and install Google Refine 2.0, you might want to take some precaution to protect your existing Gridworks projects. We have tried to ensure that the upgrade goes smoothly, but it's possible that we have not covered all cases. If you value your current Gridworks projects, then it is safest to back up your existing projects first.
+
+Freebase Gridworks 1.1 or earlier store its projects as sub-directories of a "workspace" directory. Where the workspace directory is depends on your OS:
+
+*MacOSX:*
+  * `~/Library/Application Support/Gridworks/`
+
+*Windows:* depending on the Windows version, the data is in one of these directories
+  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Gridworks`
+  * `C:\Users\(user id)\AppData\Roaming\Gridworks`
+  * `C:\Users\(user id)\Gridworks`
+
+*Linux:*
+  * `~/.local/share/gridworks/`
+
+*Make a copy* of that workspace directory. Don't *move* the directory.
+
+After you install Google Refine 2.0 and run it for the first time, it will attempt to rename that workspace directory
+
+*MacOSX:*
+  * `~/Library/Application Support/Google/Refine/`
+
+*Windows:* depending on the Windows version, the data is in one of these directories
+  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
+  * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
+  * `C:\Users\(user id)\Google\Refine`
+
+*Linux:*
+  * `~/.local/share/google-refine/`
+
+If all goes well, the existing projects will be available in Google Refine 2.0.
