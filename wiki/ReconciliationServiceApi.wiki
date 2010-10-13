@@ -189,6 +189,25 @@ In the "Start Reconciling" dialog box in Google Refine, you can specify which ty
 
 In the same dialog box, you can specify that other columns should be used to provide more details for the reconciliation. For instance, if there is a column specifying the politicians' home city, passing that data onto the reconciliation service might make reconciliation more accurate. You might want to specify how that second column is related to the column being reconciled, but you might not now how to specify "home city" as a precise relationship. So we need a suggest API that translates "home city" to something like "/people/person/places_lived".
 
+There is also a need for a suggest service for entities rather than just for types and properties. When a cell has no good candidate, then you would want to perform a search yourself (by clicking on "search for match" in that cell).
+
+These suggest APIs are required to work with a modified version of the [http://code.google.com/p/freebase-suggest/ Freebase Suggest widget]. As illustrated on that site, each suggest API has 2 jobs to do:
+
+  * translate what the user type into a ranked list of entities (and this is similar to the core reconciliation service and might share the same implementation)
+  * render a flyout when an entity is moused over or highlighted using arrow keys (and this is similar to the preview API and might share the same implementation)
+
+
+{{{
+{
+  "service_url" : "... url including only the domain ...",
+  "service_path" : "... optional relative path ...",
+  "flyout_service_url" : "... optional url including only the domain ...",
+  "flyout_service_path" : "... optional relative path ..."
+}
+}}}
+
+
+
 =Google Refine Integration=
 
 Google Refine's UI will include a mechanism for entering a standard reconciliation service API's URL.
