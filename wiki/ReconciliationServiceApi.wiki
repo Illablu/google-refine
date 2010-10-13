@@ -185,6 +185,10 @@ If there is no preview service specified in the reconciliation service's metadat
 
 ==Suggest APIs==
 
+In the "Start Reconciling" dialog box in Google Refine, you can specify which type of entities the column in question contains. For instance, the column might contains names of politicians. But you don't know the identifier corresponding to the "politician" type. So we need a suggest API that translates "politician" to something like, say, "/government/politician" if we're reconciling against Freebase.
+
+In the same dialog box, you can specify that other columns should be used to provide more details for the reconciliation. For instance, if there is a column specifying the politicians' home city, passing that data onto the reconciliation service might make reconciliation more accurate. You might want to specify how that second column is related to the column being reconciled, but you might not now how to specify "home city" as a precise relationship. So we need a suggest API that translates "home city" to something like "/people/person/places_lived".
+
 =Google Refine Integration=
 
 Google Refine's UI will include a mechanism for entering a standard reconciliation service API's URL.
