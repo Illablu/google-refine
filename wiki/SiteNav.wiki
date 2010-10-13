@@ -36,8 +36,10 @@
       * [ServerSideArchitecture Server-Side]
       * [ClientSideArchitecture Client-Side]
       * [FacetedBrowsingArchitecture Faceted Browsing]
-      * [ReconciliationServiceApi Reconciliation Service API]
     * Extensions
       * [WriteAnExtension Write an Extension]
       * [SampleExtension Sample Extension]
-      * [ExtensionPoints Extension Points] 
+      * [ExtensionPoints Extension Points]
+    * Service Plug-ins
+      * [ReconciliationServiceApi Reconciliation Service API]
+      * [SuggestApi Suggest API]
