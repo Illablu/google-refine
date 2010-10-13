@@ -18,6 +18,7 @@ Bread and Butter
   * [Importers Importing]
   * [Faceting Faceting]
   * [Clustering Clustering]
+  * [Exporters Exporting]
 
 Intermediate
 
