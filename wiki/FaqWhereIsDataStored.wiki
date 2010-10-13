@@ -1,0 +1,14 @@
+#summary FAQ: Where is the data stored?
+
+All your projects are stored on your own computer:
+
+*MacOSX:*
+  * `~/Library/Application Support/Google/Refine/`
+
+*Windows:* depending on the Windows version, the data is in one of these directories
+  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
+  * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
+  * `C:\Users\(user id)\Google\Refine`
+
+*Linux:*
+  * `~/.local/share/google-refine/`
