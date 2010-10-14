@@ -1,5 +1,4 @@
 #summary Frequently Asked Questions
-#labels Featured,Troubleshooting
 
 This is a collection of frequently asked questions on Google Refine. Feel free to add your own question to the comments, we'll try to answer to the best of our abilities and add them to this list.
 
