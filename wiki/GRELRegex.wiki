@@ -1,0 +1,13 @@
+#summary GREL regular expression support
+
+http://java.sun.com/docs/books/tutorial/essential/regex/index.html
+
+^ and $ should also work in the regex mode.
+
+Note that the Google Refine Expression Language (GREL) also supports regex, e.g.,
+
+Example to replace "Rd" abbreviation with "Road".
+
+    value.replace(/\brd\b/i, "Road")
+
+It should also handle "capture groups".
