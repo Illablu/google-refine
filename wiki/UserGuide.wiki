@@ -1,5 +1,4 @@
 #summary How to use Google Refine
-#labels Featured
 
 If you haven't done so already, we strongly suggest you to watch the [http://vimeo.com/groups/gridworks/videos screencasts] first as they will give you an idea of how to use Google Refine.
 
