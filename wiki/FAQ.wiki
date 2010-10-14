@@ -6,7 +6,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 ==Questions with Long Answers==
 
   * [FaqWhereIsDataStored Where is the data stored?]
-  * [FaqAllocateMoreMemory How to allocate more memory?] - I get java.lang.OutOfMemoryError: Java heap space errors, or it feels SLOW. How do I expand the memory that Google Refine can use?
+  * [FaqAllocateMoreMemory How to allocate more memory?] - I get `java.lang.OutOfMemoryError` or Refine feels SLOW. How do I expand the memory that it can use?
  
 ==Questions with Short Answers==
 
