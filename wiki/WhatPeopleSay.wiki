@@ -1,5 +1,4 @@
 #summary Curated list of quotes, references, uses and extensions about Google Refine (previously called Freebase Gridworks) in the wild
-#labels Featured
 
 = Blog Posts =
 
