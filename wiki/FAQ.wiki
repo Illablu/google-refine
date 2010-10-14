@@ -10,6 +10,14 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
  
 ==Questions with Short Answers==
 
+*Question:* I've found a bug or want a new feature. Where do I report it?
+
+  Go to [http://code.google.com/p/google-refine/issues/list the Issues page] and click on the New issue link (left side of dark blue bar, below the Refine logo)
+
+*Question:* I have a question. Where do I ask?
+
+  Send your question to [http://groups.google.com/group/google-refine/ the Google Refine mailing list].
+
 *Question:* Google Refine opens my browser then waits a long time trying to connect to the server at 165.135.222.96 or another address I don't recognize.
 
   Try to run at a specific IP: `./refine /i 127.0.0.1`. Double check your Chrome or Firefox proxy settings - In Firefox options/advanced/network/connection/settings and switch from "use system proxy settings" to "auto-detect proxy settings for this network".
