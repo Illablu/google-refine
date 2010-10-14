@@ -1,5 +1,4 @@
 #summary How to Participate to the Google Refine ecosystem
-#labels Featured
 
 Google Refine aims to be a truly diverse and open development community of people interested in doing cool things with the increasingly overwhelming amount of data that can be found lying around the web.
 
