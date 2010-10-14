@@ -12,7 +12,7 @@ Here for the First Time?
 Get started:
 
   * [InstallationInstructions Installation Instructions]
-  * [DocumentationForUsers Documentation]
+  * [DocumentationForUsers Documentation] for Users
 
 Get help:
 
@@ -23,3 +23,7 @@ Back for More?
 
   * [WhatsNew See what's new lately]
   * [UpgradingTo2p0 Understand how to upgrade] from Freebase Gridworks 1.1 to Google Refine 2.0 (still to be released)
+
+If You Are a Developer, see
+
+  * [DocumentationForDevelopers Documentation] for Developers
