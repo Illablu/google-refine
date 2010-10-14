@@ -3,121 +3,34 @@
 
 This is a collection of frequently asked questions on Google Refine. Feel free to add your own question to the comments, we'll try to answer to the best of our abilities and add them to this list.
 
-== Where is the Data Stored? ==
+==Questions with Long Answers==
 
-All your projects are stored on your own computer:
+  * [FaqWhereIsDataStored Where is the data stored?]
+  * [FaqAllocateMoreMemory How to allocate more memory?] - I get java.lang.OutOfMemoryError: Java heap space errors, or it feels SLOW. How do I expand the memory that Google Refine can use?
+ 
+==Questions with Short Answers==
 
-*MacOSX:*
-  * `~/Library/Application Support/Google/Refine/`
+*Question:* Google Refine opens my browser then waits a long time trying to connect to the server at 165.135.222.96 or another address I don't recognize.
 
-*Windows:* depending on the Windows version, the data is in one of these directories
-  * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
-  * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
-  * `C:\Users\(user id)\Google\Refine`
+*Answer:* Try to run at a specific IP: `./refine /i 127.0.0.1`. Double check your Chrome or Firefox proxy settings - In Firefox options/advanced/network/connection/settings and switch from "use system proxy settings" to "auto-detect proxy settings for this network".
 
-*Linux:*
-  * `~/.local/share/google-refine/`
+*Question:* What syntax of regular expression (regex) does Google Refine support?
 
-==I get java.lang.OutOfMemoryError: Java heap space errors,<br/>or it feels SLOW - How do I expand the memory that Google Refine can use? ==
+*Answer:* The regular expression syntax is that of Java regex, not of Javascript. See [GRELRegex GREL Regular Expressions].
 
-Since Google Refine is a Java application that utilizes the JVM, you might need to allocate enough memory to handle processing large files and avoid java.lang.OutOfMemoryError: Java heap space errors.  But, you will also need to balance that allocation with the needs of your OS to prevent disk caching problems.
+*Question:* When is it going to be possible to load things into the Freebase main graph, directly or indirectly?
 
-A typical best practice is to start with no more than 50% of your available physical memory, since certain OS's will utilize up to 1 Gig or more of physical RAM.
+*Answer:* We're working on this. The general idea is that you first load your data onto Freebase's sandbox (which is a fully operational copy of Freebase that gets reset every week). Then some Quality Assurance (QA) analysis is done on that data to make sure it matches the quality requirements to enter Freebase. If it doesn't, you can go back, fix the data, and do another sandbox load. When the load quality passes the required threshold, you'll be able to tell our system to "replay" your last load against the main Freebase graph.
 
-Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only have 1 gig of physical memory left over.  Starting with a setting of 512m (50% of 1 Gig) can avoid disk caching problems processing large files with many rows and columns. (A 200 meg text file of 331,000 rows x 50 columns)
+*Question:* How can I delete a whole row or several rows?*
 
-*Windows:*
+*Answer:*
 
-Open a "command prompt", 'cd' to the folder where Google Refine is installed, then type
-
-`refine.bat /m 2048m`
-
-where "2048m" is the maximum amount of memory (in Mb) that you want Google Refine to use.
-
-If you decide to use the refine.exe, then set your parameters in the .ini file found in the same folder.
-{{{
-# Launch4j runtime config
-
-# initial memory heap size
-
--Xms256M
-
-# max memory memory heap size
-
--Xmx2048M
-
-# -XX:+UseLargePages
-
-# -Dsomevar="%SOMEVAR%"
-}}}
-
-*Mac:*
-
-If you have downloaded the ".dmg" package and you start Google Refine by double clicking on it, follow these instructions
-
-  * close Google Refine
-  * "control-click" on the Google Refine icon (opens the contextual menu)
-  * click on "show package content" (a finder window opens)
-  * open the "Contents" folder
-  * double click on the "Info.plist" file (a Property List Editor app comes up)
-  * expand the "java" section at the bottom
-  * double click on the "VMOptions" content (the right end side)
-  * change "${java.options}" with "-Xms256M -Xmx1024M"
-  * save file
-  * start Google Refine again
-
-*Linux (or Mac):*
-
-If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
-
-`./refine -m 1024m`
-
-== Google Refine opens my browser then waits a long time trying to connect to the server at 165.135.222.96 or another address I don't recognize ==
-
-  * Try to run Refine /i 127.0.0.1
-  * Double check your Chrome or Firefox proxy settings - In Firefox options/advanced/network/connection/settings and switch from "use system proxy settings" to "auto-detect proxy settings for this network"
-
-== What syntax of regular expression (regex) does Google Refine support ? ==
-
-The regular expression syntax is that of Java regex, not of Javascript.
-
-http://java.sun.com/docs/books/tutorial/essential/regex/index.html
-
-^ and $ should also work in the regex mode.
-
-Note that the Google Refine Expression Language (GREL) also supports regex, e.g.,
-
-Example to replace "Rd" abbreviation with "Road".
-
-    value.replace(/\brd\b/i, "Road")
-
-It should also handle "capture groups".
-
-== How can one assign Freebase types in Google Refine?  Or does this only happen implicitly as the result of making a property connection? ==
-
-In the schema skeleton, you can actually specify a link with the property /type/object/type and the target node of an existing Freebase topic, which happens to be a type.
-
-==When is it going to be possible to load things into the Freebase main graph, directly or indirectly?==
-
-We're working on this. The general idea is that you first load your data onto Freebase's sandbox (which is a fully operational copy of Freebase that gets reset every week). Then some Quality Assurance (QA) analysis is done on that data to make sure it matches the quality requirements to enter Freebase. If it doesn't, you can go back, fix the data, and do another sandbox load. When the load quality passes the required threshold, you'll be able to tell our system to "replay" your last load against the main Freebase graph.
-
-==My "schema alignment skeleton" gets totally reorganized whenever I go back and check on it. What's going on ?==
-
-When you create a new schema skeleton it's filled in with all the columns but they are not connected with properties. So when you save and close the dialog, those links without properties specified are discarded.  Right now you can only start the schema skeleton with one root node, but originally we thought of supporting several root nodes.
-
-==How can I delete a whole row? It would be useful if there was a way to do that in Google Refine.==
-
-You can!
-
-  # Flag (or star) the offending row
+  # Flag (or star) the row(s)
   # In the dropdown above the flag you can get a facet, by going to Facet > Facet by flag.
   # From the facet that opens select the 'true' option.
   # In the dropdown menu above the flag you can go to Edit Rows > Remove all matching rows.
 
-This should delete all the flagged rows.
+*Question:* How Do I Make a Text Facet Show More Than 2000 Choices?
 
-Right now the row removal operation isn't so optimized. We recommend flagging or starring all the rows you want to remove before applying the "Remove all matching rows" operation.  In Google Refine, it's best to make changes en masse. Otherwise, you'd be going against the grain of the tool.
-
-==How Do I Make a Text Facet Show More Than 2000 Choices==
-
-From version 2.0, you can go to http://127.0.0.1:3333/preferences and set the facet limit using the preference key "ui.browsing.listFacet.limit".
+*Answer:* From version 2.0, you can go to http://127.0.0.1:3333/preferences and set the facet limit using the preference key "ui.browsing.listFacet.limit".
