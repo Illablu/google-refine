@@ -28,7 +28,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
 *Question:* When is it going to be possible to load things into the Freebase main graph, directly or indirectly?
 
-  We're working on this. The general idea is that you first load your data onto Freebase's sandbox (which is a fully operational copy of Freebase that gets reset every week). Then some Quality Assurance (QA) analysis is done on that data to make sure it matches the quality requirements to enter Freebase. If it doesn't, you can go back, fix the data, and do another sandbox load. When the load quality passes the required threshold, you'll be able to tell our system to "replay" your last load against the main Freebase graph.
+  Short answer: we're working on this. Long answer: [http://wiki.freebase.com/wiki/Refinery Refinery].
 
 *Question:* How can I delete a whole row or several rows?*
 
