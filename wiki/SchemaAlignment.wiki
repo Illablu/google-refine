@@ -9,3 +9,13 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages 
+
+==Troubleshooting==
+
+== How can one assign Freebase types in Google Refine?  Or does this only happen implicitly as the result of making a property connection? ==
+
+In the schema skeleton, you can actually specify a link with the property /type/object/type and the target node of an existing Freebase topic, which happens to be a type.
+
+==My "schema alignment skeleton" gets totally reorganized whenever I go back and check on it. What's going on ?==
+
+When you create a new schema skeleton it's filled in with all the columns but they are not connected with properties. So when you save and close the dialog, those links without properties specified are discarded.  Right now you can only start the schema skeleton with one root node, but originally we thought of supporting several root nodes.
