@@ -4,8 +4,7 @@
 Where to start?
 
   * [InstallationInstructions How to install and run]
-  * [UserGuide How to Use Google Refine] - a brief description of how you use Google Refine
-  * [BasicFeaturesHelp Basic Features Help] - an overview of where things are in the app
+  * [UserGuide How to use]
 
 Love it so much?
 
