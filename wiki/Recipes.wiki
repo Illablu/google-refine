@@ -1,5 +1,4 @@
 #summary Useful recipes for achieving certain tasks in Google Refine
-#labels Featured
 
 This page collects Google Refine recipes, small workflows and code fragments that show you how to achieve specific things with Google Refine.
 
