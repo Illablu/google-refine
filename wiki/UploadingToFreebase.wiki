@@ -1,4 +1,3 @@
-#labels Features
 = Using Google Refine to upload data to Freebase =
 
 [http://www.freebase.com/ Freebase] is a open repository of relational factual data and is used by Google Refine both to help clean up data via semantically-aware reconciliation and by augmenting your data.
