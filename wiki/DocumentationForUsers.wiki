@@ -1,4 +1,5 @@
 #summary Documentation hub for users
+#labels Featured
 
 Where to start?
 
