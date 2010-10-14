@@ -1,4 +1,5 @@
 #summary How to get started with Google Refine
+#labels Featured
 
 =Welcome!=
 
