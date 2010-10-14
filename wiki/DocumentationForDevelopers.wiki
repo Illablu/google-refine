@@ -1,4 +1,5 @@
 #summary Documentation hub for developers
+#labels Featured
 
 [DevelopersGuide Developer's Guide] - how to check out the code, build, run, and test
 
