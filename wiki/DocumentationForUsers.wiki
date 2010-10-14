@@ -22,14 +22,14 @@ Love it so much?
   * [ExtendingData Extending Data]
   * [Exporters Exporting]
 
-*Reconciliation and Data Loading:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs).
+*Reconciliation and Data Loading:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs). By connecting your data with other databases, you get more value out of your data.
 
   * [Reconciling]
     * [ReconcilableDataSources Reconcilable Data Sources]
   * [SchemaAlignment Schema Alignment]
   * [UploadingToFreebase Uploading to Freebase]
 
-*Extensions and Plug-ins:*
+*Extensions:* Add even more features to Refine by installing extensions.
 
   * [InstallingExtensions Installing Extensions]
 
@@ -48,6 +48,8 @@ Love it so much?
 
 
 ==Recipes==
+
+For complicated tasks that are commonly done, just follow recipes that other folks have discovered and written up. A recipe is just a sequence of steps, and tips and tricks.
 
 There are *[Recipes Quick Recipes]* and there are full recipes:
 
