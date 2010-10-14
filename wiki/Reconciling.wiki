@@ -1,4 +1,3 @@
-#labels Features
 = Introduction =
 Reconciling allows you to easily match a column of your data against topics in Freebase.
 It currently uses 2 approaches to reconciling with Freebase.
