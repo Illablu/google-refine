@@ -1,5 +1,4 @@
 #summary Examples of fetching URLs from web services and processing them within Google Refine
-#labels Features
 
 = Introduction =
 
