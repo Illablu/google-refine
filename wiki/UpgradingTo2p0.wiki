@@ -2,6 +2,15 @@
 
 If you have been using Freebase Gridworks 1.1 or earlier and you are now going to download and install Google Refine 2.0, you might want to take some precaution to protect your existing Gridworks projects. We have tried to ensure that the upgrade goes smoothly, but it's possible that we have not covered all cases. If you value your current Gridworks projects, then it is safest to back up your existing projects first.
 
+==Backward Compatibility Issues==
+
+These are the backward compatibility issues that we know about:
+
+* All Freebase reconciliation and loading functionalities have been substantially redesigned and reimplemented, and are thus not backward compatible. The redesign is to make Refine compatible with the [http://wiki.freebase.com/wiki/Refinery Refinery QA conduit]. This means that if you have an old project already reconciled to Freebase, you will not be able to load it.
+* Freebase-related operations from old projects can be undone, but cannot be extracted.
+
+==Precautions==
+
 Freebase Gridworks 1.1 or earlier store its projects as sub-directories of a "workspace" directory. Where the workspace directory is depends on your OS:
 
   * MacOSX: `~/Library/Application Support/Gridworks/`
