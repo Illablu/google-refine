@@ -6,8 +6,8 @@ If you have been using Freebase Gridworks 1.1 or earlier and you are now going t
 
 These are the backward compatibility issues that we know about:
 
-* All Freebase reconciliation and loading functionalities have been substantially redesigned and reimplemented, and are thus not backward compatible. The redesign is to make Refine compatible with the [http://wiki.freebase.com/wiki/Refinery Refinery QA conduit]. This means that if you have an old project already reconciled to Freebase, you will not be able to load it.
-* Freebase-related operations from old projects can be undone, but cannot be extracted.
+  * All Freebase reconciliation and loading functionalities have been substantially redesigned and reimplemented, and are thus not backward compatible. The redesign is to make Refine compatible with the [http://wiki.freebase.com/wiki/Refinery Refinery QA conduit]. This means that if you have an old project already reconciled to Freebase, you will not be able to load it.
+  * Freebase-related operations from old projects can be undone, but cannot be extracted.
 
 ==Precautions==
 
