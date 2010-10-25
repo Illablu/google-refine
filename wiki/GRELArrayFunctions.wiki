@@ -1,0 +1,33 @@
+#summary Array functions supported by the Google Refine Expression Language (GREL)
+
+===`join(array a, string sep)`===
+
+Returns the string obtained by joining the array a with the separator sep.
+
+{{{
+join(value.split(","),"works for")
+}}}
+
+===`reverse(array a)`===
+
+Reverses array a.
+
+{{{
+reverse(value.partition(","))
+}}}
+
+===`sort(array a)`===
+
+Sorts array a.
+
+{{{
+sort(value.split("Length:"))
+}}}
+
+===`sum(array a)`===
+
+Return the sum of the numbers in the array a.
+
+{{{
+sum(partition(value,"Earnings:",true))
+}}}
