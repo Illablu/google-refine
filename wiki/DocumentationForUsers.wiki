@@ -21,6 +21,7 @@ Love it so much?
   * [Clustering Clustering]
   * [ExtendingData Extending Data]
   * [Exporters Exporting]
+  * [History History] (undo/redo)
 
 *Reconciliation and Data Loading:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs). By connecting your data with other databases, you get more value out of your data.
 
