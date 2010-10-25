@@ -1,0 +1,14 @@
+#summary String or Array functions supported by the Google Refine Expression Language (GREL)
+
+
+===`slice(o, number from, optional number to)`===
+
+If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
+
+===`length(array or string o)`===
+
+Returns the length of o.
+
+===`get	(o, number or string from, optional number to)`===
+
+If o has fields, returns the field named 'from' of o. If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
