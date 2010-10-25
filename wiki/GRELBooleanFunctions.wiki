@@ -1,0 +1,26 @@
+#summary Boolean functions supported by Google Refine Expression Language (GREL)
+
+==Boolean functions==
+
+===`and(boolean b1, boolean b2, ...)`===
+
+Logically AND one or more booleans to yield a boolean.
+
+{{{
+and(value.contains("Mr."),value.contains("Mrs."))
+}}}
+
+===`or(boolean b1, boolean b2, ...)`===
+
+Logically OR one or more booleans to yield a boolean.
+
+{{{
+or(value.endsWith("School"),value.endsWith("Schools"))
+}}}
+===`not(boolean b)`===
+
+Logically NOT a boolean to yield another boolean.
+
+{{{
+not(or(value.endsWith("Reef"),value.endsWith("Reefs"),value.endsWith("reef"),value.endsWith("reefs")))
+}}}
