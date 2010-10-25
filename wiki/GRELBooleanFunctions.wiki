@@ -24,3 +24,18 @@ Logically NOT a boolean to yield another boolean.
 {{{
 not(or(value.endsWith("Reef"),value.endsWith("Reefs"),value.endsWith("reef"),value.endsWith("reefs")))
 }}}
+
+----
+===See Also===
+----
+  * [GRELBooleanFunctions GREL Boolean Functions]
+  * [GRELStringFunctions GREL String Functions]
+  * [GRELArrayFunctions GREL Array Functions]
+  * [GRELStringArrayFunctions GREL String/Array Functions]
+  * [GRELMathFunctions GREL Math Functions]
+  * [GRELDateFunctions GREL Date Functions]
+  * [GRELOtherFunctions GREL Other Functions]
+
+
+  * [GRELReference GREL Reference]
+  * [GRELRegex GREL Regular Expressions]
