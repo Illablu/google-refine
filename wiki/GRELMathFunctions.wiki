@@ -40,6 +40,10 @@ Returns e^d.
 
 Returns d^e.
 
+===`sum(array a)`===
+
+Sums numbers in array a
+
 ----
 ===See Also===
 ----
