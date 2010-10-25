@@ -4,13 +4,11 @@
 
 Returns the type of the object o.
 
-===`uniques(array a)`===
-
-Returns array a with duplicates removed.
-
 ===`hasField(o, string name)`===
 
 returns a boolean. Returns whether o has field name.
+
+TODO: Needs Example.
 
 ===`cross(cell c, string projectName, string columnName)`===
 
