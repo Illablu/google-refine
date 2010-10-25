@@ -18,6 +18,13 @@ Returns an array of zero or more rows in the project projectName for which the c
   cell.cross("proj", "keyCol").cells.col2.value
 }}}
 
+===`facetCount(choiceValue, string facetExpression, string columnName)`===
+
+returns: number
+Returns the facet count corresponding to the given choice value
+
+TODO: Needs Example
+
 ----
 ===See Also===
 ----
