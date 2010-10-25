@@ -33,6 +33,10 @@ Sorts array a.
 sort(value.split("Length:"))
 }}}
 
+===`substring(o, number from, optional number to)`===
+
+If o is an array, returns `o[from, to`]. if o is a string, returns `o.substring(from, to)`.
+
 ===`sum(array a)`===
 
 Return the sum of the numbers in the array a.
