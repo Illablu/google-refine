@@ -1,5 +1,7 @@
 #summary Array functions supported by the Google Refine Expression Language (GREL)
 
+== GREL Array Functions ==
+
 ===`join(array a, string sep)`===
 
 Returns the string obtained by joining the array a with the separator sep.
