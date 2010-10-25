@@ -12,3 +12,18 @@ Returns the length of o.
 ===`get	(o, number or string from, optional number to)`===
 
 If o has fields, returns the field named 'from' of o. If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
+
+----
+===See Also===
+----
+  * [GRELBooleanFunctions GREL Boolean Functions]
+  * [GRELStringFunctions GREL String Functions]
+  * [GRELArrayFunctions GREL Array Functions]
+  * [GRELStringArrayFunctions GREL String/Array Functions]
+  * [GRELMathFunctions GREL Math Functions]
+  * [GRELDateFunctions GREL Date Functions]
+  * [GRELOtherFunctions GREL Other Functions]
+
+
+  * [GRELReference GREL Reference]
+  * [GRELRegex GREL Regular Expressions]
