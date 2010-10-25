@@ -1,1 +1,5 @@
+=IMPORTANT NOTE=
+
+The downloads before are *Freebase Gridworks 1.1*. We're currently preparing to release Google Refine 2.0 in a few weeks.
+
 <wiki:gadget url="http://refine-gadgets.freebaseapps.com/gadget/downloads" width="700" height="600" border="0" /> 
