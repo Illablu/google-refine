@@ -44,15 +44,24 @@ Love it so much?
   * Google Refine Expression Language (GREL)
     * [GRELReference GREL Reference]
     * [GRELFunctions GREL Functions]
+      * [GRELBooleanFunctions GREL Boolean Functions]
+      * [GRELStringFunctions GREL String Functions]
+      * [GRELArrayFunctions GREL Array Functions]
+      * [GRELStringArrayFunctions GREL String/Array Functions]
+      * [GRELMathFunctions GREL Math Functions]
+      * [GRELDateFunctions GREL Date Functions]
+      * [GRELOtherFunctions GREL Other Functions]
     * [GRELRegex GREL Regular Expressions]
   * [Jython Jython]
 
 
 ==Recipes==
 
-For complicated tasks that are commonly done, just follow recipes that other folks have discovered and written up. A recipe is just a sequence of steps, and tips and tricks.
+For complicated tasks that are commonly done, just follow recipes that other folks have discovered and written up.  A recipe is just a sequence of steps, and tips and tricks.
 
-There are *[Recipes Quick Recipes]* and there are full recipes:
+There are *[Recipes Quick Recipes]*
+
+and there are full recipes:
 
   * [Geocoding Geocoding] - translating street addresses to lat/lng coordinates
   * [FetchingURLsFromWebServices Fetching URLs From Web Services] - grabbing from the Web more data related to the data you already have
