@@ -67,6 +67,11 @@ Returns o converted to a number.
 
 Returns the array of strings obtained by splitting s with separator sep, which is either a string or a regular expression.
 
+
+===`smartSplit(string s, optional string sep)`===
+
+Returns the array of strings obtained by splitting s with separator sep. Handles quotes properly. Guesses tab or comma separator if "sep" is not given.
+
 ===`splitByCharType(s)`===
 
 Returns an array of strings obtained by splitting s grouping consecutive chars by their unicode type.
