@@ -12,7 +12,7 @@ Result: St. Augustine
 
 ===`substring(o, number from, optional number to)`===
 
-If o is an array, returns o[from, to]. If o is a string, returns o.substring(from, to).
+If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
 
 ===`startsWith(string s, string sub)`===
 
