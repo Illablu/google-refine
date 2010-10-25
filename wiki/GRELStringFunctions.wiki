@@ -34,6 +34,11 @@ Returns the index of sub first ocurring in s as a number.
 
 Returns the index of sub last ocurring in s as a number.
 
+===`match(string or regexp)`===
+
+returns: array of strings
+Returns an array of the groups matching the given regular expression
+
 ===`replace(string s, string f, string r)`===
 
 Returns the string obtained by replacing f with r in s. f can be a regular expression, in which case r can also contain capture groups declared in f.
