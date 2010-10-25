@@ -25,6 +25,12 @@ Logically NOT a boolean to yield another boolean.
 not(or(value.endsWith("Reef"),value.endsWith("Reefs"),value.endsWith("reef"),value.endsWith("reefs")))
 }}}
 
+===`hasField(o, string name)`===
+
+returns a boolean. Returns whether o has field name.
+
+TODO: Needs example.
+
 ----
 ===See Also===
 ----
