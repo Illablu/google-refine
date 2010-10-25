@@ -50,7 +50,7 @@ Returns d^e.
   * [GRELMathFunctions GREL Math Functions]
   * [GRELDateFunctions GREL Date Functions]
   * [GRELOtherFunctions GREL Other Functions]
-
-
+  
   * [GRELReference GREL Reference]
+  * [GRELControls GREL Controls]
   * [GRELRegex GREL Regular Expressions]
