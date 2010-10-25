@@ -86,9 +86,14 @@ Returns copy of the string, with leading and trailing whitespace omitted.
 
 Returns copy of the string, with leading and trailing whitespace omitted.
 
+===`escape(string s, string mode)`===
+
+Returns an escaped string depending on the given escaping string mode:
+'html','xml','csv','url',javascript'.
+
 ===`unescape(string s, string mode )`===
 
-Unescapes all escaped parts of the string depending on the given escaping mode: 'html','xml','csv','url','javascript'.
+Returns an unescaped string depending on the given escaping string mode: 'html','xml','csv','url','javascript'.
 
 ===`md5(string s)`===
 
