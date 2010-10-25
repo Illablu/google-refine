@@ -9,6 +9,9 @@ Function invocation in Google Refine expression language has 2 forms:
 
 The second is a shortcut to make expressions easier to read. It's only syntactic sugar.
 
+----
+===See Also===
+----
   * [GRELBooleanFunctions GREL Boolean Functions]
   * [GRELStringFunctions GREL String Functions]
   * [GRELArrayFunctions GREL Array Functions]
@@ -17,6 +20,6 @@ The second is a shortcut to make expressions easier to read. It's only syntactic
   * [GRELDateFunctions GREL Date Functions]
   * [GRELOtherFunctions GREL Other Functions]
 
-See Also:
+
   * [GRELReference GREL Reference]
   * [GRELRegex GREL Regular Expressions]
