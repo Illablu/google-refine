@@ -49,11 +49,11 @@ A `cell` object has two fields
 
 A `recon` object has a few fields
 
-|| name || meaning ||
+|| name || meaning || fields ||
 || judgment || a string that is one of: "matched", "new", "none" || 
 || matched || a boolean, true iff judgment is "matched" || 
 || match || null, or the recon candidate that has been matched against this cell || 
-|| best || null, or the best recon candidate|| 
+|| best || null, or the best recon candidate|| .id .name .type .score ||
 || features || an object encapsulating reconciliation features ||
 
 A recon candidate object has a few fields: `id`, `guid`, `name`, `type`, and `score`, whose meanings are obvious. `type` is an array of type IDs.
@@ -61,6 +61,8 @@ A recon candidate object has a few fields: `id`, `guid`, `name`, `type`, and `sc
 A `features` object has the following fields:
   * typeMatch, nameMatch: booleans
   * nameLevenshtein, nameWordDistance: numbers
+
+cell.recon.best also has a few fields: 'id', 'name', 'type', and 'score'
 
 Facets based on reconciliation features can thus be created with such an expression as `cell.recon.features.typeMatch`.
 
