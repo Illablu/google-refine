@@ -42,7 +42,7 @@ Returns d^e.
 
 ===`sum(array a)`===
 
-Sums numbers in array a
+Returns a number. Sums numbers in array a
 
 ----
 ===See Also===
