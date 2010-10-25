@@ -1,4 +1,4 @@
-#summary Other functions supported by Google Refine Expression Language (GREL)
+#summary Other functions supported by the Google Refine Expression Language (GREL)
 
 ===`type(o)`===
 
