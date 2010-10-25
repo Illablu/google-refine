@@ -8,6 +8,11 @@ Returns the string obtained by joining the array a with the separator sep.
 join(value.split(","),"works for")
 }}}
 
+===`match(string or regexp)`===
+
+returns: array of strings
+Returns an array of the groups matching the given regular expression
+
 ===`reverse(array a)`===
 
 Reverses array a.
