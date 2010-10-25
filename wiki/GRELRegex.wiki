@@ -22,6 +22,6 @@ It should also handle "capture groups".
   * [GRELMathFunctions GREL Math Functions]
   * [GRELDateFunctions GREL Date Functions]
   * [GRELOtherFunctions GREL Other Functions]
-
-
+  
   * [GRELReference GREL Reference]
+  * [GRELControls GREL Controls]
