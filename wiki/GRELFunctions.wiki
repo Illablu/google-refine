@@ -19,7 +19,7 @@ The second is a shortcut to make expressions easier to read. It's only syntactic
   * [GRELMathFunctions GREL Math Functions]
   * [GRELDateFunctions GREL Date Functions]
   * [GRELOtherFunctions GREL Other Functions]
-
-
+  
   * [GRELReference GREL Reference]
+  * [GRELControls GREL Controls]
   * [GRELRegex GREL Regular Expressions]
