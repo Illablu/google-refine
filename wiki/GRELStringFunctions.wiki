@@ -1,0 +1,127 @@
+#summary String functions supported by Google Refine Expression Language (GREL)
+
+===`chomp(string s, string sep)`===
+
+Removes sep from the end of s if it's there, otherwise leave it alone.
+
+{{{
+Example: St. Augustine*
+value.chomp("*") or chomp(value,"*")
+Result: St. Augustine
+}}}
+
+===`substring(o, number from, optional number to)`===
+
+If o is an array, returns o[from, to]. If o is a string, returns o.substring(from, to).
+
+===`startsWith(string s, string sub)`===
+
+Returns boolean indicating whether s starts with sub.
+
+===`endsWith(string s, string sub)`===
+
+Returns boolean indicating whether s ends with sub.
+
+===`contains(string s, string sub)`===
+
+Returns boolean indicating whether s contains sub.
+
+===`indexOf(string s, string sub)`===
+
+Returns the index of sub first ocurring in s as a number.
+
+===`lastIndexOf(string s, string sub)`===
+
+Returns the index of sub last ocurring in s as a number.
+
+===`replace(string s, string f, string r)`===
+
+Returns the string obtained by replacing f with r in s. f can be a regular expression, in which case r can also contain capture groups declared in f.
+
+===`replaceChars(string s, string f, string r)`===
+
+Returns the string obtained by replacing all chars in f with the char in s at that same position.
+
+===`toLowercase(string s)`===
+
+Returns s converted to lowercase.
+
+===`toUppercase(string s)`===
+
+Returns s converted to uppercase.
+
+===`toTitlecase(string s)`===
+
+Returns s converted to titlecase.
+
+===`toNumber(o)`===
+
+Returns o converted to a number.
+
+===`split(s, sep)`===
+
+Returns the array of strings obtained by splitting s with separator sep, which is either a string or a regular expression.
+
+===`splitByCharType(s)`===
+
+Returns an array of strings obtained by splitting s grouping consecutive chars by their unicode type.
+
+===`splitByLengths(string s, number n, ...)`===
+
+Returns the array of strings obtained by splitting s into substrings with the given lengths.
+
+===`partition(string s, string or regex frag, optional boolean omitFragment)`===
+
+Returns an array of strings [a,frag,b] where a is the string part before the first occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+
+===`rpartition(string s, string or regex frag, optional boolean omitFragment)`===
+
+Returns an array of strings [a,frag,b] where a is the string part before the last occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+
+===`trim(string s)`===
+
+Returns copy of the string, with leading and trailing whitespace omitted.
+
+===`strip(string s)`===
+
+Returns copy of the string, with leading and trailing whitespace omitted.
+
+===`unescape(string s, string mode )`===
+
+Unescapes all escaped parts of the string depending on the given escaping mode: 'html','xml','csv','url','javascript'.
+
+===`md5(string s)`===
+
+Returns the MD5 hash of s.
+
+===`sha1(string s)`===
+
+Returns the SHA-1 hash of s.
+
+===`unicode(string s)`===
+
+Returns an array of strings describing each character of s in their full unicode notation.
+
+===`unicodeType(string s)`===
+
+Returns an array of strings describing each character of s in their full unicode notation.
+
+===`phonetic(string s, optional string encoding)`===
+
+Returns the a phonetic encoding of s, optionally indicating which encoding to use (defaults to 'DoubleMetaphone').
+
+===`reinterpret(string s, string encoder)`===
+
+Returns s reinterpreted thru the given encoder.
+
+===`diff(o1, o2, optional string timeUnit)`===
+
+For strings, returns the portion where they differ. For dates, it returns the difference in given time units.
+
+===`fingerprint(string s)`===
+
+Returns the fingerprint of s, a derived string that aims to be a more canonical form of it (this is mostly useful for finding clusters of strings related to the same information).
+
+===`ngramFfingerprint(string s, number n)`===
+
+Returns the n-gram fingerprint of s.
