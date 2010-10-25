@@ -1,14 +1,14 @@
 #summary Controls supported by the Google Refine Expression Language (GREL)
 
-
 There are inline controls to support branching and essentially looping. They look like functions, but unlike functions, their arguments don't all get evaluated down to value before they get run. Each control decides which of their arguments to evaluate to value, and how.
 
-===if===
+===`if(expression o, expression eTrue, expression eFalse)`===
 
-{{{
-if(eTest, eTrue, eFalse)
-}}}
-Expression `eTest` is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.  if(condition, if_true, if_false) is the same as (condition) ? if_true : if_false in C-like languages
+Returns: Depends on actual arguments.
+
+Evaluates expression o. If it is true, evaluates expression eTrue and returns the result. Otherwise, evaluates expression eFalse and returns that result instead.
+
+Expression o is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.  `if(condition, if_true, if_false)` is the same as `(condition) ? if_true : if_false` in C-like languages.
 
 Examples:
 {{{
@@ -18,14 +18,13 @@ removes leading "A" from the cell's value, if any
 {{{
 if(cells.Synonym.value.startsWith("common"),cells.Synonym.value,null)
 }}}
-This statement when run as a text transform on a column, checks if cells in another Column named "Synonym" start with the term "common" and if so sets (copies) that value into the current columns' cells being transformed, otherwise sets the current columns' cells to null. This is equivalent to the notation (condition) ? if_true : if_false;
+This statement when run as a text transform on a column, checks if cells in another Column named "Synonym" start with the term "common" and if so sets (copies) that value into the current columns' cells being transformed, otherwise sets the current columns' cells to null. This is equivalent to the notation `(condition) ? if_true : if_false;`
 
-===with===
+===`with(expression o, variable v, expression e)`===
 
-{{{
-with(e1, v, e2)
-}}}
-Expression `e1` is evaluated to a value. A new environment is created in which that value is bound to the variable name `v`. In that new environment, expression `e2` is evaluated, and its result is the value of the whole `with` expression.
+Returns: Depends on actual arguments.
+
+Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result.
 
 Examples:
 {{{
@@ -36,11 +35,17 @@ returns "twe". If `with` is not used, then we have to repeat `"twenty"` like so:
 "twenty".substring(0, "twenty".length() / 2)
 }}}
 
-===forEach===
+===`filter(expression a, variable v, expression test)`===
 
-{{{
-forEach(eArray, v, eEach)
-}}}
+Returns an array.
+
+Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression test which should return a boolean. If the boolean is true, pushes v onto the result array.
+
+===`forEach(expression a, variable v, expression e)`===
+
+Returns an array.
+
+Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression e, and pushes the result onto the result array.
 Expression `eArray` is evaluated, presumably to an array. Then for each element of that array, a new environment is created in which that element is bound to the variable name `v`, and in that new environment the expression `eEach` is evaluated, yielding a value. Thus, a value is generated from each element of that array, yielding another array, which is the result of the whole `forEach` expression.
 
 Example:
@@ -48,12 +53,23 @@ Example:
 forEach("one;two;three".split(";"), x, x.length())` returns `[ 3, 3, 5 ]
 }}}
 
-===forNonBlank===
+===`forEachIndex(expression a, variable i, variable v, expression e)`===
 
-{{{
-forNonBlank(e, v, eNonBlank, eBlank)
-}}}
-Expression `e` is evaluated, yielding a value. If that value is blank (null or an empty string), then `eBlank` is evaluated and its result is the result of the whole `forNonBlank` expression. Otherwise, a new environment is created in which the value is bound to the variable name `v`. In that new environment, expression `eNonBlank` is evaluated and its result is the result of the whole `forNonBlank` expression.
+Returns an array.
+
+Evaluates expression a to an array. Then for each array element, binds its index to variable i and its value to variable name v, evaluates expression e, and pushes the result onto the result array.
+
+===`forRange(number from, number to, number step, variable v, expression e)`===
+
+Returns an array.
+
+Iterates over the variable v starting at "from", incrementing by "step" each time while less than "to". At each iteration, evaluates expression e, and pushes the result onto the result array.
+
+===`forNonBlank(expression o, variable v, expression eNonBlank, expression eBlank)`===
+
+Returns: Depends on actual arguments.
+
+Evaluates expression o. If it is non-blank, binds its value to variable name v, evaluates expression eNonBlank and returns the result. Otherwise (if o evaluates to blank), evaluates expression eBlank and returns that result instead.
 
 {{{
 forNonBlank(e, v, eNonBlank, eBlank)
@@ -77,7 +93,7 @@ forNonBlank("", n, n + "bar", n + "nothing")
 }}}
 returns null (`n` is not bound in `n + "nothing"`, causing that expression to fail).
 
-===isBlank, isNonBlank, isNull, isNotNull, isNumeric===
+===isBlank, isNonBlank, isNull, isNotNull, isNumeric, isError===
 
 `isX(e)` : evaluates expression `e` and returns whether its value is `X`.
 
@@ -96,6 +112,9 @@ isNotNull(value)
 }}}
 {{{
 isNumeric(value)
+}}}
+{{{
+isError	(expression o)
 }}}
 
 ----
