@@ -1,0 +1,41 @@
+#summary Math functions supported by the Google Refine Expression Language (GREL)
+
+===`floor(number d)`===
+
+Returns the floor of a number.
+
+===`ceil(number d)`===
+
+Returns the ceiling of a number.
+
+===`round(number d)`===
+
+Rounds a number to the nearest integer.
+
+===`min(number d1, number d2)`===
+
+Returns the smaller of two numbers.
+
+===`max(number d1, number d2)`===
+
+Returns the larger of two numbers.
+
+===`mod(number d1, number d2)`===
+
+Returns d1 modulus d2.
+
+===`ln(number d)`===
+
+Returns the natural log of d.
+
+===`log(number d)`===
+
+Returns the base 10 log of d.
+
+===`exp(number d)`===
+
+Returns e^d.
+
+===`pow(number d, number e)`===
+
+Returns d^e.
