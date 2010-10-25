@@ -1,0 +1,36 @@
+#summary Date functions supported by the Google Refine Expression Language (GREL)
+
+===`now()`===
+
+Returns the current time.
+
+===`toDate(o, boolean month_first / format1, format2, ... )`===
+
+Returns o converted to a date object.
+
+All other arguments are optional:
+
+  * `month_first`: set false if the date is formatted with the day before the month.
+  * `formatN`: attempt to parse the date using an ordered list of possible formats. See [http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html SimpleDateFormat] for the syntax.
+
+Examples: 
+You can parse the cells "Nov-09" and "11/09" using
+{{{
+value.toDate2('MM/yy','MMM-yy').toString('yyyy-MM')
+}}}
+
+===`toString(o, optional string format)`===
+
+When o is a date, format specifies how to format the date.
+
+===`diff(date d1, date d2, optional string timeUnit)`===
+
+For dates, returns the difference in given time units.
+
+===`inc(date d, number value, string unit (defaults to 'hour'))`===
+
+Returns a date changed by the given amount in the given unit of time.
+
+===`datePart(date d, string unit)`===
+
+Returns part of a date.
