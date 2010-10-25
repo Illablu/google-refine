@@ -6,18 +6,21 @@ Returns the type of the object o.
 
 ===`hasField(o, string name)`===
 
-returns a boolean. Returns whether o has field name.
+Returns a boolean. Returns whether o has field name.
 
 TODO: Needs Example.
 
 ===`jsonize(value)`===
 
-returns: JSON literal value
 Quotes a value as a JSON literal value
+
+===`parseJson(string s)`===
+
+Returns JSON Object. Parses a string as JSON
 
 ===`cross(cell c, string projectName, string columnName)`===
 
-Returns an array of zero or more rows in the project projectName for which the cells in their column columnName have the same content as cell c. The typical use case is creating a custom text facet with an expression like this:
+Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as `cell c`. The typical use case is creating a custom text facet with an expression like this:
 
 {{{
   cell.cross("proj", "keyCol").cells.col2.value
@@ -25,7 +28,6 @@ Returns an array of zero or more rows in the project projectName for which the c
 
 ===`facetCount(choiceValue, string facetExpression, string columnName)`===
 
-returns: number
 Returns the facet count corresponding to the given choice value
 
 TODO: Needs Example
