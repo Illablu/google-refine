@@ -10,8 +10,7 @@ join(value.split(","),"works for")
 
 ===`match(string or regexp)`===
 
-returns: array of strings
-Returns an array of the groups matching the given regular expression
+Returns an array of the string groups matching the given regular expression.
 
 ===`ngram(string s, number n)`===
 
@@ -44,6 +43,10 @@ Return the sum of the numbers in the array a.
 {{{
 sum(partition(value,"Earnings:",true))
 }}}
+
+===`uniques(array a)`===
+
+Returns array a with duplicates removed.
 
 ----
 ===See Also===
