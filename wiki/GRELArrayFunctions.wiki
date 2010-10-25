@@ -13,7 +13,7 @@ join(value.split(","),"works for")
 returns: array of strings
 Returns an array of the groups matching the given regular expression
 
-==='ngram(string s, number n)`===
+===`ngram(string s, number n)`===
 
 Returns an array of the word ngrams of s
 
