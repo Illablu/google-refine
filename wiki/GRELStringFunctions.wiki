@@ -36,8 +36,15 @@ Returns the index of sub last ocurring in s as a number.
 
 ===`match(string or regexp)`===
 
-returns: array of strings
-Returns an array of the groups matching the given regular expression
+Returns an array of the groups matching the given regular expression.
+
+Example:
+This will match a string that ENDS with any 3 decimal digits, otherwise returns null.
+{{{
+value.match(/.*(\d\d\d+)/)
+}}}
+
+`match` can use regex or strings just be sure to include `/` characters before and after the regex expression to delimit from the rest of the function expression within parentheses.
 
 ===`replace(string s, string f, string r)`===
 
