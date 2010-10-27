@@ -2,13 +2,17 @@
 
 ===`chomp(string s, string sep)`===
 
-Removes sep from the end of s if it's there, otherwise leave it alone.
+  Removes sep from the end of s if it's there, otherwise leave it alone.
 
+  `St. Augustine*`
 {{{
-Example: St. Augustine*
 value.chomp("*") or chomp(value,"*")
-Result: St. Augustine
 }}}
+  `St. Augustine`
+
+===`diff(o1, o2, optional string timeUnit)`===
+
+For strings, returns the portion where they differ. For dates, it returns the difference in given time units.
 
 ===`substring(o, number from, optional number to)`===
 
@@ -36,15 +40,36 @@ Returns the index of sub last ocurring in s as a number.
 
 ===`match(string or regexp)`===
 
-Returns an array of the groups matching the given regular expression.
+  Returns an array of the groups matching the given regular expression.
 
-Example:
-This will match a string that ENDS with any 3 decimal digits, otherwise returns null.
+  This will match a string that ENDS with any 3 decimal digits, otherwise returns null.
 {{{
 value.match(/.*(\d\d\d+)/)
 }}}
+  `match` can use regex or strings just be sure to include `/` characters before and after the regex expression to delimit from the rest of the function expression within parentheses.
 
-`match` can use regex or strings just be sure to include `/` characters before and after the regex expression to delimit from the rest of the function expression within parentheses.
+===`mqlKeyQuote(string s)`===
+
+  Returns a string that is a quoted MQL key.
+
+  Converts an unquoted mql key `[{"type":"/film/film","name":null}]`
+{{{
+mqlKeyQuote(value)
+}}}
+  into a quoted MQL key:
+`$005B$007B$0022type$0022$003A$0022$002Ffilm$002Ffilm$0022$002C$0022name$0022$003Anull$007D$005D`
+
+===`mqlKeyUnquote(string s)`===
+
+  Returns a string that is an unquoted MQL key.
+
+  Converts a quoted mql key:
+  `$005B$007B$0022type$0022$003A$0022$002Ffilm$002Ffilm$0022$002C$0022name$0022$003Anull$007D$005D`
+{{{
+mqlKeyQuote(value)
+}}}
+  into an unquoted MQL key:
+  `[{"type":"/film/film","name":null}]`
 
 ===`replace(string s, string f, string r)`===
 
@@ -73,7 +98,6 @@ Returns o converted to a number.
 ===`split(s, sep)`===
 
 Returns the array of strings obtained by splitting s with separator sep, which is either a string or a regular expression.
-
 
 ===`smartSplit(string s, optional string sep)`===
 
@@ -135,10 +159,6 @@ Returns the a phonetic encoding of s, optionally indicating which encoding to us
 ===`reinterpret(string s, string encoder)`===
 
 Returns s reinterpreted thru the given encoder.
-
-===`diff(o1, o2, optional string timeUnit)`===
-
-For strings, returns the portion where they differ. For dates, it returns the difference in given time units.
 
 ===`fingerprint(string s)`===
 
