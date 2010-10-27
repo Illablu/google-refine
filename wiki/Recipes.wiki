@@ -61,6 +61,14 @@ then you select only the range between the 2nd and 4th and you get
 
 then you join them together with the same separator character ":" and you get what you wanted "b:c:d".
 
+===Find a sub pattern that exists at the end of a string===
+
+Sometimes you have a need beyond just `endsWith` to find a varying substring and want to know if that variable pattern is found at the end of a string.  You can add a Custom Text Facet and find this variable pattern with regex delmited by `/` characters such as `/.*(PR\d+)/`
+{{{
+value.endsWith(get(value.match(/.*(PR\d+)/),0))
+}}}
+Here you have to wrap with `get()` in order to ask if it `endsWith` the string version of the returned array from `match`.  `endsWith then returns a boolean of True or False if the string ends with your regex pattern, in this case, cells that end with reference numbers that begin with PR followed by any number of decimal digits.
+
 ===Remove the last word in a string===
 
 This uses `smartSplit` to find the last word `[-1]` and then wraps `partition` to keep only the first phrase or part of the string remaining with `[0]`.
