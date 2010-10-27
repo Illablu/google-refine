@@ -61,6 +61,13 @@ then you select only the range between the 2nd and 4th and you get
 
 then you join them together with the same separator character ":" and you get what you wanted "b:c:d".
 
+===Remove the last word in a string===
+
+This uses `smartSplit` to find the last word `[-1]` and then wraps `partition` to keep only the first phrase or part of the string remaining with `[0]`.
+{{{
+value.partition(smartSplit(value," ")[-1])[0]
+}}}
+
 === "00003400340300004" -> ["000034","0034","03","00004"] ===
 
 Sometimes your content has no char separator because the separation is performed by alignment (in the case of non-delimited files) and padded to certain sizes. In that case you can use
