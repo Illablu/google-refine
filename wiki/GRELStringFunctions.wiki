@@ -50,26 +50,11 @@ value.match(/.*(\d\d\d+)/)
 
 ===`mqlKeyQuote(string s)`===
 
-  Returns a string that is a quoted MQL key.
-
-  Converts an unquoted mql key `[{"type":"/film/film","name":null}]`
-{{{
-mqlKeyQuote(value)
-}}}
-  into a quoted MQL key:
-`$005B$007B$0022type$0022$003A$0022$002Ffilm$002Ffilm$0022$002C$0022name$0022$003Anull$007D$005D`
+  Returns a string that is a quoted MQL key.  More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
 
 ===`mqlKeyUnquote(string s)`===
 
-  Returns a string that is an unquoted MQL key.
-
-  Converts a quoted mql key:
-  `$005B$007B$0022type$0022$003A$0022$002Ffilm$002Ffilm$0022$002C$0022name$0022$003Anull$007D$005D`
-{{{
-mqlKeyQuote(value)
-}}}
-  into an unquoted MQL key:
-  `[{"type":"/film/film","name":null}]`
+  Returns a string that is an unquoted MQL key. More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
 
 ===`replace(string s, string f, string r)`===
 
