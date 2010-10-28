@@ -2,23 +2,31 @@
 
 ===`join(array a, string sep)`===
 
-Returns the string obtained by joining the array a with the separator sep.
+  Returns the string obtained by joining the array a with the separator sep.
 
 {{{
 join(value.split(","),"works for")
 }}}
 
+===`slice(o, number from, optional number to)`===
+
+  If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
+
+===`substring(o, number from, optional number to)`===
+
+  If o is an array, returns `o[from, to`]. if o is a string, returns `o.substring(from, to)`.
+
 ===`match(string or regexp)`===
 
-Returns an array of the string groups matching the given regular expression.
+  Returns an array of the string groups matching the given regular expression.
 
 ===`ngram(string s, number n)`===
 
-Returns an array of the word ngrams of s
+  Returns an array of the word ngrams of s
 
 ===`reverse(array a)`===
 
-Reverses array a.
+  Reverses array a.
 
 {{{
 reverse(value.partition(","))
@@ -26,27 +34,31 @@ reverse(value.partition(","))
 
 ===`sort(array a)`===
 
-Sorts array a.
+  Sorts array a.
 
 {{{
 sort(value.split("Length:"))
 }}}
 
-===`substring(o, number from, optional number to)`===
-
-If o is an array, returns `o[from, to`]. if o is a string, returns `o.substring(from, to)`.
-
 ===`sum(array a)`===
 
-Return the sum of the numbers in the array a.
+  Return the sum of the numbers in the array a.
 
 {{{
 sum(partition(value,"Earnings:",true))
 }}}
 
+===`length(array or string o)`===
+
+  Returns the length of o.
+
+===`get	(o, number or string from, optional number to)`===
+
+  If o has fields, returns the field named 'from' of o. If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
+
 ===`uniques(array a)`===
 
-Returns array a with duplicates removed.
+  Returns array a with duplicates removed.
 
 ----
 ===See Also===
