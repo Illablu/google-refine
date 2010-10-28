@@ -50,7 +50,6 @@ Returns a number. Sums numbers in array a
   * [GRELBooleanFunctions GREL Boolean Functions]
   * [GRELStringFunctions GREL String Functions]
   * [GRELArrayFunctions GREL Array Functions]
-  * [GRELStringArrayFunctions GREL String/Array Functions]
   * [GRELMathFunctions GREL Math Functions]
   * [GRELDateFunctions GREL Date Functions]
   * [GRELOtherFunctions GREL Other Functions]
