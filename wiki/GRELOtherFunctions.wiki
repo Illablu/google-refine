@@ -37,6 +37,14 @@ parseJson(" { 'a' : 1 } ").get("a") returns 1
   cell.cross("proj", "keyCol").cells.col2.value
 }}}
 
+  Example: Add a column in your project based on your Street Address column that you want to cross with a list of Street Addresses in your Customer's project and return their corresponding Zipcodes in your new column being added:
+
+{{{
+cell.cross("Customers_Branch_Offices_Project_File", "Their_STREET_ADDRESS").cells["Column_Their_Branch_Zipcodes"].value
+}}}
+
+  and to return the Zipcode string itself, you can add `[0]` to the end of the above example which grabs the first part of the array.
+
 ===`facetCount(choiceValue, string facetExpression, string columnName)`===
 
   Returns the facet count corresponding to the given choice value
