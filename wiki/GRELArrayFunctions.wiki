@@ -16,6 +16,14 @@ join(value.split(","),"works for")
 
   If o is an array, returns `o[from, to`]. if o is a string, returns `o.substring(from, to)`.
 
+===`get	(o, number or string from, optional number to)`===
+
+  If o has fields, returns the field named 'from' of o. If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
+
+===`length(array or string o)`===
+
+  Returns the length of o.
+
 ===`match(string or regexp)`===
 
   Returns an array of the string groups matching the given regular expression.
@@ -47,14 +55,6 @@ sort(value.split("Length:"))
 {{{
 sum(partition(value,"Earnings:",true))
 }}}
-
-===`length(array or string o)`===
-
-  Returns the length of o.
-
-===`get	(o, number or string from, optional number to)`===
-
-  If o has fields, returns the field named 'from' of o. If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
 
 ===`uniques(array a)`===
 
