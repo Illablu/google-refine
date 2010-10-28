@@ -2,25 +2,36 @@
 
 ===`type(o)`===
 
-Returns the type of the object o.
+  Returns the type of the object o.  Such as `undefined`, `string`, `number`, etc.
 
 ===`hasField(o, string name)`===
 
-Returns a boolean. Returns whether o has field name.
+  returns a boolean. Returns whether o has field name.
 
-TODO: Needs Example.
+  `hasField(thing, fieldName)` returns true if and only if thing has a field named fieldName.
+
+  For example, concerning the variable "cell"
+{{{
+  cell.hasField("value")
+}}}
+  should always return true.
 
 ===`jsonize(value)`===
 
-Quotes a value as a JSON literal value
+  Quotes a value as a JSON literal value
 
 ===`parseJson(string s)`===
 
-Returns JSON Object. Parses a string as JSON
+  Returns JSON Object. Parses a string as JSON
+
+  `get` can also be used with `parseJson` like so:
+{{{
+parseJson(" { 'a' : 1 } ").get("a") returns 1
+}}}
 
 ===`cross(cell c, string projectName, string columnName)`===
 
-Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as `cell c`. The typical use case is creating a custom text facet with an expression like this:
+  Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as `cell c`. The typical use case is creating a custom text facet with an expression like this:
 
 {{{
   cell.cross("proj", "keyCol").cells.col2.value
@@ -28,9 +39,9 @@ Returns an array of zero or more rows in the project `projectName` for which the
 
 ===`facetCount(choiceValue, string facetExpression, string columnName)`===
 
-Returns the facet count corresponding to the given choice value
+  Returns the facet count corresponding to the given choice value
 
-TODO: Needs Example
+  TODO: Needs Example
 
 ----
 ===See Also===
