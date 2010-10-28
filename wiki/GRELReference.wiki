@@ -85,7 +85,6 @@ A `record` object has one field, `cells`, which can be used to access the zero o
   * [GRELBooleanFunctions GREL Boolean Functions]
   * [GRELStringFunctions GREL String Functions]
   * [GRELArrayFunctions GREL Array Functions]
-  * [GRELStringArrayFunctions GREL String/Array Functions]
   * [GRELMathFunctions GREL Math Functions]
   * [GRELDateFunctions GREL Date Functions]
   * [GRELOtherFunctions GREL Other Functions]
