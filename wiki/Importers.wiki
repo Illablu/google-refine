@@ -1,6 +1,6 @@
 #summary How to import data into Google Refine to create new projects.
 
-To use Google Refine on some data, you must first import it into Refine. It's like uploading a data file into, say, Google Spreadsheets, except that there is no *up* in *up*loading, because Refine runs on your own computer anyway. This importing process creates a new Refine project for your data file.
+To use Google Refine on some data, you must first import it into Refine. It's like uploading a data file into, say, Google Spreadsheets, except that there is no *up* in uploading, because Refine runs on your own computer anyway. This importing process creates a new Refine project for your data file.
 
 Google Refine understands a variety of data file formats. Currently, it tries to guess the format based on the file extension. For example, `.xml` files are of course in XML. By default, an unknown file extension is assumed to be either tab-separated value (TSV) or comma-separated value (CSV). Google Refine looks for a tab character; if one is found, it assumes TSV.
 
