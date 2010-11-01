@@ -173,8 +173,8 @@ Returns an array of strings describing each character of `s` in their full unico
 
 ===`mqlKeyQuote(string s)`===
 
-Returns a string that is a quoted MQL key.  More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
+Quotes `s` so that it can be used as a Freebase key. More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
 
-===`mqlKeyUnquote(string s)`===
+===`mqlKeyUnquote(string key)`===
 
-Returns a string that is an unquoted MQL key. More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
+Unquotes the MQL quoted string `key` back to its original form. More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
