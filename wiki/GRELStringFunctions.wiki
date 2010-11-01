@@ -79,6 +79,10 @@ For a simple example, `replace("The cow jumps over the moon and moos", "oo", "ee
 
 Returns the string obtained by replacing any character in `s` that is also in `f` with the character `r`. For example, `replaceChars("commas , and semicolons ; are separators", ",;", "*")` returns the string `commas * and semicolons * are separators`.
 
+===`match(string s, regexp p)`===
+
+Attempts to match the string `s` in its entirety against the regex pattern `p` and returns an array of capture groups. For example, `match("230.22398, 12.3480", /\.(\d\d\d+)/)` returns an array of 1 string: `3480`. `match("230.22398, 12.3480", /.*\.(\d+).*\.(\d+)/)` returns an array of 2 strings: `22398` and `3480`. 
+
 
 =String Parsing and Splitting=
 
@@ -104,78 +108,73 @@ Returns an array of strings obtained by splitting `s` into groups of consecutive
 
 ===`partition(string s, string or regex frag, optional boolean omitFragment)`===
 
-Returns an array of strings [ `a`, `frag`, `b` ] where `a` is the substring within `s` before the first occurrence of `frag` in `s`, and `b` is the substring after `frag` in `s`. For example, `partition("internationalization", "nation")` returns 3 strings: `inter`, `nation`, and `alization`. If `s` does not contain `frag`, it returns an array of [ `s`, "", "" ] (the first string is the original `s` and the second and third strings are empty).
+Returns an array of strings `[` `a`, `frag`, `b` `]` where `a` is the substring within `s` before the first occurrence of `frag` in `s`, and `b` is the substring after `frag` in `s`. For example, `partition("internationalization", "nation")` returns 3 strings: `inter`, `nation`, and `alization`. If `s` does not contain `frag`, it returns an array of `[` `s`, "", "" `]` (the first string is the original `s` and the second and third strings are empty).
 
 If `omitFragment` is `true`, `frag` is not returned. That is, the result is an array of only 2 elements.
 
 ===`rpartition(string s, string or regex frag, optional boolean omitFragment)`===
 
-Returns an array of strings [ `a`, `frag`, `b` ] where `a` is the substring within `s` before the *last* occurrence of `frag` in `s`, and `b` is the substring after `frag` in `s`. For example, `partition("parallel", "a")` returns 3 strings: `par`, `a`, and `llel`. If `s` does not contain `frag`, it returns an array of [ `s`, "", "" ] (the first string is the original `s` and the second and third strings are empty).
+Returns an array of strings `[` `a`, `frag`, `b` `]` where `a` is the substring within `s` before the *last* occurrence of `frag` in `s`, and `b` is the substring after `frag` in `s`. For example, `partition("parallel", "a")` returns 3 strings: `par`, `a`, and `llel`. If `s` does not contain `frag`, it returns an array of `[` `s`, "", "" `]` (the first string is the original `s` and the second and third strings are empty).
+
+
+=Encoding and Hashing=
 
 ===`diff(o1, o2, optional string timeUnit)`===
 
-  For strings, returns the portion where they differ. For dates, it returns the difference in given time units.
+For strings, returns the portion where they differ. For dates, it returns the difference in given time units.
 
 
 ===`escape(string s, string mode)`===
 
-  Returns an escaped string depending on the given escaping string mode:
-  'html','xml','csv','url',javascript'.
+Escapes `s` in the given escaping mode: `html`, `xml`, `csv`, `url`, `javascript`.
 
-===`unescape(string s, string mode )`===
+===`unescape(string s, string mode)`===
 
-  Returns an unescaped string depending on the given escaping string mode: 'html','xml','csv','url','javascript'.
+Unescapes `s` in the given escaping mode: `html`, `xml`, `csv`, `url`, `javascript`.
 
 ===`md5(string s)`===
 
-  Returns the MD5 hash of s.
+Returns the MD5 hash of `s`.
 
 ===`sha1(string s)`===
 
-  Returns the SHA-1 hash of s.
-
-===`unicode(string s)`===
-
-  Returns an array of strings describing each character of s in their full unicode notation.
-
-===`unicodeType(string s)`===
-
-  Returns an array of strings describing each character of s in their full unicode notation.
-
-===`mqlKeyQuote(string s)`===
-
-  Returns a string that is a quoted MQL key.  More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
-
-===`mqlKeyUnquote(string s)`===
-
-  Returns a string that is an unquoted MQL key. More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
+Returns the SHA-1 hash of `s`.
 
 ===`phonetic(string s, optional string encoding)`===
 
-  Returns the a phonetic encoding of s, optionally indicating which encoding to use (defaults to 'DoubleMetaphone').
+Returns the a phonetic encoding of `s`, optionally indicating which encoding to use (defaults to `DoubleMetaphone`).
 
 ===`reinterpret(string s, string encoder)`===
 
-  Returns s reinterpreted thru the given encoder.
-
-===`match(string or regexp)`===
-
-  Returns an array of the groups matching the given regular expression.
-
-  This will match a string that ENDS with any 3 decimal digits, otherwise returns null.
-{{{
-value.match(/.*(\d\d\d+)/)
-}}}
-  `match` can use regex or strings just be sure to include `/` characters before and after the regex expression to delimit from the rest of the function expression within parentheses.
+Returns `s` reinterpreted thru the given encoder.
 
 ===`fingerprint(string s)`===
 
-  Returns the fingerprint of s, a derived string that aims to be a more canonical form of it (this is mostly useful for finding clusters of strings related to the same information).
+Returns the fingerprint of `s`, a derived string that aims to be a more canonical form of it (this is mostly useful for finding clusters of strings related to the same information).
 
 ===`ngram(string s, number n)`===
 
-  Returns an array of the word ngrams of s
+Returns an array of the word ngrams of `s`.
 
 ===`ngramFingerprint(string s, number n)`===
 
-  Returns the n-gram fingerprint of s.
+Returns the n-gram fingerprint of `s`.
+
+===`unicode(string s)`===
+
+Returns an array of strings describing each character of `s` in their full unicode notation.
+
+===`unicodeType(string s)`===
+
+Returns an array of strings describing each character of `s` in their full unicode notation.
+
+
+=Freebase Specific=
+
+===`mqlKeyQuote(string s)`===
+
+Returns a string that is a quoted MQL key.  More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
+
+===`mqlKeyUnquote(string s)`===
+
+Returns a string that is an unquoted MQL key. More info: [http://wiki.freebase.com/wiki/MQL_key_escaping MQL key escaping]
