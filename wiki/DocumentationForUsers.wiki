@@ -35,6 +35,20 @@ If you reconcile against [http://www.freebase.com/ Freebase], you can then align
   * [InstallingExtensions Installing Extensions]
 
 
+=Recipes=
+
+For complicated tasks that are commonly done, just follow recipes that other folks have discovered and written up.  A recipe is just a sequence of steps, and tips and tricks.
+
+There are *[Recipes Quick Recipes]*
+
+and there are full recipes:
+
+  * [Geocoding Geocoding] - translating street addresses to lat/lng coordinates
+  * [FetchingURLsFromWebServices Fetching URLs From Web Services] - grabbing from the Web more data related to the data you already have
+  * [StrippingHTML Stripping HTML Tags]
+  * [RecipeApacheLogs Analyzing Apache Logs]
+
+
 =Reference=
 
 ==Commands==
@@ -52,17 +66,3 @@ If you reconcile against [http://www.freebase.com/ Freebase], you can then align
       * [GRELOtherFunctions GREL Other Functions]
     * [GRELRegex GREL Regular Expressions]
   * [Jython Jython]
-
-
-==Recipes==
-
-For complicated tasks that are commonly done, just follow recipes that other folks have discovered and written up.  A recipe is just a sequence of steps, and tips and tricks.
-
-There are *[Recipes Quick Recipes]*
-
-and there are full recipes:
-
-  * [Geocoding Geocoding] - translating street addresses to lat/lng coordinates
-  * [FetchingURLsFromWebServices Fetching URLs From Web Services] - grabbing from the Web more data related to the data you already have
-  * [StrippingHTML Stripping HTML Tags]
-  * [RecipeApacheLogs Analyzing Apache Logs]
