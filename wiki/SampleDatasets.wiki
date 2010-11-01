@@ -1,8 +1,6 @@
 #summary List of sample datasets that you can use to try out Google Refine.
 
-A good place to start is the list of [http://code.google.com/p/google-refine/source/browse/#svn/trunk/tests/data datasets] that we use ourselves to test Google Refine. Also consider these [DataSources Data Sources].
-
-== Sample Data Sets ==
+Here are a few sample data sets to get you started on understanding how to use Google Refine
 
   * [http://infochimps.org/datasets/disasters-wordwide-from-1900-2008 Disasters worldwide from 1900-2008 at Infochimps]
   * [http://www.sos.louisiana.gov/tabid/136/Default.aspx Louisiana elected officials] - must use Excel itself to convert the .xls file to a .tsv file first, because Java lib for dealing with .xls files doesn't like this particular .xls file
@@ -21,4 +19,4 @@ A good place to start is the list of [http://code.google.com/p/google-refine/sou
 
 }}}
 
-  * [http://drop.io/geologic_time Geologic Time Periods] - 749 rows, 5 columns 
+  * [http://drop.io/geologic_time Geologic Time Periods] - 749 rows, 5 columns
