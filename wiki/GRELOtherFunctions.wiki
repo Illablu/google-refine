@@ -1,5 +1,7 @@
 #summary Other functions supported by the Google Refine Expression Language (GREL)
 
+See also: [GRELFunctions All GREL functions].
+
 ===`type(o)`===
 
   Returns the type of the object o.  Such as `undefined`, `string`, `number`, etc.
@@ -50,17 +52,3 @@ cell.cross("Customers_Branch_Offices_Project_File", "Their_STREET_ADDRESS_column
   Returns the facet count corresponding to the given choice value
 
   TODO: Needs Example
-
-----
-===See Also===
-----
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]
-  
-  * [GRELReference GREL Reference]
-  * [GRELControls GREL Controls]
-  * [GRELRegex GREL Regular Expressions]
