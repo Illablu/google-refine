@@ -2,8 +2,8 @@
   * [DocumentationForUsers Documentation for Users]
   * [DocumentationForDevelopers Documentation for Developers]
   * [HowToParticipate How to Participate]
-----
-  Other Resources
-  * [SampleDatasets Sample Datasets]
-  * [DataSources Data Sources]
-  * [RelatedSoftware Related Software]
+
+  * Other resources
+    * [SampleDatasets Sample Datasets]
+    * [DataSources Data Sources]
+    * [RelatedSoftware Related Software]
