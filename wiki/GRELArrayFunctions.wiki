@@ -1,97 +1,31 @@
 #summary Array functions supported by the Google Refine Expression Language (GREL)
 
-===`join(array a, string sep)`===
+See also: [GRELFunctions All GREL functions].
 
-  Returns the string obtained by joining the array a with the separator sep.
+===`length(array a)`===
 
-{{{
-join(value.split(","),"works for")
-}}}
+Returns the length of array `a`.
 
-===`slice(o, number from, optional number to)`===
+===`slice(array a, number from, optional number to)` and `get(array a, number or string from, optional number to)`===
 
-  If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
-
-===`substring(o, number from, optional number to)`===
-
-  If o is an array, returns `o[from, to`]. if o is a string, returns `o.substring(from, to)`.
-
-===`get	(o, number or string from, optional number to)`===
-
-  `get(thing, fieldName)` returns the value of the field named `fieldName` belonging to thing.
-
-  For example, concerning the variable `cell`:
-
-  `cell.hasField("value")` should always return true.
-
-  `cell.get("value")` returns the cell's value. This is equivalent to `cell.value`, and `cell["value"]`.
-
-  For strings and arrays, `get()` behaves like `slice()`.
-{{{
-get("abcd", 1,3)
-}}}
-  returns `"bc"`.
-{{{
-get([ 0, 1, 2, 3 ], 1,3)
-}}}
-  returns `[ 1, 2 ]`.
-
-  It also works on JSON:
-{{{
-parseJson(" { 'a' : 1 } ").get("a")
-}}}
-  returns 1.
-
-===`length(array or string o)`===
-
-  Returns the length of o.
-
-===`match(string or regexp)`===
-
-  Returns an array of the string groups matching the given regular expression.
-
-===`ngram(string s, number n)`===
-
-  Returns an array of the word ngrams of s.
+Returns the sub-array of `a` from its index `from` up to but not including index `to`. If `to` is omitted, it is understood to be the end of the array `a`. For example, `slice([ 0, 1, 2, 3, 4], 1, 3)` returns `[ 1, 2 ]`, and `slice([ 0, 1, 2, 3, 4], 1)` returns `[ 1, 2, 3, 4 ]`.
 
 ===`reverse(array a)`===
 
-  Reverses array a.
-
-{{{
-reverse(value.partition(","))
-}}}
+Reverses array `a`. For example, `reverse([ 0, 1, 2, 3])` returns the array `[ 3, 2, 1, 0 ]`.
 
 ===`sort(array a)`===
 
-  Sorts array a.
-
-{{{
-sort(value.split("Length:"))
-}}}
+Sorts array `a` in ascending order. For example, `sort([ 2, 1, 0, 3])` returns the array `[ 0, 1, 2, 3 ]`.
 
 ===`sum(array a)`===
 
-  Return the sum of the numbers in the array a.
+Return the sum of the numbers in the array `a`. For example, `sum([ 2, 1, 0, 3])` returns `6`.
 
-{{{
-sum(partition(value,"Earnings:",true))
-}}}
+===`join(array a, string sep)`===
+
+Returns the string obtained by joining the array `a` with the separator `sep`. For example, `join([ "foo", "bar", "baz" ], ";")` returns the string `foo;bar;baz`.
 
 ===`uniques(array a)`===
 
-  Returns array a with duplicates removed.
-
-----
-===See Also===
-----
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]
-  
-  * [GRELReference GREL Reference]
-  * [GRELControls GREL Controls]
-  * [GRELRegex GREL Regular Expressions]
+Returns array `a` with duplicates removed. For example, `uniques([ 2, 1, 2, 0, 1, 4, 3])` returns the array `[ 0, 1, 2, 3, 4 ]`.
