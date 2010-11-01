@@ -1,132 +1,121 @@
 #summary String functions supported by Google Refine Expression Language (GREL)
 
+See also: [GRELFunctions All GREL functions].
+
+=Basic=
+
+===`length(string s)`===
+
+Returns the length of `s` as a number.
+
+
+=Testing String Characteristics=
+
 ===`startsWith(string s, string sub)`===
 
-  Returns boolean indicating whether s starts with sub.
+Returns boolean indicating whether `s` starts with `sub`. For example, `startsWith("food", "foo")` returns `true`, whereas `startsWith("food", "bar")` returns `false`. You could also write the first case as `"food".startsWith("foo")`.
 
 ===`endsWith(string s, string sub)`===
 
-  Returns boolean indicating whether s ends with sub.
+Returns boolean indicating whether `s` ends with `sub`. For example, `endsWith("food", "ood")` returns `true`, whereas `endsWith("food", "odd")` returns `false`. You could also write the first case as `"food".endsWith("foo")`.
 
 ===`contains(string s, string sub)`===
 
-  Returns boolean indicating whether s contains sub.
+Returns boolean indicating whether `s` contains `sub`. For example, `contains("food", "oo")` returns `true` whereas `contains("food", "ee")` returns `false`. You could also write the first case as `"food".contains("oo")`.
 
-===`trim(string s)`===
 
-  Returns copy of the string, with leading and trailing whitespace omitted.
+=Basic String Modification=
 
-===`strip(string s)`===
-
-  Returns copy of the string, with leading and trailing whitespace omitted.
-
-===`chomp(string s, string sep)`===
-
-  Removes sep from the end of s if it's there, otherwise leave it alone.
-
-  `St. Augustine*`
-{{{
-value.chomp("*") or chomp(value,"*")
-}}}
-  `St. Augustine`
-
-===`replace(string s, string f, string r)`===
-
-  Returns the string obtained by replacing f with r in s. f can be a regular expression, in which case r can also contain capture groups declared in f.
-
-===`replaceChars(string s, string f, string r)`===
-
-  Returns the string obtained by replacing all chars in f with the char in s at that same position.
+==Case Conversion==
 
 ===`toLowercase(string s)`===
 
-  Returns s converted to lowercase.
+Returns `s` converted to lowercase.
 
 ===`toUppercase(string s)`===
 
-  Returns s converted to uppercase.
+Returns `s` converted to uppercase.
 
 ===`toTitlecase(string s)`===
 
-  Returns s converted to titlecase.
+Returns `s` converted to titlecase. For example, `toTitlecase("Once upon a midnight dreary")` returns the string `Once Upon A Midnight Dreary`.
+
+==Trimming==
+
+===`trim(string s)` and `strip(string s)`===
+
+Returns a copy of the string, with leading and trailing whitespace removed. For example, `trim("  island  ")` returns the string `island`.
+
+===`chomp(string s, string sep)`===
+
+Returns a copy of `s` with `sep` removed from the end if `s` ends with `sep`; otherwise, just returns `s`. For example, `chomp("hardly", "ly")` and `chomp("hard", "ly")` both return the string `hard`.
+
+==Substring==
+
+===`substring(s, number from, optional number to)` and `slice(s, number from, optional number to)` and `get	(o, number or string from, optional number to)`===
+
+Returns the substring of `s` starting from character index `from` and upto character index `to`. If `to` is omitted, it's understood as the end of the string `s`. For example, `substring("profound", 3)` returns the string `found`, and `substring("profound", 2, 4)` returns the string `of`.
+
+Character indexes start from zero. Negative character indexes are understood as counting from the end of the string. For example, `substring("profound", 1, -1)` returns the string `rofoun`.
+
+
+==Find and Replace==
+
+===`indexOf(string s, string sub)`===
+
+Returns the index of `sub` first ocurring in `s` as a character index; or `-1` if `s` does not contain `sub`. For example, `indexOf("internationalization", "nation")` returns `5`, whereas `indexOf("internationalization", "world")` returns `-1`.
+
+===`lastIndexOf(string s, string sub)`===
+
+Returns the index of `sub` last ocurring in `s` as a character index; or `-1` if `s` does not contain `sub`. For example, `indexOf("parallel", "a")` returns `3` (pointing at the second character "a").
+
+===`replace(string s, string f, string r)`===
+
+Returns the string obtained by replacing `f` with `r` in `s`. `f` can be a regular expression, in which case `r` can also contain capture groups declared in f.
+
+For a simple example, `replace("The cow jumps over the moon and moos", "oo", "ee")` returns the string `The cow jumps over the meen and mees`.
+
+===`replaceChars(string s, string f, string r)`===
+
+Returns the string obtained by replacing any character in `s` that is also in `f` with the character `r`. For example, `replaceChars("commas , and semicolons ; are separators", ",;", "*")` returns the string `commas * and semicolons * are separators`.
+
+
+=String Parsing and Splitting=
 
 ===`toNumber(o)`===
 
-  Returns o converted to a number.
+Returns `o` converted to a number.
 
 ===`split(s, sep)`===
 
-  Returns the array of strings obtained by splitting s with separator sep, which is either a string or a regular expression.
+Returns the array of strings obtained by splitting `s` at wherever `sep` is found in it. `sep` can be either a string or a regular expression. For example, `split("fire, water, earth, air", ",")` returns the array of 4 strings: "`fire`", "` water`", " ` earth`" , and "` air`". The double quotation marks are shown here only to highlight the fact that the spaces are retained.
+
+===`splitByLengths(string s, number n1, number n2, ...)`===
+
+Returns the array of strings obtained by splitting s into substrings with the given lengths. For example, `splitByLengths("internationalization", 5, 6, 3)` returns an array of 3 strings: `inter`, `nation`, and `ali`.
 
 ===`smartSplit(string s, optional string sep)`===
 
-  Returns the array of strings obtained by splitting s with separator sep. Handles quotes properly. Guesses tab or comma separator if "sep" is not given.
+Returns the array of strings obtained by splitting `s` by the separator `sep`. Handles quotes properly. Guesses tab or comma separator if `sep` is not given.
 
 ===`splitByCharType(s)`===
 
-  Returns an array of strings obtained by splitting s grouping consecutive chars by their unicode type.
-
-===`length(array or string o)`===
-
-  Returns the length of o.
-
-===`splitByLengths(string s, number n, ...)`===
-
-  Returns the array of strings obtained by splitting s into substrings with the given lengths.
-
-===`substring(o, number from, optional number to)`===
-
-  If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
-
-===`slice(o, number from, optional number to)`===
-
-  If o is an array, returns `o[from, to]`. If o is a string, returns `o.substring(from, to)`.
-
-===`get	(o, number or string from, optional number to)`===
-
-  `get(thing, fieldName)` returns the value of the field named `fieldName` belonging to thing.
-
-  For example, concerning the variable `cell`:
-
-  `cell.hasField("value")` should always return true.
-
-  `cell.get("value")` returns the cell's value. This is equivalent to `cell.value`, and `cell["value"]`.
-
-  For strings and arrays, `get()` behaves like `slice()`.
-{{{
-get("abcd", 1,3)
-}}}
-  returns `"bc"`.
-{{{
-get([ 0, 1, 2, 3 ], 1,3)
-}}}
-  returns `[ 1, 2 ]`.
-
-  It also works on JSON:
-{{{
-parseJson(" { 'a' : 1 } ").get("a")
-}}}
-  returns 1.
+Returns an array of strings obtained by splitting `s` into groups of consecutive characters where the characters within each group share the same unicode type, and consecutive groups differ in their unicode types.
 
 ===`partition(string s, string or regex frag, optional boolean omitFragment)`===
 
-  Returns an array of strings [a,frag,b] where a is the string part before the first occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+Returns an array of strings [ `a`, `frag`, `b` ] where `a` is the substring within `s` before the first occurrence of `frag` in `s`, and `b` is the substring after `frag` in `s`. For example, `partition("internationalization", "nation")` returns 3 strings: `inter`, `nation`, and `alization`. If `s` does not contain `frag`, it returns an array of [ `s`, "", "" ] (the first string is the original `s` and the second and third strings are empty).
+
+If `omitFragment` is `true`, `frag` is not returned. That is, the result is an array of only 2 elements.
 
 ===`rpartition(string s, string or regex frag, optional boolean omitFragment)`===
 
-  Returns an array of strings [a,frag,b] where a is the string part before the last occurrence of frag in s and b is what's left. If omitFragment is true, frag is not returned.
+Returns an array of strings [ `a`, `frag`, `b` ] where `a` is the substring within `s` before the *last* occurrence of `frag` in `s`, and `b` is the substring after `frag` in `s`. For example, `partition("parallel", "a")` returns 3 strings: `par`, `a`, and `llel`. If `s` does not contain `frag`, it returns an array of [ `s`, "", "" ] (the first string is the original `s` and the second and third strings are empty).
 
 ===`diff(o1, o2, optional string timeUnit)`===
 
   For strings, returns the portion where they differ. For dates, it returns the difference in given time units.
 
-===`indexOf(string s, string sub)`===
-
-  Returns the index of sub first ocurring in s as a number.
-
-===`lastIndexOf(string s, string sub)`===
-
-  Returns the index of sub last ocurring in s as a number.
 
 ===`escape(string s, string mode)`===
 
@@ -190,17 +179,3 @@ value.match(/.*(\d\d\d+)/)
 ===`ngramFingerprint(string s, number n)`===
 
   Returns the n-gram fingerprint of s.
-
-----
-===See Also===
-----
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]
-  
-  * [GRELReference GREL Reference]
-  * [GRELControls GREL Controls]
-  * [GRELRegex GREL Regular Expressions]
