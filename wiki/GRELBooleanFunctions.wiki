@@ -1,53 +1,15 @@
 #summary Boolean functions supported by Google Refine Expression Language (GREL)
 
-==Boolean functions==
+See also: [GRELFunctions All GREL functions].
 
 ===`and(boolean b1, boolean b2, ...)`===
 
-Logically AND one or more booleans to yield a boolean.
-
-{{{
-and(value.contains("Mr."),value.contains("Mrs."))
-}}}
+Logically AND two or more booleans to yield a boolean. For example, `and(1 < 3, 1 > 0)` returns `true` because both conditions are true.
 
 ===`or(boolean b1, boolean b2, ...)`===
 
-Logically OR one or more booleans to yield a boolean.
+Logically OR two or more booleans to yield a boolean. For example, `or(1 < 3, 1 > 7)` returns `true` because at least one of the conditions (the first one) is true.
 
-{{{
-or(value.endsWith("School"),value.endsWith("Schools"))
-}}}
 ===`not(boolean b)`===
 
-Logically NOT a boolean to yield another boolean.
-
-{{{
-not(or(value.endsWith("Reef"),value.endsWith("Reefs"),value.endsWith("reef"),value.endsWith("reefs")))
-}}}
-
-===`hasField(o, string name)`===
-
-returns a boolean. Returns whether o has field name.
-
-hasField(thing, fieldName) returns true if and only if thing has a field named fieldName.
-
-For example, concerning the variable "cell"
-{{{
-  cell.hasField("value")
-}}}
-should always return true.
-
-
-----
-===See Also===
-----
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]
-  
-  * [GRELReference GREL Reference]
-  * [GRELControls GREL Controls]
-  * [GRELRegex GREL Regular Expressions]
+Logically NOT a boolean to yield another boolean. For example, `not(1 > 7)` returns `true` because `1 > 7` itself is false.
