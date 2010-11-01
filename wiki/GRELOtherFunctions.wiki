@@ -28,26 +28,28 @@ returns 1.
 
 Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as cell `c`. Consider 2 projects with the following data
 
-*Project 1*
+*My Address Book*
 
 || friend || address ||
 || john || 120 Main St. ||
 || mary || 50 Broadway Ave. ||
 || anne || 17 Morning Crescent ||
 
-*Project 2*
+*Christmas Gifts*
 
 || gift || recipient ||
 || lamp || mary ||
 || clock || john ||
 
-Now in Project 1, we want to add a column containing the addresses of the recipients, which are in Project 1. So we can invoke the command "Add column based on this column" on the "recipient" column in Project 2 and enter this expression
+Now in the project "Christmas Gifts", we want to add a column containing the addresses of the recipients, which are in project "My Address Book". So we can invoke the command "Add column based on this column" on the "recipient" column in "Christmas Gifts" and enter this expression
 
 {{{
-  cell.cross(Project 1", "friend").cells["address"].value[0]
+  cell.cross("My Address Book", "friend").cells["address"].value[0]
 }}}
 
-*Project 2*
+When that command is applied, the result is
+
+*Christmas Gifts*
 
 || gift || recipient || address ||
 || lamp || mary || 50 Broadway Ave. ||
