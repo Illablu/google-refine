@@ -1,5 +1,20 @@
-#summary One-sentence summary of this page.
+#summary How to import data into Google Refine to create new projects.
 
-Google Refine can load both individual data files as well as tarred and zipped archives (`.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, `.bz2`). For an archive file, Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
+To use Google Refine on some data, you must first import it into Refine. It's like uploading a data file into, say, Google Spreadsheets, except that there is no *up* in *up*loading, because Refine runs on your own computer anyway. This importing process creates a new Refine project for your data file.
 
-For individual files, Google Refine can handle non-delimited fixed length text files, comma-separated value (`CSV`) files, tab-separated value (`TSV`) files, or text files in which the columns are separated by some character you specify. Google Refine can also handle Excel files, `.xml` files (including `.rss` and `.atom`) and `.rdf` files.
+Google Refine understands a variety of data file formats. Currently, it tries to guess the format based on the file extension. For example, `.xml` files are of course in XML. By default, an unknown file extension is assumed to be either tab-separated value (TSV) or comma-separated value (CSV). Google Refine looks for a tab character; if one is found, it assumes TSV.
+
+The formats currently supported (in version 2.0) include:
+
+  * TSV, CSV, or values separated by a custom separator you specify
+  * Excel (.xls, xlsx)
+  * XML, RDF as XML
+  * JSON
+
+If you have data in a very peculiar text format, just import it without splitting lines into columns, and then once it's imported, do your own custom column splitting.
+
+If you upload an archive file (with extension `.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, or `.bz2`), Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
+
+You can also point Google Refine at a URL to a data file. The mime-type of that URL tells Google Refine which format the data is in.
+
+Once imported, the data is stored in Google Refine's own format, and your original data file is left undisturbed.
