@@ -1,12 +1,9 @@
-[GettingStarted Getting Started] - [FAQ FAQ]
-
-[DocumentationForUsers Documentation for Users]
-
-[DocumentationForDevelopers Documentation for Developers]
-
-[HowToParticipate How to Participate]
-
-Other Resources
+  * [GettingStarted Getting Started] - [FAQ FAQ]
+  * [DocumentationForUsers Documentation for Users]
+  * [DocumentationForDevelopers Documentation for Developers]
+  * [HowToParticipate How to Participate]
+----
+  Other Resources
   * [SampleDatasets Sample Datasets]
   * [DataSources Data Sources]
   * [RelatedSoftware Related Software]
