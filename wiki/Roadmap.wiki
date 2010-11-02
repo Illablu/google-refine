@@ -14,6 +14,7 @@ Feature Areas
     * Issue 84: Add a cut and paste textbox importer ? - mostly design work
   * Exporters: UI for picking columns, etc.
     * Issue 97: Exporting CSV should allow for optional columns
+    * GData specifics: oauth, etc.
   * Internationalization
   * Streamlining traditional features
     * traditional find & replace
