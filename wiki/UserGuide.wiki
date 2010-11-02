@@ -1,63 +1,69 @@
 #summary How to use Google Refine
 
-If you haven't done so already, we strongly suggest you to watch the [http://vimeo.com/groups/gridworks/videos screencasts] first as they will give you an idea of how to use Google Refine.
+If you haven't done so already, we strongly suggest you to watch the [Screencasts screencasts] first as they will give you an idea of how to use Google Refine.
 
-=Paradigm=
+==The Basics==
 
-We liken using Google Refine to using Photoshop: in the former you deal with a lot of data cells and in the latter you deal with a lot of pixels. Using Photoshop typically involves selecting one or more patches of pixels and then applying some effects on them to change them en masse. Similarly, using Google Refine typically involves filtering down to some subset of rows (effectively selecting those rows) and then applying some changes to those rows en masse. So, just remember
+First, although Google Refine might start out looking like a spreadsheet program (Microsoft Excel, Google Spreadsheets, etc.), don't expect it to work like a spreadsheet program. That's almost like expecting a database to work like a text editor.
 
-    Filter (select) then Edit.
+Google Refine is NOT for entering new data one cell at a time. It is NOT for doing accounting.
 
-To filter, create one or more facets for some columns and making selections in those facets.
+Google Refine is for applying transformations over many existing cells in bulk, for the purpose of cleaning up the data, extending it with more data from other sources, and getting it to some form that other tools can consume.
 
-=Work Flow=
+To use Google Refine, think in big patterns. For example, to spot errors, think
 
-Google Refine imposes no particular work flow. There are several power tools that you can use in any combination and any order to get the job done. You will probably discover some work flow on your own that is convenient for you, or suitable for the kind of data you often deal with. You might also learn effective work flows from your peers. Along that line, we ourselves have gotten used to the following work flow, which you might want to adopt: play, fix, reconcile, align, extend, and load.
+  * Show me every row where the string length of the customer's name is longer than 50 characters (because I suspect that the customer's address is mistakenly included in the name field)
+  * Show me every row where the contract fee is less than 1 (because I suspect the fee was entered in unit of thousand dollars rather than dollars)
+  * Show me every row where the description field (scraped from some web site) contains "&amp;" (because I suspect it wasn't decoded properly)
 
-==Load==
+To edit data, think
 
-Google Refine can load both individual data files as well as tarred and zipped archives (.zip, .tar.gz, .tgz, .tar.bz2, .gz, .bz2). For an archive file, Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
+  * For every row where the contract fee is less than 1, multiply the fee by 1000.
+  * For every row where the customer name contains a comma (it has been entered as "last_name, first_name"), split the name by the comma, reverse the array, and join it back with a space (producing "first_name last_name")
 
-For individual files, Google Refine can handle non-delimited fixed length text files, comma-separated value (CSV) files, tab-separated value (TSV) files, or text files in which the columns are separated by some character you specify. Google Refine can also handle Excel files and XML files, including .rss and .atom files and uniform .rdf files.
+To specify patterns, use filters and facets. Typically, you create a filter or facet on a particular column. For example, you can create a numeric facet on the "contract fee" column and adjust its range selector to select values less than 1. If the default facet doesn't do what you want, you can configure it (by clicking "change" on the facet's header). For example, you can create a text facet with on the same "contract fee" column with this expression:
 
-==Play==
+{{{
+  value < 1
+}}}
 
-The first thing to do after loading a data set into Google Refine is to play with the data. This is useful especially if you're unfamiliar with the data set. By playing with the data you would start to discover trends and patterns in the data. Playing involves [Faceting] (text and numeric) on various columns in order to see what values each column contains. For example, if a column contains money values, create a numeric facet or a custom numeric facet of value.log() to see the range of those money values--whether they range in the thousands of dollars or in the millions, what their minimum and maximum values are, etc. For another example, if a column contains country names, create a text facet to see if the countries are world-wide, or if the countries are on only one continent.
+It will show 2 choices: true and false. Just select true. Then, invoke the Transform command on that same column and enter the expression
 
-==Fix==
+{{{
+  value * 1000
+}}}
 
-While playing with the data, you will probably discover inconsistencies within the data.
+That Transform command affects only rows where the "contract fee" cell contains a value less than 1.
 
-  * Hover your mouse over one cell and click on the "edit" button to edit its content; in the popup, you might also want to apply the same change to all other cells that have the same content.
-  * Hover over a text facet choice and edit that choice, causing all cells containing that choice's text to get edited.
-  * Use the common transforms in the column header menu to apply fixing transforms that we often find useful. 
-  * Use the Transform command in the column header menu and specify your own transform.
-  * Use the Cluster & Edit command in the column header menu (Edit Cells -> Cluster & Edit ...). This is a powerful utility that analyzes cells' text and groups them into clusters, and lets you set all choices in each cluster to some common value. 
+You can use several filters and facets together. Only rows that are selected by all facets and filters will be shown in the data table. For example, say you have two text facets, one on the "contract fee" column with the expression
 
-For any column in which a cell can contain a list of things, e.g., "Foo, bar, baz", "Foo / bar / baz", you can use the Split Multi-valued Cells command to separate them out into different cells, and then fix those cells.
+{{{
+  value < 1
+}}}
 
-You can also create new column based on one or more existing columns.
+and another on the "state" column (with the default expression). If you select "true" in the first facet and "Nevada" in the second, then you will only see rows for contracts in Nevada with fees less than 1.
 
-Use facets to narrow down to just the rows that you want your changes to affect.
 
-==Reconcile==
+==Analogies==
 
-For each column that contains topics that should be in Freebase, reconcile its cells to Freebase.
+===Databases===
 
-Topics matched will show a relevance score in parentheses after the topic name, eg. Harry Potter (59).
+If you have programmed databases before (performing SQL queries), then what Google Refine works should be quite familiar to you. Creating filters and facets and selecting something in them is like performing this SELECT statement:
 
-If using the recon service then it shows 3 decimal digits, eg. Harry Potter (.244)
+{{{
+  SELECT *
+  WHERE ... constraints determined by selection in facets and filters ...
+}}}
 
-The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually and use your own judgment to match them.
+And invoking the Transform command on a column while having some filters and facets selected is like performing this UPDATE statement
 
-==Align==
+{{{
+  UPDATE whole_table SET column_X = ... expression ...
+  WHERE ... constraints determined by selection in facets and filters ...
+}}}
 
-Use the {{{Schemas -> Edit Schema Alignment Skeleton}}} command in the main menu bar to create a schema alignment skeleton to specify how to transform your grid-shaped data into graph-shaped data. Make sure you switch to the TripleLoader Preview tab to double-check the result of the transformation.
+The difference between Google Refine and databases is that the facets show you choices that you can select, whereas databases assume that you already know what's in the data.
 
-==Iterate==
+===Adobe Photoshop===
 
-Rinse and repeat the steps Play, Fix, Reconcile, and Align in any order and as many times as you need until you've done your best to make data appear clean and consistent and aligned to you. Use facets to get big pictures of the data set.
-
-==Extend==
-
-Once your data is reconciled again Freebase, you can use it to augment your own data with data that is contained there. To do that, click on the drop-down menu on the column that contains the reconciled information that you wish to augment, select the {{{Edit Column -> Add Columns from Freebase}}} and follow the instructions.
+If you have used advanced image editing software, such as Adobe Photoshop, then you could also see similarities with Google Refine. For example, in Photoshop, you don't edit one pixel at a time. Instead, you create selections based on color hues or by edge detection, and then apply effects to pixels within those selections, or use those selections to limit the extent of manual brushworks.
