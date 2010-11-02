@@ -1,0 +1,17 @@
+#summary Editing cells.
+
+=Editing One Cell at A Time=
+
+To edit a cell, hover your mouse over that cell. You should see a tiny blue button labeled "edit". Click it to edit the cell. That pops up a window with a bigger text field for you to edit.
+
+When done, click "Apply" or press Enter. That changes that one cell. On the other hand, if you click "Apply to All Identical Cells" or press Ctrl-Enter, then for all cells in that column that contain the same text (to that cell) originally, they will all be replaced with the new value that you just entered. It's essentially a Find & Replace operation.
+
+You could set the data type of the cell in the popup. For dates, we support [http://en.wikipedia.org/wiki/ISO_8601 ISO 8601] as well as more readable strings, such as "today" and "yesterday". Readable strings can be whatever that the library [http://www.datejs.com/ datejs] can parse.
+
+=Editing through Text Facets=
+
+=Editing by Transforming=
+
+The most common way
+
+=Editing by Clustering=
