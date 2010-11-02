@@ -38,8 +38,13 @@ When you click OK, the data set will become
 || Doe, Jane || 33 ||
 
 
+===Comparison with Spreadsheets Software===
 
+Expressions in Google Refine differ from formulas in popular spreadsheets software. In spreadsheets, formulas are entered into cells in spreadsheets. That is, a cell can contain a formula (the formula is computed and its result is displayed in the cell). In Google Refine, cells do *not* contain expressions. Rather, any expression you specify is evaluated to compute a value that is then stored into the cell. If the expression depends on other cells, and the other cells get changed later on, the expression is *not* evaluated again. Each transformation is done only once, *not* updated constantly.
 
+Also, in spreadsheets, you have to copy formula from one cell to other cells (typically using the Fill Down command or dragging down the selection rectangle from its bottom right corner). In Google Refine, there is no copying of expression. Rather, an expression is applied to rows that are currently shown, as determined by constraints in facets and filters.
 
 
 ==Editing by Clustering==
+
+Perhaps the most powerful way to edit cells is through the Clustering feature, but that deserves [Clustering a whole page of its own].
