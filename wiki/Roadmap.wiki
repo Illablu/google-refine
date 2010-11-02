@@ -16,6 +16,7 @@ Feature Areas
     * Issue 97: Exporting CSV should allow for optional columns
   * Internationalization
   * Streamlining traditional features
+    * traditional find & replace
     * Issue 68: "merge columns" command.
   * More documentation and testing on the standard reconciliation service stuff - dfhuynh
 
