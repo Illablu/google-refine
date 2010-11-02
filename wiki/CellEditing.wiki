@@ -1,6 +1,6 @@
 #summary Editing cells.
 
-=Editing One Cell at A Time=
+==Editing One Cell at A Time==
 
 To edit a cell, hover your mouse over that cell. You should see a tiny blue button labeled "edit". Click it to edit the cell. That pops up a window with a bigger text field for you to edit.
 
@@ -8,10 +8,38 @@ When done, click "Apply" or press Enter. That changes that one cell. On the othe
 
 You could set the data type of the cell in the popup. For dates, we support [http://en.wikipedia.org/wiki/ISO_8601 ISO 8601] as well as more readable strings, such as "today" and "yesterday". Readable strings can be whatever that the library [http://www.datejs.com/ datejs] can parse.
 
-=Editing through Text Facets=
+==Editing through Text Facets==
 
-=Editing by Transforming=
+You could also edit cells in a column sharing some common value using a default text facet created on that column. First, create a default text facet on that column. Then locate that value choice in the facet and hover your mouse over it. An "edit" link will appear next to the choice. Click it to get a popup. As this is a text facet, Google Refine will only lets you enter a text string.
 
-The most common way
+==Editing by Transforming==
 
-=Editing by Clustering=
+The most common way to edit cells in a column in Google Refine is by invoking the Transform command on that column: from the column's drop-down menu, pick Edit cells > Transform ... In the dialog box, you enter an expression that gets evaluated on each row to compute the new cell value for that row. For example, consider this data set
+
+|| name || age ||
+|| John Smith || 28 ||
+|| Jane Doe || 33 ||
+
+Say we invoke the Transform command on the name column and enter the expression
+
+{{{
+  value.split(" ").reverse().join(", ")
+}}}
+
+This causes Google Refine to iterate through each of the 2 rows, and for each row, set the variable `value` to the row's cell in column "name", evaluate the expression, and put the result back into that cell. More specifically,
+
+  * when Google Refine processes row 1, it sets `value` to the string `John Smith`, splits that string into 2 strings (`John` and `Smith`) reverses those two strings (`Smith` and `John`), joins them back to yield `Smith, John`, and puts that string into that cell.
+  * when Google Refine processes row 2, it sets `value` to the string `Jane Doe`, splits that string into 2 strings (`Jane` and `Doe`) reverses those two strings (`Doe` and `Jane`), joins them back to yield `Doe, Jane`, and puts that string into that cell.
+
+When you click OK, the data set will become
+
+|| name || age ||
+|| Smith, John || 28 ||
+|| Doe, Jane || 33 ||
+
+
+
+
+
+
+==Editing by Clustering==
