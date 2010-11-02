@@ -1,18 +1,13 @@
-Google Refine supports faceted browsing as a mechanism for 
-  * exploring your data
-  * filtering down to just the subset of rows that you want to edit en masse.
+Google Refine supports faceted browsing as a mechanism for
 
-(Currently faceting panels have a hard limit of 2000 values shown, and may give an error if exceeded, you will have to partition your data to overcome this limit and be able to display the facet effectively)
+  * seeing a big picture of your data, and
+  * filtering down to just the subset of rows that you want to change in bulk.
 
-You can *save interesting facets* in your project by bookmarking using the *permalink* on Refine's header bar menu.  And even sharing this and your exported project with others.
+Typically, you create a facet on a particular column. The facet summarizes the cells in that column to give you a big picture on that column, and allows you to filter to some subset of rows for which their cells in that column satisfy some constraint. That's a bit abstract, so let's jump into some examples.
 
-There are several types of facet: text, numeric, text search.
+==Default Text Facets==
 
-(The results of individual facet panels can also be exported as TSV by clicking the link in the top left corner of each panel)
-
-==Text Facets==
-
-You can think of a text facet as a grouping summary of the rows in a data set. For example, given the data set like this
+Consider a data set like this
 
 || president || died in office || party ||
 ||  Abraham Lincoln || yes || Republican ||
@@ -31,27 +26,76 @@ You can think of a text facet as a grouping summary of the rows in a data set. F
 ||  Calvin Coolidge || no || Republican ||
 || ... || ... || ... ||
 
-creating a standard text facet on the party column yields something like this
+Let's create a text facet on the "party" column (by clicking on that column's drop-down menu and invoke Facet > Text facet). It will show something like this
 
 || choice || count ||
 || Democratic || 15 ||
 || Republican || 18 ||
 || ... || ... ||
 
-Just by creating such a text facet, you already gain some insight into your data set: there are 15 democrats, 18 republicans, and so forth. The facet essentially groups the rows by their party cells, and counts the rows in each group.
+What it is telling you is that there are 15 rows in which the "party" cells contain "Democratic", 18 rows in which the "party" cells contain "Republican", etc. And you, understanding the meaning of this data, might phrase that as: there are 15 democrat presidents, 18 republican presidents, etc. In this way, the facet gives you a big picture of your data, saving you the effort of counting the presidents by their parties yourself.
 
-What's more: when you click on Democratic in the facet, the data table will show only the 15 rows in which the party cells contain "Democratic". That is, picking a choice in the facet performs a filter.
+Now if you click on "Democratic" in the facet, then the data table on the right will display those 15 rows in which the "party" cells contain "Democratic". And you, understanding the meaning of this data, will think: I am currently looking at democrat presidents only. Now, commands that you invoke will affect those rows only, until you clear that facet's selection.
 
-You can also create several facets at the same time, say, a text facet on the "party" column as well as a text facet on the "died in office" column. Selecting "yes" in the "died in office" column filters the rows down to just the 8 rows in which the "died in office" cells contain "yes"--that is, you're now seeing just the eight presidents who died while in office. This action also updates the "party" facet, which should now show something like this:
+==Multiple Facets==
+
+In addition to the "party" facet, let's create a text facet on the column "died in office". It might show something like this
+
+|| choice || count ||
+|| yes || 6 ||
+|| no || 37 ||
+
+Selecting something in one facet affects the choices in the other(s). For example, if you select "yes" in the facet "died in office", then that filters the data table to only the 6 
+rows where the cells "died in office" contain "yes". Now, the other facet--the facet "party"--will operate only on those 6 rows. And it might now show something like this
 
 || choice || count ||
 || Democratic || 2 ||
 || Republican || 4 ||
+
+You might phrase that as, "among those presidents who died while in office, 2 were democrats and 4 were republicans."
+
+Likewise, if you don't select anything in the facet "died in office", but you select "Democratic" in the facet "party", then you might conclude something like, "among X democrat presidents, M died while in office while N did not (X = M + N)".
+
+Now, if you select something in *both* facets, then you get the intersection of their effects. For example, if you select "yes" in the facet "died in office" and "Democratic" in the facet "party", then you are now looking at 2 democrat presidents who died while in office.
+
+==Custom Text Facets==
+
+Now let's say you have some hypothesis about the first names that presidents usually have. There is no column for first names, and let's say that you don't want to create a new column for it. That's OK, because we can create a custom text facet that extracts out the first names. Invoke the "president" column's drop-down menu and pick Facet > Custom text facet ... and enter the expression
+
+  value.split(" ")[0]
+
+That facet will show you something like this (sorted by count)
+
+|| choice || count ||
+|| James || 5 ||
+|| John || 4 ||
+|| William || 4 ||
+|| George || 3 ||
+|| Andrew || 2 ||
+|| Thomas || 1 ||
+|| Franklin || 2 ||
 || ... || ... ||
 
-This means that out of the 8 presidents who died in office, two were democrats, four republicans, and so forth. You've gained just another insight, now by using several facets together.
+==Row-based Text Facets==
 
-After selecting "yes" in the "died in office" facet, you can also select, say, "Republican" in the "party" facet to filter for those four republican presidents who died while in office. By making selections in several facets, you can effectively perform a sophisticated query over the rows.
+Sometimes you want to filter the rows based on no particular column. For example, let's say that you have to apply some operation on a very complicated subset of rows. You can do so by apply some simple facets and filters and star those rows, then apply some other simple facets and filters and star those rows, and so forth. The starring operations are cumulative, producing a union of all those subsets of rows. At the end, you want to select all starred rows to apply an operation on them. You would need to create a text facet with the expression
+
+{{{
+  row.starred
+}}}
+
+and select "true" in it. You can create such a facet by invoking *any* column's drop-down menu. Or, of course, you could use the very left-most drop-down menu before "All".
+
+==Multi-column-based Text Facets==
+
+Sometimes you want to create a facet that references several columns. For example, consider a data set with two columns for "First Name" and "Last Name". You're interested to find out how many people have the same initial letter for both names (e.g., Marilyn Monroe, Steven Segal, Ophelia Oliver). To do so, create a custom text facet on either column and enter the expression
+
+{{{
+  cells["First Name"].value[0] == cells["Last Name"].value[0]
+}}}
+
+That shows 2 choices: true and false. Select "true" for the people you want.
+
 
 ==Numeric Facets==
 
@@ -81,44 +125,9 @@ To group by even or odd rows use Jython and modulo operator '%' in custom text f
 return rowIndex%2
 }}}
 
-==Reconcile Facets==
 
-*By Judgement* - display a facet showing reconciled and unreconciled matches.
+(Currently faceting panels have a hard limit of 2000 values shown, and may give an error if exceeded, you will have to partition your data to overcome this limit and be able to display the facet effectively)
 
-*Best Candidate's Relevance Score* - display a facet showing relevance scores from reconciling services.
+You can *save interesting facets* in your project by bookmarking using the *permalink* on Refine's header bar menu.  And even sharing this and your exported project with others.
 
-*Best Candidate's Type Match* - True / False concerning whether the best candidate topic has the type expected (the type you specify when you start the recon process).
-
-*Best Candidate's Name Match* - name match is string match (not case sensitive) on reconciled cell.
-
-*Best Candidate's Name Edit Distance* - shows the number of character changes necessary to get the cell's text to look like the best candidate topic's name.
-
-*Best Candidate's Name Word Similarity* - word similarity is a fraction of words that are the same; ( "foo bar baz" and "bar and foo" is 0.6666 similar, I believe. )
-
-*Best Candidate's Types* - Lists Freebase types of the first candidate topic for each cell.
-== Custom Reconciliation (Reconciling) facets ==
-
-=== Filtering cells not yet sent for reconciliation ===
-
-Often you may only send part of a dataset for reconciliation.  To filter parts of the dataset which have been sent for reconciliation (whether or not they have been subsequently judged) from those that haven't, please use the following custom text filter:
-
-{{{
-  isNull(cell.recon)
-}}}
-
-You may also need to determine candidates length for closer inspection:
-
-{{{
- cell.recon.candidates.length()
-}}}
-
-Other times, you may want to see if your first cell's word matches with any recon subjects:
-
-{{{
- value.partition(" ")[0] == cell.recon.best.name.partition(" ")[0]
-}}}
-
-=== Additional Reconciliation recipes ===
-{{{
-if(cell.value.toLowercase() != cell.recon.match.name.toLowercase(), cell.value, null)
-}}} 
+(The results of individual facet panels can also be exported as TSV by clicking the link in the top left corner of each panel)
