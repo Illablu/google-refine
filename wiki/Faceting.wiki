@@ -62,7 +62,9 @@ Now, if you select something in *both* facets, then you get the intersection of 
 
 Now let's say you have some hypothesis about the first names that presidents usually have. There is no column for first names, and let's say that you don't want to create a new column for it. That's OK, because we can create a custom text facet that extracts out the first names. Invoke the "president" column's drop-down menu and pick Facet > Custom text facet ... and enter the expression
 
+{{{
   value.split(" ")[0]
+}}}
 
 That facet will show you something like this (sorted by count)
 
@@ -99,35 +101,44 @@ That shows 2 choices: true and false. Select "true" for the people you want.
 
 ==Numeric Facets==
 
-You can also think of a numeric facet as a grouping summary, except that the grouping happens differently than in a text facet. A numeric facet groups rows by numbers contained in cells in some column. The numbers are put into some bins, and then for each bin the rows corresponding to it are counted. The bins are plotted in a histogram.
+Whereas a text facet groups unique text values into groups, a numeric facet groups numbers into numeric range bins. For example, consider a data set with a column of "humidity" (which ranges from zero to 100). A default numeric facet created on that column would group the values into 100 bins: 0 to 1, 1 to 2, 2 to 3, ..., 99 to 100. A value of 98.3 will fall into the 99th bin. Then you can select any range that spans some consecutive number of bins.
 
-Perform a custom numeric facet on a column and enter your expression, such as
-{{{
-value==459822  //this will match any rows that have number 459822 in the column
-}}}
-or
-{{{
-value>=10000  //this will match any rows that are greater than or equal to the number 10000.
-}}}
-==Text Search Facets==
+You can customize numeric facets much like you can customize text facets. For example, if the numeric values in a column are in a power law distribution, then it's better to group them by their logs using this expression
 
-==Custom Facets==
-To find 2 or more occurrences of a "," comma character in a string:
 {{{
-value.split(",").length() > 2
+  value.log()
 }}}
-To cluster or group rows by 1000 use the following custom text facet:
+
+Or if you suspect that the values are periodic you could take the modulus by the period to understand if there's a pattern, e.g.,
+
 {{{
-floor(rowIndex/1000)
+  mod(value, 7)
 }}}
-To group by even or odd rows use Jython and modulo operator '%' in custom text facet:
+
+Even for a column that contains text, you could still create a numeric facet by taking the length of the strength
+
 {{{
-return rowIndex%2
+  value.length()
 }}}
 
 
-(Currently faceting panels have a hard limit of 2000 values shown, and may give an error if exceeded, you will have to partition your data to overcome this limit and be able to display the facet effectively)
+==Text Filters==
 
-You can *save interesting facets* in your project by bookmarking using the *permalink* on Refine's header bar menu.  And even sharing this and your exported project with others.
+If you need to filter to rows whose cells in a particular column contains some precise text string, or match some regular expression pattern, use a text filter. It works like most text editor's "Find" or "Search" feature, except that instead of jumping the text cursor to the occurrence of the query, it filters the data table for only rows whose cells in that column match the query.
 
-(The results of individual facet panels can also be exported as TSV by clicking the link in the top left corner of each panel)
+Regular expression support in text filters lets you do fancy matching. For example, to search for cells starting with a letter and ending with a digit, enter this regular expression pattern:
+
+{{{
+  ^\w.*\d$
+}}}
+
+The regular expression language supported here is [http://download.oracle.com/javase/tutorial/essential/regex/ Java's regular expression].
+
+
+==Miscellany==
+
+Each text facet shows up to 2000 choices by default. You can increase this limit if you think your computer can handle it. Whether "your computer" can handle it or not depends mostly on your web browser. In general, we recommend using a fast web browser anyhow. To up this limit, go to [http://127.0.0.1:3333/preferences] and add a preference with key `ui.browsing.listFacet.limit` and value equal the new limit, such as `3000`.
+
+The choices and counts displayed in each facet can be copied out, as they serve as a good summary of your data. To do so, click on the "X choices" link near the top left corner of the facet.
+
+Facets are *not* saved in the project along with the data. But you could save a *permalink* to the current state of the application (much like you can save permalinks in any decent web application). Find the "permalink" after the project's name, at the top.
