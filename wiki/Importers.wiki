@@ -10,11 +10,12 @@ The formats currently supported (in version 2.0) include:
   * Excel (.xls, xlsx)
   * XML, RDF as XML
   * JSON
+  * Google Spreadsheets
 
 If you have data in a very peculiar text format, just import it without splitting lines into columns, and then once it's imported, do your own custom column splitting.
 
 If you upload an archive file (with extension `.zip`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.gz`, or `.bz2`), Google Refine detects the most common file extension in it and loads all files with that extension into a single project.
 
-You can also point Google Refine at a URL to a data file. The mime-type of that URL tells Google Refine which format the data is in.
+You can also point Google Refine at a URL to a data file or a Google Spreadsheet. The mime-type of that URL tells Google Refine which format the data is in.  Currently only Google Spreadsheets which are published publicly are supported.
 
 Once imported, the data is stored in Google Refine's own format, and your original data file is left undisturbed.
