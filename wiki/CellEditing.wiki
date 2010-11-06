@@ -12,6 +12,23 @@ You could set the data type of the cell in the popup. For dates, we support [htt
 
 You could also edit cells in a column sharing some common value using a default text facet created on that column. First, create a default text facet on that column. Then locate that value choice in the facet and hover your mouse over it. An "edit" link will appear next to the choice. Click it to get a popup. As this is a text facet, Google Refine will only lets you enter a text string.
 
+Editing through a text facet performs a find and replace operation. Consider a data set with a column of people's names. Create a text facet on that column might yield something like this:
+
+|| choice || count ||
+|| Andy Anderson || 79 ||
+|| Andy R. Anderson || 9 ||
+|| Beatrice Beaufort || 28 ||
+|| Cindy Mansfield || 67 ||
+|| ... || ... ||
+
+If you click "edit" on the choice "Andy R. Anderson" in the facet and enter "Andy Anderson", what that does is to go over each cell in that name column that contains the string "Andy R. Anderson" and replaces it with the string "Andy Anderson". Nine (9) such cells will be changed, and no cell in that column will contain "Andy R. Anderson", but 9 more cells will contain "Andy Anderson". As a result, the text facet will be updated to show 88 "Andy Anderson"; and "Andy R. Anderson" has disappeared:
+
+|| choice || count ||
+|| Andy Anderson || 88 ||
+|| Beatrice Beaufort || 28 ||
+|| Cindy Mansfield || 67 ||
+|| ... || ... ||
+
 ==Editing by Transforming==
 
 The most common way to edit cells in a column in Google Refine is by invoking the Transform command on that column: from the column's drop-down menu, pick Edit cells > Transform ... In the dialog box, you enter an expression that gets evaluated on each row to compute the new cell value for that row. For example, consider this data set
