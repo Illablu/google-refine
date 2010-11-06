@@ -1,0 +1,69 @@
+#summary Editing columns.
+
+==Basics==
+
+A column can be renamed by invoking its drop-down menu and picking Edit column > Rename this column. You cannot pick a name that is already taken by another column. Renaming a column changes the data and is thus tracked in the undo/redo history.
+
+A column can be removed entirely by invoking its drop-down menu and picking Edit column > Remove this column. Removing a column is also tracked in the undo/redo history and can thus be undone.
+
+A column can be moved. The simple ways to move a column is available in its drop-down menu under the Edit column submenu:
+
+  * Move column to beginning
+  * Move column to end
+  * Move column left
+  * Move column right
+
+For more elaborate rearrangement of columns, invoke the left-most drop-down menu in front of "All" and pick Edit columns > Reorder columns... This command also lets you remove several columns in one operation. Moving and removing columns are considered to change the data, and are thus tracked in the undo/redo history.
+
+A column can be "collapsed" so that it takes up much less space on screen. Invoke a column's drop-down menu View > Collapse this column to collapse it. It will then be displayed as a sliver of vertical space. Clicking on that sliver in the table's header will expand that column. To collapse or expand all columns, use the left-most drop-down menu, in front of "All". Note that since collapsing and expanding columns don't change the data, they are *not* tracked in the undo/redo history.
+
+
+==Adding Columns==
+
+A new column can be created based on zero, one, or more existing columns. Typically, you would create a column based on *one* existing column. Invoke that existing column's drop-down menu and pick Edit column > Add column based on this column... If you intend to create a new column based on zero or two or more existing columns, you can invoke the drop-down menu of any column.
+
+The command "Add column based on this column..." will open up a dialog box similar to the (Cell) Transform dialog box (see [CellEditing Cell Editing]). Enter an expression that specifies, for each row, how to generate the cell in that new column. For example, consider this data set:
+
+|| name || age ||
+|| John Smith || 28 ||
+|| Jane Doe || 33 ||
+
+Say we invoke the command "Add column based on this column..." on the column "name" and enter the expression
+
+{{{
+  value.split(" ")[1]
+}}}
+
+and name that new column "last name", then after that command executes, the data set will look like
+
+|| name || last name || age ||
+|| John Smith || Smith || 28 ||
+|| Jane Doe || Doe || 33 ||
+
+For more information on expressions, see [UnderstandingExpressions Understanding Expressions].
+
+
+==Splitting Columns==
+
+Several columns can be created in one shot by splitting one existing column. For example, in the previous example, we could split the "name" column into two columns by the space separator, and rename the first new column to "first name" and the second new column to "last name". To split a column, invoke its drop-down menu and pick Edit column > Split into several columns...
+
+A column can be split by a separator substring or regular expression pattern, or by a list of field lengths. For example, consider 
+
+|| address ||
+|| 100 Main St., San Francisco, CA ||
+|| 200 Broadway Blvd, Boston, MA ||
+
+Splitting by the substring ", " (note the space following the comma yields 3 columns
+
+|| address 1 || address 2 || address 3 ||
+|| 100 Main St. || San Francisco || CA ||
+|| 200 Broadway Blvd || Boston || ||
+
+You could set the maximum number of new columns, say, to 2, and get
+
+|| address 1 || address 2 ||
+|| 100 Main St. || San Francisco, CA ||
+|| 200 Broadway Blvd || Boston ||
+
+Note that the comma in the first row no longer causes any split.
+
