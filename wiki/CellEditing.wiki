@@ -54,6 +54,8 @@ When you click OK, the data set will become
 || Smith, John || 28 ||
 || Doe, Jane || 33 ||
 
+For more information on expressions, see [UnderstandingExpressions Understanding Expressions].
+
 
 ===Comparison with Spreadsheets Software===
 
