@@ -26,7 +26,6 @@ Love it so much?
 *Reconciliation:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs). By connecting your data with other databases, you get more value out of your data.
 
   * [Reconciliation]
-  * [ReconcilableDataSources Reconcilable data sources]
   * [ExtendingDataFromFreebase Extending data from Freebase]
 
 If you reconcile against [http://www.freebase.com/ Freebase], you can then align your data with Freebase's schemas and load your data into Freebase. For more information on Freebase data loading, see the [http://wiki.freebase.com/wiki/Refinery Refinery project].
