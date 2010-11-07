@@ -17,9 +17,10 @@ Love it so much?
 
   * [Importers Importing]
   * [Faceting Filtering / Faceting]
-  * Editing: [CellEditing Cells], [ColumnEditing Columns], [RowEditing Rows]
-  * [Clustering Clustering]
-  * [ExtendingData Extending Data]
+  * Editing:
+    * [CellEditing Editing Cells], editing cells by [Clustering Clustering]
+    * [ColumnEditing Editing Columns], creating columns by [ExtendingData Extending Data]
+    * [RowEditing Editing Rows]
   * [Exporters Exporting]
   * [History History] (undo/redo)
 
