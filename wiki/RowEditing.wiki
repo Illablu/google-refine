@@ -1,0 +1,9 @@
+#summary Editing rows.
+
+Rows can be removed, and starred or flagged.
+
+To star or flag a single row, click on the star button or the flag button to the left of that row. You can also star or flag several rows at once by first using filters and facets to show only those rows. Then invoke the left-most drop-down menu in front of "All" and pick Edit rows > Star rows or Edit rows > Flag rows.
+
+You can remove several rows together by first using filters and facets to show only those rows. Then invoke the left-most drop-down menu in front of "All" and pick Edit rows > Remove all matching rows.
+
+At the moment, you cannot remove one row at a time. To do so, flag or star it, and create a Flag or Star text facet using the left-most drop-down menu in front of "All". Select `true` in that facet to show only the row(s) to remove, and invoke Edit rows > Remove all matching rows. It is thus best to star or flag as many rows to remove as possible before invoking the command Remove all matching rows.
