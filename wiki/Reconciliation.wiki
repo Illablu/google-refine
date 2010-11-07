@@ -1,0 +1,27 @@
+= Introduction =
+Reconciling allows you to easily match a column of your data against topics in Freebase.
+It currently uses 2 approaches to reconciling with Freebase.
+
+ # Heuristic
+  * Relevance service or
+  * Recon service
+ # Strict
+  * using MQLread API
+
+= How To =
+ # Click the arrow above the column you want to reconcile.
+ # Choose *Reconcile* from the menu then *Start Reconciling...*
+ # A movable panel appears allowing you to choose:
+   * The first tab *Heuristic* has 2 services (recon and relevance) and initially shows recommended types on the left that Google Refine thinks matches closely with the data that is in your column's cells.  Choose the appropriate type or use the *Search for type* box and begin typing subject names to get suggestions. i.e. Company  If you choose relevance, "Auto-match candidates with high confidence" means score >= 100 and the ratio between the first candidate's score and the second candidate's score > 1.3 or something like.  If you choose recon, "Auto-match candidates with high confidence" then auto-matching is left to the discretion of the recon service.
+   * The second tab *Strict* uses MQLread to perform a direct query, i.e. "Strict"
+     * (more details needed here regarding keys and namespaces, examples)
+ # After choosing your above options, click *Start Reconciling* and a progress panel near the top will appear.
+
+= Details =
+Topics matched will show a relevance score in parentheses after the topic name, eg. Harry Potter (59).
+
+If you choose the *recon* service on the *Heuristic* tab then it shows 3 decimal digits, eg. Harry Potter (.244)
+
+The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually using the single or double red check mark and use your own judgment to match them.
+
+(more details regarding matching after reconciling go here, perhaps link to further recipes) 
