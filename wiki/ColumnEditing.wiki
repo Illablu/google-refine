@@ -97,3 +97,8 @@ Say your data is field-length encoded, such as below
 }}}
 
 There are nothing to separate the columns, but we can count the characters and determine that the first column is 9 character wide, the second 11 character wide, and the third 2. Then we can split that existing column by lengths: 9, 11, 2.
+
+
+==Other Ways==
+
+There are a few other ways to create new columns, as documented on the [ExtendingData Extending Data page].
