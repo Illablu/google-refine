@@ -1,6 +1,6 @@
 #summary How to start writing an extension
 
-This document is for the upcoming version 1.5 and later only. This is still in flux.
+(This document is for the version 2.0 and later only. This is still in flux.)
 
 Google Refine makes use of the [http://code.google.com/p/simile-butterfly/ Butterfly framework] to provide an extension architecture. Google Refine extensions are Butterfly modules. You don't really need to know about Butterfly itself, but you might encounter "butterfly" here and there in the code base.
 
@@ -38,10 +38,10 @@ A Google Refine extension (implemented as a Butterfly module) sits in a file dir
 The file named module.properties (see [http://code.google.com/p/google-refine/source/browse/trunk/extensions/sample-extension/module/MOD-INF/module.properties example]) contains the extension's metadata. Of importance is the name field, which gives the extension a name that's used in many other places to refer to it. This can be different from the extension's directory name.
 
 {{{
-  name = my-extension
+  name = my-extension-name
 }}}
 
-Your extension's client-side resources (.html, .js, .css files) stored in the module/ subdirectory will be accessible from http://127.0.0.1:3333/my-extension/. You should always use `-extension` at the end of the name.
+Your extension's client-side resources (.html, .js, .css files) stored in the module/ subdirectory will be accessible from http://127.0.0.1:3333/extensions/my-extension-name/. 
 
 Also of importance is the dependency
 
