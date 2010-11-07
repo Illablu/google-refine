@@ -1,8 +1,8 @@
 #summary Server-side architecture.
 
-Google Refine's server-side is written entirely in Java (`src/main/java/`) and its entry point is the Java servlet `com.google.refine.RefineServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `src/server/java/com.google.refine.Refine`. Note that the server class itself is under `src/server/`, not `src/main/`; this separation leaves the possibility of hosting `RefineServlet` in a different servlet container.
+Google Refine's server-side is written entirely in Java (`main/src/`) and its entry point is the Java servlet `com.google.refine.RefineServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `server/src/com.google.refine.Refine`. Note that the server class itself is under `server/src/`, not `main/src/`; this separation leaves the possibility of hosting `RefineServlet` in a different servlet container.
 
-The web server configuration is in `src/main/webapp/WEB-INF/web.xml`; that's where `RefineServlet` is hooked up. `RefineServlet` itself is simple: it just reacts to requests from the client-side by routing them to the right `Command` class in the packages `com.google.refine.commands.*`.
+The web server configuration is in `main/webapp/WEB-INF/web.xml`; that's where `RefineServlet` is hooked up. `RefineServlet` itself is simple: it just reacts to requests from the client-side by routing them to the right `Command` class in the packages `com.google.refine.commands.*`.
 
 As mentioned before, the server-side maintains states of the data, and the primary class involved is `com.google.refine.ProjectManager`.
 
