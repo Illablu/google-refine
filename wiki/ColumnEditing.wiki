@@ -47,23 +47,53 @@ For more information on expressions, see [UnderstandingExpressions Understanding
 
 Several columns can be created in one shot by splitting one existing column. For example, in the previous example, we could split the "name" column into two columns by the space separator, and rename the first new column to "first name" and the second new column to "last name". To split a column, invoke its drop-down menu and pick Edit column > Split into several columns...
 
+===By Substring===
+
 A column can be split by a separator substring or regular expression pattern, or by a list of field lengths. For example, consider 
 
 || address ||
 || 100 Main St., San Francisco, CA ||
-|| 200 Broadway Blvd, Boston, MA ||
+|| 200 Broadway Blvd, Boston MA ||
 
 Splitting by the substring ", " (note the space following the comma yields 3 columns
 
 || address 1 || address 2 || address 3 ||
 || 100 Main St. || San Francisco || CA ||
-|| 200 Broadway Blvd || Boston || ||
+|| 200 Broadway Blvd || Boston MA || ||
+
+Note that the second row has only 1 comma.
 
 You could set the maximum number of new columns, say, to 2, and get
 
 || address 1 || address 2 ||
 || 100 Main St. || San Francisco, CA ||
-|| 200 Broadway Blvd || Boston ||
+|| 200 Broadway Blvd || Boston MA ||
 
 Note that the comma in the first row no longer causes any split.
 
+===By Regular Expression===
+
+You could also specify a regular expression as the separator. This is useful if what separates the cells is not fixed or incorporates a special character like a tab. For example, this regular expression matches any sequence of tab or space:
+
+{{{
+  [\t ]+
+}}}
+
+\t matches a tab character. Of course that could even be simplified to use the whitespace character class \s
+
+{{{
+  \s+
+}}}
+
+For more information on regular expressions, see [GRELRegex this page]. But note that whereas regular expressions within a GREL expression must start and end with a slash character /, the regular expressions you enter anywhere in Google Refine outside a GREL expression must *not* start end with slashes.
+
+===By Field Lengths===
+
+Say your data is field-length encoded, such as below
+
+{{{
+  John     Smith      26
+  Peter    Pan        13
+}}}
+
+There are nothing to separate the columns, but we can count the characters and determine that the first column is 9 character wide, the second 11 character wide, and the third 2. Then we can split that existing column by lengths: 9, 11, 2.
