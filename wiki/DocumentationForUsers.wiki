@@ -16,13 +16,14 @@ Love it so much?
 *Essential:* These are the features you'd use 80% of the time when you use Refine. They help you clean up your data, extend it, and export it out for other tools to consume.
 
   * [Importers Importing]
-  * [Faceting Filtering / Faceting]
+  * [Faceting Filtering / faceting]
   * Editing:
-    * [CellEditing Editing Cells], editing cells by [Clustering Clustering]
-    * [ColumnEditing Editing Columns], creating columns by [ExtendingData Extending Data]
-    * [RowEditing Editing Rows]
+    * [CellEditing Editing cells], editing cells by [Clustering Clustering]
+    * [ColumnEditing Editing columns], creating columns by [ExtendingData Extending Data]
+    * [RowEditing Editing rows]
   * [Exporters Exporting]
   * [History History] (undo/redo)
+  * [UnderstandingExpressions Understanding expressions]
 
 *Reconciliation:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs). By connecting your data with other databases, you get more value out of your data.
 
