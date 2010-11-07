@@ -56,7 +56,7 @@ The result returned from that URL will be stored into the cell in the new column
   }
 }}}
 
-Since it's just JSON, we can parse it out using the parseJSON expression, and then extract the lat/lng pair inside.
+Since it's just JSON, we can parse it out using the parseJSON expression, and then extract the lat/lng pair inside. For more details on geocode, see [Geocoding this recipe].
 
 ==Querying Databases==
 
