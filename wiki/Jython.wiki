@@ -1,7 +1,7 @@
 Expressions in jython must have a `return` statement, e.g.,
 
 {{{
-  return value[[1:-1]]
+  return value[1:-1]
 }}}
 {{{
   return rowIndex%2
