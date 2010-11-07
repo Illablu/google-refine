@@ -1,9 +1,9 @@
 #summary Listing of Reconcilable Data Sources
 #labels Phase-Implementation
 
-= Reconcilable Data Sources =
+In Google Refine you can perform reconciliation against any web service supporting the [ReconciliationServiceApi Reconciliation Service API].
 
-In Google Refine we currently have a [ReconciliationServiceApi].
+==Wish List==
 
 The following are data sources that could provide useful reconciling within Google Refine.
 If you would like to help with coding a reconciling extension for any, please contact our mailing list.  We would love to see some of these happen!
