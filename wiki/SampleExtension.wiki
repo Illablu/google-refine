@@ -4,10 +4,10 @@ The sample extension is included in the code base so that you can copy it and ge
 
 =Basic Structure=
 
-The sample extension's code is in `refine/extensions/sample-extension/`. In that directory, Java source code is contained under the `src` sub-directory, and webapp code is under the `sample-extension` sub-directory. Here is the full directory layout:
+The sample extension's code is in `refine/extensions/sample/`. In that directory, Java source code is contained under the `src` sub-directory, and webapp code is under the `module` sub-directory. Here is the full directory layout:
 
 {{{
-  refine/extensions/sample-extension/
+  refine/extensions/sample/
       build.xml (ant build script)
       src/
           com/google/refine/sampleExtension/
@@ -29,7 +29,7 @@ The sub-directory `MOD-INF` contains the Butterfly module's metadata and is what
 
 Java code is built into the sub-directory `classes` inside `MOD-INF`, and supporting external Java jars are in the `lib` sub-directory. Those will be automatically loaded by Butterfly. (The build.xml script is wired to compile into the `classes` sub-directory.)
 
-Client-side code is in the inner `sample-extension` sub-directory. They can be plain old .html, .css, .js, and image files, or they can be [http://lesscss.org/ LESS] files that get processed into CSS. There are also Velocity .vt files, but they need to be routed inside `MOD-INF/controller.js`.
+Client-side code is in the inner `module` sub-directory. They can be plain old .html, .css, .js, and image files, or they can be [http://lesscss.org/ LESS] files that get processed into CSS. There are also Velocity .vt files, but they need to be routed inside `MOD-INF/controller.js`.
 
 `MOD-INF/controller.js` lets you configure the extension's initialization and URL routing in Javascript rather than in Java. For example, when the requested URL path is either `/` or an empty string, we process and return `MOD-INF/index.vt` ([http://localhost:3333/sample-extensions/ see that page here] if Google Refine is running).
 
@@ -40,4 +40,4 @@ The `init()` function in `controller.js` allows the extension to register variou
 
 Butterfly is able to locate the sample extension because of [http://code.google.com/p/google-refine/source/browse/trunk/main/webapp/WEB-INF/butterfly.properties?r=984#23 the path provided in butterfly.properties]. Butterfly simply descends into each of those paths and look for `MOD-INF` directories.
 
-For more information, see [ExtensionPoints]. 
+For more information, see [ExtensionPoints].
