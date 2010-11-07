@@ -11,7 +11,7 @@ The history is shown as a list of indexed changes, with the first "change" being
   1. Remove 7 rows
   2. Create new column Last Name based on column Name by filling 67 rows with grel:value.split(" ")[1] 
   3. Split 230 cell(s) in column Address into several columns by separator
-}}
+}}}
 
 There should be exactly one change with a blue background. That is the last performed change. The state of the project is when that change has just been performed.
 
