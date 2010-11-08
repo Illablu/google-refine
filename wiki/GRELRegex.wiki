@@ -24,11 +24,28 @@ the regular expression is
   \s+
 }}}
 
-That is similar to how you write regular expressions in Javascript. On the other hand, in Java, there is no native syntax for regular expressions, so you would have to write them as strings and escape them properly (e.g., `"\\s+"`).
+Note for advanced users: That (wrapping with forward slashes) is similar to how you write regular expressions in Javascript. On the other hand, in Java, there is no native syntax for regular expressions, so you would have to write them as strings and escape them properly (e.g., `"\\s+"`). So even though the regular expression syntax in Google Refine follows that of Java (due to implementation in Java), how you write a regular expression within a GREL expression is similar to Javascript, for convenience.
 
 Elsewhere in Google Refine, i.e., not within a GREL expression, do not use slashes to wrap regular expressions.
 
 
 ==Basics==
 
-To describe a pattern, you typically need concepts like something repeating again and again, or some things A and B occurring interchangeably.
+To describe a pattern, you typically need concepts like something repeating again and again, or some things A and B occurring interchangeably. For example, if in a scientific paper you ever see a sequence of letters A, C, T, G, you know that's DNA being discussed. As the first try, we might formulate this regular expression to match a DNA sequence
+
+{{{
+  [ACTG]+
+}}}
+
+The square brackets mean "one of the characters inside" and the + sign means "occurring one or more times". Let's use that to test whether a cell's text value contains any DNA sequence:
+
+{{{
+  isNotNull(value.match(/[ACTG]+/))
+}}}
+
+That almost works, except that it also finds single letters A, T, C, G, double-letter substrings like AT, 3-letter substrings like CAT, TAG, ... and the movie name GATTACA. If we were to avoid these "false positives" (matches that are not wanted), then we have to make the regular expression stricter, by changing "occurring one or more times" to something like "occurring at least 8 or more times".
+
+
+{{{
+  [ACTG]{8,}+
+}}}
