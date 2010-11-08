@@ -1,0 +1,81 @@
+#summary Understanding expressions.
+
+==Introduction==
+
+Google Refine supports "expressions" mostly to transform existing data or to create new data based on existing data, much like how spreadsheet software supports "formulas". There are, however, significant differences between Google Refine's expressions and typical spreadsheet formulas.
+
+===Variables===
+
+Consider this sample data set
+
+|| || friend || age ||
+|| 1. || John Smith || 28 ||
+|| 2. || Jane Doe || 33 ||
+
+When you invoke the Transform command on, say, column "friend" and enter an expression, Google Refine will go through each row in the data (matching facets and filters, if any), and evaluate that expression for that row in order to obtain a result for that row. Whereas in a spreadsheet, you would need to store a different formula in each cell of that column, in Google Refine, you only need one single expression. And that's made possible through the use of "variables", as explained next.
+
+When evaluated on a row in the example above, the expression can access to that row and the cell in the column "friend" of that row through *variables*. Think of a variable as a placeholder for something else. For example, there is a variable named "value" that is the placeholder for the cell's content. When the expression is evaluated on row 1, the variable "value" will stand for "John Smith"; when evaluated on row 2, it will stand for "Jane Doe". So, if the expression is
+
+{{{
+  value.split(" ")[1]
+}}}
+
+then for row 1, it will yield "Smith" and for row 2, "Doe". Using variables, a single expression yields different results for different rows.
+
+===Languages===
+
+Whereas each spreadsheet software has its own formula language, and only one language, Google Refine is capable of supporting several languages for writing expressions. Google Refine has its own native language called Google Refine Expression Language (GREL), but you could also use [http://www.jython.org/ Jython], or other languages if you install Google Refine extensions that support them. Where in GREL you write
+
+{{{
+  value.split(" ")[1]
+}}}
+
+in Jython you would write
+
+{{{
+  return value.split(" ")[1]
+}}}
+
+For that example the two languages are similar enough, but they don't have to be. On this documentation wiki, we will focus mostly on GREL. If you use another language, like Jython, please refer to its own documentation.
+
+
+==Google Refine Expression Language (GREL)==
+
+===Basics===
+
+GREL is designed to resemble Javascript. So you can expect these basic things to work, and know how they would work:
+
+|| `value + " append this at the end"` || concatenate two strings; whatever is in `value` gets converted to a string first ||
+|| `value + 2.239` || add two numbers; if `value` actually holds something other than a number, this becomes a string concatenation ||
+|| `value.trim().length()` || take the length of `value` after trimming its leading and trailing whitespace ||
+|| `value.substring(7, 10)` || take the substring of `value` from character index 7 up to and excluding character index 10 ||
+|| `value.substring(13)` || take the substring of `value` from character index 13 until the end of the string ||
+
+If you're used to Excel, note that the operator for string concatenation is not `&` but `+`.
+
+Note that the dot notation is a shorthand:
+
+|| shorthand notation || full notation ||
+|| `value.trim().length()` || `length(trim(value))` ||
+|| `value.substring(7, 10)` || `substring(value, 7, 10)` ||
+|| `value.substring(13)` || `substring(value, 13)` ||
+
+The first argument to a function can be swapped out in front of the function to formulate the dot notation.
+
+The dot notation can also be used to access member fields:
+
+|| `cell.value` || same as just `value` ||
+|| `row.index` || index of the current row ||
+
+For member fields whose names are not words (e.g., they contain spaces or other characters), use the bracket notation:
+
+|| `cells["First Name"]` || access the cell in the column called "First Name" of the current row ||
+
+Brackets can also be used to get substrings and sub-arrays, and their syntax resembles Python a bit more than Javascript:
+
+|| `value[1,3]` || access the substring of `value` starting from character index 1 up to but excluding character index 3 ||
+|| `"internationalization"[1,3]`|| return `nt`||
+|| `"internationalization"[1,-2]` || return `nternationalizati` (negative indexes are counted from the end) ||
+
+
+===Constructs===
