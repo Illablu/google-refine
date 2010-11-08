@@ -29,7 +29,7 @@ Note for advanced users: That (wrapping with forward slashes) is similar to how 
 Elsewhere in Google Refine, i.e., not within a GREL expression, do not use slashes to wrap regular expressions.
 
 
-==Basics==
+==Basic Examples==
 
 To describe a pattern, you typically need concepts like something repeating again and again, or some things A and B occurring interchangeably. For example, if in a scientific paper you ever see a sequence of letters A, C, T, G, you know that's DNA being discussed. As the first try, we might formulate this regular expression to match a DNA sequence
 
@@ -43,9 +43,39 @@ The square brackets mean "one of the characters inside" and the + sign means "oc
   isNotNull(value.match(/[ACTG]+/))
 }}}
 
-That almost works, except that it also finds single letters A, T, C, G, double-letter substrings like AT, 3-letter substrings like CAT, TAG, ... and the movie name GATTACA. If we were to avoid these "false positives" (matches that are not wanted), then we have to make the regular expression stricter, by changing "occurring one or more times" to something like "occurring at least 8 or more times".
-
+That almost works, except that it also finds single letters A, T, C, G, double-letter substrings like AT, 3-letter substrings like CAT, TAG, ... and the movie name GATTACA. If we were to avoid these "false positives" (matches that are not wanted), then we have to make the regular expression stricter, by changing "occurring one or more times" to something like "occurring at least 8 or more times":
 
 {{{
   [ACTG]{8,}+
 }}}
+
+DNA sequences don't follow a very tricky pattern. Let's consider something a bit more complicated: decimal numbers. These are valid decimal numbers:
+
+  * 120.0232898
+  * -0.2909
+  * +2.343
+
+We can describe a decimal number as follows:
+
+  * It optionally starts with a sign (minus or plus)
+  * Then it consists of a sequence of one or more digits
+  * Then optionally if it has a decimal part, it contains
+    * a period, followed by
+    * one or more digits
+
+We can express that as this regular expression
+
+{{{
+  [-+]?[0-9]+(\.[0-9]+)?
+}}}
+
+The question mark ? denotes an optional character or group of characters. The period . needs to be escaped by preceding it with a backslash \. A digit is denoted as the range of character from 0 to 9.
+
+We have encoded a digit as `[0-9]` but there is a shortcut: `\d`. There are several shortcuts:
+
+  * `\d`, same as `[0-9]`
+  * `\D`, same as `[^0-9]`, meaning any character other than a digit
+  * `\s`, meaning any whitespace character (space, tab, new line, carriage return)
+  * `\S`, meaning any character other than whitespace characters
+  * `\w`, same as `[a-zA-Z_0-9]`, meaning any character that can be part of a word (where the meaning of "word" is more liberal than an English word)
+  * `\W`, meaning any non-word character
