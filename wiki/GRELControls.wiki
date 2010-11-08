@@ -4,115 +4,70 @@ There are inline controls to support branching and essentially looping. They loo
 
 ===`if(expression o, expression eTrue, expression eFalse)`===
 
-Returns: Depends on actual arguments.
-
-Evaluates expression o. If it is true, evaluates expression eTrue and returns the result. Otherwise, evaluates expression eFalse and returns that result instead.
-
-Expression o is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.  `if(condition, if_true, if_false)` is the same as `(condition) ? if_true : if_false` in C-like languages.
+Expression `o` is evaluated to a value. If that value is true, then expression `eTrue` is evaluated and the result is the value of the whole `if` expression.
 
 Examples:
-{{{
-if(value.startsWith("A"), value.substring(1), value)
-}}}
-removes leading "A" from the cell's value, if any
-{{{
-if(cells.Synonym.value.startsWith("common"),cells.Synonym.value,null)
-}}}
-This statement when run as a text transform on a column, checks if cells in another Column named "Synonym" start with the term "common" and if so sets (copies) that value into the current columns' cells being transformed, otherwise sets the current columns' cells to null. This is equivalent to the notation `(condition) ? if_true : if_false;`
+
+|| expression || result ||
+|| `if("internationalization".length() > 10, "big string", "small string")` || `big string` ||
+|| `if(mod(37, 2) == 0, "even", "odd")` || `odd` ||
+
 
 ===`with(expression o, variable v, expression e)`===
 
-Returns: Depends on actual arguments.
+Evaluates expression `o` and binds its value to variable name `v`. Then evaluates expression `e` and returns that result.
 
-Evaluates expression o and binds its value to variable name v. Then evaluates expression e and returns that result.
+|| expression || result ||
+|| `with("european union".split(" "), a, a.length)` || `2` ||
+|| `with("european union".split(" "), a, forEach(a, v, v.length()))` || `[ 8, 5 ]` ||
+|| `with("european union".split(" "), a, forEach(a, v, v.length()).sum() / a.length())` || `6.5` ||
 
-Examples:
-{{{
-with("twenty", s, s.substring(0, s.length() / 2))
-}}}
-returns "twe". If `with` is not used, then we have to repeat `"twenty"` like so:
-{{{
-"twenty".substring(0, "twenty".length() / 2)
-}}}
 
 ===`filter(expression a, variable v, expression test)`===
 
-Returns an array.
+Evaluates expression `a` to an array. Then for each array element, binds its value to variable name `v`, evaluates expression `test` which should return a boolean. If the boolean is true, pushes `v` onto the result array.
 
-Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression test which should return a boolean. If the boolean is true, pushes v onto the result array.
+|| expression || result ||
+|| `filter([ 3, 4, 8, 7, 9 ], v, mod(v, 2) == 1)` || `[ 3, 7, 9 ]` ||
+
 
 ===`forEach(expression a, variable v, expression e)`===
 
-Returns an array.
+Evaluates expression `a` to an array. Then for each array element, binds its value to variable name `v`, evaluates expression `e`, and pushes the result onto the result array.
 
-Evaluates expression a to an array. Then for each array element, binds its value to variable name v, evaluates expression e, and pushes the result onto the result array.
-Expression `eArray` is evaluated, presumably to an array. Then for each element of that array, a new environment is created in which that element is bound to the variable name `v`, and in that new environment the expression `eEach` is evaluated, yielding a value. Thus, a value is generated from each element of that array, yielding another array, which is the result of the whole `forEach` expression.
+|| expression || result ||
+|| `forEach([ 3, 4, 8, 7, 9 ], n, mod(n, 2))` || `[ 1, 0, 0, 1, 1 ]` ||
 
-Example:
-{{{
-forEach("one;two;three".split(";"), x, x.length())` returns `[ 3, 3, 5 ]
-}}}
 
 ===`forEachIndex(expression a, variable i, variable v, expression e)`===
 
-Returns an array.
+Evaluates expression `a` to an array. Then for each array element, binds its index to variable `i` and its value to variable name `v`, evaluates expression `e`, and pushes the result onto the result array.
 
-Evaluates expression a to an array. Then for each array element, binds its index to variable i and its value to variable name v, evaluates expression e, and pushes the result onto the result array.
+|| expression || result ||
+|| `forEachIndex([ "anne", "ben", "cindy" ], j, name, (j + 1) + ". " + name).join(", ")` || `1. anne, 2. ben, 3. cindy` ||
+
 
 ===`forRange(number from, number to, number step, variable v, expression e)`===
 
-Returns an array.
+Iterates over the variable `v` starting at `from`, incrementing by `step` each time while less than `to`. At each iteration, evaluates expression `e`, and pushes the result onto the result array.
 
-Iterates over the variable v starting at "from", incrementing by "step" each time while less than "to". At each iteration, evaluates expression e, and pushes the result onto the result array.
 
 ===`forNonBlank(expression o, variable v, expression eNonBlank, expression eBlank)`===
 
-Returns: Depends on actual arguments.
+Evaluates expression `o`. If it is non-blank, binds its value to variable name `v`, evaluates expression `eNonBlank` and returns the result. Otherwise (if `o` evaluates to blank), evaluates expression `eBlank` and returns that result instead.
 
-Evaluates expression o. If it is non-blank, binds its value to variable name v, evaluates expression eNonBlank and returns the result. Otherwise (if o evaluates to blank), evaluates expression eBlank and returns that result instead.
-
-{{{
-forNonBlank(e, v, eNonBlank, eBlank)
-}}}
-is the same as
-{{{
-with(e, vTemp, if(isNonBlank(vTemp), with(vTemp, v, eNonBlank), eBlank))
-}}}
-
-Example:
-{{{
-forNonBlank("foo", n, n + "bar", "nothing")
-}}}
-returns "foobar".
-{{{
-forNonBlank("", n, n + "bar", "nothing")
-}}}
-returns "nothing".
-{{{
-forNonBlank("", n, n + "bar", n + "nothing")
-}}}
-returns null (`n` is not bound in `n + "nothing"`, causing that expression to fail).
 
 ===isBlank, isNonBlank, isNull, isNotNull, isNumeric, isError===
 
 `isX(e)` : evaluates expression `e` and returns whether its value is `X`.
 
 Examples:
-{{{
-isBlank(value.partition(":",true)[1])
-}}}
-{{{
-isNonBlank(value.partition(":",true)[1])
-}}}
-{{{
-isNull(value)
-}}}
-{{{
-isNotNull(value)
-}}}
-{{{
-isNumeric(value)
-}}}
-{{{
-isError	(expression o)
-}}}
+
+|| expression || result ||
+|| `isBlank("abc")` || `false` ||
+|| `isNonBlank("abc")` || `true` ||
+|| `isNull("abc")` || `false` ||
+|| `isNumeric(2)` || `true` ||
+|| `isError(1)` || `false` ||
+|| `isError("abc")` || `false` ||
+|| `isError(1 / 0)` || `true` ||
