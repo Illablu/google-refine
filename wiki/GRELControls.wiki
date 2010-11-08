@@ -116,16 +116,3 @@ isNumeric(value)
 {{{
 isError	(expression o)
 }}}
-
-----
-===See Also===
-----
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]
-  
-  * [GRELReference GREL Reference]
-  * [GRELRegex GREL Regular Expressions]
