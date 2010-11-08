@@ -57,7 +57,7 @@ Iterates over the variable `v` starting at `from`, incrementing by `step` each t
 Evaluates expression `o`. If it is non-blank, binds its value to variable name `v`, evaluates expression `eNonBlank` and returns the result. Otherwise (if `o` evaluates to blank), evaluates expression `eBlank` and returns that result instead.
 
 
-===isBlank, isNonBlank, isNull, isNotNull, isNumeric, isError===
+===`isBlank`, `isNonBlank`, `isNull`, `isNotNull`, `isNumeric`, `isError`===
 
 `isX(e)` : evaluates expression `e` and returns whether its value is `X`.
 
