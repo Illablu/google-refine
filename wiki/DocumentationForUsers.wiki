@@ -56,13 +56,14 @@ and there are full recipes:
 
 ==Expressions==
 
+  * [Variables Variables]
   * Google Refine Expression Language (GREL)
-    * [GRELReference GREL Reference]
-    * [GRELFunctions GREL Functions]
-      * [GRELBooleanFunctions GREL Boolean Functions]
-      * [GRELStringFunctions GREL String Functions]
-      * [GRELArrayFunctions GREL Array Functions]
-      * [GRELMathFunctions GREL Math Functions]
-      * [GRELDateFunctions GREL Date Functions]
-      * [GRELOtherFunctions GREL Other Functions]
+    * [GRELControls Controls]
+    * [GRELFunctions Functions]
+      * [GRELBooleanFunctions Boolean functions]
+      * [GRELStringFunctions String functions]
+      * [GRELArrayFunctions Array functions]
+      * [GRELMathFunctions Math functions]
+      * [GRELDateFunctions Date functions]
+      * [GRELOtherFunctions Other functions]
   * [Jython Jython]
