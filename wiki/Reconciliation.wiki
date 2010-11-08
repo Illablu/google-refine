@@ -1,27 +1,34 @@
-= Introduction =
-Reconciling allows you to easily match a column of your data against topics in Freebase.
-It currently uses 2 approaches to reconciling with Freebase.
+Reconciliation is a semi-automated process of matching text names to database IDs (keys). This is semi-automated because in some cases, machine along is not sufficient and human judgement is essential. For example, given "Ocean's Eleven" as the name of a film, should it be matched to
 
- # Heuristic
-  * Relevance service or
-  * Recon service
- # Strict
-  * using MQLread API
+  * the original 1960 "Ocean's Eleven" ([http://www.freebase.com/view/en/oceans_eleven_1960 Freebase entry]), or
+  * the 2001 remake "Ocean's Eleven" starring George Clooney ([http://www.freebase.com/view/en/oceans_eleven Freebase entry])?
 
-= How To =
- # Click the arrow above the column you want to reconcile.
- # Choose *Reconcile* from the menu then *Start Reconciling...*
- # A movable panel appears allowing you to choose:
-   * The first tab *Heuristic* has 2 services (recon and relevance) and initially shows recommended types on the left that Google Refine thinks matches closely with the data that is in your column's cells.  Choose the appropriate type or use the *Search for type* box and begin typing subject names to get suggestions. i.e. Company  If you choose relevance, "Auto-match candidates with high confidence" means score >= 100 and the ratio between the first candidate's score and the second candidate's score > 1.3 or something like.  If you choose recon, "Auto-match candidates with high confidence" then auto-matching is left to the discretion of the recon service.
-   * The second tab *Strict* uses MQLread to perform a direct query, i.e. "Strict"
-     * (more details needed here regarding keys and namespaces, examples)
- # After choosing your above options, click *Start Reconciling* and a progress panel near the top will appear.
+While we talk about "databases" here, perhaps a more accurate term would be "name registries". And conceptually, "reconciliation" isn't a new concept. In some fields, it's being done all the time. For example, when the police gets a name of a suspect, they run the name through their databases of known felons. More details about the suspect (e.g., race, height, last known address) would help the police narrow down the suspect among several database matches.
 
-= Details =
-Topics matched will show a relevance score in parentheses after the topic name, eg. Harry Potter (59).
+You can use Google Refine to perform reconciliation of names in your data against any database that exposes a web service following this [ReconciliationServiceApi Reconciliation Service API] specification. One such database is [http://www.freebase.com/ Freebase], and in this document we will use it as our example service.
 
-If you choose the *recon* service on the *Heuristic* tab then it shows 3 decimal digits, eg. Harry Potter (.244)
 
-The reconciliation operation should automatically approve confident matches. For cells without confident matches, use facets on reconciliation features to focus your efforts. Go through them in bulk or individually using the single or double red check mark and use your own judgment to match them.
+==Basics==
 
-(more details regarding matching after reconciling go here, perhaps link to further recipes) 
+For a column containing names, to reconcile those names against Freebase, invoke the column's drop-down menu and pick Reconcile > Start reconciling... If you want to reconcile only some cells in that column, then use filters and facets to isolate them first.
+
+In the Reconcile dialog box, pick Freebase Reconciliation Service on the left. That service comes by default, but you can install more services. Using that service, Google Refine will try to determine the type of names we're dealing with. When it's done, it will show you a list of types. Pick the best type in your opinion and click Start Reconcile at the bottom.
+
+This process will take a while depending on how much data you have. For now, we would recommend reconciling only a few hundred cells at a time. In the future, perhaps we can afford reconciliation services with greater capacity.
+
+When the process is done, you will see that the reconciled cells display either a single link or 3 candidates. Cells with links have been automatically matched, and you don't have to process them manually. Cells with candidates have not been matched yet, and you will have to process them yourself, either individually or in bulk depending on the nature of your data.
+
+In addition to changing the ways the reconciled cells are displayed, Google Refine also automatically creates two facets for you to use to filter the cells based on the reconciliation data. One is a numeric facet for the reconciliation scores of the best candidates of the cells. Higher scores mean better matches. You could filter for the higher scores, and approve them all in bulk (invoking that column's drop-down menu and using the Reconcile > Actions submenu).
+
+There is also the "judgment" facet, which lets you filter for the cells that haven't been matched (pick "None" in the facet). As you process each cell, its judgment changes from "None" to "Matched" and it disappears from the view, because it no longer fits the facet's selection.
+
+Reconciliation is a delicate process, hard to describe here. We will provide some tutorial videos in the near future. For now, if you need help, please email the mailing list or get on IRC and ask us questions.
+
+
+==Query-based Reconciliation==
+
+As a degenerated form of "reconciliation", you can get a column of database IDs to be "reconciled". It's "degenerated" because the process isn't ambiguous since you already have IDs. The process of "reconciliation" here only involves fetching more data for those IDs (such as the official names corresponding to those IDs).
+
+Right now Google Refine only supports this kind of "query-based reconciliation" against Freebase. In the Reconcile dialog box, pick Freebase Query-based Reconciliation on the left. Your data can contain Freebase IDs, GUIDs, or keys in certain namespaces. For example, if you have country 2-letter ISO codes, you can reconcile against the namespace ISO 3166-1.
+
+Note that you might have to encode your data into property Freebase keys before performing query-based reconciliation. Use the mqlKeyQuote() function documented [GRELStringFunctions here].
