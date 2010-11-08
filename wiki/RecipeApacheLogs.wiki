@@ -9,7 +9,7 @@ Then apply the following operations
 {{{
   [
     {
-      "op": "column-split",
+      "op": "core/column-split",
       "description": "Split column Column by separator",
       "engineConfig": {
         "facets": [],
@@ -24,7 +24,7 @@ Then apply the following operations
       "maxColumns": 3
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column Time at index 3 based on column Column 3 using expression grel:value[2,value.indexOf(\"]\")].toDate(\"dd/MMM/yyyy:hh:mm:ss\")",
       "engineConfig": {
         "facets": [],
@@ -37,7 +37,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column Method at index 3 based on column Column 3 using expression grel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[0]",
       "engineConfig": {
         "facets": [],
@@ -50,7 +50,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column Path at index 3 based on column Column 3 using expression grel:value.substring(value.indexOf('\"') + 1).partition('\"')[0].split(\" \")[1]",
       "engineConfig": {
         "facets": [],
@@ -63,7 +63,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column Agent at index 3 based on column Column 3 using expression grel:value.rpartition('\"')[0].rpartition('\"')[2]",
       "engineConfig": {
         "facets": [],
@@ -76,7 +76,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column ResponseCode at index 3 based on column Column 3 using expression grel:with(value.partition('\" ')[2], s, s.partition(\" \")[0])",
       "engineConfig": {
         "facets": [],
@@ -89,7 +89,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column ContentLength at index 3 based on column Column 3 using expression grel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(\" \")[0])",
       "engineConfig": {
         "facets": [],
@@ -102,7 +102,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-addition",
+      "op": "core/column-addition",
       "description": "Create column Referer at index 3 based on column Column 3 using expression grel:with(value.partition('\" ')[2].partition(\" \")[2], s, s.partition(' \"')[2].partition('\" ')[0])",
       "engineConfig": {
         "facets": [],
@@ -115,7 +115,7 @@ Then apply the following operations
       "onError": "set-to-blank"
     },
     {
-      "op": "column-removal",
+      "op": "core/column-removal",
       "description": "Remove column Column 3",
       "columnName": "Column 3"
     }
