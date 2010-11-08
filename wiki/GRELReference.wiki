@@ -78,16 +78,3 @@ A `record` object encapsulates one or more rows that are grouped together. For e
 || 5. || || Harry Potter and the Chamber of Secrets (Book 2) || 2000 || 
 
 A `record` object has one field, `cells`, which can be used to access the zero or more cells in a particular column. For example, evaluating `row.record.cells.book.value` on row 2 returns `[ "Anathem", "Snow Crash" ]`.
-
-----
-===See Also===
-----
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]
-  
-  * [GRELControls GREL Controls]
-  * [GRELRegex GREL Regular Expressions]
