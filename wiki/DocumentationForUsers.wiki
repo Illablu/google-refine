@@ -19,11 +19,12 @@ Love it so much?
   * [Faceting Filtering / faceting]
   * Editing:
     * [CellEditing Editing cells], editing cells by [Clustering Clustering]
-    * [ColumnEditing Editing columns], creating columns by [ExtendingData Extending Data]
+    * [ColumnEditing Editing columns], creating columns by [ExtendingData Extending data]
     * [RowEditing Editing rows]
+    * [UnderstandingExpressions Understanding expressions]
+    * [UnderstandingRegularExpressions Understanding regular expressions]
   * [Exporters Exporting]
   * [History History] (undo/redo)
-  * [UnderstandingExpressions Understanding expressions]
 
 *Reconciliation:* You can use the "reconciliation" support in Refine to link text names in your data to database identifiers (also known as database keys, IDs). By connecting your data with other databases, you get more value out of your data.
 
@@ -64,5 +65,4 @@ and there are full recipes:
       * [GRELMathFunctions GREL Math Functions]
       * [GRELDateFunctions GREL Date Functions]
       * [GRELOtherFunctions GREL Other Functions]
-    * [GRELRegex GREL Regular Expressions]
   * [Jython Jython]
