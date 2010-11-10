@@ -3,7 +3,7 @@
 
 Where to start?
 
-  * [InstallationInstructions How to install and run]
+  * [InstallationInstructions How to install and run] ([UpgradingTo2p0 upgrading instructions])
   * [UserGuide How to use]
 
 Love it so much?
