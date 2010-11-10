@@ -1,5 +1,9 @@
 #summary Announcements of the latest features
 
+==November 2010==
+
+Google Refine 2.0 is released ([ChangesFor2p0 change list]).
+
 ==May 2010==
 ===May 28th, 2010===
 Freebase Gridworks 1.1 is released.
