@@ -9,6 +9,6 @@ Any help at all is appreciated.
 And of course, tell other people about Google Refine, at work, at conferences, etc. and
   * on Twitter (using the tag #grefine)
   * in blog posts--write about what you use Google Refine for and how, give other people tips and tricks
-The more Google Refine gets used, the more we can justify putting more development resources on it. The more bugs are found. The more knowledge is accumulated about how to use it. Etc. etc.
+The more Google Refine gets used, the more we can justify putting more development resources on it. Finding bugs is very helpful and contributes to more knowledge accumulated about how to use it. Etc. etc.
 
 We developers also tend to hang out on IRC (irc://irc.freenode.net/#grefine).
