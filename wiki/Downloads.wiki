@@ -1,3 +1,3 @@
-<wiki:gadget url="http://refine-gadgets.freebaseapps.com/gadget/downloads" width="700" height="600" border="0" /> 
-
 For all downloads, see [http://code.google.com/p/google-refine/downloads/list this list].
+
+<wiki:gadget url="http://refine-gadgets.freebaseapps.com/gadget/downloads" width="600" height="600" border="0" /> 
