@@ -1,1 +1,3 @@
-We're currently preparing to release Google Refine 2.0 in a few days. Hang on ...
+<wiki:gadget url="http://refine-gadgets.freebaseapps.com/gadget/downloads" width="700" height="600" border="0" /> 
+
+For all downloads, see [http://code.google.com/p/google-refine/downloads/list this list].
