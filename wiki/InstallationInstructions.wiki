@@ -37,3 +37,7 @@ Google Refine is a desktop application in that you download it, install it, and 
 this will start Google Refine and open your browser to its starting page.
 
 *Shut down:* Press `Ctrl-C` in the shell.
+
+===Development Version===
+
+If you want the latest and greatest version, see [GetDevelopmentVersion how to get the development version].
