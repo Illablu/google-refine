@@ -3,8 +3,6 @@
 
 =Welcome!=
 
-|| [http://code.google.com/p/google-refine/logo?cct=1285702665&pretend=logo.png] || <blockquote>*Pardon the mess while we're preparing to release version 2.0*</blockquote> ||
-
 *Here for the First Time?*
 
   * Watch [Screencasts these screencasts] to understand what's possible with Google Refine
