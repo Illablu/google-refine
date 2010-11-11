@@ -9,7 +9,6 @@ Please be aware that none of this is carved in stone and can change any time, so
 Feature Areas
 
   * Importers: UI form, better format guessing, connection to GData
-    * Issue 84: Textbox importer
     * Issue 85: Fixed width column importer - seems easy
     * Issue 84: Add a cut and paste textbox importer ? - mostly design work
   * Exporters: UI for picking columns, etc.
