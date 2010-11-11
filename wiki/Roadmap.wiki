@@ -9,8 +9,8 @@ Please be aware that none of this is carved in stone and can change any time, so
 Feature Areas
 
   * Importers: UI form, better format guessing, connection to GData
-    * Issue 85: Fixed width column importer - seems easy
-    * Issue 84: Add a cut and paste textbox importer ? - mostly design work
+    * Issue 85: Fixed width column importer - UI work required
+    * Issue 84: Add a cut and paste textbox importer - mostly UI work
   * Exporters: UI for picking columns, etc.
     * Issue 97: Exporting CSV should allow for optional columns
     * GData specifics: oauth, etc.
