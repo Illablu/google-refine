@@ -1,4 +1,4 @@
-#summary Is Google Refine an ETL tool ? or can be used
+#summary Is Google Refine an ETL tool ? or can be used in batch operations or job control ?
 
 *The Fact* - Google Refine is a discovery and cleanup tool as it
 stands now at release 2.0  It also has the benefit of aligning, reconciling, and
