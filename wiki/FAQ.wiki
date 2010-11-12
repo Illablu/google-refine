@@ -42,6 +42,6 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
   From version 2.0, you can go to http://127.0.0.1:3333/preferences and set the facet limit using the preference key "ui.browsing.listFacet.limit".
 
-*Question*: can Google Refine be used as a piece of a larger ETL pipeline?
+*Question*: can Google Refine be used as a piece of a larger [ETL http://en.wikipedia.org/wiki/Etl] pipeline?
 
   Not right now (version 2.0) but we're open and intrigued by the possibility of using Refine in 'batch mode' if the   community finds it a useful feature to have. It's worth pointing out that not all Refine features can work unsupervised and without human interaction (clustering, for example), but some can, and for those it makes sense.
