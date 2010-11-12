@@ -1,19 +1,15 @@
 #summary Is Google Refine an ETL tool ? or can be used in batch operations or job control ?
 
-*The Fact* - Google Refine is a discovery and cleanup tool as it
-stands now at release 2.0  It also has the benefit of aligning, reconciling, and
-exporting data, to Freebase or somewhere else.
+Google Refine is a discovery and cleanup tool mostly, as it stands now at release 2.0.  It also has the benefit of aligning, reconciling, and exporting data, to Freebase or somewhere else.  Some folks in the community have expressed the idea or need for batching transform operations or evolving Google Refine into an automated pipeline process.
 
-Transforms on large amounts of data are typically handled with existing database ETL tools (Extract, Transform, Load) which some are listed here: [RelatedSoftware]
+One feature of Google Refine that folks find intriguing is it's ability to display inconsistencies in your data and clean it up easily.
 
-Much of what folks find intriguing regarding Google Refine is it's
-ability to display inconsistancies in your data, that you can then
-apply as a process improvement workflow with existing ETL tools.
+Usage with Enterprise data or large databases,
+  * For instance, you might leverage Google Refine to analyze and find faults in the output of some of your stored procedures within an existing database and then fix them outright.
+  * Or, you might make slight job changes inside your program or ETL tool after you discover (using Google Refine) that your output isn't always correct, and the job needs to be modified.
 
-  * For instance, you might leverage Google Refine to find a few faults in some of your stored procedures within an existing database and then fix them outright.
-  * Or, you might make slight job changes inside an ETL tool after you discover (using Google Refine) that your output isn't always correct, and the jobs need to be modified in the ETL tool or program you use.
+Also, if your interest is transforming large amounts of data, you might also want to look at existing database ETL tools (Extract, Transform, Load) which some we have listed here: [RelatedSoftware]
 
-Using Google Refine does have a few limitations currently that you
-will be exposed to, if the above usage is your goal.  One is that without plenty of RAM and Java 64 bit, your going to find a hard time absorbing and utilizing, for example, a 1 billion row Enterprise database table.  Google Refine was not designed to sub-plant other existing tools, but instead work alongside them and complement them.
+( Currently, using Google Refine with extremely large amounts of data and millions of rows does require plenty of RAM and Java 64 bit, so you might find a hard time absorbing and utilizing, for example, a 1 billion row Enterprise database table. )
 
-For now, use it for what it does best and has been initially designed to do, which is *The Fact* above. 
+We're interested in your ideas and comments ! and patches are always welcome !
