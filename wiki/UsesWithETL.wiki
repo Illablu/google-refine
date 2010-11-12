@@ -1,4 +1,4 @@
-#summary Is Google Refine an ETL tool ? or can be used in batch operations or job control ?
+#summary Is Google Refine an ETL tool ? or can it be used in batch operations or job control ?
 
 Google Refine is a discovery and cleanup tool mostly, as it stands now at release 2.0.  It also has the benefit of aligning, reconciling, and exporting data, to Freebase or somewhere else.  Some folks in the community have expressed the idea or need for batching transform operations or evolving Google Refine into an automated pipeline process.
 
