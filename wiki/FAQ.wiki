@@ -6,7 +6,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
   * [FaqWhereIsDataStored Where is the data stored?]
   * [FaqAllocateMoreMemory How to allocate more memory?] - I get `java.lang.OutOfMemoryError` or Refine feels SLOW. How do I expand the memory that it can use?
-  * [UsesWithETL Can Google Refine handle automated processes ? or job control like an ETL tool (Extract, Transform, Load with repetition) ? and how does it compare ?]
+  * [UsesWithETL Can Google Refine handle automated processes ? or job control like an ETL tool (Extract, Transform, Load with repetition) ?]
 
 ==Questions with Short Answers==
 
