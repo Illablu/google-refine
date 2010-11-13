@@ -1,4 +1,4 @@
-#summary Editing rows.
+#summary Editing rows is done by creating a unique facet, then using the "All" button on the top left.
 
 Rows can be *removed*, and *starred* or *flagged*.
 
