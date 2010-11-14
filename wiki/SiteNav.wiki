@@ -6,4 +6,4 @@
     * [SampleDatasets Sample Datasets]
     * [DataSources Data Sources]
     * [RelatedSoftware Related Software]
-    * [http://wiki.freebase.com/wiki/Refinery Refinery]
+    * [http://wiki.freebase.com/wiki/Refinery Freebase Refinery]
