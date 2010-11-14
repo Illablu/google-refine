@@ -219,6 +219,6 @@ The Freebase Suggest widgets embedded in Google Refine will concatenate `_url` a
 
 =Google Refine Integration=
 
-Google Refine's UI will include a mechanism for entering a standard reconciliation service API's URL.
+Google Refine's UI includes a mechanism for entering a standard reconciliation service API's URL.
 
 Each column in Google Refine should only be reconciled against one identity space. 
