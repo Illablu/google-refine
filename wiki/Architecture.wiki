@@ -13,7 +13,7 @@ This architecture has emerged from our experience building similar systems such 
 
 The server-side part of Google Refine is implemented in Java as one single servlet which is executed by the [http://jetty.codehaus.org/jetty/ Jetty] web server + servlet container. The use of Java strikes a balance between performance and portability across operating system (there is very little OS-specific code and has mostly to do with starting the application).
 
-The client-side part of Google Refine is implemented in Javascript and uses [http://jquery.org/ JQuery] and [http://jqueryui.com/ JQueryUI] to simplify portability across modern browsers (old browsers, say NS4 or IE6, are not supported).
+The client-side part of Google Refine is implemented in Javascript and uses [http://jquery.com/ JQuery] and [http://jqueryui.com/ JQueryUI] to simplify portability across modern browsers (old browsers, say NS4 or IE6, are not supported).
 
 The most surprising architectural feature for many is the fact that Google Refine has no database... or, more precisely, it runs off of its own in-memory data-store that is built up-front to be optimized for the operations required by faceted browsing and infinite undo.
 
