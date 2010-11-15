@@ -16,7 +16,7 @@ Feature Areas
     * GData specifics: oauth, etc.
   * Internationalization
   * Streamlining traditional features
-    * traditional find & replace
+    * Issue 213: traditional find & replace
     * Issue 68: "merge columns" command.
   * More documentation and testing on the standard reconciliation service stuff - dfhuynh
 
