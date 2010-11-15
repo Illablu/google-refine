@@ -39,22 +39,25 @@ By default, Google Refine exports JSON. JSON is a very effective way to transpor
 
 == YAML ==
 
-{{{
+<pre>
 rows:
 
-- Name : Andy
+- Name: Andy
   Height (m): 1.73
   Occupation: Student
 
-- Name : Bernd
+- Name: Bernd
   Height (m): 1.79
   Occupation: Zoologist
 
-- Name : Carol
+- Name: Carol
   Height (m): 1.65
   Occupation: Carpenter
-}}}
+</pre>
 
+You can see from these two examples that they are both fairly readable. However, YAML has no commas or curly braces that interfere with readability. 
+
+= Getting Started =
 
 You can follow along by pointing Google Refine at the example spreadsheet:
 
