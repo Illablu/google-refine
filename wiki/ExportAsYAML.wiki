@@ -1,0 +1,151 @@
+#summary A demonstration on how to use export templating to produce YAML.
+#labels Tutorial
+
+= Introduction =
+
+For this tutorial, we are going to be working with a small set of data that looks like this:
+
+|| *Person 0* || *Height (m) 1* || *Occupation 2* ||
+|| Andy || 1.73 || Student ||
+|| Bernd || 1.79 || Zoologist ||
+|| Carol || 1.65 || Carpenter ||
+
+By default, Google Refine exports JSON. JSON is a very effective way to transport data, but it can sometimes be difficult to read. Consider the difference between these two presentations of the same data:
+
+
+== JSON ==
+
+{{{
+{
+  "rows" : [
+    {
+      "Person 0" : "Andy",
+      "Height (m) 1" : 1.73,
+      "Occupation 2" : "Student"
+    },
+    {
+      "Person 0" : "Bernd",
+      "Height (m) 1" : 1.79,
+      "Occupation 2" : "Zoologist"
+    },
+    {
+      "Person 0" : "Carol",
+      "Height (m) 1" : 1.65,
+      "Occupation 2" : "Carpenter"
+    }
+  ]
+}
+}}}
+
+== YAML ==
+
+{{{
+rows:
+
+- Name : Andy
+  Height (m): 1.73
+  Occupation: Student
+
+- Name : Bernd
+  Height (m): 1.79
+  Occupation: Zoologist
+
+- Name : Carol
+  Height (m): 1.65
+  Occupation: Carpenter
+}}}
+
+
+You can follow along by pointing Google Refine at the example spreadsheet:
+
+ * Go to http://localhost:3333/ in your web browser
+ * Begin a new project with `https://spreadsheets.google.com/pub?key=0Aq_3OYelM4ZUdEpYYmNKY0t1V0VjYlR5UjFYejVHbWc&hl=en_GB&single=true&gid=0&range=A1%3AC4&output=html` as the URL. 
+ * Click on `Export` > `Templating...`
+
+= Details =
+
+YAML is a very simple format. Its entire purpose is to be human readable. Also, it is focused on data, rather than documents. This makes it a perfect fit for sharing data from Google Refine.
+
+== Changes to make ==
+
+=== Prefix Field ===
+
+*Most basic*
+
+YAML documents don't need any curly braces. If you want, you can leave this field blank.
+
+*Basic*
+
+If you would like to be careful, you can add some features.
+
+  * Four dashes "-"
+  * A comment that tells people what the data are about
+
+{{{
+----#people
+
+}}}
+
+*More advanced*
+
+We can provide some details about the document in here
+
+{{{
+----#people
+
+Date: Monday, 15 November 2010
+Author: Tim
+
+}}}
+
+
+=== Row Field ===
+
+Generating rows is much simpler than the current JSON. The main thing to watch out for is that there is a blank line between rows.
+
+Try changing:
+{{{
+    {
+      "Person 0" : {{jsonize(cells["Person 0"].value)}},
+      "Height (m) 1" : {{jsonize(cells["Height (m) 1"].value)}},
+      "Occupation 2" : {{jsonize(cells["Occupation 2"].value)}},
+      "Column 3" : {{jsonize(cells["Column 3"].value)}},
+      "Column 4" : {{jsonize(cells["Column 4"].value)}},
+      "Column 5" : {{jsonize(cells["Column 5"].value)}},
+      "Column 6" : {{jsonize(cells["Column 6"].value)}},
+      "Column 7" : {{jsonize(cells["Column 7"].value)}},
+      "Column 8" : {{jsonize(cells["Column 8"].value)}},
+      "Column 9" : {{jsonize(cells["Column 9"].value)}},
+      "Column 10" : {{jsonize(cells["Column 10"].value)}},
+      "Column 11" : {{jsonize(cells["Column 11"].value)}},
+      "Column 12" : {{jsonize(cells["Column 12"].value)}},
+      "Column 13" : {{jsonize(cells["Column 13"].value)}},
+      "Column 14" : {{jsonize(cells["Column 14"].value)}},
+      "Column 15" : {{jsonize(cells["Column 15"].value)}},
+      "Column 16" : {{jsonize(cells["Column 16"].value)}},
+      "Column 17" : {{jsonize(cells["Column 17"].value)}},
+      "Column 18" : {{jsonize(cells["Column 18"].value)}},
+      "Column 19" : {{jsonize(cells["Column 19"].value)}}
+    }
+}}}
+To:
+{{{
+
+-  Name: {{cells["Person 0"].value}}
+   Height (m): {{cells["Height (m) 1"].value}}
+   Occupation: {{cells["Occupation 2"].value}}
+}}}
+
+Some points here:
+
+  * Keep the curly braces in place. That tells Google Refine that you need to do some processing there.
+  * Remove the trailing commas from each part
+  * Make sure the cell headings match exactly.
+
+=== Suffix Field ===
+
+Adding three dots is good practice. It tells the machine that we've finished.
+
+{{{
+...
+}}}
