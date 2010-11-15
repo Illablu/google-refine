@@ -13,7 +13,22 @@ To export from a project, click the Export button at the top right corner and pi
 
 ==Templating Exporter==
 
-If you pick Templating... from the Export menu, you can "roll your own" exporter. This is useful for formats that we don't support natively yet, or won't support. For example, right now, you can use the Templating exporter to generate JSON or wikitext tables.
+If you pick `Templating...` from the Export menu, you can "roll your own" exporter. This is useful for formats that we don't support natively yet, or won't support. For example, right now, you can use the Templating exporter to generate JSON by default. We have a tutorial on using this approach [ExportAsYAML export your data as YAML].
+
+=== Guides ===
+
+These should be some good guides to getting started with exporting your data in different formats. You should look through the  exporting to YAML
+
+
+|| Format        || Prefix || Row Template                  || Row Seperator || Suffix ||
+|| *!MediaWiki tables*  || `{|`   || `| {{cells["col1"]}}` || `|-`   || `|}`   ||
+|| *YAML*        || `----` || `- {{cells["col1"]}}` ||               ||  `...` ||
+
+<wiki:comment>
+I can't get this to render properly --Tim McNamara
+
+|| *Google Code wiki tables* ||   || `|| {{cells["col1"]}} ||` ||       ||     ||
+</wiki:comment>
 
 
 ==Exporting Projects==
