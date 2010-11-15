@@ -73,31 +73,21 @@ YAML is a very simple format. Its entire purpose is to be human readable. Also, 
 
 === Prefix Field ===
 
-*Most basic*
-
-YAML documents don't need any curly braces. If you want, you can leave this field blank.
-
 *Basic*
-
-If you would like to be careful, you can add some features.
-
-  * Four dashes "-"
-  * A comment that tells people what the data are about
+We only need a single word in the prefix field:
 
 {{{
-----#people
-
+rows:
 }}}
 
-*More advanced*
+*Bonus points*
 
-We can provide some details about the document in here
+If we want to be nice to YAML parsers, we can add some optional dashes. These help to tell the computer that's reading it that it has entered a YAML document.
 
 {{{
 ----#people
 
-Date: Monday, 15 November 2010
-Author: Tim
+rows:
 
 }}}
 
@@ -147,7 +137,7 @@ Some points here:
 
 === Suffix Field ===
 
-Adding three dots is good practice. It tells the machine that we've finished.
+Adding three dots is good practice. It tells the parser that we've finished.
 
 {{{
 ...
