@@ -5,7 +5,7 @@
 
 For this tutorial, we are going to be working with a small set of data that looks like this:
 
-|| *Person 0* || *Height (m) 1* || *Occupation 2* ||
+|| *Name* || *Height (m)* || *Occupation* ||
 || Andy || 1.73 || Student ||
 || Bernd || 1.79 || Zoologist ||
 || Carol || 1.65 || Carpenter ||
@@ -19,19 +19,19 @@ By default, Google Refine exports JSON. JSON is a very effective way to transpor
 {
   "rows" : [
     {
-      "Person 0" : "Andy",
-      "Height (m) 1" : 1.73,
-      "Occupation 2" : "Student"
+      "Name" : "Andy",
+      "Height (m)" : 1.73,
+      "Occupation" : "Student"
     },
     {
-      "Person 0" : "Bernd",
-      "Height (m) 1" : 1.79,
-      "Occupation 2" : "Zoologist"
+      "Name" : "Bernd",
+      "Height (m)" : 1.79,
+      "Occupation" : "Zoologist"
     },
     {
-      "Person 0" : "Carol",
-      "Height (m) 1" : 1.65,
-      "Occupation 2" : "Carpenter"
+      "Name" : "Carol",
+      "Height (m)" : 1.65,
+      "Occupation" : "Carpenter"
     }
   ]
 }
@@ -39,7 +39,7 @@ By default, Google Refine exports JSON. JSON is a very effective way to transpor
 
 == YAML ==
 
-<pre>
+{{{
 rows:
 
 - Name: Andy
@@ -53,7 +53,7 @@ rows:
 - Name: Carol
   Height (m): 1.65
   Occupation: Carpenter
-</pre>
+}}}
 
 You can see from these two examples that they are both fairly readable. However, YAML has no commas or curly braces that interfere with readability. 
 
