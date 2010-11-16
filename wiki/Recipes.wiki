@@ -1,10 +1,20 @@
 #summary Useful recipes for achieving certain tasks in Google Refine
+#labels Tutorial
 
 This page collects Google Refine recipes, small workflows and code fragments that show you how to achieve specific things with Google Refine.
 
 == String Manipulation ==
 
 Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Google Refine Expression Language (GREL)
+
+=== Change `2010-05-31T01:10:05Z` to `05/31/2010` ===
+
+One way to do this is use GREL's slice function.
+
+{{{
+   value.slice(5, 7) + '/' + value.slice(8, 10) + '/' + value.slice(0, 4)
+}}}
+
 
 === Trim whitespace from beginning and end of values ===
 {{{
