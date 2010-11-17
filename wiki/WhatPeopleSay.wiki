@@ -66,6 +66,10 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     [http://twitter.com/LookBackMaps  Jon Voss] [http://twitter.com/LookBackMaps/statuses/14338170478 view]
 
+"Damn! Wish I had this 5 years ago! RT @swiertz nice tools ! Format & clean your data with Google Refine http://goo.gl/UniR6 #cleanup #tools"
+
+    [http://twitter.com/barthox Xavier Bartholome] [http://twitter.com/#!/barthox/status/4803982065147904 view]
+
 "I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do."
 
     [http://twitter.com/gromgull Gunnar Grimnes] [http://twitter.com/gromgull/statuses/14348680235 view]
