@@ -70,6 +70,10 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     [http://twitter.com/barthox Xavier Bartholome] [http://twitter.com/#!/barthox/status/4803982065147904 view]
 
+"YIPEEEE!  Google Refine works with OAI-PMH XML out of the box.   This is going to make my life much easier."
+
+    [http://twitter.com/#!/Musebrarian Richard Urban] [http://twitter.com/#!/Musebrarian/status/4723491286810624 view]
+
 "I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do."
 
     [http://twitter.com/gromgull Gunnar Grimnes] [http://twitter.com/gromgull/statuses/14348680235 view]
