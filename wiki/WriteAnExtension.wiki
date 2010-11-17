@@ -41,7 +41,7 @@ The file named module.properties (see [http://code.google.com/p/google-refine/so
   name = my-extension-name
 }}}
 
-Your extension's client-side resources (.html, .js, .css files) stored in the module/ subdirectory will be accessible from http://127.0.0.1:3333/extensions/my-extension-name/. 
+Your extension's client-side resources (.html, .js, .css files) stored in the module/ subdirectory will be accessible from http://127.0.0.1:3333/extension/my-extension-name/. 
 
 Also of importance is the dependency
 
