@@ -41,6 +41,10 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     Jeni Tennison - [http://www.jenitennison.com/blog/node/145 Using Freebase Gridworks to Create Linked Data]
 
+"Google Refine is an immensely powerful tool for dealing with "messy" data, and it sports a myriad of advanced features for massaging and analyzing complex data sets"
+
+    Dmitri Popov ([http://www.linux-magazine.com/ Linux Magazine]) - [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Use-Google-Refine-to-Massage-Your-Data Use Google Refine to Massage Your Data]
+
 "For anyone who’s ever had to sort through messy data to try to turn up a meaningful treatment, and who hasn’t, this tool is a godsend."
 
     [http://library.law.uvic.ca/services/contact-us/mrl Michael Lines], [http://www.slaw.ca/ SLAW] - [http://www.slaw.ca/2010/11/12/google-refine-2/ Google Refine 2.0]
