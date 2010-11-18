@@ -5,7 +5,7 @@
 "Refine really shines when it is used to combine or transform data from multiple sources, so it's no surprise that it has been popular for open government and data journalism tasks.
 ... Best of all, Google Refine keeps a running changelog that lets you review and revert changes to your data -- so go ahead: play around."
 
-    [http://radar.oreilly.com/julies/index.html Julie Steel] (O'Reilly Radar) - [http://radar.oreilly.com/2010/11/strata-week-keeping-it-clean.html Strata week: Keeping it clean]
+    [http://radar.oreilly.com/julies/index.html Julie Steele] (O'Reilly Radar) - [http://radar.oreilly.com/2010/11/strata-week-keeping-it-clean.html Strata week: Keeping it clean]
 
 "As the open data juggernaut picks up steam, a lot of folks are going to discover what some of us have known all 
 along. Much of the data that’s lying around is a mess. That’s partly because nobody has ever really looked at it. 
