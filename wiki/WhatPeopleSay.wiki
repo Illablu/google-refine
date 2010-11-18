@@ -83,6 +83,10 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     [http://twitter.com/#!/Musebrarian Richard Urban] [http://twitter.com/#!/Musebrarian/status/4723491286810624 view]
 
+"It’s kind of ridiculous how exciting I find this: https://code.google.com/p/google-refine/"
+
+    [http://twitter.com/#!/kb Keith] [http://twitter.com/#!/kb/statuses/5177336995512320 view]
+
 "I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do."
 
     [http://twitter.com/gromgull Gunnar Grimnes] [http://twitter.com/gromgull/statuses/14348680235 view]
@@ -137,7 +141,9 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     - Fadi Maali, [http://richard.cyganiak.de/ Richard Cyganiak], and Vassilios Peristeras ([http://www.deri.ie/ DERI]) 
 
+*[https://github.com/newsapps/refine-stats Refine Stats]*
 
+    - [http://twitter.com/#!/joegermuska Joe Germuska] and [http://twitter.com/#!/onyxfish Christopher Groskopf]
 
 = Tutorials/Reviews =
 
