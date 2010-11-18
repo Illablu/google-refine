@@ -1,6 +1,25 @@
 #summary Curated list of quotes, references, uses and extensions about Google Refine (previously called Freebase Gridworks) in the wild
 
-= Blog Posts =
+=About the Latest Version=
+
+===Tweets===
+
+"It’s kind of ridiculous how exciting I find this: https://code.google.com/p/google-refine/"
+
+  - [http://twitter.com/#!/kb kb], [http://twitter.com/kb/statuses/5177336995512320 view tweet]
+
+"I rarely feel the desire to kiss a corporation on the mouth, but Google Refine is making me come close http://goo.gl/8pvKB #datageek"
+
+  - [http://twitter.com/#!/litcritter litcritter], [http://twitter.com/#!/litcritter/statuses/5296061488828416 view tweet]
+
+"For those who haven't looked yet, Google Refine / Gridworks 2.0 blows the doors off. Its the single best tool I'm using."
+
+  - [http://twitter.com/#!/onyxfish Christopher Groskopf], [http://twitter.com/#!/onyxfish/statuses/4599207788806144 view tweet]
+
+
+=About Freebase Gridworks 1.x=
+
+=== Blog Posts ===
 
 "Refine really shines when it is used to combine or transform data from multiple sources, so it's no surprise that it has been popular for open government and data journalism tasks.
 ... Best of all, Google Refine keeps a running changelog that lets you review and revert changes to your data -- so go ahead: play around."
@@ -53,7 +72,7 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
 
-= Tweets =
+=== Tweets ===
 
 "Gridworks is like crack for data junkies"
 
