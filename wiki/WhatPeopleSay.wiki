@@ -2,19 +2,42 @@
 
 =About the Latest Version=
 
+===Blogs===
+
+"Google Refine is an immensely powerful tool for dealing with "messy" data, and it sports a myriad of advanced features for massaging and analyzing complex data sets"
+
+    Dmitri Popov ([http://www.linux-magazine.com/ Linux Magazine]) - [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Use-Google-Refine-to-Massage-Your-Data Use Google Refine to Massage Your Data]
+
+"For anyone who’s ever had to sort through messy data to try to turn up a meaningful treatment, and who hasn’t, this tool is a godsend."
+
+    [http://library.law.uvic.ca/services/contact-us/mrl Michael Lines], [http://www.slaw.ca/ SLAW] - [http://www.slaw.ca/2010/11/12/google-refine-2/ Google Refine 2.0]
+
+"Google Refine 2.0 will serve an excellent back-end for data visualization services. It has been well received by the Chicago Tribune and open-government data communities. Along with Google Squared, Refine 2.0 can create a powerful research tool."
+
+    Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
+
+
 ===Tweets===
+
+"Damn! Wish I had this 5 years ago! RT @swiertz nice tools ! Format & clean your data with Google Refine http://goo.gl/UniR6 #cleanup #tools"
+
+    [http://twitter.com/barthox Xavier Bartholome] [http://twitter.com/#!/barthox/status/4803982065147904 view]
+
+"YIPEEEE!  Google Refine works with OAI-PMH XML out of the box.   This is going to make my life much easier."
+
+    [http://twitter.com/#!/Musebrarian Richard Urban] [http://twitter.com/#!/Musebrarian/status/4723491286810624 view]
 
 "It’s kind of ridiculous how exciting I find this: https://code.google.com/p/google-refine/"
 
-  - [http://twitter.com/#!/kb kb], [http://twitter.com/kb/statuses/5177336995512320 view tweet]
+    [http://twitter.com/#!/kb kb], [http://twitter.com/kb/statuses/5177336995512320 view tweet]
 
 "I rarely feel the desire to kiss a corporation on the mouth, but Google Refine is making me come close http://goo.gl/8pvKB #datageek"
 
-  - [http://twitter.com/#!/litcritter litcritter], [http://twitter.com/#!/litcritter/statuses/5296061488828416 view tweet]
+    [http://twitter.com/#!/litcritter litcritter], [http://twitter.com/#!/litcritter/statuses/5296061488828416 view tweet]
 
 "For those who haven't looked yet, Google Refine / Gridworks 2.0 blows the doors off. Its the single best tool I'm using."
 
-  - [http://twitter.com/#!/onyxfish Christopher Groskopf], [http://twitter.com/#!/onyxfish/statuses/4599207788806144 view tweet]
+   [http://twitter.com/#!/onyxfish Christopher Groskopf], [http://twitter.com/#!/onyxfish/statuses/4599207788806144 view tweet]
 
 
 =About Freebase Gridworks 1.x=
@@ -60,17 +83,6 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     Jeni Tennison - [http://www.jenitennison.com/blog/node/145 Using Freebase Gridworks to Create Linked Data]
 
-"Google Refine is an immensely powerful tool for dealing with "messy" data, and it sports a myriad of advanced features for massaging and analyzing complex data sets"
-
-    Dmitri Popov ([http://www.linux-magazine.com/ Linux Magazine]) - [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Use-Google-Refine-to-Massage-Your-Data Use Google Refine to Massage Your Data]
-
-"For anyone who’s ever had to sort through messy data to try to turn up a meaningful treatment, and who hasn’t, this tool is a godsend."
-
-    [http://library.law.uvic.ca/services/contact-us/mrl Michael Lines], [http://www.slaw.ca/ SLAW] - [http://www.slaw.ca/2010/11/12/google-refine-2/ Google Refine 2.0]
-
-"Google Refine 2.0 will serve an excellent back-end for data visualization services. It has been well received by the Chicago Tribune and open-government data communities. Along with Google Squared, Refine 2.0 can create a powerful research tool."
-
-    Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
 
 === Tweets ===
 
@@ -94,22 +106,6 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 
     [http://twitter.com/LookBackMaps  Jon Voss] [http://twitter.com/LookBackMaps/statuses/14338170478 view]
 
-"Damn! Wish I had this 5 years ago! RT @swiertz nice tools ! Format & clean your data with Google Refine http://goo.gl/UniR6 #cleanup #tools"
-
-    [http://twitter.com/barthox Xavier Bartholome] [http://twitter.com/#!/barthox/status/4803982065147904 view]
-
-"YIPEEEE!  Google Refine works with OAI-PMH XML out of the box.   This is going to make my life much easier."
-
-    [http://twitter.com/#!/Musebrarian Richard Urban] [http://twitter.com/#!/Musebrarian/status/4723491286810624 view]
-
-"It’s kind of ridiculous how exciting I find this: https://code.google.com/p/google-refine/"
-
-    [http://twitter.com/#!/kb Keith] [http://twitter.com/#!/kb/statuses/5177336995512320 view]
-
-"I rarely feel the desire to kiss a corporation on the mouth, but Google Refine is making me come close http://goo.gl/8pvKB #datageek"
-
-    [http://twitter.com/#!/litcritter @Litcritter] [http://twitter.com/#!/litcritter/status/5296061488828416 view]
-
 "I'm done here - after google (prediction-api) and metaweb (gridworks) have been through there is nothing left to do."
 
     [http://twitter.com/gromgull Gunnar Grimnes] [http://twitter.com/gromgull/statuses/14348680235 view]
@@ -131,6 +127,7 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
     [http://twitter.com/delineator Rob McKinnon] [http://twitter.com/delineator/statuses/14630650064 view]
 
 "Using gridworks to clean up @farmsubsidy data. This is fun :)"
+
     [http://twitter.com/symroe Sym Roe] [http://twitter.com/symroe/statuses/14619696804 view]
 
 "I <3 scatterplot matrix and scatterfacets! Don't know what they are? Watch this gridworks screencast: http://vimeo.com/11854491 "
