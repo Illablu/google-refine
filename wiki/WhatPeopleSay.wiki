@@ -16,18 +16,6 @@
 
     Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
 
-"I'm sold on #Google #Refine used it most of the day with "messy" data and managed to clean nearly all of it."
-
-   [http://twitter.com/#!/LearonDalby Learon Dalby], [http://twitter.com/#!/LearonDalby/statuses/4303660389502976 view tweet]
-
-"Today google #refine saved my afternoon. Every #data #hacker should try it"
-
-   [http://twitter.com/#!/roolio roolio], [http://twitter.com/roolio/statuses/4187886568083456 view tweet]
-
-"Google refine is awesome. Never before have I been home this early."
-
-   [http://twitter.com/#!/Salesient Salesient], [http://twitter.com/#!/Salesient/statuses/4242219707928576 view tweet]
-
 
 
 ===Tweets===
@@ -51,6 +39,22 @@
 "For those who haven't looked yet, Google Refine / Gridworks 2.0 blows the doors off. Its the single best tool I'm using."
 
    [http://twitter.com/#!/onyxfish Christopher Groskopf], [http://twitter.com/#!/onyxfish/statuses/4599207788806144 view tweet]
+
+"I'm sold on #Google #Refine used it most of the day with "messy" data and managed to clean nearly all of it."
+
+   [http://twitter.com/#!/LearonDalby Learon Dalby], [http://twitter.com/#!/LearonDalby/statuses/4303660389502976 view tweet]
+
+"Today google #refine saved my afternoon. Every #data #hacker should try it"
+
+   [http://twitter.com/#!/roolio roolio], [http://twitter.com/roolio/statuses/4187886568083456 view tweet]
+
+"Google refine is awesome. Never before have I been home this early."
+
+   [http://twitter.com/#!/Salesient Salesient], [http://twitter.com/#!/Salesient/statuses/4242219707928576 view tweet]
+
+"I am having far, far too much fun with Google Refine. This tool is ridiculously powerful, even without Freebase integration."
+
+   [http://twitter.com/#!/jatowler Jerry Towler], [http://twitter.com/#!/jatowler/statuses/5542139572264960 view tweet]
 
 
 =About Freebase Gridworks 1.x=
