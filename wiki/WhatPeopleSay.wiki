@@ -56,6 +56,10 @@
 
    [http://twitter.com/#!/jatowler Jerry Towler], [http://twitter.com/#!/jatowler/statuses/5542139572264960 view tweet]
 
+"Not only will it clean your data, Google Refine will slice, dice and put bows on your hairdo! http://bit.ly/cPGn1E Rocks data exploration."
+
+   [http://twitter.com/#!/Mayin Mario Talavera], [http://twitter.com/#!/mayin/status/5386710112276481 view]
+
 
 =About Freebase Gridworks 1.x=
 
