@@ -20,6 +20,8 @@ A few XML parsing Python libraries:
   # [http://effbot.org/zone/element-index.htm ElementTree (bundled with Jython in Refine)]
   # [http://codespeak.net/lxml/ lxml (lxml.etree seems to offer a lot more functionality, such as XPath, XSLT, Relax NG, and XML Schema support, which ElementTree does not offer)]
 
+*NOTE* You can even combine parsers depending on your XML/HTML input. It very much depends on the input which parser works better. [http://codespeak.net/lxml/elementsoup.html lxml and BeautifulSoup together]
+
 ----
 
 Expressions in jython must have a `return` statement, e.g.,
