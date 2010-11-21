@@ -1,5 +1,7 @@
 == Using Jython as your Expression Language ==
 
+Full docs on the Jython language are at the official site [http://www.jython.org http://www.jython.org].
+
 *NOTE:* Jython is treated as an extension of Google Refine.  Currently with 2.0 SVN build, you have to modify Refine.java line 100 to the following:
 {{{
 System.setProperty("python.path","extensions/jython/module/MOD-INF/lib/jython");
