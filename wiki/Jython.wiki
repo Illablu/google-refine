@@ -2,21 +2,20 @@
 
 Full docs on the Jython language are at the official site [http://www.jython.org http://www.jython.org].
 
-*NOTE:* Jython is treated as an extension of Google Refine.  Currently with 2.0 SVN build, you have to modify Refine.java line 100 to the following:
-{{{
-System.setProperty("python.path","extensions/jython/module/MOD-INF/lib/jython");
-}}}
-to utilize the included Python libraries in trunk or additional ones you may want to download and use. 
+*NOTE: Jython is treated as an extension of Google Refine.  Jython / Python system path is `extensions/jython/module/MOD-INF/lib/jython` currently works with 2.0 SVN trunk build, and recently patched r1920.  This will be fixed in later 2.1 bugfix release*
 
-After modifying Refine.java line 100, you can then use almost any Python (.py) files compatible with Jython 2.5.1 and drop them into the path `extensions/jython/module/MOD-INF/lib/jython`. For instance, download, extract and drop in `BeautifulSoup.py` and use it to parse and extract HTML tags or content using Jython as your expression language in Google Refine.  
+You can use almost any Python `(.py)``(.pyc)` files compatible with the bundled Jython 2.5.1 and drop them into the path. For instance, download, extract and drop in `BeautifulSoup.py` and use it to parse and extract HTML tags or content using Jython as your expression language in Google Refine.  Since Jython is essentially Java, you can even import Java libraries and utilize those!  Also remember to restart Refine, so that new Jython/Python libraries are initialized during Butterfly's startup.
 
 [StrippingHTML Using Jython and BeautifulSoup to handle Entity Extraction and HTML markup removal]
 
 A few HTML parsing Python libraries to experiment with :
 
-  # [http://docs.python.org/lib/module-HTMLParser.html]
-  # [http://docs.python.org/lib/module-htmllib.html]
-  # [http://www.crummy.com/software/BeautifulSoup/]
+  # [http://docs.python.org/lib/module-HTMLParser.html HTMLParser (bundled with Jython in Refine)]
+  # [http://www.crummy.com/software/BeautifulSoup/ BeautifulSoup]
+
+A good XML parsing Python library:
+
+  # [http://effbot.org/zone/element-index.htm ElementTree (bundled with Jython in Refine)]
 
 ----
 
