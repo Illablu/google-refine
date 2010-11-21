@@ -18,3 +18,37 @@ replace(value,/<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/
 }}}
 
 Press OK, and you'll soon have a new column with the plain text extracted from *Col1*.
+
+----
+= Using Jython and BeautifulSoup to handle Entity Extraction and HTML markup removal =
+
+Before you begin, you may have to ensure that [Jython Jython is properly configured in Refine]
+
+BeautifulSoup is a python library that offers powerful HTML parsing and operates very similarly to GREL syntax.
+
+[http://www.crummy.com/software/BeautifulSoup/documentation.html Full documentation on BeautifulSoup website]
+
+The following will strip out only the 4th table row text found on the first table in an HTML document using Jython as the expression language in Refine:
+
+[http://google-refine.googlecode.com/issues/attachment?aid=3743089648310961680&name=ParseHTML_BeautifulSoup.png&token=31499509f849f514f584519cd59cd4fa&inline=1]
+
+{{{
+from BeautifulSoup import BeautifulSoup
+
+soup = BeautifulSoup(value)
+
+gettablerow4 = soup.tr(text=True)[4]
+
+return gettablerow4
+}}}
+
+These 4 lines can easily strip tables from an HTML page:
+
+{{{
+from BeautifulSoup import BeautifulSoup
+
+soup = BeautifulSoup(value)
+text = soup.table.findAllNext(text=True)
+
+return text
+}}}
