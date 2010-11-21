@@ -15,9 +15,10 @@ A few HTML parsing Python libraries to experiment with :
   # [http://docs.python.org/lib/module-HTMLParser.html HTMLParser (bundled with Jython in Refine)]
   # [http://www.crummy.com/software/BeautifulSoup/ BeautifulSoup]
 
-A good XML parsing Python library:
+A few XML parsing Python libraries:
 
   # [http://effbot.org/zone/element-index.htm ElementTree (bundled with Jython in Refine)]
+  # [http://codespeak.net/lxml/ lxml (lxml.etree seems to offer a lot more functionality, such as XPath, XSLT, Relax NG, and XML Schema support, which ElementTree does not offer)]
 
 ----
 
