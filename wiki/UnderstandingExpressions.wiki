@@ -30,7 +30,7 @@ Note that an expression is typically based on one particular column in the data-
 
 ===Languages===
 
-Whereas each spreadsheet software has its own formula language, and only one language, Google Refine is capable of supporting several languages for writing expressions. Google Refine has its own native language called Google Refine Expression Language (GREL), but you could also use [http://www.jython.org/ Jython], or other languages if you install Google Refine extensions that support them. Where in GREL you write
+Whereas each spreadsheet software has its own formula language, and only one language, Google Refine is capable of supporting several languages for writing expressions. Google Refine has its own native language called Google Refine Expression Language (GREL), but you could also use [Jython], or other languages if you install Google Refine extensions that support them. Where in GREL you write
 
 {{{
   value.split(" ")[1]
