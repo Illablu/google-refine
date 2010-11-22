@@ -22,7 +22,7 @@ Press OK, and you'll soon have a new column with the plain text extracted from *
 ----
 = Using Jython and BeautifulSoup to handle Entity Extraction and HTML markup removal =
 
-Before you begin, you may have to ensure that [Jython Jython is properly configured in Refine]
+*Note:* For more on using Jython in expressions and other HTML/XML parsing utilities & recipes visit [Jython Using Jython as your Expression Language]
 
 BeautifulSoup is a python library that offers powerful HTML parsing and operates very similarly to GREL syntax.
 
