@@ -6,7 +6,7 @@
 *Here for the First Time?*
 
   * Watch [Screencasts these screencasts] to understand what's possible with Google Refine
-  * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter]
+  * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter]
 
 *Get started:*
 
