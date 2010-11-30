@@ -37,7 +37,7 @@ If you reconcile against [http://www.freebase.com/ Freebase], you can then align
 *Extensions:* Add even more features to Refine by installing extensions.
 
   * [InstallingExtensions Installing Extensions]
-
+  * [Extensions Extensions] that we know about
 
 =Recipes=
 
