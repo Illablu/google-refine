@@ -60,6 +60,14 @@
 
    [http://twitter.com/#!/Mayin Mario Talavera], [http://twitter.com/#!/mayin/status/5386710112276481 view]
 
+"Google Refine: Making interns unneccesary since 2010."
+
+   [http://twitter.com/#!/marklabedz Mark Labedz] [http://twitter.com/#!/marklabedz/statuses/9633943271772160 view]
+
+"http://twitter.com/#!/naterkane/statuses/9981143436763136"
+
+   [http://twitter.com/#!/naterkane Nater Kane] [http://twitter.com/#!/naterkane/statuses/9981143436763136 view]
+
 
 =About Freebase Gridworks 1.x=
 
