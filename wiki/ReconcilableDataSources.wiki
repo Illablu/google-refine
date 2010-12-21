@@ -13,6 +13,13 @@ Documentation at
 
   [http://www.ldodds.com/blog/2010/08/gridworks-reconciliation-api-implementation/]
 
+====OpenCorporates====
+
+Screencast [http://vimeo.com/17924204]
+
+Blog post [http://opencorporates.wordpress.com/2010/12/20/press-release-opencorporates-launches/]
+
+
 ==Wish List==
 
 The following are data sources that could provide useful reconciling within Google Refine.
