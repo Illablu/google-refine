@@ -5,19 +5,15 @@ In Google Refine you can perform reconciliation against any web service supporti
 
 ====Talis Platform reconciliation services====
 
-Example at
+Example: [http://ldodds.com/gridworks/govuk-statistics/reconcile]
 
-  [http://ldodds.com/gridworks/govuk-statistics/reconcile]
-
-Documentation at
-
-  [http://www.ldodds.com/blog/2010/08/gridworks-reconciliation-api-implementation/]
+Documentation: [http://www.ldodds.com/blog/2010/08/gridworks-reconciliation-api-implementation/]
 
 ====OpenCorporates====
 
-Screencast [http://vimeo.com/17924204]
+Screencast: [http://vimeo.com/17924204]
 
-Blog post [http://opencorporates.wordpress.com/2010/12/20/press-release-opencorporates-launches/]
+Blog post: [http://opencorporates.wordpress.com/2010/12/20/press-release-opencorporates-launches/]
 
 
 ==Wish List==
