@@ -72,6 +72,10 @@
 
    [http://twitter.com/#!/LearonDalby Learon Dalby] [http://twitter.com/#!/LearonDalby/statuses/10370150263947266 view tweet]
 
+"Google Refine: love at first click"
+
+   [http://twitter.com/loranstefani Loran Cook], [http://twitter.com/loranstefani/statuses/18051195771817984 view tweet]
+
 =About Freebase Gridworks 1.x=
 
 === Blog Posts ===
