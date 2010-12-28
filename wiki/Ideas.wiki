@@ -1,0 +1,5 @@
+#summary Ideas, Brainstorm sessions, etc.
+
+== Software to research: ==
+
+* [http://sna-projects.com/bobo/ Bobo - Fast faceted search with Lucene.]
