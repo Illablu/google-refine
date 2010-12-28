@@ -10,4 +10,6 @@
   * [http://infochimps.org/ Infochimps]
   * [http://manyeyes.alphaworks.ibm.com/manyeyes/datasets Many Eyes]
   * [http://www.swivel.com/ Swivel]
-  * [http://www.data360.org/ds_list.aspx Data 360] 
+  * [http://www.data360.org/ds_list.aspx Data 360]
+  * [http://www.scraperwiki.com ScraperWiki]
+ 
