@@ -3,6 +3,11 @@
 
 In Google Refine you can perform reconciliation against any web service supporting the [ReconciliationServiceApi Reconciliation Service API].
 
+====Freebase====
+Example:
+
+Documentation:
+
 ====Talis Platform reconciliation services====
 
 Example: [http://ldodds.com/gridworks/govuk-statistics/reconcile]
