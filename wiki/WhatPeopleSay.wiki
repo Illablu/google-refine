@@ -17,6 +17,9 @@
     Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
 
 
+Google Refine (the program formerly known as Freebase Gridworks) is described by its creators as a “power tool for working with messy data” but could very well be advertised as “remedy for eye fatigue, migraines, depression, and other symptoms of prolonged data-cleaning.”
+
+    Dan Nguyen, ProPublica - [http://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning Chapter 1. Using Google Refine to Clean Messy Data]
 
 ===Tweets===
 
