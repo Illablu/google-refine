@@ -6,7 +6,8 @@
 
 "Google Refine isn’t going to solve the problem of poor data availability, but for those who manage to gain access to existing records, it can be a powerful tool for transparency."
 
-    [http://jackfruity.com/ Rebekah Heacock], co-director of the [http://transparency.globalvoicesonline.org/ Technology for Transparency Network] and a Project Coordinator at Harvard’s [http://cyber.law.harvard.edu/ Berkman Center for Internet and Society] -  [http://sunlightfoundation.com/blog/ Sunlight Foundation].
+    [http://jackfruity.com/ Rebekah Heacock], co-director of the [http://transparency.globalvoicesonline.org/ Technology for Transparency Network] and a Project Coordinator at Harvard’s [http://cyber.law.harvard.edu/ Berkman Center for Internet and Society] -  [http://sunlightfoundation.com/blog/ Sunlight Foundation], [http://sunlightfoundation.com/blog/2011/01/06/tools-for-transparency-google-refine/ Tools for transparency: Google Refine].
+
 "Google Refine is an immensely powerful tool for dealing with "messy" data, and it sports a myriad of advanced features for massaging and analyzing complex data sets"
 
     Dmitri Popov ([http://www.linux-magazine.com/ Linux Magazine]) - [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Use-Google-Refine-to-Massage-Your-Data Use Google Refine to Massage Your Data]
