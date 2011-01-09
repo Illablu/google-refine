@@ -1,1 +1,49 @@
-(THAD IS WORKING ON THIS NOW)
+== Overview ==
+In Google Refine, the *Schema Alignment Skeleton* (a template for loading triples) specifies how your grid-shaped data of rows and columns will be transformed into graph-shaped triples in Freebase's schemas.  For more info on triples and the Freebase Triple Loader, see [http://wiki.freebase.com/wiki/T1:Intro_to_Triple_Loader Intro to Triple Loader]
+
+(We know, the *Schema Alignment Skeleton* still has some rough edges, and is not entirely intuitive, but we're working on a better more enhanced version soon)
+
+== Align Columns to Freebase Types where necessary ==
+
+Usually you want to begin aligning your data columns to Freebase Types where it makes sense.  For instance, in the case of data on Companies, you probably want to Align the column `Company Name` with the idea or notion of some sort of `Company Type` that exists in Freebase.
+
+Here is an example data set with simple company data:
+
+[http://google-refine.googlecode.com/issues/attachment?aid=8933277929091645798&name=RefineV2_CompaniesExampleData.png&token=3df99acf77686f116e1106a2ba232890&inline=1]
+
+To begin alignment with Freebase Schema and Freebase Types choose the menu item *Extensions: Freebase* --> *Align to Freebase's schemas... as shown:*
+
+[http://google-refine.googlecode.com/issues/attachment?aid=1476821420783728075&name=RefineV2_ExtensionsMenu_Freebase.png&token=4dc2902a5e9045befde72c83d1c47176&inline=1]
+
+then the *Schema Alignment skeleton* initial dialog window should appear...
+
+
+
+[http://google-refine.googlecode.com/issues/attachment?aid=5179201643881931148&name=RefineV2_Initial+Skeleton_CompaniesExample.png&token=6e887907e3fb726ed4248ed189e08959&inline=1]
+
+Notice in that screenshot that the 1st column from my data set `Company Name` is also shown in the skeleton as the 1st left column.  And the City, State, & Zip Code are being represented possibly as Properties of `Company Name`, but more about Properties later on this page.
+
+For now, it is important to note that sometimes you may not necessarily want to load and align your data with the 1st column in your data AS the key reference column.  If your 1st column isn't a very good candidate for a Freebase Type like *IS A* "Business Operation" or *IS A* "Person", but instead would align better with a Freebase Property, such as *HAS A* "Net Profit" or *HAS A* "Gender" then you can click on the key reference cell and change that (in example screenshot, clicking on "Company Name").
+
+This will then open the *Skeleton Node* dialog allowing you to change with a checkmark which column will be your key reference column (ie, a Freebase Type) to align with your other remaining columns (ie, possible Freebase Properties)
+
+In the screenshot below, the *Skeleton Node* dialog allows for specifying what your cell column values actually represent.  In the case of a Company Name, you would choose `to specify a Freebase topic , as reconciled` and enter the Freebase Type that the checkmarked column would align with:
+
+[http://google-refine.googlecode.com/issues/attachment?aid=7662776664295371632&name=RefineV2_SkeletonNode_CompaniesExample.png&token=18b5947a5493654b3fa99f0f822b59fa&inline=1]
+
+Freebase contains many Types and those types have specific Properties in some cases.  Typing in and selecting the appropriate Freebase Type to match with your key Columns is one of the challenges that the *Schema Alignment Skeleton Node* tries to assist with.
+
+In the following screenshot, I've typed `Company` into the box and being shown a list of Freebase Types which would probably best align with my entered keyword `Company`.  You can backspace and type in other keywords that might be a closer match to describe your column.  In this case, it looks like the Freebase Type `Business Operation`, is the closest match, the first in the list, to the term `Company`.  Currently, the *Skeleton Node* dialog here uses some backend type hinting technology, aliases, and a [http://wiki.freebase.com/wiki/Freebase_Suggest Freebase Suggest component] to help suggest to you some Freebase Types that might match with the keywords you entered.
+
+[http://google-refine.googlecode.com/issues/attachment?aid=3821665156538479292&name=RefineV2_SkeletonNode_ColumnType.png&token=f6a378bed97ea2a3a474ff4fa2c5cf8e&inline=1]
+
+This is probably the hardest part of the whole process: Figuring out which Freebase Type to use.  And if you need more help discovering which Freebase Types to use, you can certainly email your column headings to the Refine mailing list and ask for community help and suggestions on the most appropriate Freebase Types your data aligns with.  In fact, we welcome that community idea exchange!
+
+
+== Align Column cell values to Freebase Properties where necessary ==
+
+(more coming soon)
+
+== Previewing your Schema Skeleton template ==
+
+(more coming soon)
