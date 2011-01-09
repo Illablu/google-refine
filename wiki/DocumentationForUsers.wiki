@@ -32,7 +32,9 @@ Love it so much?
   * [ReconcilableDataSources Data sources]
   * [ExtendingDataFromFreebase Extending data from Freebase]
 
-If you reconcile against [http://www.freebase.com/ Freebase], you can then align your data with Freebase's schemas and load your data into Freebase. For more information on Freebase data loading, see the [http://wiki.freebase.com/wiki/Refinery Refinery project].
+*Uploading to Freebase:*
+If you reconcile against [http://www.freebase.com/ Freebase], you can then align your data with Freebase's schemas using [SchemaAlignment Schema Alignment dialogs] and load your data into Freebase. For more information on Freebase data loading, see the [http://wiki.freebase.com/wiki/Refinery Refinery project].
+  * [SchemaAlignment Schema Alignment]
 
 *Extensions:* Add even more features to Refine by installing extensions.
 
