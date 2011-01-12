@@ -38,6 +38,12 @@ this will start Google Refine and open your browser to its starting page.
 
 *Shut down:* Press `Ctrl-C` in the shell.
 
+=== Running & Configuration ===
+
+By default (and for security reasons) Refine only listens to TCP requests coming from localhost (127.0.0.1). If you want to respond to TCP requests coming to any IP address the machine has, run refine like this from the command line
+
+ ./refine -i 0.0.0.0
+
 ===Development Version===
 
 If you want the latest and greatest version, see [GetDevelopmentVersion how to get the development version].
