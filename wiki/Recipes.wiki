@@ -47,7 +47,7 @@ that will chop the value in an array of three strings
    ["", "blah_", "2342_blah_1232" ]
 }}}
 
-and we get the 3rd value (remember that the arrays in Google Refine, like in most programming languages start from 0, so [2] is actually the third value).
+and we get the 3rd value (remember that the arrays in Google Refine, like in most programming languages start from 0, so `[2]` is actually the third value).
 
 === "a:b:c:d:e" -> "b:c:d" ===
 
@@ -203,7 +203,7 @@ As a tip, if you see two weird characters where you think there should be one, t
 
 These will show if there are encoding issues with your data. So try reinterpreting above.  Also there may be non-breaking spaces `&nbsp` Unicode(160). You can inspect with `unicode(value)` and replace with regular spaces Unicode(32).
 
-*NOTE* To access and use the Non-breaking space character `&nbsp` `\u00A0` `[160]` in GREL expressions on Windows systems type on the numeric keypad:  ALT 2 5 5 which will still display as a regular space in the expression window.  `value.replaceChars(" ", " ")`
+*NOTE* To access and use the Non-breaking space character `&nbsp` `\u00A0` `[160]` in GREL expressions on Windows systems type on the numeric keypad:  ALT 2 5 5 which will still display as a regular space in the expression window, but will be a non-breaking space.  Example:  `value.replaceChars(" ", " ")`
 
 == Numerical Conversions ==
 
