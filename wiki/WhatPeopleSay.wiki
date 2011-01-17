@@ -25,6 +25,12 @@ Google Refine (the program formerly known as Freebase Gridworks) is described by
 
     Dan Nguyen, ProPublica - [http://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning Chapter 1. Using Google Refine to Clean Messy Data]
 
+The functionality offered by Google Refine is paramount and provides the user with a simple interface with powerful data manipulation capabilities. ... I solicited Ryan Boyles to develop a script to sanitize the data which, in total, took about 45 minutes to get the data into a proper format. Utilizing Google Refine I was able to replicate the work of his script in about 15 minutes!
+
+    Logan Lynn, The Data Revolution - [http://www.thedatarevolution.com/2011/01/14/get-started-with-google-refine-2-0/ Get Started With Google Refine 2.0]
+
+Google Refine for SEO: [http://www.blindfiveyearold.com/find-keyword-modifiers-with-google-refine]
+
 ===Tweets===
 
 "Damn! Wish I had this 5 years ago! RT @swiertz nice tools ! Format & clean your data with Google Refine http://goo.gl/UniR6 #cleanup #tools"
