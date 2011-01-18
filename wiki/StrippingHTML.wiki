@@ -52,3 +52,12 @@ text = soup.table.findAllNext(text=True)
 
 return text
 }}}
+----
+= Using jsoup.org library to handle Entity Extraction and HTML markup removal =
+
+*Note*: Now included in Trunk version are HTML functions (Thanks Iain!) built upon [http://jsoup.org jsoup.org] which is a Java library built on BeautifulSoup.
+
+More Examples and a full tutorial coming soon.  But for now, here's a quick example:
+{{{
+value.parseHtml().select("div#content")[0].select("tr")
+}}}
