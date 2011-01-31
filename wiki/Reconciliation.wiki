@@ -32,3 +32,6 @@ As a degenerated form of "reconciliation", you can get a column of database IDs 
 Right now Google Refine only supports this kind of "query-based reconciliation" against Freebase. In the Reconcile dialog box, pick Freebase Query-based Reconciliation on the left. Your data can contain Freebase IDs, GUIDs, or keys in certain namespaces. For example, if you have country 2-letter ISO codes, you can reconcile against the namespace ISO 3166-1.
 
 Note that you might have to encode your data into property Freebase keys before performing query-based reconciliation. Use the mqlKeyQuote() function documented [GRELStringFunctions here].
+
+== Additional Recon variables and functions that can be used ==
+See also: [Variables#Recon]
