@@ -23,7 +23,7 @@ A `row` object has a few fields, which can be accessed with a dot operator or wi
 
 ===Cells===
 
-The `cells` object, which can also be accessed as `row.cells`, has fields that correspond to the data column names. For example, `cells.Foo` returns a `cell` object representing the cell in the column named Foo of the current row. If the column name has spaces, use the square bracket method, e.g., `cells["Postal Code"]`.
+The `cells` object, which can also be accessed as `row.cells`, has fields that correspond to the data column names. For example, `cells.Foo` returns a `cell` object representing the cell in the column named Foo of the current row. If the column name has spaces, use the square bracket method, e.g., `cells["Postal Code"]`.  When you need to get the value of the cells variable itself, you need .value at the end, e.g., `cells["column name"].value`
 
 
 ===Cell===
