@@ -20,6 +20,10 @@ One way to do this is use GREL's slice function.
 {{{
   value.trim()
 }}}
+or if you have non-breaking spaces `&nbsp` on both ends then you might try this instead:
+{{{
+  split(escape(value,'xml'),"&#160;")[0]
+}}}
 
 === "someprefix_a2343" -> "a2343" ===
 
@@ -203,7 +207,12 @@ As a tip, if you see two weird characters where you think there should be one, t
 
 These will show if there are encoding issues with your data. So try reinterpreting above.  Also there may be non-breaking spaces `&nbsp` Unicode(160). You can inspect with `unicode(value)` and replace with regular spaces Unicode(32).
 
-*NOTE* To access and use the Non-breaking space character `&nbsp` `\u00A0` `[160]` in GREL expressions on Windows systems type on the numeric keypad:  ALT 2 5 5 which will still display as a regular space in the expression window, but will be a non-breaking space.  Example:  `value.replaceChars(" ", " ")`
+You can also try this quick fix to remove non-breaking spaces on both ends of your string:
+{{{
+  split(escape(value,'xml'),"&#160;")[0]
+}}}
+
+*NOTE* To access and use the Non-breaking space character itself such as `&nbsp` or `\u00A0` or `[160]` in GREL expressions on Windows systems type on the numeric keypad:  ALT 2 5 5 ,which will still display as a regular space in the expression window, but will actually be a non-breaking space character.  Example:  `value.replaceChars(" ", " ")`
 
 == Numerical Conversions ==
 
