@@ -16,7 +16,13 @@ In the Reconcile dialog box, pick Freebase Reconciliation Service on the left. T
 
 This process will take a while depending on how much data you have. For now, we would recommend reconciling only a few hundred cells at a time. In the future, perhaps we can afford reconciliation services with greater capacity.
 
-When the process is done, you will see that the reconciled cells display either a single link or 3 candidates. Cells with links have been automatically matched, and you don't have to process them manually. Cells with candidates have not been matched yet, and you will have to process them yourself, either individually or in bulk depending on the nature of your data.
+When the process is done, you will see that the reconciled cells display either a single link or 3 candidates with a recon score in parentheses. 
+
+Example:
+
+`San Francisco, CA (.95)`
+
+Cells with links have been automatically matched, and you don't have to process them manually. Cells with candidates have not been matched yet, and you will have to process them yourself, either individually or in bulk depending on the nature of your data.
 
 In addition to changing the ways the reconciled cells are displayed, Google Refine also automatically creates two facets for you to use to filter the cells based on the reconciliation data. One is a numeric facet for the reconciliation scores of the best candidates of the cells. Higher scores mean better matches. You could filter for the higher scores, and approve them all in bulk (invoking that column's drop-down menu and using the Reconcile > Actions submenu).
 
