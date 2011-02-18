@@ -44,39 +44,41 @@ If you want Google Refine logs to be more verbose, append this to the line above
 }}}
 
 
-== Build and Run Google Refine from the command line using Apache Ant (Fairly Easy) ==
+== Build and Run Google Refine from the command line using Apache Ant (Fairly Easy and recommended for Windows users) ==
 
 [http://code.google.com/p/google-refine/wiki/GetDevelopmentVersion Step by step to Get Development Version]
 
 == Build and Run Google Refine from the command line (harder but more comprehensive) ==
 
-On Mac OS X and Linux the Google Refine build system requires you to have a unix shell; just use a shell compatible with `/bin/sh`. On Windows you can use the Windows command line. (go to `Start` then `Run`, type `cmd` and click `OK`)
+On Mac OS X and Linux the Google Refine build system requires you to have a Unix shell; just use a shell compatible with `/bin/sh`. On Windows you can use the Windows command line. (go to `Start` then `Run`, type `cmd` and click `OK`)
 
-To see what functions are supported by the Google Refine's build system, type
+To see what functions are supported by Google Refine's build system, type
 
 {{{
    ./refine -h
 }}}
 
-to get a list of them. When running from the Windows command line, you should omit the `./`
+to get a list of them.
+
+*NOTE:* When running from the Windows command line, you should omit the `./`
 
 {{{
    refine -h
 }}}
 
-== Building ==
+=== Building ===
 
 {{{
   ./refine build
 }}}
 
-== Running ==
+=== Running ===
 
 {{{
   ./refine
 }}}
 
-== Testing == 
+=== Testing === 
 
 Since Google Refine is composed of two parts, a server and a in-browser UI, the testing system reflects that:
 
@@ -89,7 +91,7 @@ To run the complete testing harness, simply type
   ./refine test
 }}}
 
-The above command requires you to have [http://www.python.org/ python] and [http://curl.haxx.se/ curl] installed on your machine and available in the path (you might already do, even if you don't know about it so just try it once and see what errors you get). Note that you don't need to have windmill installed, the script will install it for you and build a proper python [http://pypi.python.org/pypi/virtualenv virtualenv] so that you don't have to worry about version collisions or polluting your existing python installation.
+The above command requires you to have [http://www.python.org/ Python] and [http://curl.haxx.se/ Curl] installed on your machine and available in the path (you might already do, even if you don't know about it so just try it once and see what errors you get). Note that you don't need to have Windmill installed, the script will install it for you and build a proper Python [http://pypi.python.org/pypi/virtualenv virtualenv] so that you don't have to worry about version collisions or polluting your existing Python installation.
 
 If you want to run only the server side portion of the tests run
 
@@ -115,13 +117,13 @@ Once the TestNG launching plugin is installed in your Eclipse, look for the `Goo
 
 ==== Testing on Windows ====
 
-In addition to Python, the [http://sourceforge.net/projects/pywin32/ Python for Windows extensions] are required to run Windmill on Windows. Without it Windmills fails to respond and/or gives an `ImportError?: No module named win32api`
+In addition to Python, the [http://sourceforge.net/projects/pywin32/ Python for Windows extensions] are required to run Windmill on Windows. Without it Windmill fails to respond and/or gives an `ImportError?: No module named win32api`
 
 Curl is also required, but you can install it when you install Cygwin (there is a module for it).
 
 == Distributions ==
 
-The Google Refine build system automates the creation of the installation packages for the different operating systems. They are currently optimized to run on Macosx which is the only platform capable of creating the packages for all the three OS that we support.
+The Google Refine build system uses Apache Ant to automate the creation of the installation packages for the different operating systems. The packages are currently optimized to run on Mac OS X which is the only platform capable of creating the packages for all three OS that we support.
 
 To build the distributions type
 
@@ -137,7 +139,7 @@ where 'version' is the release version (for example, 1.3b3).
 
 On Windows, Google Refine requires the [http://java.sun.com/javase/downloads/index.jsp Java JDK] to be installed. Once these are installed you then need to [http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows Set the `JAVA_HOME` environment variable] (please ensure it points to the JDK, and not the JRE) and the ANT_HOME environment variable (this is set up in a similar way to JAVA_HOME, but should point to the `Tools/Ant` directory in Google Refine's source code). You may need to reboot your machine after setting these environment variables.
 
-Open the Windows command line. Navigate to your installation directory, then run Google Refine (the `./` should be omitted when running any of the refine commands from the Windows command line)
+Open the Windows command line. Navigate to your installation directory, then run Google Refine (the `./` should be omitted when running any of the Refine commands from the Windows command line)
 
 {{{
    # cd 'C:\\path_to_installation_directory'
@@ -150,4 +152,4 @@ If you receive a message `Could not find the main class: com.google.refine.Refin
 
 ==== Installing Java ====
 
-If your linux distro doesn't have java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (java developer kit), the one that contains the compiler, and not the JRE (java runtime environment) which is what you need to actually run a java program.
+If your linux distro doesn't have Java installed and you have support for `apt-get` (say, Debian or Ubuntu) you can read [http://www.cyberciti.biz/faq/howto-ubuntu-linux-install-configure-jdk-jre/ this helpful page]. Make sure that JAVA_HOME points to your JDK (Java developer kit), the one that contains the compiler, and not the JRE (Java runtime environment) which is what you need to actually run a Java program.
