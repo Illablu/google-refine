@@ -1,0 +1,16 @@
+<form id="project-upload-form" method="post" enctype="multipart/form-data" action="/command/core/import-project" accept-charset="UTF-8">
+  <p>Import an existing Google Refine .tar or .tar.gz project file:</p>
+  <table class="form-table">
+    <tr>
+      <th><label for="project-file">Project file:</label></th>
+      <td><input type="file" id="project-tar-file-input" name="project-file" /></td>
+    </tr>
+    <tr>
+      <th><label for="project-name">Project name (optional):</label></th>
+      <td><input type="text" size="25" id="project-name-input" name="project-name" /></td></tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" value="Import Project" id="import-project-button" class="button button-primary" /></td>
+    </tr>
+  </table>
+</form>
