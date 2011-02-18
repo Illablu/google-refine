@@ -172,6 +172,7 @@ function registerImporting() {
     /*
      *  Formats and their UIs and parsers
      */
+    /*
     var svParser = new Packages.com.google.refine.importers.TsvCsvImporter();
     var fixedWidthParser = new Packages.com.google.refine.importers.FixedWidthImporter();
     
@@ -189,6 +190,7 @@ function registerImporting() {
     
     IM.registerFormat("binary", "Binary files"); // generic format, no parser to handle it
     IM.registerFormat("binary/xls", "Excel files", "ExcelParserUI", new Packages.com.google.refine.importers.ExcelImporter());
+    */
     
     /*
      *  Format guessers
