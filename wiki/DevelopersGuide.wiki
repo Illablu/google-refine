@@ -50,7 +50,7 @@ If you want Google Refine logs to be more verbose, append this to the line above
 
 == Build and Run Google Refine from the command line (harder but more comprehensive) ==
 
-The Google Refine build system requires you to have a unix shell. On Mac OS X and Linux, just use whatever shell compatible with `/bin/sh`. On windows, you have to install [http://www.cygwin.com/ Cygwin] and use that to run `sh` or `bash`.
+On Mac OS X and Linux the Google Refine build system requires you to have a unix shell; just use a shell compatible with `/bin/sh`. On Windows you can use the Windows command line. (go to `Start` then `Run`, type `cmd` and click `OK`)
 
 To see what functions are supported by the Google Refine's build system, type
 
@@ -58,7 +58,11 @@ To see what functions are supported by the Google Refine's build system, type
    ./refine -h
 }}}
 
-to get a list of them.
+to get a list of them. When running from the Windows command line, you should omit the `./`
+
+{{{
+   refine -h
+}}}
 
 == Building ==
 
@@ -131,13 +135,13 @@ where 'version' is the release version (for example, 1.3b3).
 
 === Windows ===
 
-On Windows, Google Refine requires [http://www.cygwin.com/ Cygwin] and [http://java.sun.com/javase/downloads/index.jsp Java JDK] to be installed. Once these are installed you then need to [http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows Set the `JAVA_HOME` environment variable]. You may need to reboot your machine after setting this environment variable.
+On Windows, Google Refine requires the [http://java.sun.com/javase/downloads/index.jsp Java JDK] to be installed. Once these are installed you then need to [http://confluence.atlassian.com/display/DOC/Setting+the+JAVA_HOME+Variable+in+Windows Set the `JAVA_HOME` environment variable] (please ensure it points to the JDK, and not the JRE) and the ANT_HOME environment variable (this is set up in a similar way to JAVA_HOME, but should point to the `Tools/Ant` directory in Google Refine's source code). You may need to reboot your machine after setting these environment variables.
 
-Open the Cygwin bash shell. Navigate to your installation directory, then run Google Refine
+Open the Windows command line. Navigate to your installation directory, then run Google Refine (the `./` should be omitted when running any of the refine commands from the Windows command line)
 
 {{{
    # cd 'C:\\path_to_installation_directory'
-   # ./refine
+   # refine
 }}}
 
 If you receive a message `Could not find the main class: com.google.refine.Refine. Program will exit.` this means that the `JAVA_HOME` variable is likely not set correctly.
