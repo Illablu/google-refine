@@ -31,44 +31,41 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-var theImportJob = {};
-var ui = {};
+@import-less url("../theme.less");
 
-var Refine = {
-};
+.default-importing-file-selection-control-panel {
+  position: absolute;
+  background: @chrome_secondary;
+  padding: @padding_looser;
+}
+.default-importing-file-selection-file-panel {
+  position: absolute;
+  background: white;
+  overflow: auto;
+}
+.default-importing-file-selection-file-panel > table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.default-importing-file-selection-file-panel > table > tbody > tr > td,
+.default-importing-file-selection-file-panel > table > tbody > tr > th {
+  padding: @padding_tight @padding_normal;
+}
+.default-importing-file-selection-file-panel > table > tbody > tr > th {
+  text-align: left;
+  background: @faint_grey;
+}
+.default-importing-file-selection-file-panel > table > tbody > tr.odd {
+  background: @fainter_grey;
+}
 
-$(function() {
-  ui.elmts = DOM.bind($('#body'));
+.default-importing-file-selection-control-panel h2 {
+  font-size: 110%;
+  margin-top: 3em;
+  margin-bottom: 0.75em;
+}
 
-  var resize = function() {
-      var header = $("#header");
-      var body = $('#body');
-      var bodyPadding = 10;
-    
-      var bodyTop = header.outerHeight() + header.offset().top;
-      var bodyHeight = $(window).height() - bodyTop - bodyPadding;
-      var bodyWidth = $(window).width() - 2 * bodyPadding;
-      body.css("left", bodyPadding + "px")
-        .css("top", bodyTop + "px")
-        .css("width", bodyWidth + "px")
-        .css("height", bodyHeight + "px");
-    
-      // File selection stage
-      var fileSelectionStageControlPanelHeight = 150; // pixel
-      ui.elmts.fileSelectionStageControlPanel.height(fileSelectionStageControlPanelHeight + "px");
-      ui.elmts.fileSelectionStageFilePanel.height(
-        (bodyHeight -
-          ui.elmts.headerPanel.outerHeight() - 
-          fileSelectionStageControlPanelHeight) + "px");
-    
-      // Data preview stage
-      var dataPreviewStageDataPanelHeight = 200; // pixel
-      ui.elmts.dataPreviewStageDataPanel.height(dataPreviewStageDataPanelHeight + "px");
-      ui.elmts.dataPreviewStageControlPanel.height(
-        (bodyHeight -
-          ui.elmts.headerPanel.outerHeight() - 
-          dataPreviewStageDataPanelHeight) + "px");
-  };
-  $(window).bind("resize", resize);
-  resize();
-});
+.default-importing-file-selection-file-panel > table > tbody > tr >
+td.default-importing-file-selection-filename.highlighted {
+  background: #fffee0;
+}

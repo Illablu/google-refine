@@ -31,7 +31,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-Refine.SeparatorBasedParserUI = function() {
-    
+Refine.SeparatorBasedParserUI = function(jobID, job, format, elmt) {
+    elmt.text(format);
 };
 Refine.DefaultImportingController.parserUIs["SeparatorBasedParserUI"] = Refine.SeparatorBasedParserUI;
+
+Refine.SeparatorBasedParserUI.prototype.dispose = function() {
+    
+};

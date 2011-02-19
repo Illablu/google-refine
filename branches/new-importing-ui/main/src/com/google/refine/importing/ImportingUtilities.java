@@ -35,9 +35,7 @@ import org.apache.tools.tar.TarInputStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.google.refine.ProjectMetadata;
 import com.google.refine.importing.ImportingManager.Format;
-import com.google.refine.model.Project;
 import com.google.refine.util.JSONUtilities;
 import com.ibm.icu.text.NumberFormat;
 
@@ -418,7 +416,6 @@ public class ImportingUtilities {
             }
             return true;
         } else if (archiveIS instanceof ZipInputStream) {
-            System.err.println("here");
             ZipInputStream zis = (ZipInputStream) archiveIS;
             try {
                 ZipEntry ze;
@@ -593,6 +590,7 @@ public class ImportingUtilities {
             JSONObject firstFileRecord = JSONUtilities.getObjectElement(fileRecords, 0);
             String encoding = getEncoding(firstFileRecord);
             String location = JSONUtilities.getString(firstFileRecord, "location", null);
+            
             if (location != null) {
                 File file = new File(job.getRawDataDir(), location);
                 

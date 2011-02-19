@@ -172,7 +172,7 @@ function registerImporting() {
     /*
      *  Formats and their UIs and parsers
      */
-    /*
+    
     var svParser = new Packages.com.google.refine.importers.TsvCsvImporter();
     var fixedWidthParser = new Packages.com.google.refine.importers.FixedWidthImporter();
     
@@ -181,6 +181,7 @@ function registerImporting() {
     IM.registerFormat("text/line-based/*sv", "Separator-based files", "SeparatorBasedParserUI", svParser);
     IM.registerFormat("text/line-based/*sv/csv", "Comma-separated (CSV) files", "SeparatorBasedParserUI", svParser);
     IM.registerFormat("text/line-based/*sv/tsv", "Tab-separated (TSV) files", "SeparatorBasedParserUI", svParser);
+    /*
     IM.registerFormat("text/line-based/fixed-width", "Fixed-width field text files", "FixedWidthParserUI", fixedWidthParser);
     IM.registerFormat("text/xml", "XML files", "XmlParserUI", new Packages.com.google.refine.importers.XmlImporter());
     IM.registerFormat("text/xml/rdf", "RDF/XML files", "RdfParserUI", new Packages.com.google.refine.importers.RdfTripleImporter());
@@ -254,15 +255,28 @@ function init() {
         module,
         [
             "externals/jquery-1.4.2.min.js",
+            "externals/jquery.cookie.js",
+            "externals/jquery.eventstack-0.3.js",
             "externals/jquery-ui/jquery-ui-1.8.custom.min.js",
             "externals/date.js",
+            
+            "scripts/util/misc.js",
+            "scripts/util/url.js",
             "scripts/util/string.js",
+            "scripts/util/ajax.js",
+            "scripts/util/menu.js",
+            "scripts/util/dialog.js",
             "scripts/util/dom.js",
+            
             "scripts/index.js",
             "scripts/index/create-project-ui.js",
             "scripts/index/open-project-ui.js",
             "scripts/index/import-project-ui.js",
+            
             "scripts/index/default-importing-controller/controller.js",
+            "scripts/index/default-importing-controller/file-selection-panel.js",
+            "scripts/index/default-importing-controller/parsing-panel.js",
+            
             "scripts/index/default-importing-sources/sources.js",
             "scripts/index/parser-interfaces/separator-based-parser-ui.js"
         ]
@@ -280,33 +294,12 @@ function init() {
             "styles/index/create-project-ui.less",
             "styles/index/open-project-ui.less",
             "styles/index/import-project-ui.less",
+            
             "styles/index/default-importing-controller.less",
+            "styles/index/default-importing-file-selection-panel.less",
+            "styles/index/default-importing-parsing-panel.less",
+            
             "styles/index/default-importing-sources.less"
-        ]
-    );
-    
-    ClientSideResourceManager.addPaths(
-        "import/scripts",
-        module,
-        [
-            "externals/jquery-1.4.2.min.js",
-            "externals/jquery-ui/jquery-ui-1.8.custom.min.js",
-            "externals/date.js",
-            "scripts/util/string.js",
-            "scripts/util/dom.js",
-            "scripts/import.js"
-        ]
-    );
-    
-    ClientSideResourceManager.addPaths(
-        "import/styles",
-        module,
-        [
-            "externals/jquery-ui/css/ui-lightness/jquery-ui-1.8.custom.css",
-            "styles/jquery-ui-overrides.less",
-            "styles/common.less",
-            "styles/pure.css",
-            "styles/import.less"
         ]
     );
     

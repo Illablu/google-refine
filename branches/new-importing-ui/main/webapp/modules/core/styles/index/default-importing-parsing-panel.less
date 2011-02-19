@@ -31,52 +31,49 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-var ImportSources = [];
+@import-less url("../theme.less");
 
-function ThisComputerImportSourceUI(bodyDiv) {
-  bodyDiv.html(DOM.loadHTML("core", "scripts/index/import-from-computer-form.html"));
-  
-  var elmts = DOM.bind(bodyDiv);
-  elmts.nextButton.click(function(evt) {
-    if (elmts.fileInput[0].files.length === 0) {
-      window.alert("You must specify a data file to import.");
-    } else {
-      elmts.nameInput[0].value = elmts.fileInput[0].files[0].fileName
-        .replace(/\.\w+/, "").replace(/[_-]/g, " ");
-      
-      startImportJob("file-upload", elmts.form, "Uploading data file ...");
-    }
-  });
-}
-ImportSources.push({
-  "label" : "This Computer",
-  "ui" : ThisComputerImportSourceUI
-});
-
-ThisComputerImportSourceUI.prototype.focus = function() {
-  
+.default-importing-parsing-data-panel {
+  position: absolute;
+  overflow: auto;
 }
 
-function UrlImportSourceUI(bodyDiv) {
-  
+.default-importing-parsing-control-panel {
+  position: absolute;
+  overflow: auto;
+  border-top: 5px solid @chrome_primary;
+  background: @chrome_secondary;
 }
-ImportSources.push({
-  "label" : "Web Address (URL)",
-  "ui" : UrlImportSourceUI
-});
-
-UrlImportSourceUI.prototype.focus = function() {
-  
+.default-importing-parsing-control-panel > table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-function ClipboardImportSourceUI(bodyDiv) {
-  
+td.default-importing-parsing-control-panel-formats {
+  padding: @padding_looser 0;
+  width: 250px;
 }
-ImportSources.push({
-  "label" : "Clipboard",
-  "ui" : ClipboardImportSourceUI
-});
 
-ClipboardImportSourceUI.prototype.focus = function() {
-  
+.default-importing-parsing-control-panel-formats-message {
+  margin-left: @padding_looser;
+  margin-bottom: @padding_looser;
+  padding: 0 @padding_normal;
+  font-size: 1.3em;
+}
+.default-importing-parsing-control-panel-format {
+  margin-left: @padding_looser;
+  padding: @padding_tight @padding_normal;
+  .rounded_corners_left();
+  cursor: pointer;
+}
+
+.default-importing-parsing-control-panel-format.selected {
+  background: white;
+  font-weight: bold;
+}
+
+td.default-importing-parsing-control-panel-options-panel {
+  background: white;
+  padding: @padding_looser;
+  .rounded_corners_left();
 }
