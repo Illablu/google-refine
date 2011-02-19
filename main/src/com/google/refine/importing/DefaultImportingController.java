@@ -17,6 +17,8 @@ import org.json.JSONWriter;
 
 import com.google.refine.RefineServlet;
 import com.google.refine.commands.HttpUtilities;
+import com.google.refine.importing.ImportingManager.Format;
+import com.google.refine.util.JSONUtilities;
 import com.google.refine.util.ParsingUtilities;
 
 public class DefaultImportingController implements ImportingController {
@@ -50,12 +52,12 @@ public class DefaultImportingController implements ImportingController {
             doLoadRawData(request, response, parameters);
         } else if ("update-file-selection".equals(subCommand)) {
             doUpdateFileSelection(request, response, parameters);
+        } else if ("create-format-options".equals(subCommand)) {
+            doCreateFormatOptions(request, response, parameters);
         } else if ("update-format-and-options".equals(subCommand)) {
             doUpdateFormatAndOptions(request, response, parameters);
         } else {
-            HttpUtilities.respondWithErrorPage(
-                servlet, request, response, "No such sub command",
-                HttpServletResponse.SC_BAD_REQUEST, null);
+            HttpUtilities.respond(response, "error", "No such sub command");
         }
     }
 
@@ -65,18 +67,14 @@ public class DefaultImportingController implements ImportingController {
         long jobID = Long.parseLong(parameters.getProperty("jobID"));
         ImportingJob job = ImportingManager.getJob(jobID);
         if (job == null) {
-            HttpUtilities.respondWithErrorPage(
-                servlet, request, response, "No such import job",
-                HttpServletResponse.SC_BAD_REQUEST, null);
+            HttpUtilities.respond(response, "error", "No such import job");
             return;
         }
 
         try {
             final JSONObject config = getConfig(job);
             if (!("new".equals(config.getString("state")))) {
-                HttpUtilities.respondWithErrorPage(
-                    servlet, request, response, "Job already started; cannot load more data",
-                    HttpServletResponse.SC_BAD_REQUEST, null);
+                HttpUtilities.respond(response, "error", "Job already started; cannot load more data");
                 return;
             }
             
@@ -93,18 +91,14 @@ public class DefaultImportingController implements ImportingController {
         long jobID = Long.parseLong(parameters.getProperty("jobID"));
         ImportingJob job = ImportingManager.getJob(jobID);
         if (job == null) {
-            HttpUtilities.respondWithErrorPage(
-                servlet, request, response, "No such import job",
-                HttpServletResponse.SC_BAD_REQUEST, null);
+            HttpUtilities.respond(response, "error", "No such import job");
             return;
         }
     
         try {
             JSONObject config = getConfig(job);
             if (!("ready".equals(config.getString("state")))) {
-                HttpUtilities.respondWithErrorPage(
-                    servlet, request, response, "Job not ready",
-                    HttpServletResponse.SC_BAD_REQUEST, null);
+                HttpUtilities.respond(response, "error", "Job not ready");
                 return;
             }
             
@@ -125,18 +119,14 @@ public class DefaultImportingController implements ImportingController {
         long jobID = Long.parseLong(parameters.getProperty("jobID"));
         ImportingJob job = ImportingManager.getJob(jobID);
         if (job == null) {
-            HttpUtilities.respondWithErrorPage(
-                servlet, request, response, "No such import job",
-                HttpServletResponse.SC_BAD_REQUEST, null);
+            HttpUtilities.respond(response, "error", "No such import job");
             return;
         }
     
         try {
             JSONObject config = getConfig(job);
             if (!("ready".equals(config.getString("state")))) {
-                HttpUtilities.respondWithErrorPage(
-                    servlet, request, response, "Job not ready",
-                    HttpServletResponse.SC_BAD_REQUEST, null);
+                HttpUtilities.respond(response, "error", "Job not ready");
                 return;
             }
             
@@ -154,15 +144,36 @@ public class DefaultImportingController implements ImportingController {
         }
     }
     
+    private void doCreateFormatOptions(HttpServletRequest request, HttpServletResponse response, Properties parameters)
+        throws ServletException, IOException {
+    
+        long jobID = Long.parseLong(parameters.getProperty("jobID"));
+        ImportingJob job = ImportingManager.getJob(jobID);
+        if (job == null) {
+            HttpUtilities.respond(response, "error", "No such import job");
+            return;
+        }
+        
+        String format = request.getParameter("format");
+        Format formatRecord = ImportingManager.formatToRecord.get(format);
+        if (formatRecord != null && formatRecord.parser != null) {
+            JSONObject options = formatRecord.parser.createDefaultOptions(
+                    job, ImportingUtilities.getSelectedFileRecords(job), format);
+            JSONObject result = new JSONObject();
+            JSONUtilities.safePut(result, "status", "ok");
+            JSONUtilities.safePut(result, "options", options);
+            
+            HttpUtilities.respond(response, result.toString());
+        } else {
+            HttpUtilities.respond(response, "error", "Unrecognized format or format has no parser");
+        }
+    }
+    
     private JSONObject getConfig(ImportingJob job) {
         if (job.config == null) {
             job.config = new JSONObject();
-            try {
-                job.config.put("state", "new");
-                job.config.put("hasData", false);
-            } catch (JSONException e) {
-                // Ignore
-            }
+            JSONUtilities.safePut(job.config, "state", "new");
+            JSONUtilities.safePut(job.config, "hasData", false);
         }
         return job.config;
     }
@@ -174,13 +185,8 @@ public class DefaultImportingController implements ImportingController {
         JSONWriter writer = new JSONWriter(w);
         try {
             writer.object();
-            if (job == null) {
-                writer.key("code"); writer.value("error");
-                writer.key("message"); writer.value("No such import job");
-            } else {
-                writer.key("code"); writer.value("ok");
-                writer.key("job"); job.write(writer, new Properties());
-            }
+            writer.key("code"); writer.value("ok");
+            writer.key("job"); job.write(writer, new Properties());
             writer.endObject();
         } catch (JSONException e) {
             throw new ServletException(e);

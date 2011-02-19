@@ -44,16 +44,20 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONObject;
 
 import au.com.bytecode.opencsv.CSVParser;
 
 import com.google.refine.ProjectMetadata;
 import com.google.refine.expr.ExpressionUtils;
+import com.google.refine.importing.ImportingJob;
+import com.google.refine.importing.ImportingParser;
 import com.google.refine.model.Cell;
 import com.google.refine.model.Project;
 import com.google.refine.model.Row;
+import com.google.refine.util.JSONUtilities;
 
-public class TsvCsvImporter implements ReaderImporter,StreamImporter {
+public class TsvCsvImporter implements ReaderImporter,StreamImporter, ImportingParser {
     
     @Override
     public void read(Reader reader, Project project, ProjectMetadata metadata, Properties options) throws ImportException {
@@ -234,5 +238,35 @@ public class TsvCsvImporter implements ReaderImporter,StreamImporter {
             }
         }
         return false;
+    }
+
+    @Override
+    public JSONObject createDefaultOptions(ImportingJob job,
+            List<JSONObject> fileRecords, String format) {
+        JSONObject options = new JSONObject();
+        
+        JSONUtilities.safePut(options, "lineSeparator", "\n");
+        if ("text/line-based/*sv/csv".equals(format)) {
+            JSONUtilities.safePut(options, "separator", ",");
+            JSONUtilities.safePut(options, "splitIntoColumn", true);
+        } else if ("text/line-based/*sv/tsv".equals(format)) {
+            JSONUtilities.safePut(options, "separator", "\t");
+            JSONUtilities.safePut(options, "splitIntoColumn", true);
+        } else {
+            JSONUtilities.safePut(options, "splitIntoColumn", false);
+        }
+        JSONUtilities.safePut(options, "headerLines", 1);
+        JSONUtilities.safePut(options, "guessCellValue", true);
+        JSONUtilities.safePut(options, "includeFileName", fileRecords.size() > 1);
+        
+        return options;
+    }
+
+    @Override
+    public void parse(Project project, ProjectMetadata metadata,
+            ImportingJob job, List<JSONObject> fileRecords, String format,
+            int limit, JSONObject options, List<Exception> exceptions) {
+        // TODO Auto-generated method stub
+        
     }
 }
