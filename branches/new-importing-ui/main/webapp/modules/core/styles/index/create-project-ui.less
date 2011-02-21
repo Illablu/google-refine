@@ -43,32 +43,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #create-project-ui-source-selection-message {
   padding: @padding_loose;
-  border-top: 1px solid @chrome_primary;
+  border-bottom: 1px solid @chrome_primary;
+  background: white;
   }
+#create-project-ui-source-selection-message > h3 {
+  margin-bottom: @padding_normal;
+}
 
 #create-project-ui-source-selection-layout {
   width: 100%;
   border-collapse: collapse;
-  }
-#create-project-ui-source-selection > tbody > tr > td {
-  border-top: 1px solid @chrome_primary;
   border-bottom: 1px solid @chrome_primary;
   }
 
 #create-project-ui-source-selection-tab-bodies {
   background: white;
+  .rounded_corners_left();
   }
 
 #create-project-ui-source-selection-tabs {
   width: 15em;
   background: @fill_primary;
-  border-right: 1px solid @chrome_primary;
-  padding-left: @padding_normal;
+  padding-left: @padding_looser;
   padding-bottom: @padding_looser;
   }
 #create-project-ui-source-selection-tabs > div {
-  padding: @padding_tight;
-  padding-right: @padding_normal;
+  padding: @padding_normal;
   }
 
 .create-project-ui-source-selection-tab-body {
@@ -84,10 +84,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   color: black;
   background: white;
   font-weight: bold;
-  position: relative;
-  left: 1px;
-  border: 1px solid @chrome_primary;
-  border-right: none;
+  .rounded_corners_left();
   }
 
 .create-project-ui-panel {

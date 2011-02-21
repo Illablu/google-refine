@@ -31,51 +31,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-@import-less url("../theme.less");
+Refine.LineBasedParserUI = function(jobID, job, format, elmt) {
+    elmt.text(format);
+};
+Refine.DefaultImportingController.parserUIs["LineBasedParserUI"] = Refine.LineBasedParserUI;
 
-.default-importing-parsing-data-panel {
-  position: absolute;
-  overflow: auto;
-}
-
-.default-importing-parsing-control-panel {
-  position: absolute;
-  overflow: auto;
-  border-top: 5px solid @chrome_primary;
-  background: @chrome_secondary;
-}
-.default-importing-parsing-control-panel > table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td.default-importing-parsing-control-panel-formats {
-  padding: @padding_looser 0;
-  width: 250px;
-}
-
-.default-importing-parsing-control-panel-formats-message {
-  margin-left: @padding_looser;
-  margin-bottom: @padding_looser;
-  padding: 0 @padding_normal;
-  font-size: 1.3em;
-}
-.default-importing-parsing-control-panel-format {
-  margin-left: @padding_looser;
-  padding: @padding_tight @padding_normal;
-  .rounded_corners_left();
-  color: @link_primary;
-  cursor: pointer;
-}
-
-.default-importing-parsing-control-panel-format.selected {
-  background: white;
-  font-weight: bold;
-  color: black;
-}
-
-td.default-importing-parsing-control-panel-options-panel {
-  background: white;
-  padding: @padding_looser;
-  .rounded_corners_left();
-}
+Refine.LineBasedParserUI.prototype.dispose = function() {
+    
+};

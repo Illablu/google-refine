@@ -62,7 +62,7 @@ function UrlImportingSourceUI(controller) {
     this._controller = controller;
 }
 Refine.DefaultImportingController.sources.push({
-    "label": "Web Address (URL)",
+    "label": "Web Addresses (URLs)",
     "id": "download",
     "uiClass": UrlImportingSourceUI
 });
