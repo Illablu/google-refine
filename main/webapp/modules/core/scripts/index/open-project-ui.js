@@ -32,45 +32,58 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 Refine.OpenProjectUI = function(elmt) {
-  var self = this;
-  
-  elmt.html(DOM.loadHTML("core", "scripts/index/open-project-ui.html"));
-  
-  this._elmt = elmt;
-  this._elmts = DOM.bind(elmt);
-  
-  $("#project-file-input").change(function() {
-      if ($("#project-name-input")[0].value.length == 0) {
-          var fileName = this.files[0].fileName;
-          if (fileName) {
-              $("#project-name-input")[0].value = fileName.replace(/\.\w+/, "").replace(/[_-]/g, " ");
-          }
-          $("#project-name-input").focus().select();
-      }
-  }).keypress(function(evt) {
-      if (evt.keyCode == 13) {
-          return self._onClickUploadFileButton(evt);
-      }
-  });
-  
-  $("#upload-file-button").click(function(evt) {
-    return self._onClickUploadFileButton(evt)
-  });
+    var self = this;
 
-  $('#projects-workspace-open').click(function() {
-      $.ajax({
-          type: "POST",
-          url: "/command/core/open-workspace-dir",
-          dataType: "json",
-          success: function (data) {
-              if (data.code != "ok" && "message" in data) {
-                  alert(data.message);
-              }
-          }
-      });
-  });
-  
-  this._fetchProjects();
+    elmt.html(DOM.loadHTML("core", "scripts/index/open-project-ui.html"));
+
+    this._elmt = elmt;
+    this._elmts = DOM.bind(elmt);
+
+    var resize = function() {
+        var height = elmt.height();
+        var width = elmt.width();
+        var controlsHeight = self._elmts.workspaceControls.outerHeight();
+        self._elmts.projectsContainer
+            .css("height", (height - controlsHeight - DOM.getVPaddings(self._elmts.projectsContainer)) + "px");
+        self._elmts.workspaceControls
+            .css("bottom", "0px")
+            .css("width", (width - DOM.getHPaddings(self._elmts.workspaceControls)) + "px")
+    };
+    $(window).resize(resize);
+    window.setTimeout(resize, 100);
+
+    $("#project-file-input").change(function() {
+        if ($("#project-name-input")[0].value.length == 0) {
+            var fileName = this.files[0].fileName;
+            if (fileName) {
+                $("#project-name-input")[0].value = fileName.replace(/\.\w+/, "").replace(/[_-]/g, " ");
+            }
+            $("#project-name-input").focus().select();
+        }
+    }).keypress(function(evt) {
+        if (evt.keyCode == 13) {
+            return self._onClickUploadFileButton(evt);
+        }
+    });
+
+    $("#upload-file-button").click(function(evt) {
+        return self._onClickUploadFileButton(evt)
+    });
+
+    $('#projects-workspace-open').click(function() {
+        $.ajax({
+            type: "POST",
+            url: "/command/core/open-workspace-dir",
+            dataType: "json",
+            success: function (data) {
+                if (data.code != "ok" && "message" in data) {
+                    alert(data.message);
+                }
+            }
+        });
+    });
+
+    this._fetchProjects();
 };
 
 Refine.OpenProjectUI.prototype._fetchProjects = function() {

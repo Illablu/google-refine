@@ -40,7 +40,7 @@ Refine.DefaultImportingController.prototype._showParsingPanel = function(hasFile
     if (!(this._parserOptions)) {
         this._parserOptions = {};
     }
-    this._ensureFormatHasOptions(this._format, function() {
+    this._ensureFormatParserUIHasInitializationData(this._format, function() {
         self._prepareParsingPanel();
         self._parsingPanelElmts.nextButton.click(function() {
             self._createProject();
@@ -74,16 +74,13 @@ Refine.DefaultImportingController.prototype._prepareParsingPanel = function() {
     this._parsingPanel.unbind().empty().html(
         DOM.loadHTML("core", "scripts/index/default-importing-controller/parsing-panel.html"));
     
-    var elmts = DOM.bind(this._parsingPanel);
-    elmts.wizardHeader.html(
-        DOM.loadHTML("core", "scripts/index/default-importing-controller/wizard-header.html"));
-
-    this._parsingPanelElmts = elmts = DOM.bind(this._parsingPanel);
+    this._parsingPanelElmts = DOM.bind(this._parsingPanel);
     this._parsingPanelElmts.startOverButton.click(function() {
         self._startOver();
     });
     
     this._parsingPanelResizer = function() {
+        var elmts = self._parsingPanelElmts;
         var width = self._parsingPanel.width();
         var height = self._parsingPanel.height();
         var headerHeight = elmts.wizardHeader.outerHeight(true);
@@ -111,7 +108,7 @@ Refine.DefaultImportingController.prototype._prepareParsingPanel = function() {
             .text(Refine.importingConfig.formats[format].label)
             .attr("format", format)
             .addClass("default-importing-parsing-control-panel-format")
-            .appendTo(elmts.formatsContainer)
+            .appendTo(self._parsingPanelElmts.formatsContainer)
             .click(function() {
                 self._selectFormat(format);
             });

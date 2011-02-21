@@ -9,18 +9,16 @@ import com.google.refine.model.Project;
 
 public interface ImportingParser {
     /**
-     * Some common options include
-     *     - encoding: such as "utf-8", applicable to text files
-     *     - lineBreakCharacter: such as "\n", applicable to line-based files
-     *     - columnSeparatorCharacter: such as "\t"
-     *     - keepBlankLines: boolean, applicable to line-based files
+     * Create data sufficient for the parser UI on the client side to do its work.
+     * For example, an XML parser UI would need to know some sample elements so it
+     * can let the user pick which the path to the record elements.
      * 
      * @param job
      * @param fileRecords
      * @param format
      * @return JSONObject options
      */
-    public JSONObject createDefaultOptions(
+    public JSONObject createParserUIInitializationData(
         ImportingJob job,
         List<JSONObject> fileRecords,
         String format

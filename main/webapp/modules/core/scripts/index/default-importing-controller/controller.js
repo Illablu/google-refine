@@ -249,7 +249,7 @@ Refine.DefaultImportingController.prototype._prepareData = function() {
     this._extensions = extensionList;
 };
 
-Refine.DefaultImportingController.prototype._ensureFormatHasOptions = function(format, onDone) {
+Refine.DefaultImportingController.prototype._ensureFormatParserUIHasInitializationData = function(format, onDone) {
     if (!(this._format in this._parserOptions)) {
         var self = this;
         var dismissBusy = DialogSystem.showBusy("Inspecting selected files ...");
@@ -257,7 +257,7 @@ Refine.DefaultImportingController.prototype._ensureFormatHasOptions = function(f
             "/command/core/importing-controller?" + $.param({
                 "controller": "core/default-importing-controller",
                 "jobID": this._jobID,
-                "subCommand": "create-format-options"
+                "subCommand": "initialize-parser-ui"
             }),
             null,
             function(data) {

@@ -52,8 +52,8 @@ public class DefaultImportingController implements ImportingController {
             doLoadRawData(request, response, parameters);
         } else if ("update-file-selection".equals(subCommand)) {
             doUpdateFileSelection(request, response, parameters);
-        } else if ("create-format-options".equals(subCommand)) {
-            doCreateFormatOptions(request, response, parameters);
+        } else if ("initialize-parser-ui".equals(subCommand)) {
+            doInitializeParserUI(request, response, parameters);
         } else if ("update-format-and-options".equals(subCommand)) {
             doUpdateFormatAndOptions(request, response, parameters);
         } else {
@@ -144,7 +144,7 @@ public class DefaultImportingController implements ImportingController {
         }
     }
     
-    private void doCreateFormatOptions(HttpServletRequest request, HttpServletResponse response, Properties parameters)
+    private void doInitializeParserUI(HttpServletRequest request, HttpServletResponse response, Properties parameters)
         throws ServletException, IOException {
     
         long jobID = Long.parseLong(parameters.getProperty("jobID"));
@@ -157,7 +157,7 @@ public class DefaultImportingController implements ImportingController {
         String format = request.getParameter("format");
         Format formatRecord = ImportingManager.formatToRecord.get(format);
         if (formatRecord != null && formatRecord.parser != null) {
-            JSONObject options = formatRecord.parser.createDefaultOptions(
+            JSONObject options = formatRecord.parser.createParserUIInitializationData(
                     job, ImportingUtilities.getSelectedFileRecords(job), format);
             JSONObject result = new JSONObject();
             JSONUtilities.safePut(result, "status", "ok");

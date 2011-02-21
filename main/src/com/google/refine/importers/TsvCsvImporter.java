@@ -241,7 +241,7 @@ public class TsvCsvImporter implements ReaderImporter,StreamImporter, ImportingP
     }
 
     @Override
-    public JSONObject createDefaultOptions(ImportingJob job,
+    public JSONObject createParserUIInitializationData(ImportingJob job,
             List<JSONObject> fileRecords, String format) {
         JSONObject options = new JSONObject();
         

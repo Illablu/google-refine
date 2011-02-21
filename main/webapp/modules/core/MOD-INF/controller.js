@@ -177,7 +177,7 @@ function registerImporting() {
     var fixedWidthParser = new Packages.com.google.refine.importers.FixedWidthImporter();
     
     IM.registerFormat("text", "Text files"); // generic format, no parser to handle it
-    IM.registerFormat("text/line-based", "Line-based text files", "SeparatorBasedParserUI", svParser);
+    IM.registerFormat("text/line-based", "Line-based text files", "LineBasedParserUI", svParser);
     IM.registerFormat("text/line-based/*sv", "Separator-based files", "SeparatorBasedParserUI", svParser);
     IM.registerFormat("text/line-based/*sv/csv", "Comma-separated (CSV) files", "SeparatorBasedParserUI", svParser);
     IM.registerFormat("text/line-based/*sv/tsv", "Tab-separated (TSV) files", "SeparatorBasedParserUI", svParser);

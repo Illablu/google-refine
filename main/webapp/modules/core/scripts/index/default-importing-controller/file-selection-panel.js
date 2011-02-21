@@ -36,7 +36,6 @@ Refine.DefaultImportingController.prototype._showFileSelectionPanel = function()
     
     this._prepareFileSelectionPanel();
     
-    this._fileSelectionPanelElmts.previousButton.attr("disabled", "disabled").addClass("button-disabled");
     this._fileSelectionPanelElmts.nextButton.click(function() {
         self._commitFileSelection();
     });
@@ -57,16 +56,13 @@ Refine.DefaultImportingController.prototype._prepareFileSelectionPanel = functio
     this._fileSelectionPanel.unbind().empty().html(
         DOM.loadHTML("core", "scripts/index/default-importing-controller/file-selection-panel.html"));
     
-    var elmts = DOM.bind(this._fileSelectionPanel);
-    elmts.wizardHeader.html(
-        DOM.loadHTML("core", "scripts/index/default-importing-controller/wizard-header.html"));
-    
-    this._fileSelectionPanelElmts = elmts = DOM.bind(this._fileSelectionPanel);
+    this._fileSelectionPanelElmts = DOM.bind(this._fileSelectionPanel);
     this._fileSelectionPanelElmts.startOverButton.click(function() {
         self._startOver();
     });
     
     this._fileSelectionPanelResizer = function() {
+        var elmts = self._fileSelectionPanelElmts;
         var width = self._fileSelectionPanel.width();
         var height = self._fileSelectionPanel.height();
         var headerHeight = elmts.wizardHeader.outerHeight(true);
@@ -99,7 +95,7 @@ Refine.DefaultImportingController.prototype._renderFileSelectionPanelFileTable =
     
     this._fileSelectionPanelElmts.filePanel.empty();
     
-    var fileTable = $('<table><tr><th></th><th>Name</th><th>Format</th><th>Size</th></tr></table>')
+    var fileTable = $('<table><tr><th></th><th>Name</th><th>Mime-type</th><th>Format</th><th>Size</th></tr></table>')
         .appendTo(this._fileSelectionPanelElmts.filePanel)[0];
 
     var files = this._job.config.retrievalRecord.files;
@@ -121,6 +117,7 @@ Refine.DefaultImportingController.prototype._renderFileSelectionPanelFileTable =
         }
         
         $('<td>').text(fileRecord.fileName).addClass("default-importing-file-selection-filename").appendTo(tr);
+        $('<td>').text(fileRecord.declaredMimeType || fileRecord.mimeType || "unknown").appendTo(tr);
         $('<td>').text(fileRecord.format || "unknown").appendTo(tr);
         $('<td>').text(fileRecord.size + " bytes").appendTo(tr);
     };
@@ -305,6 +302,9 @@ Refine.DefaultImportingController.prototype._commitFileSelection = function() {
             }
             
             dismissBusy();
+            
+            // Different files might be selected. We start over again.
+            delete this._parserOptions;
             
             self._job = data.job;
             self._showParsingPanel(true);
