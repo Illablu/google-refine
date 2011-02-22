@@ -29,8 +29,8 @@ A call to a standard reconciliation service API for a single query looks like ei
 
 If the query parameter is a string, then it's an abbreviation of `query={"query":...string...}`. Here are two live examples:
 
-  http://standard-reconcile.freebaseapps.com/reconcile?query=boston
-  http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22}
+  # http://standard-reconcile.freebaseapps.com/reconcile?query=boston
+  # http://standard-reconcile.freebaseapps.com/reconcile?query={%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22}
 
 The query json object literal has a few fields
 
@@ -119,12 +119,15 @@ For multiple queries, the response is a json literal object with the same keys a
   }
 }}}
 
-The service should also support JSONP through a callback parameter.
-
+The service must also support JSONP through a callback parameter.
 
 =Service Metadata=
 
-When a service is called without any parameter (or with just a callback parameter), then it returns its metadata as a json object literal with at least 3 fields "name", "identifierSpace", and "schemaSpace". Other fields are optional.
+When a service is called without any parameter with just a JSONP callback parameter, then it must return its metadata as a JSON object literal with at least 3 fields "name", "identifierSpace", and "schemaSpace". Other fields are optional.
+
+Here are two live examples:
+  # http://standard-reconcile.freebaseapps.com/reconcile?callback=jsonp
+  # http://netflix-reconcile.freebaseapps.com/reconcile?callback=jsonp
 
 {{{
 {
