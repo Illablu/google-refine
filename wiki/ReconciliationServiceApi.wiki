@@ -2,7 +2,7 @@
 
 =Introduction=
 
-A reconciliation service is a web service that, given some text which is supposedly a name of something, and any additional details, returns a ranked list of potential entities matching that name. The text does not have to match each entity's official name perfectly, and that's the whole point of reconciliation--to get from ambiguous text name to precisely identified entities. For instance, given the text "apple", a reconciliation service probably should return the Apple Inc. company, the apple fruit, and New York city (also known as the Big Apple).
+A reconciliation service is a web service that, given some text which is a name or label for something, and optionally some additional details, returns a ranked list of potential entities matching the criteria. The candidate text does not have to match each entity's official name perfectly, and that's the whole point of reconciliation--to get from ambiguous text name to precisely identified entities. For instance, given the text "apple", a reconciliation service probably should return the Apple Inc. company, the apple fruit, and New York city (also known as the Big Apple).
 
 Entities are identified by strong identifiers in some particular identifier space. In the same identifier space, identifiers follow the same syntax. For example, given the string "apple", a reconciliation service might return entities identified by "/en/apple", "/en/apple_inc", and "/en/apple_ii", in the Freebase ID space. Given the same string, another reconciliation service might return entities identified by URIs, which are in the URI space, so to speak. Some other identifier spaces are ISBN, LSID. (Although ISBN and LSID identifiers are numbers, for uniformity, they are still stored as strings in Google Refine.)
 
@@ -10,9 +10,7 @@ Each reconciliation service can only reconcile to one single identifier space, b
 
 So that it will be easy for users to plug in a variety of interchangeable reconciliation services, we define the API for a standard reconciliation service here.
 
-Note: Reconciliation in Google Refine does not have to involve calling a reconciliation service through HTTP. It might involve opening a JDBC connection to a local SQL database. However, if you implement a standard reconciliation service API, then it can be used with the existing UI in Google Refine; users only need to plug in your API's URL.
-
-A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It operates in 2 modes: single query mode and multiple query mode. The second is for optimization (reducing number of HTTP calls).
+A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It operates in 2 modes: single query mode and multiple query mode. The second is for optimization (reducing number of HTTP calls).  Reconciliation services must implement support for both query modes as well as implementing the metadata query.
 
 (Much of this standard is based on the [http://api.freebase.com/api/service/search?help Freebase relevance service] and the [http://data.labs.freebase.com/recon/ Freebase experimental recon service].)
 
@@ -20,7 +18,7 @@ A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It
 
 ==Single Query Mode==
 
-A call to a standard reconciliation service API for a single query looks like either of these:
+A call to a reconciliation service API for a single query looks like either of these:
 
 {{{
   http://foo.com/bar/reconcile?query=...string...
@@ -36,7 +34,7 @@ The query json object literal has a few fields
 
 || "query" || a string to search for ||
 || "limit" || optional, an integer to specify how many results to return ||
-|| "type" || optional, a single string, or an array of strings, specifying the types of result e.g., person, product, ... The actual format of each type depends on the service (e.g., "/government/policician" as a Freebase type) ||
+|| "type" || optional, a single string, or an array of strings, specifying the types of result e.g., person, product, ... The actual format of each type depends on the service (e.g., "/government/politician" as a Freebase type) ||
 || "type_strict" || optional, a string, one of "any", "all", "should" ||
 || "properties" || optional, array of json object literals ||
 
@@ -88,7 +86,7 @@ The json object literal has zero or more arbitrary key, each of which has a valu
 
 =Query Response=
 
-The response for a single query is a json literal object
+The response for a single query is a JSON literal object
 
 {{{
   {
@@ -106,7 +104,7 @@ The response for a single query is a json literal object
   }
 }}}
 
-For multiple queries, the response is a json literal object with the same keys as in the request
+For multiple queries, the response is a JSON literal object with the same keys as in the request
 
 {{{
   {
@@ -123,7 +121,7 @@ The service must also support JSONP through a callback parameter.
 
 =Service Metadata=
 
-When a service is called without any parameter with just a JSONP callback parameter, then it must return its metadata as a JSON object literal with at least 3 fields "name", "identifierSpace", and "schemaSpace". Other fields are optional.
+When a service is called with just a JSONP callback parameter and no other paramters, then it must return its metadata as a JSON object literal with at least 3 fields "name", "identifierSpace", and "schemaSpace". Other fields are optional for reconciliation services which can make use of the default Freebase preview, suggest, etc services, but non-Freebase reconciliation services may need to implement them all.
 
 Here are two live examples:
   # http://standard-reconcile.freebaseapps.com/reconcile?callback=jsonp
@@ -177,6 +175,7 @@ The other fields are for
 
   * formulating URLs to a full topic page or to a small preview page for a given entity
   * customizing the suggest widgets used in various places in the reconciliation UI
+  * default types for reconciliation - TODO needs more documentation
 
 ==Preview API==
 
