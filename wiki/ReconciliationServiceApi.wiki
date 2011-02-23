@@ -219,8 +219,10 @@ The `service_url` field is required and it should look like this: `http://foo.co
 The Freebase Suggest widgets embedded in Google Refine will concatenate `_url` and `_path` to make the full URL. Refer to [SuggestApi the specification for a Suggest API] for details.
 
 
-=Google Refine Integration=
+=Google Refine Integration & Testing=
 
-Google Refine's UI includes a mechanism for entering a standard reconciliation service API's URL.
+Google Refine includes a mechanism for adding reconciliation service API URLs.  After choosing Reconcile->Start Reconciling for a column, look at the bottom of the page for two buttons : "Add Standard Service..." and "Add Namespaced Service..."
 
 Each column in Google Refine should only be reconciled against one identity space. 
+
+To test and debug a new reconciliation service ... TODO
