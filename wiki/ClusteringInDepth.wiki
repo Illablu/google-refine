@@ -59,7 +59,7 @@ For example "Krzysztof", "Kryzysztof" and "Krzystof" have different length and d
 
 === Metaphone Fingerprint ===
 
-A third keying method uses a phonetic fingerprinting (specifically, the [http://en.wikipedia.org/wiki/Double_Metaphone Double Metaphone] method), which is a way to transform tokens into the way they are pronounced. This is useful to spot errors that are due to people misunderstanding or not knowing the spelling of a word after only hearing it. The idea being that similar sounding words will end up sharing the same key and thus being binned in the same cluster.
+A third keying method uses a phonetic fingerprinting (specifically, the [http://en.wikipedia.org/wiki/Double_Metaphone Double Metaphone] method up to version 2.0, the Metaphone3 method later), which is a way to transform tokens into the way they are pronounced. This is useful to spot errors that are due to people misunderstanding or not knowing the spelling of a word after only hearing it. The idea being that similar sounding words will end up sharing the same key and thus being binned in the same cluster.
 
 For example, "Reuben Gevorkiantz" and "Ruben Gevorkyants" share the same phonetic fingerprint but they have different fingerprints for both the regular and the n-gram fingerprinting methods above, no matter the size of the n-gram.
 
