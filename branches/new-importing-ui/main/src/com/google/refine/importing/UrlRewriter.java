@@ -1,6 +1,6 @@
 /*
 
-Copyright 2010, Google Inc.
+Copyright 2011, Google Inc.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -31,17 +31,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-package com.google.refine.importers;
+package com.google.refine.importing;
 
-
-public interface Importer {
-
-    /**
-     * Determine whether parser can handle given contentType and filename.
-     * 
-     * @param contentType
-     * @param fileName
-     * @return true if the parser can handle this
-     */
-    public boolean canImportData(String contentType, String fileName);
+public interface UrlRewriter {
+    static public class Result {
+        public String rewrittenUrl;
+        public String format;
+        public boolean download;
+    }
+    
+    public Result rewrite(String url);
 }

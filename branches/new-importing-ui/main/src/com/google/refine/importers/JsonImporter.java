@@ -33,95 +33,202 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.importers;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PushbackInputStream;
-import java.util.Properties;
+import java.util.List;
 
+import javax.servlet.ServletException;
+
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.JsonToken;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.refine.ProjectMetadata;
-import com.google.refine.importers.TreeImportUtilities.ImportColumnGroup;
-import com.google.refine.importers.parsers.JSONParser;
-import com.google.refine.importers.parsers.TreeParser;
+import com.google.refine.importers.tree.ImportColumnGroup;
+import com.google.refine.importers.tree.TreeImportingParserBase;
+import com.google.refine.importers.tree.TreeReader;
+import com.google.refine.importing.ImportingJob;
 import com.google.refine.model.Project;
 
-public class JsonImporter implements StreamImporter{
-	final static Logger logger = LoggerFactory.getLogger("JsonImporter");
+public class JsonImporter extends TreeImportingParserBase {
+    public JsonImporter() {
+        super(false);
+    }
+    
+    @Override
+    public void parseOneFile(Project project, ProjectMetadata metadata,
+            ImportingJob job, String fileSource, InputStream inputStream,
+            ImportColumnGroup rootColumnGroup, int limit, JSONObject options, List<Exception> exceptions) {
+        
+        parseOneFile(project, metadata, job, fileSource,
+            new JSONTreeReader(inputStream), rootColumnGroup, limit, options, exceptions);
+    }
+    
+    static public class JSONTreeReader implements TreeReader {
+        final static Logger logger = LoggerFactory.getLogger("JsonParser");
+        
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = null;
+        
+        //The following is a workaround for inconsistent Jackson JsonParser
+        Boolean lastTokenWasAFieldNameAndCurrentTokenIsANewEntity = false;
+        Boolean thisTokenIsAFieldName = false;
+        String lastFieldName = null;
+        //end of workaround
+        
+        public JSONTreeReader(InputStream inputStream) {
+            try {
+                parser = factory.createJsonParser(inputStream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        /**
+         * Does nothing. All Json is treated as elements
+         */
+        @Override
+        public int getAttributeCount() {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+        
+        /**
+         * Does nothing. All Json is treated as elements
+         */
+        @Override
+        public String getAttributeLocalName(int index) {
+            return null;
+        }
 
-    public static final int BUFFER_SIZE = 64 * 1024;
+        /**
+         * Does nothing. All Json is treated as elements
+         */
+        @Override
+        public String getAttributePrefix(int index) {
+            // TODO Auto-generated method stub
+            return null;
+        }
 
-	@Override
-	public void read(InputStream inputStream, Project project,
-			ProjectMetadata metadata, Properties options)
-			throws ImportException {
-		//FIXME the below is a close duplicate of the XmlImporter code.
-		//Should wrap a lot of the below into methods and put them in a common superclass
-		logger.trace("JsonImporter.read");
-        PushbackInputStream pis = new PushbackInputStream(inputStream,BUFFER_SIZE);
+        /**
+         * Does nothing. All Json is treated as elements
+         */
+        @Override
+        public String getAttributeValue(int index) {
+            // TODO Auto-generated method stub
+            return null;
+        }
 
-        String[] recordPath = null;
-        {
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int bytes_read = 0;
-            try {//fill the buffer with data
-                while (bytes_read < BUFFER_SIZE) {
-                    int c = pis.read(buffer, bytes_read, BUFFER_SIZE - bytes_read);
-                    if (c == -1) break;
-                    bytes_read +=c ;
+        @Override
+        public Token current() throws ServletException {
+            return this.mapToToken(parser.getCurrentToken());
+        }
+
+        @Override
+        public String getFieldName() throws ServletException{
+            try {
+                String text = parser.getCurrentName();
+                
+                //The following is a workaround for inconsistent Jackson JsonParser
+                if(text == null){
+                    if(this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity) 
+                        text = this.lastFieldName;
+                    else
+                        text = "__anonymous__";
                 }
-                pis.unread(buffer, 0, bytes_read);
+                //end of workaround
+                
+                return text;
+            } catch (Exception e) {
+                throw new ServletException(e);
+            }
+        }
+
+        /**
+         * Does nothing. Json does not have prefixes
+         */
+        @Override
+        public String getPrefix() {
+            return null;
+        }
+
+        @Override
+        public String getFieldValue() throws ServletException {
+            try {
+                return parser.getText();
+            } catch (Exception e) {
+                throw new ServletException(e);
+            }
+        }
+
+        @Override
+        public boolean hasNext() throws ServletException {
+            return true; //FIXME fairly obtuse, is there a better way (advancing, then rewinding?)
+        }
+
+        @Override
+        public Token next() throws ServletException {
+            JsonToken next;
+            try {
+                next = parser.nextToken();
+            } catch (JsonParseException e) {
+                throw new ServletException(e);
             } catch (IOException e) {
-                throw new ImportException("Read error",e);
+                throw new ServletException(e);
             }
-
-            InputStream iStream = new ByteArrayInputStream(buffer, 0, bytes_read);
-            TreeParser parser = new JSONParser(iStream);
-            if (options.containsKey("parser-record-tag")) {
-                try{
-                    recordPath = XmlImportUtilities.detectPathFromTag(
-                        parser,
-                        options.getProperty("parser-record-tag"));
-                }catch(Exception e){
-                    // silent
-                    // e.printStackTrace();
+            
+            if(next == null)
+                throw new ServletException("No more Json Tokens in stream");
+            
+            //The following is a workaround for inconsistent Jackson JsonParser
+            if(next == JsonToken.FIELD_NAME){
+                try {
+                    this.thisTokenIsAFieldName = true;
+                    this.lastFieldName = parser.getCurrentName();
+                } catch (Exception e) {
+                    //silent
                 }
-            } else {
-                recordPath = XmlImportUtilities.detectRecordElement(parser);
+            }else if(next == JsonToken.START_ARRAY || next == JsonToken.START_OBJECT){
+                if(this.thisTokenIsAFieldName){
+                    this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity = true;
+                    this.thisTokenIsAFieldName = false;
+                }else{
+                    this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity = false;
+                    this.lastFieldName = null;
+                }
+            }else{
+                this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity = false;
+                this.lastFieldName = null;
+                this.thisTokenIsAFieldName = false;
+            }
+            //end of workaround
+                
+            return mapToToken(next);
+        }
+        
+        protected Token mapToToken(JsonToken token){
+            switch(token){
+                case START_ARRAY: return Token.StartEntity;
+                case END_ARRAY: return Token.EndEntity;
+                case START_OBJECT: return Token.StartEntity;
+                case END_OBJECT: return Token.EndEntity;
+                case VALUE_STRING: return Token.Value;
+                case FIELD_NAME: return Token.Ignorable; //returned by the getLocalName function()
+                case VALUE_NUMBER_INT: return Token.Value;
+                //Json does not have START_DOCUMENT token type (so ignored as default)
+                //Json does not have END_DOCUMENT token type (so ignored as default)
+                case VALUE_TRUE : return Token.Value;
+                case VALUE_NUMBER_FLOAT : return Token.Value;
+                case VALUE_NULL : return Token.Value;
+                case VALUE_FALSE : return Token.Value;
+                case VALUE_EMBEDDED_OBJECT : return Token.Ignorable;
+                case NOT_AVAILABLE : return Token.Ignorable;
+                default: return Token.Ignorable;
             }
         }
-
-        if (recordPath == null)
-            return;
-        ImportColumnGroup rootColumnGroup = new ImportColumnGroup();
-        XmlImportUtilities.importTreeData(new JSONParser(pis), project, recordPath, rootColumnGroup);
-        XmlImportUtilities.createColumnsFromImport(project, rootColumnGroup);
-
-        project.columnModel.update();
-
-	}
-
-	@Override
-	public boolean canImportData(String contentType, String fileName) {
-		if (contentType != null) {
-            contentType = contentType.toLowerCase().trim();
-
-            if("application/json".equals(contentType) ||
-                      "text/json".equals(contentType)) {
-                return true;
-            }
-        } else if (fileName != null) {
-            fileName = fileName.toLowerCase();
-            if (
-                    fileName.endsWith(".json") ||
-                    fileName.endsWith(".js")
-                ) {
-                return true;
-            }
-        }
-        return false;
-	}
-
+    }
 }

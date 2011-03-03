@@ -31,105 +31,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-package com.google.refine.importers;
+package com.google.refine.importers.tree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.refine.importers.ImporterUtilities;
 import com.google.refine.model.Cell;
 import com.google.refine.model.Column;
 import com.google.refine.model.Project;
 
 public abstract class TreeImportUtilities {
     final static Logger logger = LoggerFactory.getLogger("TreeImportUtilities");
-
-    /**
-     * An element which holds sub-elements we
-     * shall import as records
-     */
-    static protected class RecordElementCandidate {
-        String[] path;
-        int count;
-        
-        public String toString() {
-            return Arrays.toString(path);
-        }
-    }
-
-
-    static protected abstract class ImportVertical {
-        public String name = "";
-        public int nonBlankCount;
-
-        abstract void tabulate();
-    }
-
-    /**
-     * A column group describes a branch in tree structured data
-     */
-    static public class ImportColumnGroup extends ImportVertical {
-        public Map<String, ImportColumnGroup> subgroups = new HashMap<String, ImportColumnGroup>();
-        public Map<String, ImportColumn> columns = new HashMap<String, ImportColumn>();
-        public int nextRowIndex;
-
-        @Override
-        void tabulate() {
-            for (ImportColumn c : columns.values()) {
-                c.tabulate();
-                nonBlankCount = Math.max(nonBlankCount, c.nonBlankCount);
-            }
-            for (ImportColumnGroup g : subgroups.values()) {
-                g.tabulate();
-                nonBlankCount = Math.max(nonBlankCount, g.nonBlankCount);
-            }
-        }
-        
-        public String toString() {
-            return String.format("name=%s, columns={%s}, subgroups={{%s}}",
-                    name,StringUtils.join(columns.keySet(), ','),
-                    StringUtils.join(subgroups.keySet(),','));
-        }
-    }
-
-    /**
-     * A column is used to describe a branch-terminating element in a tree structure
-     *
-     */
-    static public class ImportColumn extends ImportVertical {
-        public int      cellIndex;
-        public int      nextRowIndex;
-        public boolean  blankOnFirstRow;
-
-        public ImportColumn() {}
-
-        public ImportColumn(String name) { //required for testing
-            super.name = name;
-        }
-
-        @Override
-        void tabulate() {
-            // already done the tabulation elsewhere
-        }
-    }
-
-    /**
-     * A record describes a data element in a tree-structure
-     *
-     */
-    static public class ImportRecord {
-        public List<List<Cell>> rows = new LinkedList<List<Cell>>();
-    }
 
     static protected void sortRecordElementCandidates(List<RecordElementCandidate> list) {
         Collections.sort(list, new Comparator<RecordElementCandidate>() {

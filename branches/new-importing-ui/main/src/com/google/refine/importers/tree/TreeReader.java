@@ -31,17 +31,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-package com.google.refine.importers.parsers;
+package com.google.refine.importers.tree;
 
-import javax.servlet.ServletException;
+public interface TreeReader {
+    public enum Token {
+        Ignorable,
+        StartEntity,
+        EndEntity,
+        Value
+        //append additional tokens only if necessary (most should be just mapped to Value or Ignorable)
+    }
 
-public interface TreeParser {
-    public TreeParserToken next() throws ServletException;
-    public TreeParserToken getEventType() throws ServletException; //aka getCurrentToken
-    public boolean hasNext() throws ServletException;
-    public String getLocalName() throws ServletException; //aka getFieldName
+    public Token current() throws Exception; //aka getCurrentToken
+    
+    public boolean hasNext() throws Exception;
+    public Token next() throws Exception;
+    
+    public String getFieldName() throws Exception; //aka getFieldName
     public String getPrefix();
-    public String getText() throws ServletException;
+    public String getFieldValue() throws Exception;
+    
     public int getAttributeCount();
     public String getAttributeValue(int index);
     public String getAttributePrefix(int index);

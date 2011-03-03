@@ -1,10 +1,48 @@
+/*
+
+Copyright 2011, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,           
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY           
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/
+
 package com.google.refine.importing;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -34,12 +72,17 @@ import org.apache.tools.tar.TarEntry;
 import org.apache.tools.tar.TarInputStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.refine.importing.ImportingManager.Format;
+import com.google.refine.importing.UrlRewriter.Result;
 import com.google.refine.util.JSONUtilities;
 import com.ibm.icu.text.NumberFormat;
 
 public class ImportingUtilities {
+    final static private Logger logger = LoggerFactory.getLogger("importing_utilities");
+    
     static public interface Progress {
         public void setProgress(String message, int percent);
     }
@@ -171,6 +214,7 @@ public class ImportingUtilities {
                     JSONUtilities.safePut(fileRecord, "declaredEncoding", request.getCharacterEncoding());
                     JSONUtilities.safePut(fileRecord, "declaredMimeType", (String) null);
                     JSONUtilities.safePut(fileRecord, "format", "text");
+                    JSONUtilities.safePut(fileRecord, "fileName", "(clipboard)");
                     JSONUtilities.safePut(fileRecord, "location", getRelativePath(file, rawDataDir));
                     
                     progress.setProgress("Uploading pasted clipboard text",
@@ -185,6 +229,26 @@ public class ImportingUtilities {
                     String urlString = Streams.asString(stream);
                     URL url = new URL(urlString);
                     
+                    JSONObject fileRecord = new JSONObject();
+                    JSONUtilities.safePut(fileRecord, "origin", "download");
+                    JSONUtilities.safePut(fileRecord, "url", urlString);
+                    
+                    for (UrlRewriter rewriter : ImportingManager.urlRewriters) {
+                        Result result = rewriter.rewrite(urlString);
+                        if (result != null) {
+                            urlString = result.rewrittenUrl;
+                            url = new URL(urlString);
+                            
+                            JSONUtilities.safePut(fileRecord, "url", urlString);
+                            JSONUtilities.safePut(fileRecord, "format", result.format);
+                            if (!result.download) {
+                                downloadCount++;
+                                JSONUtilities.append(fileRecords, fileRecord);
+                                continue;
+                            }
+                        }
+                    }
+                    
                     URLConnection urlConnection = url.openConnection();
                     InputStream stream2 = urlConnection.getInputStream();
                     try {
@@ -196,8 +260,6 @@ public class ImportingUtilities {
                             update.totalExpectedSize += contentLength;
                         }
                         
-                        JSONObject fileRecord = new JSONObject();
-                        JSONUtilities.safePut(fileRecord, "origin", "download");
                         JSONUtilities.safePut(fileRecord, "declaredEncoding", urlConnection.getContentEncoding());
                         JSONUtilities.safePut(fileRecord, "declaredMimeType", urlConnection.getContentType());
                         JSONUtilities.safePut(fileRecord, "fileName", fileName);
@@ -281,6 +343,40 @@ public class ImportingUtilities {
         return file;
     }
     
+    static public Reader getFileReader(ImportingJob job, JSONObject fileRecord)
+        throws FileNotFoundException {
+        
+        return getFileReader(getFile(job, JSONUtilities.getString(fileRecord, "location", "")), fileRecord);
+    }
+    
+    static public Reader getFileReader(File file, JSONObject fileRecord) throws FileNotFoundException {
+        String encoding = getEncoding(fileRecord);
+        if (encoding != null) {
+            try {
+                return new InputStreamReader(new FileInputStream(file), encoding);
+            } catch (UnsupportedEncodingException e) {
+                logger.warn("Can't open file " + file.getAbsolutePath() + " encoded as " + encoding, e);
+            }
+        }
+        return new FileReader(file);
+    }
+    
+    static public File getFile(ImportingJob job, JSONObject fileRecord) {
+        return getFile(job, JSONUtilities.getString(fileRecord, "location", ""));
+    }
+    
+    static public File getFile(ImportingJob job, String location) {
+        return new File(job.getRawDataDir(), location);
+    }
+    
+    static public String getFileSource(JSONObject fileRecord) {
+        return JSONUtilities.getString(
+            fileRecord,
+            "url",
+            JSONUtilities.getString(fileRecord, "fileName", "unknown")
+        );
+    }
+    
     static private abstract class SavingUpdate {
         public long totalExpectedSize = 0;
         public long totalRetrievedSize = 0;
@@ -355,10 +451,12 @@ public class ImportingUtilities {
     }
     
     static public void postProcessSingleRetrievedFile(File file, JSONObject fileRecord) {
-        JSONUtilities.safePut(fileRecord, "format",
-            ImportingManager.getFormat(
-                file.getName(),
-                JSONUtilities.getString(fileRecord, "declaredMimeType", null)));
+        if (!fileRecord.has("format")) {
+            JSONUtilities.safePut(fileRecord, "format",
+                ImportingManager.getFormat(
+                    file.getName(),
+                    JSONUtilities.getString(fileRecord, "declaredMimeType", null)));
+        }
     }
     
     static public InputStream tryOpenAsArchive(File file, String mimeType) {
@@ -490,7 +588,7 @@ public class ImportingUtilities {
         return NumberFormat.getIntegerInstance().format(bytes);
     }
     
-    static private String getEncoding(JSONObject fileRecord) {
+    static public String getEncoding(JSONObject fileRecord) {
         String encoding = JSONUtilities.getString(fileRecord, "encoding", null);
         if (encoding == null) {
             encoding = JSONUtilities.getString(fileRecord, "declaredEncoding", null);
@@ -621,10 +719,13 @@ public class ImportingUtilities {
     static void rankFormats(ImportingJob job, final String bestFormat, JSONArray rankedFormats) {
         final Map<String, String[]> formatToSegments = new HashMap<String, String[]>();
         
+        boolean download = bestFormat == null ? true :
+            ImportingManager.formatToRecord.get(bestFormat).download;
+        
         List<String> formats = new ArrayList<String>(ImportingManager.formatToRecord.keySet().size());
         for (String format : ImportingManager.formatToRecord.keySet()) {
             Format record = ImportingManager.formatToRecord.get(format);
-            if (record.uiClass != null && record.parser != null) {
+            if (record.uiClass != null && record.parser != null && record.download == download) {
                 formats.add(format);
                 formatToSegments.put(format, format.split("/"));
             }

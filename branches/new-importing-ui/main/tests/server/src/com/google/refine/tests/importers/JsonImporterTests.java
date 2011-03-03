@@ -33,12 +33,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.tests.importers;
 
-import static org.mockito.Mockito.mock;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Properties;
 
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -47,15 +44,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.google.refine.ProjectMetadata;
 import com.google.refine.importers.JsonImporter;
-import com.google.refine.importers.parsers.JSONParser;
-import com.google.refine.importers.parsers.TreeParserToken;
-import com.google.refine.model.Project;
+import com.google.refine.importers.JsonImporter.JSONTreeReader;
+import com.google.refine.importers.tree.TreeReader.Token;
 import com.google.refine.model.Row;
-import com.google.refine.tests.RefineTest;
 
-public class JsonImporterTests extends RefineTest {
+public class JsonImporterTests extends ImporterTest {
 	@BeforeTest
     public void init() {
         logger = LoggerFactory.getLogger(this.getClass());
@@ -63,28 +57,29 @@ public class JsonImporterTests extends RefineTest {
 
 
     //dependencies
-    Project project = null;
-    Properties options = null;
     ByteArrayInputStream inputStream = null;
 
     //System Under Test
     JsonImporter SUT = null;
 
-
     @BeforeMethod
     public void SetUp(){
+        super.SetUp();
         SUT = new JsonImporter();
-        project = new Project();
-        options = mock(Properties.class);
     }
 
     @AfterMethod
-    public void TearDown() throws IOException{
+    public void TearDown() {
         SUT = null;
-        project = null;
-        options = null;
-        if (inputStream != null) inputStream.close();
-        inputStream = null;
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                // Ignore
+            }
+            inputStream = null;
+        }
+        super.TearDown();
     }
 
     @Test
@@ -181,8 +176,8 @@ public class JsonImporterTests extends RefineTest {
         String sampleJson2 = "{\"field\":{}}";
         String sampleJson3 = "{\"field\":[{},{}]}";
         
-        JSONParser parser = new JSONParser(new ByteArrayInputStream( sampleJson.getBytes( "UTF-8" ) ));
-        TreeParserToken token = TreeParserToken.Ignorable;
+        JSONTreeReader parser = new JSONTreeReader(new ByteArrayInputStream( sampleJson.getBytes( "UTF-8" ) ));
+        Token token = Token.Ignorable;
         int i = 0;
         try{
             while(token != null){
@@ -191,8 +186,8 @@ public class JsonImporterTests extends RefineTest {
                     break;
                 i++;
                 if(i == 3){
-                    Assert.assertEquals(TreeParserToken.Value, token);
-                    Assert.assertEquals("field", parser.getLocalName());
+                    Assert.assertEquals(Token.Value, token);
+                    Assert.assertEquals("field", parser.getFieldName());
                 }
             }
         }catch(Exception e){
@@ -200,8 +195,8 @@ public class JsonImporterTests extends RefineTest {
         }
         
         
-        parser = new JSONParser(new ByteArrayInputStream( sampleJson2.getBytes( "UTF-8" ) ) );
-        token = TreeParserToken.Ignorable;
+        parser = new JSONTreeReader(new ByteArrayInputStream( sampleJson2.getBytes( "UTF-8" ) ) );
+        token = Token.Ignorable;
         i = 0;
         try{
             while(token != null){
@@ -210,16 +205,16 @@ public class JsonImporterTests extends RefineTest {
                     break;
                 i++;
                 if(i == 3){
-                    Assert.assertEquals(TreeParserToken.StartEntity, token);
-                    Assert.assertEquals(parser.getLocalName(), "field");
+                    Assert.assertEquals(Token.StartEntity, token);
+                    Assert.assertEquals(parser.getFieldName(), "field");
                 }
             }
         }catch(Exception e){
             //silent
         }
         
-        parser = new JSONParser(new ByteArrayInputStream( sampleJson3.getBytes( "UTF-8" ) ) );
-        token = TreeParserToken.Ignorable;
+        parser = new JSONTreeReader(new ByteArrayInputStream( sampleJson3.getBytes( "UTF-8" ) ) );
+        token = Token.Ignorable;
         i = 0;
         try{
             while(token != null){
@@ -228,16 +223,16 @@ public class JsonImporterTests extends RefineTest {
                     break;
                 i++;
                 if(i == 3){
-                    Assert.assertEquals(token, TreeParserToken.StartEntity);
-                    Assert.assertEquals(parser.getLocalName(), "field");
+                    Assert.assertEquals(token, Token.StartEntity);
+                    Assert.assertEquals(parser.getFieldName(), "field");
                 }
                 if(i == 4){
-                    Assert.assertEquals(token, TreeParserToken.StartEntity);
-                    Assert.assertEquals(parser.getLocalName(), "__anonymous__");
+                    Assert.assertEquals(token, Token.StartEntity);
+                    Assert.assertEquals(parser.getFieldName(), "__anonymous__");
                 }
                 if(i == 6){
-                    Assert.assertEquals(token, TreeParserToken.StartEntity);
-                    Assert.assertEquals(parser.getLocalName(), "__anonymous__");
+                    Assert.assertEquals(token, Token.StartEntity);
+                    Assert.assertEquals(parser.getFieldName(), "__anonymous__");
                 }
             }
         }catch(Exception e){
@@ -352,7 +347,7 @@ public class JsonImporterTests extends RefineTest {
         }
 
         try {
-            SUT.read(inputStream, project, new ProjectMetadata(), options);
+            parseOneFile(SUT, inputStream);
         } catch (Exception e) {
             Assert.fail();
         }
