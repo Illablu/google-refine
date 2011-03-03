@@ -36,10 +36,12 @@ package com.google.refine.importing;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -53,17 +55,20 @@ public class ImportingManager {
     static public class Format {
         final public String id;
         final public String label;
+        final public boolean download;
         final public String uiClass;
         final public ImportingParser parser;
         
         private Format(
             String id,
             String label,
+            boolean download,
             String uiClass,
             ImportingParser parser
         ) {
             this.id = id;
             this.label = label;
+            this.download = download;
             this.uiClass = uiClass;
             this.parser = parser;
         }
@@ -85,6 +90,10 @@ public class ImportingManager {
     // Mapping from mime type to format, e.g., "application/json" to "text/json"
     final static public Map<String, String> mimeTypeToFormat = new HashMap<String, String>();
     
+    // URL rewriters
+    final static public Set<UrlRewriter> urlRewriters = new HashSet<UrlRewriter>();
+    
+    // Mapping from controller name to controller
     final static public Map<String, ImportingController> controllers = new HashMap<String, ImportingController>();
     
     static public void initialize(RefineServlet servlet) {
@@ -96,7 +105,12 @@ public class ImportingManager {
     }
     
     static public void registerFormat(String format, String label, String uiClass, ImportingParser parser) {
-        formatToRecord.put(format, new Format(format, label, uiClass, parser));
+        formatToRecord.put(format, new Format(format, label, true, uiClass, parser));
+    }
+    
+    static public void registerFormat(
+            String format, String label, boolean download, String uiClass, ImportingParser parser) {
+        formatToRecord.put(format, new Format(format, label, download, uiClass, parser));
     }
     
     static public void registerFormatGuesser(String format, FormatGuesser guesser) {
@@ -114,6 +128,10 @@ public class ImportingManager {
     
     static public void registerMimeType(String mimeType, String format) {
         mimeTypeToFormat.put(mimeType, format);
+    }
+    
+    static public void registerUrlRewriter(UrlRewriter urlRewriter) {
+        urlRewriters.add(urlRewriter);
     }
     
     static public void registerController(ButterflyModule module, String name, ImportingController controller) {
@@ -174,6 +192,7 @@ public class ImportingManager {
             writer.object();
             writer.key("id"); writer.value(record.id);
             writer.key("label"); writer.value(record.label);
+            writer.key("download"); writer.value(record.download);
             writer.key("uiClass"); writer.value(record.uiClass);
             writer.endObject();
         }

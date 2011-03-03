@@ -117,6 +117,27 @@ public class ImporterUtilities {
             columnNames.add("");
         }
     }
+    
+    static public Column getOrAllocateColumn(Project project, List<String> currentFileColumnNames, int index) {
+        if (index < currentFileColumnNames.size()) {
+            return project.columnModel.getColumnByName(currentFileColumnNames.get(index));
+        } else {
+            String prefix = "Column ";
+            int i = 2;
+            while (true) {
+                String columnName = prefix + i;
+                if (project.columnModel.getColumnByName(columnName) == null) {
+                    // Already taken name
+                    i++;
+                } else {
+                    Column column = new Column(project.columnModel.allocateNewCellIndex(), columnName);
+                    project.columnModel.columns.add(column);
+                    currentFileColumnNames.set(index, columnName);
+                    return column;
+                }
+            }
+        }
+    }
 
     static public void setupColumns(Project project, List<String> columnNames) {
         Map<String, Integer> nameToIndex = new HashMap<String, Integer>();
@@ -125,7 +146,8 @@ public class ImporterUtilities {
             if (cell.isEmpty()) {
                 cell = "Column";
             } else if (cell.startsWith("\"") && cell.endsWith("\"")) {
-                cell = cell.substring(1, cell.length() - 1).trim(); //FIXME is trimming quotation marks appropriate?
+                // FIXME: is trimming quotation marks appropriate?
+                cell = cell.substring(1, cell.length() - 1).trim();
             }
 
             if (nameToIndex.containsKey(cell)) {
@@ -136,11 +158,13 @@ public class ImporterUtilities {
             } else {
                 nameToIndex.put(cell, 2);
             }
-
-            Column column = new Column(c, cell);
-
-            project.columnModel.columns.add(column);
+            
+            columnNames.set(c, cell);
+            if (project.columnModel.getColumnByName(cell) == null) {
+                Column column = new Column(project.columnModel.allocateNewCellIndex(), cell);
+                
+                project.columnModel.columns.add(column);
+            }
         }
     }
-
 }

@@ -33,99 +33,147 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.importers;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.PushbackInputStream;
-import java.util.Properties;
+import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.ServletException;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+
+import org.json.JSONObject;
 
 import com.google.refine.ProjectMetadata;
-import com.google.refine.importers.TreeImportUtilities.ImportColumnGroup;
-import com.google.refine.importers.parsers.TreeParser;
-import com.google.refine.importers.parsers.XmlParser;
+import com.google.refine.importers.tree.ImportColumnGroup;
+import com.google.refine.importers.tree.TreeImportingParserBase;
+import com.google.refine.importers.tree.TreeReader;
+import com.google.refine.importing.ImportingJob;
 import com.google.refine.model.Project;
 
-public class XmlImporter implements StreamImporter {
-
-    final static Logger logger = LoggerFactory.getLogger("XmlImporter");
-
-    public static final int BUFFER_SIZE = 64 * 1024;
-
+public class XmlImporter extends TreeImportingParserBase {
+    public XmlImporter() {
+        super(true);
+    }
+    
     @Override
-    public void read(
-        InputStream inputStream,
-        Project project,
-        ProjectMetadata metadata, Properties options
-    ) throws ImportException {
-        logger.trace("XmlImporter.read");
-        PushbackInputStream pis = new PushbackInputStream(inputStream,BUFFER_SIZE);
-
-        String[] recordPath = null;
-        {
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int bytes_read = 0;
-            try {//fill the buffer with data
-                while (bytes_read < BUFFER_SIZE) {
-                    int c = pis.read(buffer, bytes_read, BUFFER_SIZE - bytes_read);
-                    if (c == -1) break;
-                    bytes_read +=c ;
+    public void parseOneFile(Project project, ProjectMetadata metadata,
+            ImportingJob job, String fileSource, InputStream inputStream,
+            ImportColumnGroup rootColumnGroup, int limit, JSONObject options,
+            List<Exception> exceptions) {
+        
+        try {
+            parseOneFile(project, metadata, job, fileSource,
+                new XmlParser(inputStream), rootColumnGroup, limit, options, exceptions);
+        } catch (XMLStreamException e) {
+            exceptions.add(e);
+        }
+    }
+    
+    static public class XmlParser implements TreeReader {
+        final protected XMLStreamReader parser;
+        
+        public XmlParser(InputStream inputStream) throws XMLStreamException {
+            XMLInputFactory factory = XMLInputFactory.newInstance();
+            
+            factory.setProperty(XMLInputFactory.IS_COALESCING, true);
+            factory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, true);
+            
+            parser = factory.createXMLStreamReader(inputStream);
+        }
+        
+        @Override
+        public Token next() throws ServletException {
+            try {
+                if (!parser.hasNext()) {
+                    throw new ServletException("End of XML stream");
                 }
-                pis.unread(buffer, 0, bytes_read);
-            } catch (IOException e) {
-                throw new ImportException("Read error",e);
+            } catch (XMLStreamException e) {
+                throw new ServletException(e);
             }
-
-            InputStream iStream = new ByteArrayInputStream(buffer, 0, bytes_read);
-            TreeParser parser = new XmlParser(iStream);
-            if (options.containsKey("parser-record-tag")) {
-                try{
-                    recordPath = XmlImportUtilities.detectPathFromTag(
-                        parser,
-                        options.getProperty("parser-record-tag"));
-                }catch(Exception e){
-                    // silent
-                    // e.printStackTrace();
-                }
-            } else {
-                recordPath = XmlImportUtilities.detectRecordElement(parser);
+            
+            int currentToken = -1;
+            try {
+                currentToken = parser.next();
+            } catch (XMLStreamException e) {
+                throw new ServletException(e);
+            }
+            
+            return mapToToken(currentToken);
+        }
+        
+        protected Token mapToToken(int token) throws ServletException {
+            switch(token){
+                case XMLStreamConstants.START_ELEMENT: return Token.StartEntity;
+                case XMLStreamConstants.END_ELEMENT: return Token.EndEntity;
+                case XMLStreamConstants.CHARACTERS: return Token.Value;
+                case XMLStreamConstants.START_DOCUMENT: return Token.Ignorable;
+                case XMLStreamConstants.END_DOCUMENT: return Token.Ignorable;
+                case XMLStreamConstants.SPACE: return Token.Value;
+                case XMLStreamConstants.PROCESSING_INSTRUCTION: return Token.Ignorable;
+                case XMLStreamConstants.NOTATION_DECLARATION: return Token.Ignorable;
+                case XMLStreamConstants.NAMESPACE: return Token.Ignorable;
+                case XMLStreamConstants.ENTITY_REFERENCE: return Token.Ignorable;
+                case XMLStreamConstants.DTD: return Token.Ignorable;
+                case XMLStreamConstants.COMMENT: return Token.Ignorable;
+                case XMLStreamConstants.CDATA: return Token.Ignorable;
+                case XMLStreamConstants.ATTRIBUTE: return Token.Ignorable;
+                default:
+                    return Token.Ignorable;
             }
         }
-
-        if (recordPath == null)
-            return;
-
-        ImportColumnGroup rootColumnGroup = new ImportColumnGroup();
-        XmlImportUtilities.importTreeData(new XmlParser(pis), project, recordPath, rootColumnGroup);
-        XmlImportUtilities.createColumnsFromImport(project, rootColumnGroup);
-
-        project.columnModel.update();
-    }
-
-    @Override
-    public boolean canImportData(String contentType, String fileName) {
-        if (contentType != null) {
-            contentType = contentType.toLowerCase().trim();
-
-            if("application/xml".equals(contentType) ||
-                      "text/xml".equals(contentType) ||
-                      "application/rss+xml".equals(contentType) ||
-                      "application/atom+xml".equals(contentType)) {
-                return true;
-            }
-        } else if (fileName != null) {
-            fileName = fileName.toLowerCase();
-            if (
-                    fileName.endsWith(".xml") ||
-                    fileName.endsWith(".atom") ||
-                    fileName.endsWith(".rss")
-                ) {
-                return true;
+        
+        @Override
+        public Token current() throws ServletException{
+            return this.mapToToken(parser.getEventType());
+        }
+        
+        @Override
+        public boolean hasNext() throws ServletException{
+            try {
+                return parser.hasNext();
+            } catch (XMLStreamException e) {
+                throw new ServletException(e);
             }
         }
-        return false;
+        
+        @Override
+        public String getFieldName() throws ServletException{
+            try{
+                return parser.getLocalName();
+            }catch(IllegalStateException e){
+                return null;
+            }
+        }
+        
+        @Override
+        public String getPrefix(){
+            return parser.getPrefix();
+        }
+        
+        @Override
+        public String getFieldValue(){
+            return parser.getText();
+        }
+        
+        @Override
+        public int getAttributeCount(){
+            return parser.getAttributeCount();
+        }
+        
+        @Override
+        public String getAttributeValue(int index){
+            return parser.getAttributeValue(index);
+        }
+        
+        @Override
+        public String getAttributePrefix(int index){
+            return parser.getAttributePrefix(index);
+        }
+        
+        @Override
+        public String getAttributeLocalName(int index){
+            return parser.getAttributeLocalName(index);
+        }
     }
-
 }
