@@ -31,10 +31,81 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-Refine.SeparatorBasedParserUI = function(jobID, job, format, elmt) {
-    elmt.text(format);
+Refine.SeparatorBasedParserUI = function(jobID, job, format, config, dataContainerElmt, optionContainerElmt) {
+    this._jobID = jobID;
+    this._job = job;
+    this._format = format;
+    this._config = config;
+    
+    this._dataContainer = dataContainerElmt;
+    this._optionContainer = optionContainerElmt;
+    
+    console.log(config);
+    
+    this._initialize();
 };
 Refine.DefaultImportingController.parserUIs["SeparatorBasedParserUI"] = Refine.SeparatorBasedParserUI;
+
+Refine.SeparatorBasedParserUI.encodeSeparator = function(s) {
+    return s.replace("\\", "\\\\")
+        .replace("\n", "\\n")
+        .replace("\t", "\\t");
+};
+
+Refine.SeparatorBasedParserUI.decodeSeparator = function(s) {
+    return s.replace("\\n", "\n")
+        .replace("\\t", "\t")
+        .replace("\\\\", "\\");
+};
+
+Refine.SeparatorBasedParserUI.prototype._initialize = function() {
+    this._optionContainer.unbind().empty().html(
+        DOM.loadHTML("core", "scripts/index/parser-interfaces/separator-based-parser-ui.html"));
+    this._optionContainerElmts = DOM.bind(this._optionContainer);
+    
+    var rowSeparatorValue = (this._config.lineSeparator == "\n") ? 'new-line' : 'custom';
+    this._optionContainer.find(
+        "input[name='row-separator'][value='" + rowSeparatorValue + "']").attr("checked", "checked");
+    this._optionContainerElmts.rowSeparatorInput[0].value =
+        Refine.SeparatorBasedParserUI.encodeSeparator(this._config.lineSeparator);
+    
+    var columnSeparatorValue = (this._config.separator == ",") ? 'comma' :
+        ((this._config.separator == "\t") ? 'tab' : 'custom');
+    this._optionContainer.find(
+        "input[name='column-separator'][value='" + columnSeparatorValue + "']").attr("checked", "checked");
+    this._optionContainerElmts.columnSeparatorInput[0].value =
+        Refine.SeparatorBasedParserUI.encodeSeparator(this._config.separator);
+    
+    if (this._config.ignoreLines > 0) {
+        this._optionContainerElmts.ignoreCheckbox.attr("checked", "checked");
+        this._optionContainerElmts.ignoreInput[0].value = this._config.ignoreLines.toString();
+    }
+    if (this._config.headerLines > 0) {
+        this._optionContainerElmts.headerLinesCheckbox.attr("checked", "checked");
+        this._optionContainerElmts.headerLinesInput[0].value = this._config.headerLines.toString();
+    }
+    if (this._config.skipDataLines > 0) {
+        this._optionContainerElmts.skipCheckbox.attr("checked", "checked");
+        this._optionContainerElmts.skipInput.value[0].value = this._config.skipDataLines.toString();
+    }
+    if (this._config.storeBlankRows) {
+        this._optionContainerElmts.storeBlankRowsCheckbox.attr("checked", "checked");
+    }
+    
+    if (this._config.guessCellValueTypes) {
+        this._optionContainerElmts.guessCellValueTypesCheckbox.attr("checked", "checked");
+    }
+    if (this._config.processQuotes) {
+        this._optionContainerElmts.processQuoteMarksCheckbox.attr("checked", "checked");
+    }
+    
+    if (this._config.storeBlankCellsAsNulls) {
+        this._optionContainerElmts.storeBlankCellsAsNullsCheckbox.attr("checked", "checked");
+    }
+    if (this._config.includeFileSources) {
+        this._optionContainerElmts.includeFileSourcesCheckbox.attr("checked", "checked");
+    }
+};
 
 Refine.SeparatorBasedParserUI.prototype.dispose = function() {
     
