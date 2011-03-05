@@ -40,21 +40,19 @@ Refine.DefaultImportingController.prototype._showParsingPanel = function(hasFile
     if (!(this._parserOptions)) {
         this._parserOptions = {};
     }
-    this._ensureFormatParserUIHasInitializationData(this._format, function() {
-        self._prepareParsingPanel();
-        self._parsingPanelElmts.nextButton.click(function() {
-            self._createProject();
-        });
-        
-        if (hasFileSelection) {
-            self._parsingPanelElmts.previousButton.click(function() {
-                self._createProjectUI.showCustomPanel(self._fileSelectionPanel);
-            });
-        } else {
-            self._parsingPanelElmts.previousButton.attr("disabled", "disabled").addClass("button-disabled");
-        }
-        self._createProjectUI.showCustomPanel(self._parsingPanel);
+    
+    this._prepareParsingPanel();
+    this._parsingPanelElmts.nextButton.click(function() {
+        self._createProject();
     });
+    if (hasFileSelection) {
+        this._parsingPanelElmts.previousButton.click(function() {
+            self._createProjectUI.showCustomPanel(self._fileSelectionPanel);
+        });
+    } else {
+        this._parsingPanelElmts.previousButton.attr("disabled", "disabled").addClass("button-disabled");
+    }
+    this._createProjectUI.showCustomPanel(this._parsingPanel);
 };
 
 Refine.DefaultImportingController.prototype._disposeFileSelectionPanel = function() {
@@ -140,24 +138,30 @@ Refine.DefaultImportingController.prototype._selectFormat = function(newFormat) 
         return;
     }
     
-    var uiClassName = Refine.importingConfig.formats[this._format].uiClass;
+    var uiClassName = Refine.importingConfig.formats[newFormat].uiClass;
     var uiClass = Refine.DefaultImportingController.parserUIs[uiClassName];
     if (uiClass) {
-        this._disposeParserUI();
-        this._parsingPanelElmts.formatsContainer.find(".default-importing-parsing-control-panel-format")
-            .removeClass("selected")
-            .each(function() {
-                if (this.getAttribute("format") == newFormat) {
-                    $(this).addClass("selected");
-                }
-            });
-
-        this._format = newFormat;
-        this._formatParserUI = new uiClass(
-            this._jobID,
-            this._job,
-            this._format,
-            this._parsingPanelElmts.optionsContainer
-        );
+        var self = this;
+        this._ensureFormatParserUIHasInitializationData(newFormat, function() {
+            self._disposeParserUI();
+            self._parsingPanelElmts.formatsContainer
+                .find(".default-importing-parsing-control-panel-format")
+                .removeClass("selected")
+                .each(function() {
+                    if (this.getAttribute("format") == newFormat) {
+                        $(this).addClass("selected");
+                    }
+                });
+            
+            self._format = newFormat;
+            self._formatParserUI = new uiClass(
+                self._jobID,
+                self._job,
+                self._format,
+                self._parserOptions[newFormat],
+                self._parsingPanelElmts.dataPanel,
+                self._parsingPanelElmts.optionsContainer
+            );
+        });
     }
 };

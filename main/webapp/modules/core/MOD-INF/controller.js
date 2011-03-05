@@ -219,9 +219,9 @@ function registerImporting() {
      *  Mime type to format mappings
      */
     IM.registerMimeType("text/plain", "text/line-based");
-    IM.registerMimeType("text/csv", "text/line-based/*sv/csv");
-    IM.registerMimeType("text/x-csv", "text/line-based/*sv/csv");
-    IM.registerMimeType("text/tab-separated-value", "text/line-based/*sv/tsv");
+    IM.registerMimeType("text/csv", "text/line-based/*sv");
+    IM.registerMimeType("text/x-csv", "text/line-based/*sv");
+    IM.registerMimeType("text/tab-separated-value", "text/line-based/*sv");
     
     IM.registerMimeType("text/fixed-width", "text/line-based/fixed-width");
      

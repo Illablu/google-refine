@@ -250,21 +250,25 @@ Refine.DefaultImportingController.prototype._prepareData = function() {
 };
 
 Refine.DefaultImportingController.prototype._ensureFormatParserUIHasInitializationData = function(format, onDone) {
-    if (!(this._format in this._parserOptions)) {
+    if (!(format in this._parserOptions)) {
         var self = this;
         var dismissBusy = DialogSystem.showBusy("Inspecting selected files ...");
         $.post(
             "/command/core/importing-controller?" + $.param({
                 "controller": "core/default-importing-controller",
                 "jobID": this._jobID,
-                "subCommand": "initialize-parser-ui"
+                "subCommand": "initialize-parser-ui",
+                "format": format
             }),
             null,
             function(data) {
                 dismissBusy();
                 
-                self._parserOptions[format] = data.options;
-                onDone();
+                if (data.options) {
+                    console.log(data);console.log(format);
+                    self._parserOptions[format] = data.options;
+                    onDone();
+                }
             },
             "json"
         );
