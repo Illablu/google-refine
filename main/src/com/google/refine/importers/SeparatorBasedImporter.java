@@ -188,7 +188,8 @@ public class SeparatorBasedImporter extends TabularImportingParserBase {
                     
                     for (int i = 0; i < s.length(); i++) {
                         char c = s.charAt(i);
-                        if (!Character.isLetterOrDigit(c) && c != '"' && c != '\'') {
+                        if (!Character.isLetterOrDigit(c) &&
+                            !"\"'".contains(s.subSequence(i, i + 1))) {
                             Separator separator = separatorMap.get(c);
                             if (separator == null) {
                                 separator = new Separator();
@@ -212,7 +213,8 @@ public class SeparatorBasedImporter extends TabularImportingParserBase {
                     for (Separator separator : separators) {
                         separator.averagePerLine = separator.totalCount / (double) lineCount;
                         separator.stddev = Math.sqrt(
-                            separator.totalOfSquaredCount - separator.averagePerLine * separator.averagePerLine);
+                            separator.totalOfSquaredCount / (double) lineCount -
+                            separator.averagePerLine * separator.averagePerLine);
                     }
                     
                     Collections.sort(separators, new Comparator<Separator>() {
@@ -221,9 +223,10 @@ public class SeparatorBasedImporter extends TabularImportingParserBase {
                             return Double.compare(sep0.stddev, sep1.stddev);
                         }
                     });
-                    Separator best = separators.get(0);
-                    if (best.stddev / best.averagePerLine < 0.1) {
-                        return best;
+                    for (Separator separator : separators) {
+                        if (separator.stddev / separator.averagePerLine < 0.1) {
+                            return separator;
+                        }
                     }
                 }
             } finally {

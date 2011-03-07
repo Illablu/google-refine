@@ -45,6 +45,7 @@ import com.google.refine.expr.ExpressionUtils;
 import com.google.refine.importing.ImportingJob;
 import com.google.refine.model.Cell;
 import com.google.refine.model.Column;
+import com.google.refine.model.ModelException;
 import com.google.refine.model.Project;
 import com.google.refine.model.Row;
 import com.google.refine.util.JSONUtilities;
@@ -87,20 +88,31 @@ abstract public class TabularImportingParserBase extends ImportingParserBase {
     ) {
         int ignoreLines = JSONUtilities.getInt(options, "ignoreLines", -1);
         int headerLines = JSONUtilities.getInt(options, "headerLines", 1);
-        
         int skipDataLines = JSONUtilities.getInt(options, "skipDataLines", 0);
-        boolean storeBlankRows = JSONUtilities.getBoolean(options, "storeBlankRows", true);
+        int limit2 = JSONUtilities.getInt(options, "limit", -1);
+        if (limit > 0) {
+            if (limit2 > 0) {
+                limit2 = Math.min(limit, limit2);
+            } else {
+                limit2 = limit;
+            }
+        }
         
         boolean guessCellValueTypes = JSONUtilities.getBoolean(options, "guessCellValueTypes", true);
-        boolean storeBlankCellsAsNulls = JSONUtilities.getBoolean(options, "storeBlankCellsAsNulls", true);
         
+        boolean storeBlankRows = JSONUtilities.getBoolean(options, "storeBlankRows", true);
+        boolean storeBlankCellsAsNulls = JSONUtilities.getBoolean(options, "storeBlankCellsAsNulls", true);
         boolean includeFileSources = JSONUtilities.getBoolean(options, "includeFileSources", false);
         
         String fileNameColumnName = "File";
         if (includeFileSources) {
             if (project.columnModel.getColumnByName(fileNameColumnName) == null) {
-                project.columnModel.columns.add(
-                    new Column(project.columnModel.allocateNewCellIndex(), fileNameColumnName));
+                try {
+                    project.columnModel.addColumn(
+                        0, new Column(project.columnModel.allocateNewCellIndex(), fileNameColumnName), false);
+                } catch (ModelException e) {
+                    // Ignore: We already checked for duplicate name.
+                }
             }
         }
         
@@ -116,10 +128,7 @@ abstract public class TabularImportingParserBase extends ImportingParserBase {
                     continue;
                 }
                 
-                if (headerLines > 0) {
-                    // column headers
-                    headerLines--;
-                    
+                if (headerLines > 0) { // header lines
                     for (int c = 0; c < cells.size(); c++) {
                         Object cell = cells.get(c);
                         
@@ -136,11 +145,11 @@ abstract public class TabularImportingParserBase extends ImportingParserBase {
                         ImporterUtilities.appendColumnName(columnNames, c, columnName);
                     }
                     
+                    headerLines--;
                     if (headerLines == 0) {
                         ImporterUtilities.setupColumns(project, columnNames);
                     }
-                } else {
-                    //data
+                } else { // data lines
                     Row row = new Row(columnNames.size());
                     
                     if (storeBlankRows) {
@@ -183,7 +192,7 @@ abstract public class TabularImportingParserBase extends ImportingParserBase {
                             project.rows.add(row);
                         }
                         
-                        if (limit > 0 && project.rows.size() >= limit) {
+                        if (limit2 > 0 && project.rows.size() >= limit2) {
                             break;
                         }
                     }

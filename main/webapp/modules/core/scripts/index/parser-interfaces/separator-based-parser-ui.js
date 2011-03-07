@@ -31,7 +31,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-Refine.SeparatorBasedParserUI = function(jobID, job, format, config, dataContainerElmt, optionContainerElmt) {
+Refine.SeparatorBasedParserUI = function(controller, jobID, job, format, config, dataContainerElmt, optionContainerElmt) {
+    this._controller = controller;
     this._jobID = jobID;
     this._job = job;
     this._format = format;
@@ -40,9 +41,9 @@ Refine.SeparatorBasedParserUI = function(jobID, job, format, config, dataContain
     this._dataContainer = dataContainerElmt;
     this._optionContainer = optionContainerElmt;
     
-    console.log(config);
-    
+    this._timerID = null;
     this._initialize();
+    this._updatePreview();
 };
 Refine.DefaultImportingController.parserUIs["SeparatorBasedParserUI"] = Refine.SeparatorBasedParserUI;
 
@@ -58,7 +59,81 @@ Refine.SeparatorBasedParserUI.decodeSeparator = function(s) {
         .replace("\\\\", "\\");
 };
 
+Refine.SeparatorBasedParserUI.prototype.dispose = function() {
+    if (this._timerID != null) {
+        window.clearTimeout(this._timerID);
+        this._timerID = null;
+    }
+};
+
+Refine.SeparatorBasedParserUI.prototype.getOptions = function() {
+    var options = {};
+    
+    switch (this._optionContainer.find("input[name='row-separator']:checked")[0].value) {
+        case 'new-line':
+            options.lineSeparator = "\n";
+            break;
+        default:
+            options.lineSeparator = Refine.SeparatorBasedParserUI.decodeSeparator(
+                this._optionContainerElmts.rowSeparatorInput[0].value);
+    }
+    switch (this._optionContainer.find("input[name='column-separator']:checked")[0].value) {
+        case 'comma':
+            options.separator = ",";
+            break;
+        case 'tab':
+            options.separator = "\t";
+            break;
+        default:
+            options.separator = Refine.SeparatorBasedParserUI.decodeSeparator(
+                this._optionContainerElmts.columnSeparatorInput[0].value);
+    }
+    
+    var parseIntDefault = function(s, def) {
+        try {
+            var n = parseInt(s);
+            if (!isNaN(n)) {
+                return n;
+            }
+        } catch (e) {
+            // Ignore
+        }
+        return def;
+    };
+    if (this._optionContainerElmts.ignoreCheckbox[0].checked) {
+        options.ignoreLines = parseIntDefault(this._optionContainerElmts.ignoreInput[0].value, -1);
+    } else {
+        options.ignoreLines = -1;
+    }
+    if (this._optionContainerElmts.headerLinesCheckbox[0].checked) {
+        options.headerLines = parseIntDefault(this._optionContainerElmts.headerLinesInput[0].value, 0);
+    } else {
+        options.headerLines = 0;
+    }
+    if (this._optionContainerElmts.skipCheckbox[0].checked) {
+        options.skipDataLines = parseIntDefault(this._optionContainerElmts.skipInput[0].value, 0);
+    } else {
+        options.skipDataLines = 0;
+    }
+    if (this._optionContainerElmts.limitCheckbox[0].checked) {
+        options.limit = parseIntDefault(this._optionContainerElmts.limitInput[0].value, -1);
+    } else {
+        options.limit = -1;
+    }
+    options.storeBlankRows = this._optionContainerElmts.storeBlankRowsCheckbox[0].checked;
+    
+    options.guessCellValueTypes = this._optionContainerElmts.guessCellValueTypesCheckbox[0].checked;
+    options.processQuotes = this._optionContainerElmts.processQuoteMarksCheckbox[0].checked;
+    
+    options.storeBlankCellsAsNulls = this._optionContainerElmts.storeBlankCellsAsNullsCheckbox[0].checked;
+    options.includeFileSources = this._optionContainerElmts.includeFileSourcesCheckbox[0].checked;
+    
+    return options;
+};
+
 Refine.SeparatorBasedParserUI.prototype._initialize = function() {
+    var self = this;
+    
     this._optionContainer.unbind().empty().html(
         DOM.loadHTML("core", "scripts/index/parser-interfaces/separator-based-parser-ui.html"));
     this._optionContainerElmts = DOM.bind(this._optionContainer);
@@ -84,6 +159,10 @@ Refine.SeparatorBasedParserUI.prototype._initialize = function() {
         this._optionContainerElmts.headerLinesCheckbox.attr("checked", "checked");
         this._optionContainerElmts.headerLinesInput[0].value = this._config.headerLines.toString();
     }
+    if (this._config.limit > 0) {
+        this._optionContainerElmts.limitCheckbox.attr("checked", "checked");
+        this._optionContainerElmts.limitInput[0].value = this._config.limit.toString();
+    }
     if (this._config.skipDataLines > 0) {
         this._optionContainerElmts.skipCheckbox.attr("checked", "checked");
         this._optionContainerElmts.skipInput.value[0].value = this._config.skipDataLines.toString();
@@ -105,8 +184,38 @@ Refine.SeparatorBasedParserUI.prototype._initialize = function() {
     if (this._config.includeFileSources) {
         this._optionContainerElmts.includeFileSourcesCheckbox.attr("checked", "checked");
     }
+    
+    var onChange = function() {
+        self._scheduleUpdatePreview();
+    };
+    this._optionContainer.find("input").bind("change", onChange);
+    this._optionContainer.find("select").bind("change", onChange);
 };
 
-Refine.SeparatorBasedParserUI.prototype.dispose = function() {
+Refine.SeparatorBasedParserUI.prototype._scheduleUpdatePreview = function() {
+    if (this._timerID != null) {
+        window.clearTimeout(this._timerID);
+        this._timerID = null;
+    }
     
+    var self = this;
+    this._timerID = window.setTimeout(function() {
+        self._timerID = null;
+        self._updatePreview();
+    }, 2000); // 2 seconds
+};
+
+Refine.SeparatorBasedParserUI.prototype._updatePreview = function() {
+    var self = this;
+    
+    this._dataContainer.unbind().empty().html(
+        DOM.loadHTML("core", "scripts/index/parser-interfaces/updating-preview-message.html"));
+    
+    this._controller.updateFormatAndOptions(this.getOptions(), function(result) {
+        if (result.status == "ok") {
+            self._controller.getPreviewData(function(projectData) {
+                new Refine.PreviewTable(projectData, self._dataContainer.unbind().empty());
+            });
+        }
+    });
 };
