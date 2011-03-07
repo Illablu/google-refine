@@ -265,7 +265,6 @@ Refine.DefaultImportingController.prototype._ensureFormatParserUIHasInitializati
                 dismissBusy();
                 
                 if (data.options) {
-                    console.log(data);console.log(format);
                     self._parserOptions[format] = data.options;
                     onDone();
                 }
@@ -275,6 +274,66 @@ Refine.DefaultImportingController.prototype._ensureFormatParserUIHasInitializati
     } else {
         onDone();
     }
+};
+
+Refine.DefaultImportingController.prototype.updateFormatAndOptions = function(options, callback) {
+    var self = this;
+    $.post(
+        "/command/core/importing-controller?" + $.param({
+            "controller": "core/default-importing-controller",
+            "jobID": this._jobID,
+            "subCommand": "update-format-and-options"
+        }),
+        {
+            "format" : this._format,
+            "options" : JSON.stringify(options)
+        },
+        callback,
+        "json"
+    );
+};
+
+Refine.DefaultImportingController.prototype.getPreviewData = function(callback) {
+    var self = this;
+    var result = {};
+    
+    $.post(
+        "/command/core/get-models?" + $.param({ "importingJobID" : this._jobID }),
+        null,
+        function(data) {
+            for (var n in data) {
+                if (data.hasOwnProperty(n)) {
+                    result[n] = data[n];
+                }
+            }
+            
+            $.post(
+                "/command/core/get-rows?" + $.param({
+                    "importingJobID" : self._jobID,
+                    "start" : 0,
+                    "limit" : 100 // More than we parse for preview anyway
+                }),
+                null,
+                function(data) {
+                    // Un-pool objects
+                    for (var r = 0; r < data.rows.length; r++) {
+                        var row = data.rows[r];
+                        for (var c = 0; c < row.cells.length; c++) {
+                            var cell = row.cells[c];
+                            if ((cell) && ("r" in cell)) {
+                                cell.r = data.pool.recons[cell.r];
+                            }
+                        }
+                    }
+                    
+                    result.rowModel = data;
+                    callback(result);
+                },
+                "jsonp"
+            );
+        },
+        "json"
+    );
 };
 
 Refine.DefaultImportingController.prototype._createProject = function() {

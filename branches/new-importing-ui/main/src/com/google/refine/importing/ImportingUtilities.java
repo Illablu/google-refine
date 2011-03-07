@@ -810,5 +810,7 @@ public class ImportingUtilities {
             optionObj,
             exceptions
         );
+        
+        job.project.update(); // update all internal models, indexes, caches, etc.
     }
 }

@@ -50,7 +50,7 @@ Refine.DefaultImportingController.prototype._showParsingPanel = function(hasFile
             self._createProjectUI.showCustomPanel(self._fileSelectionPanel);
         });
     } else {
-        this._parsingPanelElmts.previousButton.attr("disabled", "disabled").addClass("button-disabled");
+        this._parsingPanelElmts.previousButton.hide();
     }
     this._createProjectUI.showCustomPanel(this._parsingPanel);
 };
@@ -155,6 +155,7 @@ Refine.DefaultImportingController.prototype._selectFormat = function(newFormat) 
             
             self._format = newFormat;
             self._formatParserUI = new uiClass(
+                self,
                 self._jobID,
                 self._job,
                 self._format,

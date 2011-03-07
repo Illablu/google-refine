@@ -301,6 +301,7 @@ function init() {
             "scripts/index/default-importing-controller/parsing-panel.js",
             
             "scripts/index/default-importing-sources/sources.js",
+            "scripts/index/parser-interfaces/preview-table.js",
             "scripts/index/parser-interfaces/separator-based-parser-ui.js"
         ]
     );
@@ -322,7 +323,8 @@ function init() {
             "styles/index/default-importing-file-selection-panel.less",
             "styles/index/default-importing-parsing-panel.less",
             
-            "styles/index/default-importing-sources.less"
+            "styles/index/default-importing-sources.less",
+            "styles/views/data-table-view.less" // for the preview table's styles
         ]
     );
     

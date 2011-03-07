@@ -40,6 +40,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.google.refine.model.Column;
+import com.google.refine.model.ModelException;
 import com.google.refine.model.Project;
 import com.google.refine.model.Row;
 
@@ -121,21 +122,27 @@ public class ImporterUtilities {
     static public Column getOrAllocateColumn(Project project, List<String> currentFileColumnNames, int index) {
         if (index < currentFileColumnNames.size()) {
             return project.columnModel.getColumnByName(currentFileColumnNames.get(index));
-        } else {
+        } else if (index == currentFileColumnNames.size()) {
             String prefix = "Column ";
-            int i = 2;
+            int i = 1;
             while (true) {
                 String columnName = prefix + i;
-                if (project.columnModel.getColumnByName(columnName) == null) {
+                if (project.columnModel.getColumnByName(columnName) != null) {
                     // Already taken name
                     i++;
                 } else {
                     Column column = new Column(project.columnModel.allocateNewCellIndex(), columnName);
-                    project.columnModel.columns.add(column);
-                    currentFileColumnNames.set(index, columnName);
+                    try {
+                        project.columnModel.addColumn(project.columnModel.columns.size(), column, false);
+                    } catch (ModelException e) {
+                        // Ignore: shouldn't get in here since we just checked for duplicate names.
+                    }
+                    currentFileColumnNames.add(columnName);
                     return column;
                 }
             }
+        } else {
+            throw new RuntimeException("Unexpected code path");
         }
     }
 
@@ -149,7 +156,7 @@ public class ImporterUtilities {
                 // FIXME: is trimming quotation marks appropriate?
                 cell = cell.substring(1, cell.length() - 1).trim();
             }
-
+            
             if (nameToIndex.containsKey(cell)) {
                 int index = nameToIndex.get(cell);
                 nameToIndex.put(cell, index + 1);
@@ -162,8 +169,11 @@ public class ImporterUtilities {
             columnNames.set(c, cell);
             if (project.columnModel.getColumnByName(cell) == null) {
                 Column column = new Column(project.columnModel.allocateNewCellIndex(), cell);
-                
-                project.columnModel.columns.add(column);
+                try {
+                    project.columnModel.addColumn(project.columnModel.columns.size(), column, false);
+                } catch (ModelException e) {
+                    // Ignore: shouldn't get in here since we just checked for duplicate names.
+                }
             }
         }
     }
