@@ -31,53 +31,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-@import-less url("../theme.less");
+package com.google.refine.commands.importing;
 
-.default-importing-parsing-data-panel {
-  font-size: 1.1em;
-  position: absolute;
-  overflow: auto;
-}
+import java.io.IOException;
 
-.default-importing-parsing-control-panel {
-  font-size: 1.3em;
-  position: absolute;
-  overflow: auto;
-  border-top: 5px solid @chrome_primary;
-  background: @chrome_secondary;
-}
-.default-importing-parsing-control-panel > table {
-  width: 100%;
-  border-collapse: collapse;
-}
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-td.default-importing-parsing-control-panel-formats {
-  padding: @padding_looser 0;
-  width: 250px;
-}
+import com.google.refine.commands.Command;
+import com.google.refine.commands.HttpUtilities;
+import com.google.refine.importing.ImportingJob;
+import com.google.refine.importing.ImportingManager;
 
-.default-importing-parsing-control-panel-formats-message {
-  margin-left: @padding_looser;
-  margin-bottom: @padding_looser;
-  padding: 0 @padding_normal;
-  font-size: 1.3em;
-}
-.default-importing-parsing-control-panel-format {
-  margin-left: @padding_looser;
-  padding: @padding_tight @padding_normal;
-  .rounded_corners_left();
-  color: @link_primary;
-  cursor: pointer;
-}
+public class CancelImportingJobCommand extends Command {
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-.default-importing-parsing-control-panel-format.selected {
-  background: white;
-  font-weight: bold;
-  color: black;
-}
-
-td.default-importing-parsing-control-panel-options-panel {
-  background: white;
-  padding: @padding_looser;
-  .rounded_corners_left();
+        long jobID = Long.parseLong(request.getParameter("jobID"));
+        ImportingJob job = ImportingManager.getJob(jobID);
+        if (job == null) {
+            HttpUtilities.respond(response, "error", "No such import job");
+        } else {
+            job.canceled = true;
+            HttpUtilities.respond(response, "ok", "Job canceled");
+        }
+    }
 }

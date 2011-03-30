@@ -89,6 +89,8 @@ public class DefaultImportingController implements ImportingController {
             doInitializeParserUI(request, response, parameters);
         } else if ("update-format-and-options".equals(subCommand)) {
             doUpdateFormatAndOptions(request, response, parameters);
+        } else if ("create-project".equals(subCommand)) {
+            doCreateProject(request, response, parameters);
         } else {
             HttpUtilities.respond(response, "error", "No such sub command");
         }
@@ -202,6 +204,37 @@ public class DefaultImportingController implements ImportingController {
         }
     }
     
+    private void doCreateProject(HttpServletRequest request, HttpServletResponse response, Properties parameters)
+        throws ServletException, IOException {
+    
+        long jobID = Long.parseLong(parameters.getProperty("jobID"));
+        ImportingJob job = ImportingManager.getJob(jobID);
+        if (job == null) {
+            HttpUtilities.respond(response, "error", "No such import job");
+            return;
+        }
+    
+        try {
+            JSONObject config = getConfig(job);
+            if (!("ready".equals(config.getString("state")))) {
+                HttpUtilities.respond(response, "error", "Job not ready");
+                return;
+            }
+            
+            String format = request.getParameter("format");
+            JSONObject optionObj = ParsingUtilities.evaluateJsonStringToObject(
+                    request.getParameter("options"));
+            
+            List<Exception> exceptions = new LinkedList<Exception>();
+            
+            ImportingUtilities.createProject(job, format, optionObj, exceptions);
+            
+            HttpUtilities.respond(response, "ok", "done");
+        } catch (JSONException e) {
+            throw new ServletException(e);
+        }
+    }
+
     private JSONObject getConfig(ImportingJob job) {
         if (job.config == null) {
             job.config = new JSONObject();

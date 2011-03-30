@@ -114,7 +114,7 @@ public class ExcelImporter extends TabularImportingParserBase {
             final Sheet sheet = wb.getSheetAt(sheetIndex);
             final int lastRow = sheet.getLastRowNum();
             
-            DataReader dataReader = new DataReader() {
+            TableDataReader dataReader = new TableDataReader() {
                 int nextRow = 0;
                 Map<String, Recon> reconMap = new HashMap<String, Recon>();
                 
@@ -142,7 +142,7 @@ public class ExcelImporter extends TabularImportingParserBase {
                 }
             };
             
-            parseOneFile(
+            readTable(
                 project,
                 metadata,
                 job,

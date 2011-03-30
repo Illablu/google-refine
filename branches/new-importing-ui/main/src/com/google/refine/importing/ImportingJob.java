@@ -56,6 +56,7 @@ public class ImportingJob implements Jsonizable {
     
     public Project project;
     public ProjectMetadata metadata;
+    public boolean canceled;
     
     public ImportingJob(long id, File dir) {
         this.id = id;

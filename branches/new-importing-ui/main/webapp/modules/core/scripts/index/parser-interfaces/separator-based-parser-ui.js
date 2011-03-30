@@ -66,6 +66,10 @@ Refine.SeparatorBasedParserUI.prototype.dispose = function() {
     }
 };
 
+Refine.SeparatorBasedParserUI.prototype.confirmReadyToCreateProject = function() {
+  return true; // always ready
+};
+
 Refine.SeparatorBasedParserUI.prototype.getOptions = function() {
     var options = {};
     
@@ -202,7 +206,7 @@ Refine.SeparatorBasedParserUI.prototype._scheduleUpdatePreview = function() {
     this._timerID = window.setTimeout(function() {
         self._timerID = null;
         self._updatePreview();
-    }, 2000); // 2 seconds
+    }, 500); // 0.5 second
 };
 
 Refine.SeparatorBasedParserUI.prototype._updatePreview = function() {

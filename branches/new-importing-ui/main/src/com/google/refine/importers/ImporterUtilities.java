@@ -33,16 +33,25 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.importers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.json.JSONObject;
+
+import com.google.refine.importing.ImportingJob;
+import com.google.refine.importing.ImportingUtilities;
 import com.google.refine.model.Column;
 import com.google.refine.model.ModelException;
 import com.google.refine.model.Project;
 import com.google.refine.model.Row;
+import com.google.refine.util.TrackingInputStream;
 
 public class ImporterUtilities {
 
@@ -176,5 +185,62 @@ public class ImporterUtilities {
                 }
             }
         }
+    }
+    
+    static public interface MultiFileReadingProgress {
+        public void startFile(String fileSource);
+        public void readingFile(String fileSource, long bytesRead);
+        public void endFile(String fileSource, long bytesRead);
+    }
+    
+    static public MultiFileReadingProgress createMultiFileReadingProgress(
+            final ImportingJob job, List<JSONObject> fileRecords) {
+        long totalSize = 0;
+        for (JSONObject fileRecord : fileRecords) {
+            File file = ImportingUtilities.getFile(job, fileRecord);
+            totalSize += file.length();
+        }
+        
+        final long totalSize2 = totalSize;
+        return new MultiFileReadingProgress() {
+            long totalBytesRead = 0;
+            
+            void setProgress(String fileSource, long bytesRead) {
+                ImportingUtilities.setCreatingProjectProgress(
+                    job,
+                    "Reading " + fileSource,
+                    (int) (100 * (totalBytesRead + bytesRead) / totalSize2));
+            }
+            
+            @Override
+            public void startFile(String fileSource) {
+                setProgress(fileSource, 0);
+            }
+
+            @Override
+            public void readingFile(String fileSource, long bytesRead) {
+                setProgress(fileSource, bytesRead);
+            }
+
+            @Override
+            public void endFile(String fileSource, long bytesRead) {
+                totalBytesRead += bytesRead;
+            }
+        };
+    }
+    
+    static public InputStream openAndTrackFile(
+            final String fileSource,
+            final File file,
+            final MultiFileReadingProgress progress) throws FileNotFoundException {
+        InputStream inputStream = new FileInputStream(file);
+        return progress == null ? inputStream : new TrackingInputStream(inputStream) {
+            @Override
+            protected long track(long bytesRead) {
+                progress.readingFile(fileSource, bytesRead >= 0 ? bytesRead : file.length());
+                super.track(bytesRead);
+                return bytesRead;
+            }
+        };
     }
 }

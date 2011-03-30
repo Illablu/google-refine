@@ -49,7 +49,7 @@ Refine.PreviewTable.prototype._render = function() {
      */
 
     var trHead = table.insertRow(table.rows.length);
-    trHead.insertCell(0); // index
+    $(trHead.insertCell(0)).addClass("column-header").html('&nbsp;'); // index
     
     var createColumnHeader = function(column) {
         $(trHead.insertCell(trHead.cells.length))

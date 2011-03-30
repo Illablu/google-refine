@@ -52,6 +52,16 @@ Refine.DefaultImportingController.prototype._showParsingPanel = function(hasFile
     } else {
         this._parsingPanelElmts.previousButton.hide();
     }
+    
+    if (!(this._projectName) && this._job.config.fileSelection.length > 0) {
+        var index = this._job.config.fileSelection[0];
+        var record = this._job.config.retrievalRecord.files[index];
+        this._projectName = $.trim(record.fileName.replace(/\W/g, ' ').replace(/\s+/g, ' '));
+    }
+    if (this._projectName) {
+        this._parsingPanelElmts.projectNameInput[0].value = this._projectName;
+    }
+    
     this._createProjectUI.showCustomPanel(this._parsingPanel);
 };
 

@@ -37,7 +37,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -75,23 +74,27 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.refine.ProjectManager;
+import com.google.refine.ProjectMetadata;
 import com.google.refine.importing.ImportingManager.Format;
 import com.google.refine.importing.UrlRewriter.Result;
+import com.google.refine.model.Project;
 import com.google.refine.util.JSONUtilities;
 import com.ibm.icu.text.NumberFormat;
 
 public class ImportingUtilities {
-    final static private Logger logger = LoggerFactory.getLogger("importing_utilities");
+    final static protected Logger logger = LoggerFactory.getLogger("importing-utilities");
     
     static public interface Progress {
         public void setProgress(String message, int percent);
+        public boolean isCanceled();
     }
     
     static public void loadDataAndPrepareJob(
         HttpServletRequest request,
         HttpServletResponse response,
         Properties parameters,
-        ImportingJob job,
+        final ImportingJob job,
         JSONObject config) throws IOException, ServletException {
         
         JSONObject retrievalRecord = new JSONObject();
@@ -113,6 +116,9 @@ public class ImportingUtilities {
                             JSONUtilities.safePut(progress, "message", message);
                         }
                         JSONUtilities.safePut(progress, "percent", percent);
+                    }
+                    public boolean isCanceled() {
+                        return job.canceled;
                     }
                 }
             );
@@ -171,6 +177,10 @@ public class ImportingUtilities {
             public void savedMore() {
                 progress.setProgress(null, calculateProgressPercent(totalExpectedSize, totalRetrievedSize));
             }
+            @Override
+            public boolean isCanceled() {
+                return progress.isCanceled();
+            }
         };
         
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
@@ -201,6 +211,10 @@ public class ImportingUtilities {
 
         progress.setProgress("Uploading data ...", -1);
         for (Object obj : upload.parseRequest(request)) {
+            if (progress.isCanceled()) {
+                break;
+            }
+            
             FileItem fileItem = (FileItem) obj;
             InputStream stream = fileItem.getInputStream();
             
@@ -350,15 +364,19 @@ public class ImportingUtilities {
     }
     
     static public Reader getFileReader(File file, JSONObject fileRecord) throws FileNotFoundException {
+        return getReaderFromStream(new FileInputStream(file), fileRecord);
+    }
+    
+    static public Reader getReaderFromStream(InputStream inputStream, JSONObject fileRecord) {
         String encoding = getEncoding(fileRecord);
         if (encoding != null) {
             try {
-                return new InputStreamReader(new FileInputStream(file), encoding);
+                return new InputStreamReader(inputStream, encoding);
             } catch (UnsupportedEncodingException e) {
-                logger.warn("Can't open file " + file.getAbsolutePath() + " encoded as " + encoding, e);
+                // Ignore and fall through
             }
         }
-        return new FileReader(file);
+        return new InputStreamReader(inputStream);
     }
     
     static public File getFile(ImportingJob job, JSONObject fileRecord) {
@@ -382,6 +400,7 @@ public class ImportingUtilities {
         public long totalRetrievedSize = 0;
         
         abstract public void savedMore();
+        abstract public boolean isCanceled();
     }
     static public long saveStreamToFile(InputStream stream, File file, SavingUpdate update) throws IOException {
         long length = 0;
@@ -389,7 +408,7 @@ public class ImportingUtilities {
         try {
             byte[] bytes = new byte[4096];
             int c;
-            while ((c = stream.read(bytes)) > 0) {
+            while ((update == null || !update.isCanceled()) && (c = stream.read(bytes)) > 0) {
                 fos.write(bytes, 0, c);
                 length += c;
 
@@ -404,7 +423,8 @@ public class ImportingUtilities {
         }
     }
     
-    static public boolean postProcessRetrievedFile(File file, JSONObject fileRecord, JSONArray fileRecords, final Progress progress) {
+    static public boolean postProcessRetrievedFile(
+            File file, JSONObject fileRecord, JSONArray fileRecords, final Progress progress) {
         
         String mimeType = JSONUtilities.getString(fileRecord, "declaredMimeType", null);
         File rawDataDir = file.getParentFile();
@@ -487,7 +507,7 @@ public class ImportingUtilities {
             TarInputStream tis = (TarInputStream) archiveIS;
             try {
                 TarEntry te;
-                while ((te = tis.getNextEntry()) != null) {
+                while (!progress.isCanceled() && (te = tis.getNextEntry()) != null) {
                     if (!te.isDirectory()) {
                         String fileName2 = te.getName();
                         File file2 = allocateFile(rawDataDir, fileName2);
@@ -517,7 +537,7 @@ public class ImportingUtilities {
             ZipInputStream zis = (ZipInputStream) archiveIS;
             try {
                 ZipEntry ze;
-                while ((ze = zis.getNextEntry()) != null) {
+                while (!progress.isCanceled() && (ze = zis.getNextEntry()) != null) {
                     if (!ze.isDirectory()) {
                         String fileName2 = ze.getName();
                         File file2 = allocateFile(rawDataDir, fileName2);
@@ -812,5 +832,60 @@ public class ImportingUtilities {
         );
         
         job.project.update(); // update all internal models, indexes, caches, etc.
+    }
+    
+    static public long createProject(
+            final ImportingJob job,
+            final String format,
+            final JSONObject optionObj,
+            final List<Exception> exceptions) {
+        final Format record = ImportingManager.formatToRecord.get(format);
+        if (record == null || record.parser == null) {
+            // TODO: what to do?
+            return -1;
+        }
+        
+        JSONUtilities.safePut(job.config, "state", "creating-project");
+        
+        final Project project = new Project();
+        new Thread() {
+            public void run() {
+                ProjectMetadata pm = new ProjectMetadata();
+                pm.setName(JSONUtilities.getString(optionObj, "projectName", "Untitled"));
+                pm.setEncoding(JSONUtilities.getString(optionObj, "encoding", "UTF-8"));
+                
+                record.parser.parse(
+                    project,
+                    pm,
+                    job,
+                    getSelectedFileRecords(job),
+                    format,
+                    -1,
+                    optionObj,
+                    exceptions
+                );
+                
+                if (!job.canceled) {
+                    project.update(); // update all internal models, indexes, caches, etc.
+                    
+                    ProjectManager.singleton.registerProject(project, pm);
+                    
+                    JSONUtilities.safePut(job.config, "projectID", project.id);
+                    JSONUtilities.safePut(job.config, "state", "created-project");
+                }
+            }
+        }.start();
+        
+        return project.id;
+    }
+    
+    static public void setCreatingProjectProgress(ImportingJob job, String message, int percent) {
+        JSONObject progress = JSONUtilities.getObject(job.config, "progress");
+        if (progress == null) {
+            progress = new JSONObject();
+            JSONUtilities.safePut(job.config, "progress", progress);
+        }
+        JSONUtilities.safePut(progress, "message", message);
+        JSONUtilities.safePut(progress, "percent", percent);
     }
 }

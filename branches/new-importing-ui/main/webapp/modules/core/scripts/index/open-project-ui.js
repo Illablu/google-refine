@@ -99,6 +99,7 @@ Refine.OpenProjectUI.prototype._fetchProjects = function() {
 };
 
 Refine.OpenProjectUI.prototype._renderProjects = function(data) {
+    var self = this;
     var projects = [];
     for (var n in data.projects) {
         if (data.projects.hasOwnProperty(n)) {
@@ -206,7 +207,7 @@ Refine.OpenProjectUI.prototype._renderProjects = function(data) {
                             dataType: "json",
                             success: function (data) {
                                 if (data && typeof data.code != 'undefined' && data.code == "ok") {
-                                    fetchProjects();
+                                    self._fetchProjects();
                                 }
                             }
                         });
