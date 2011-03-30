@@ -104,19 +104,22 @@ public class SeparatorBasedImporter extends TabularImportingParserBase {
         
         final LineNumberReader lnReader = new LineNumberReader(reader);
         
-        DataReader dataReader = new DataReader() {
+        TableDataReader dataReader = new TableDataReader() {
+            long bytesRead = 0;
+            
             @Override
             public List<Object> getNextRowOfCells() throws IOException {
                 String line = lnReader.readLine();
                 if (line == null) {
                     return null;
                 } else {
+                    bytesRead += line.length();
                     return getCells(line, parser, lnReader);
                 }
             }
         };
         
-        parseOneFile(project, metadata, job, dataReader, fileSource, limit, options, exceptions);
+        readTable(project, metadata, job, dataReader, fileSource, limit, options, exceptions);
     }
     
     static protected ArrayList<Object> getCells(String line, CSVParser parser, LineNumberReader lnReader)

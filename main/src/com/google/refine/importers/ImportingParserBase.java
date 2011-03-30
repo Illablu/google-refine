@@ -34,7 +34,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.google.refine.importers;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -44,6 +43,7 @@ import org.apache.commons.lang.NotImplementedException;
 import org.json.JSONObject;
 
 import com.google.refine.ProjectMetadata;
+import com.google.refine.importers.ImporterUtilities.MultiFileReadingProgress;
 import com.google.refine.importing.ImportingJob;
 import com.google.refine.importing.ImportingParser;
 import com.google.refine.importing.ImportingUtilities;
@@ -58,12 +58,16 @@ abstract public class ImportingParserBase implements ImportingParser {
     
     @Override
     public void parse(Project project, ProjectMetadata metadata,
-            ImportingJob job, List<JSONObject> fileRecords, String format,
+            final ImportingJob job, List<JSONObject> fileRecords, String format,
             int limit, JSONObject options, List<Exception> exceptions) {
-        
+        MultiFileReadingProgress progress = ImporterUtilities.createMultiFileReadingProgress(job, fileRecords);
         for (JSONObject fileRecord : fileRecords) {
+            if (job.canceled) {
+                break;
+            }
+            
             try {
-                parseOneFile(project, metadata, job, fileRecord, limit, options, exceptions);
+                parseOneFile(project, metadata, job, fileRecord, limit, options, exceptions, progress);
             } catch (IOException e) {
                 exceptions.add(e);
             }
@@ -81,24 +85,28 @@ abstract public class ImportingParserBase implements ImportingParser {
         JSONObject fileRecord,
         int limit,
         JSONObject options,
-        List<Exception> exceptions
+        List<Exception> exceptions,
+        final MultiFileReadingProgress progress
     ) throws IOException {
-        File file = ImportingUtilities.getFile(job, fileRecord);
-        String fileSource = ImportingUtilities.getFileSource(fileRecord);
-        if (useInputStream) {
-            InputStream inputStream = new FileInputStream(file);
+        final File file = ImportingUtilities.getFile(job, fileRecord);
+        final String fileSource = ImportingUtilities.getFileSource(fileRecord);
+        
+        progress.startFile(fileSource);
+        try {
+            InputStream inputStream = ImporterUtilities.openAndTrackFile(fileSource, file, progress);
             try {
-                parseOneFile(project, metadata, job, fileSource, inputStream, limit, options, exceptions);
+                if (useInputStream) {
+                    parseOneFile(project, metadata, job, fileSource, inputStream, limit, options, exceptions);
+                } else {
+                    Reader reader = ImportingUtilities.getReaderFromStream(inputStream, fileRecord);
+                    
+                    parseOneFile(project, metadata, job, fileSource, reader, limit, options, exceptions);
+                }
             } finally {
                 inputStream.close();
             }
-        } else {
-            Reader reader = ImportingUtilities.getFileReader(file, fileRecord);
-            try {
-                parseOneFile(project, metadata, job, fileSource, reader, limit, options, exceptions);
-            } finally {
-                reader.close();
-            }
+        } finally {
+            progress.endFile(fileSource, file.length());
         }
     }
     

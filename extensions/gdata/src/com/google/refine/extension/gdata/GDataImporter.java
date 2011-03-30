@@ -95,7 +95,7 @@ public class GDataImporter extends TabularImportingParserBase {
                 continue;
             }
             
-            parseOneFile(
+            readTable(
                 project,
                 metadata,
                 job,
@@ -108,7 +108,7 @@ public class GDataImporter extends TabularImportingParserBase {
         }
     }
     
-    static private class BatchRowReader implements DataReader {
+    static private class BatchRowReader implements TableDataReader {
         final int batchSize;
         final SpreadsheetService service;
         final WorksheetEntry worksheet;

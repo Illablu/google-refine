@@ -52,7 +52,7 @@ public class FixedWidthImporter extends TabularImportingParserBase {
         
         final LineNumberReader lnReader = new LineNumberReader(reader);
         
-        DataReader dataReader = new DataReader() {
+        TableDataReader dataReader = new TableDataReader() {
             @Override
             public List<Object> getNextRowOfCells() throws IOException {
                 String line = lnReader.readLine();
@@ -64,7 +64,7 @@ public class FixedWidthImporter extends TabularImportingParserBase {
             }
         };
         
-        parseOneFile(project, metadata, job, dataReader, fileSource, limit, options, exceptions);
+        readTable(project, metadata, job, dataReader, fileSource, limit, options, exceptions);
     }
     
     /**

@@ -51,8 +51,8 @@ import com.google.refine.model.Row;
 import com.google.refine.util.JSONUtilities;
 
 abstract public class TabularImportingParserBase extends ImportingParserBase {
-    static public interface DataReader {
-        List<Object> getNextRowOfCells() throws IOException;
+    static public interface TableDataReader {
+        public List<Object> getNextRowOfCells() throws IOException;
     }
     
     @Override
@@ -76,11 +76,11 @@ abstract public class TabularImportingParserBase extends ImportingParserBase {
         super(useInputStream);
     }
     
-    protected void parseOneFile(
+    protected void readTable(
         Project project,
         ProjectMetadata metadata,
         ImportingJob job,
-        DataReader reader,
+        TableDataReader reader,
         String fileSource,
         int limit,
         JSONObject options,
@@ -122,7 +122,7 @@ abstract public class TabularImportingParserBase extends ImportingParserBase {
         int rowsWithData = 0;
         
         try {
-            while ((cells = reader.getNextRowOfCells()) != null) {
+            while (!job.canceled && (cells = reader.getNextRowOfCells()) != null) {
                 if (ignoreLines > 0) {
                     ignoreLines--;
                     continue;
