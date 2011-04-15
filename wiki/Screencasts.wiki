@@ -3,5 +3,3 @@
 <wiki:video url="http://www.youtube.com/watch?v=yNccGtn3Wb0"/>
 
 <wiki:video url="http://www.youtube.com/watch?v=45EnWK-fE9k"/>
-
-<wiki:video url="http://www.youtube.com/watch?v=m5ER2qRH1OQ"/>
