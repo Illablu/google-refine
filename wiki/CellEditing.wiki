@@ -10,9 +10,9 @@ You could set the data type of the cell in the popup. For dates, we support [htt
 
 ==Editing through Text Facets==
 
-You could also edit cells in a column sharing some common value using a default text facet created on that column. First, create a default text facet on that column. Then locate that value choice in the facet and hover your mouse over it. An "edit" link will appear next to the choice. Click it to get a popup. As this is a text facet, Google Refine will only lets you enter a text string.
+You could also edit cells in a column sharing some common value using a default text facet created on that column. First, create a default text facet on that column. Then locate that value choice in the facet and hover your mouse over it. An "edit" link will appear next to the choice. Click it to get a popup. As this is a text facet, Google Refine will only let you enter a text string.
 
-Editing through a text facet performs a find and replace operation. Consider a data set with a column of people's names. Create a text facet on that column might yield something like this:
+Editing through a text facet performs a find and replace operation. Consider a data set with a column of people's names. Creating a text facet on that column might yield something like this:
 
 || choice || count ||
 || Andy Anderson || 79 ||
@@ -21,7 +21,7 @@ Editing through a text facet performs a find and replace operation. Consider a d
 || Cindy Mansfield || 67 ||
 || ... || ... ||
 
-If you click "edit" on the choice "Andy R. Anderson" in the facet and enter "Andy Anderson", what that does is to go over each cell in that name column that contains the string "Andy R. Anderson" and replaces it with the string "Andy Anderson". Nine (9) such cells will be changed, and no cell in that column will contain "Andy R. Anderson", but 9 more cells will contain "Andy Anderson". As a result, the text facet will be updated to show 88 "Andy Anderson"; and "Andy R. Anderson" has disappeared:
+If you click "edit" on the choice "Andy R. Anderson" in the facet and enter "Andy Anderson", what that does is to go over each cell in that name column that contains the string "Andy R. Anderson" and replaces it with the string "Andy Anderson". Nine (9) such cells will be changed, and no cell in that column will contain "Andy R. Anderson", but 9 more cells will contain "Andy Anderson". As a result, the text facet will be updated to show 88 "Andy Anderson"; and "Andy R. Anderson" will disappear:
 
 || choice || count ||
 || Andy Anderson || 88 ||
@@ -45,8 +45,8 @@ Say we invoke the Transform command on the name column and enter the expression
 
 This causes Google Refine to iterate through each of the 2 rows, and for each row, set the variable `value` to the row's cell in column "name", evaluate the expression, and put the result back into that cell. More specifically,
 
-  * when Google Refine processes row 1, it sets `value` to the string `John Smith`, splits that string into 2 strings (`John` and `Smith`) reverses those two strings (`Smith` and `John`), joins them back to yield `Smith, John`, and puts that string into that cell.
-  * when Google Refine processes row 2, it sets `value` to the string `Jane Doe`, splits that string into 2 strings (`Jane` and `Doe`) reverses those two strings (`Doe` and `Jane`), joins them back to yield `Doe, Jane`, and puts that string into that cell.
+  * when Google Refine processes row 1, it sets `value` to the string `John Smith`, splits that string into 2 strings (`John` and `Smith`), reverses those two strings (`Smith` and `John`), joins them back to yield `Smith, John`, and puts that string into that cell.
+  * when Google Refine processes row 2, it sets `value` to the string `Jane Doe`, splits that string into 2 strings (`Jane` and `Doe`), reverses those two strings (`Doe` and `Jane`), joins them back to yield `Doe, Jane`, and puts that string into that cell.
 
 When you click OK, the data set will become
 
@@ -59,9 +59,9 @@ For more information on expressions, see [UnderstandingExpressions Understanding
 
 ===Comparison with Spreadsheets Software===
 
-Expressions in Google Refine differ from formulas in popular spreadsheets software. In spreadsheets, formulas are entered into cells in spreadsheets. That is, a cell can contain a formula (the formula is computed and its result is displayed in the cell). In Google Refine, cells do *not* contain expressions. Rather, any expression you specify is evaluated to compute a value that is then stored into the cell. If the expression depends on other cells, and the other cells get changed later on, the expression is *not* evaluated again. Each transformation is done only once, *not* updated constantly.
+Expressions in Google Refine differ from formulas in popular spreadsheet software. In spreadsheets, formulas are entered into cells. That is, a cell can contain a formula (the formula is computed and its result is displayed in the cell). In Google Refine, cells do *not* contain expressions. Rather, any expression you specify is evaluated to compute a value that is then stored into the cell. If the expression depends on other cells, and the other cells get changed later on, the expression is *not* evaluated again. Each transformation is done only once, *not* updated constantly.
 
-Also, in spreadsheets, you have to copy formula from one cell to other cells (typically using the Fill Down command or dragging down the selection rectangle from its bottom right corner). In Google Refine, there is no copying of expression. Rather, an expression is applied to rows that are currently shown, as determined by constraints in facets and filters.
+Also, in spreadsheets, you have to copy formulas from one cell to other cells (typically using the Fill Down command or dragging down the selection rectangle from its bottom right corner). In Google Refine, there is no copying of expressions. Rather, an expression is applied to rows that are currently shown, as determined by constraints in facets and filters.
 
 
 ==Editing by Clustering==
