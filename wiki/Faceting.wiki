@@ -80,7 +80,7 @@ That facet will show you something like this (sorted by count)
 
 ==Row-based Text Facets==
 
-Sometimes you want to filter the rows based on no particular column. For example, let's say that you have to apply some operation on a very complicated subset of rows. You can do so by apply some simple facets and filters and star those rows, then apply some other simple facets and filters and star those rows, and so forth. The starring operations are cumulative, producing a union of all those subsets of rows. At the end, you want to select all starred rows to apply an operation on them. You would need to create a text facet with the expression
+Sometimes you want to filter the rows based on no particular column. For example, let's say that you have to apply some operation on a very complicated subset of rows. You can do so by applying some simple facets and filters and star those rows, then apply some other simple facets and filters and star those rows, and so forth. The starring operations are cumulative, producing a union of all those subsets of rows. At the end, you want to select all starred rows to apply an operation on them. You would need to create a text facet with the expression
 
 {{{
   row.starred
@@ -90,7 +90,7 @@ and select "true" in it. You can create such a facet by invoking *any* column's 
 
 ==Multi-column-based Text Facets==
 
-Sometimes you want to create a facet that references several columns. For example, consider a data set with two columns for "First Name" and "Last Name". You're interested to find out how many people have the same initial letter for both names (e.g., Marilyn Monroe, Steven Segal, Ophelia Oliver). To do so, create a custom text facet on either column and enter the expression
+Sometimes you want to create a facet that references several columns. For example, consider a data set with two columns, "First Name" and "Last Name". You're interested in finding out how many people have the same initial letter for both names (e.g., Marilyn Monroe, Steven Segal, Ophelia Oliver). To do so, create a custom text facet on either column and enter the expression
 
 {{{
   cells["First Name"].value[0] == cells["Last Name"].value[0]
@@ -103,7 +103,7 @@ That shows 2 choices: true and false. Select "true" for the people you want.
 
 Whereas a text facet groups unique text values into groups, a numeric facet groups numbers into numeric range bins. For example, consider a data set with a column of "humidity" (which ranges from zero to 100). A default numeric facet created on that column would group the values into 100 bins: 0 to 1, 1 to 2, 2 to 3, ..., 99 to 100. A value of 98.3 will fall into the 99th bin. Then you can select any range that spans some consecutive number of bins.
 
-You can customize numeric facets much like you can customize text facets. For example, if the numeric values in a column are in a power law distribution, then it's better to group them by their logs using this expression
+You can customize numeric facets much like you can customize text facets. For example, if the numeric values in a column are drawn from a power law distribution, then it's better to group them by their logs using this expression
 
 {{{
   value.log()
@@ -124,7 +124,7 @@ Even for a column that contains text, you could still create a numeric facet by 
 
 ==Text Filters==
 
-If you need to filter to rows whose cells in a particular column contains some precise text string, or match some regular expression pattern, use a text filter. It works like most text editor's "Find" or "Search" feature, except that instead of jumping the text cursor to the occurrence of the query, it filters the data table for only rows whose cells in that column match the query.
+If you need to filter to rows whose cells in a particular column contain some precise text string, or match some regular expression pattern, use a text filter. It works like most text editor's "Find" or "Search" feature, except that instead of jumping the text cursor to the occurrence of the query, it filters the data table to only rows whose cells in that column match the query.
 
 Regular expression support in text filters lets you do fancy matching. For example, to search for cells starting with a letter and ending with a digit, enter this regular expression pattern:
 
