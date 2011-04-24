@@ -30,4 +30,4 @@ and so forth. You can select each group whose choices you want to "merge" and en
 
 You can adjust the way the clustering feature groups the choices--that is, how the feature determines that choices "look similar". When the feature is "conservative", it might consider "Andy Anderson" and "Anderson, Andy" to be similar, but not "Andy R. Anderson" and "Andy Anderson". When the feature is "liberal" or "aggressive", it might consider "Andy Anderson", "Sandy Anderson", and "Landy Sanderson" to all be similar. How conservative or library the feature should work depends on your data, but it is safer to be conservative and cautious in merging. Of course, you can always undo each cluster and edit operation.
 
-For more theory behind clustering, see [ClusteringInDepth Clustering in Depth].
+For more of the theory behind clustering, see [ClusteringInDepth Clustering in Depth].
