@@ -120,7 +120,7 @@ It is also important to note that in practice similarity distances are more effe
   * for kNN distances, we found that blocking with less than 3 or 4 chars explodes the amount of time clustering takes and yields very few new valuable results, but your mileage may vary;
   * Google Refine's internals support a lot more methods but we have turned off many of them because they don't seem to have much practical advantage over the ones described here. But if you think that Google Refine should use other methods, feel free to suggest them to us because we might have overlooked them.
 
-= Suggested Readings =
+= Suggested Reading =
 
 A lot of the code that Google Refine uses for clustering originates from research done by the [http://simile.mit.edu/ SIMILE Project] at MIT which later [http://code.google.com/p/simile-vicino/ graduated as the Vicino project] ('vicino', pronounced "vitch-ee-no", means 'near' in Italian).
 
