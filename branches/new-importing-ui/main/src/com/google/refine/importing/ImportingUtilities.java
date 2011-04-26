@@ -774,13 +774,17 @@ public class ImportingUtilities {
                 int commonSegments(String format) {
                     String[] bestSegments = formatToSegments.get(bestFormat);
                     String[] segments = formatToSegments.get(format);
-                    int i;
-                    for (i = 0; i < bestSegments.length && i < segments.length; i++) {
-                        if (!bestSegments[i].equals(segments[i])) {
-                            break;
+                    if (bestSegments == null || segments == null) {
+                        return 0;
+                    } else {
+                        int i;
+                        for (i = 0; i < bestSegments.length && i < segments.length; i++) {
+                            if (!bestSegments[i].equals(segments[i])) {
+                                break;
+                            }
                         }
+                        return i;
                     }
-                    return i;
                 }
             });
         }

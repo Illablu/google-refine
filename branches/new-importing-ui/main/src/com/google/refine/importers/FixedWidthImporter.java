@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import com.google.refine.ProjectMetadata;
 import com.google.refine.importing.ImportingJob;
+import com.google.refine.importing.ImportingUtilities;
 import com.google.refine.model.Project;
 import com.google.refine.util.JSONUtilities;
 
@@ -28,9 +29,24 @@ public class FixedWidthImporter extends TabularImportingParserBase {
     public JSONObject createParserUIInitializationData(
             ImportingJob job, List<JSONObject> fileRecords, String format) {
         JSONObject options = super.createParserUIInitializationData(job, fileRecords, format);
+        JSONArray columnWidths = new JSONArray();
+        
+        JSONObject firstFileRecord = fileRecords.get(0);
+        String encoding = ImportingUtilities.getEncoding(firstFileRecord);
+        String location = JSONUtilities.getString(firstFileRecord, "location", null);
+        if (location != null) {
+            File file = new File(job.getRawDataDir(), location);
+            int[] columnWidthsA = guessColumnWidths(file, encoding);
+            if (columnWidthsA != null) {
+                for (int w : columnWidthsA) {
+                    JSONUtilities.append(columnWidths, w);
+                }
+            }
+        }
         
         JSONUtilities.safePut(options, "lineSeparator", "\n");
-        JSONUtilities.safePut(options, "columnWidths", new JSONArray());
+        JSONUtilities.safePut(options, "headerLines", 0);
+        JSONUtilities.safePut(options, "columnWidths", columnWidths);
         JSONUtilities.safePut(options, "guessCellValueTypes", true);
         
         return options;
@@ -98,6 +114,11 @@ public class FixedWidthImporter extends TabularImportingParserBase {
             cells.add(line.substring(columnStartCursor, columnEndCursor));
             
             columnStartCursor = columnEndCursor;
+        }
+        
+        // Residual text
+        if (columnStartCursor < line.length()) {
+            cells.add(line.substring(columnStartCursor));
         }
         return cells;
     }

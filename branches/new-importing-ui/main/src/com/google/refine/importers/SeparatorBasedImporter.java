@@ -192,7 +192,7 @@ public class SeparatorBasedImporter extends TabularImportingParserBase {
                     for (int i = 0; i < s.length(); i++) {
                         char c = s.charAt(i);
                         if (!Character.isLetterOrDigit(c) &&
-                            !"\"'".contains(s.subSequence(i, i + 1))) {
+                            !"\"' .-".contains(s.subSequence(i, i + 1))) {
                             Separator separator = separatorMap.get(c);
                             if (separator == null) {
                                 separator = new Separator();

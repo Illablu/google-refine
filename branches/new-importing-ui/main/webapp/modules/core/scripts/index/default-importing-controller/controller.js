@@ -297,7 +297,7 @@ Refine.DefaultImportingController.prototype.updateFormatAndOptions = function(op
     );
 };
 
-Refine.DefaultImportingController.prototype.getPreviewData = function(callback) {
+Refine.DefaultImportingController.prototype.getPreviewData = function(callback, numRows) {
     var self = this;
     var result = {};
     
@@ -315,7 +315,7 @@ Refine.DefaultImportingController.prototype.getPreviewData = function(callback) 
                 "/command/core/get-rows?" + $.param({
                     "importingJobID" : self._jobID,
                     "start" : 0,
-                    "limit" : 100 // More than we parse for preview anyway
+                    "limit" : numRows || 100 // More than we parse for preview anyway
                 }),
                 null,
                 function(data) {
