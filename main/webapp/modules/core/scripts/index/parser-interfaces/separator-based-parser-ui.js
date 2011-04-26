@@ -31,7 +31,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-Refine.SeparatorBasedParserUI = function(controller, jobID, job, format, config, dataContainerElmt, optionContainerElmt) {
+Refine.SeparatorBasedParserUI = function(controller, jobID, job, format, config,
+    dataContainerElmt, progressContainerElmt, optionContainerElmt) {
     this._controller = controller;
     this._jobID = jobID;
     this._job = job;
@@ -39,6 +40,7 @@ Refine.SeparatorBasedParserUI = function(controller, jobID, job, format, config,
     this._config = config;
     
     this._dataContainer = dataContainerElmt;
+    this._progressContainer = progressContainerElmt;
     this._optionContainer = optionContainerElmt;
     
     this._timerID = null;
@@ -212,12 +214,13 @@ Refine.SeparatorBasedParserUI.prototype._scheduleUpdatePreview = function() {
 Refine.SeparatorBasedParserUI.prototype._updatePreview = function() {
     var self = this;
     
-    this._dataContainer.unbind().empty().html(
-        DOM.loadHTML("core", "scripts/index/parser-interfaces/updating-preview-message.html"));
+    this._progressContainer.show();
     
     this._controller.updateFormatAndOptions(this.getOptions(), function(result) {
         if (result.status == "ok") {
             self._controller.getPreviewData(function(projectData) {
+                self._progressContainer.hide();
+                
                 new Refine.PreviewTable(projectData, self._dataContainer.unbind().empty());
             });
         }

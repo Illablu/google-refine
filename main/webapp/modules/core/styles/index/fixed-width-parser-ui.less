@@ -33,60 +33,58 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @import-less url("../theme.less");
 
-.default-importing-parsing-data-panel {
-  font-size: 1.1em;
+.fixed-width-preview-container {
+  position: relative;
+  font-family: monospace;
+  font-size: 150%;
+}
+
+table.data-table.fixed-width-preview-data-table {
+  font-size: inherit;
+}
+table.data-table.fixed-width-preview-data-table > tbody > tr {
+  border-bottom: 1px solid #ccc;
+}
+
+table.data-table.fixed-width-preview-data-table > tbody > tr > td.column-header {
+  background: none;
+}
+
+table.data-table.fixed-width-preview-data-table > tbody > tr > td,
+table.data-table.fixed-width-preview-data-table > tbody > tr > td.column-header {
+  border: none;
+  padding: 2px 0px;
+  white-space: pre;
+}
+table.data-table.fixed-width-preview-data-table > tbody > tr > td.even,
+table.data-table.fixed-width-preview-data-table > tbody > tr > td.column-header.even {
+  background: #eee;
+}
+
+.fixed-width-preview-column-separator-outer {
   position: absolute;
-  overflow: auto;
+  top: 0px;
+  height: 100%;
+  z-index: 100;
+  background: rgba(255,238,93,0.2);
+  padding: 0px 3px;
+  cursor: ew-resize;
+  overflow: visible;
 }
-
-.default-importing-progress-data-panel {
+.fixed-width-preview-column-separator-inner {
+  position: relative;
+  height: 100%;
+  width: 1px;
+  background: red;
+  overflow: visible;
+}
+.fixed-width-preview-column-separator-inner > div {
   position: absolute;
-  overflow: auto;
-  font-size: 200%;
-  padding: 3em;
-  background: rgba(255, 255, 255, 0.7);
-  text-align: center;
-}
-
-.default-importing-parsing-control-panel {
-  font-size: 1.3em;
-  position: absolute;
-  overflow: auto;
-  border-top: 5px solid @chrome_primary;
-  background: @chrome_secondary;
-}
-.default-importing-parsing-control-panel > table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td.default-importing-parsing-control-panel-formats {
-  padding: @padding_looser 0;
-  width: 250px;
-}
-
-.default-importing-parsing-control-panel-formats-message {
-  margin-left: @padding_looser;
-  margin-bottom: @padding_looser;
-  padding: 0 @padding_normal;
-  font-size: 1.3em;
-}
-.default-importing-parsing-control-panel-format {
-  margin-left: @padding_looser;
-  padding: @padding_tight @padding_normal;
-  .rounded_corners_left();
-  color: @link_primary;
+  top: 100px;
+  left: -7px;
+  border: 1px solid red;
+  background: #fffee0 url(../../images/close.png) no-repeat center center;
+  width: 13px;
+  height: 13px;
   cursor: pointer;
-}
-
-.default-importing-parsing-control-panel-format.selected {
-  background: white;
-  font-weight: bold;
-  color: black;
-}
-
-td.default-importing-parsing-control-panel-options-panel {
-  background: white;
-  padding: @padding_looser;
-  .rounded_corners_left();
 }

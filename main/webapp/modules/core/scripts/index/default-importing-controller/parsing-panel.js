@@ -86,6 +86,7 @@ Refine.DefaultImportingController.prototype._prepareParsingPanel = function() {
     this._parsingPanelElmts.startOverButton.click(function() {
         self._startOver();
     });
+    this._parsingPanelElmts.progressPanel.hide();
     
     this._parsingPanelResizer = function() {
         var elmts = self._parsingPanelElmts;
@@ -99,6 +100,11 @@ Refine.DefaultImportingController.prototype._prepareParsingPanel = function() {
             .css("top", headerHeight + "px")
             .css("width", (width - DOM.getHPaddings(elmts.dataPanel)) + "px")
             .css("height", (height - headerHeight - controlPanelHeight - DOM.getVPaddings(elmts.dataPanel)) + "px");
+        elmts.progressPanel
+            .css("left", "0px")
+            .css("top", headerHeight + "px")
+            .css("width", (width - DOM.getHPaddings(elmts.progressPanel)) + "px")
+            .css("height", (height - headerHeight - controlPanelHeight - DOM.getVPaddings(elmts.progressPanel)) + "px");
         
         elmts.controlPanel
             .css("left", "0px")
@@ -138,6 +144,7 @@ Refine.DefaultImportingController.prototype._disposeParserUI = function() {
     }
     if (this._parsingPanelElmts) {
         this._parsingPanelElmts.optionsContainer.unbind().empty();
+        this._parsingPanelElmts.progressPanel.unbind();
         this._parsingPanelElmts.dataPanel.unbind().empty();
     }
 };
@@ -171,6 +178,7 @@ Refine.DefaultImportingController.prototype._selectFormat = function(newFormat) 
                 self._format,
                 self._parserOptions[newFormat],
                 self._parsingPanelElmts.dataPanel,
+                self._parsingPanelElmts.progressPanel,
                 self._parsingPanelElmts.optionsContainer
             );
         });
