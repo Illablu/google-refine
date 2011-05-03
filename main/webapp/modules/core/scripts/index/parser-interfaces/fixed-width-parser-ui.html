@@ -14,6 +14,12 @@
     </table></div></td>
   </tr>
   <tr>
+    <td colspan="3"><div class="grid-layout layout-tightest"><table>
+      <tr><td>Column widths:</td><td><input style="width: 40em;" bind="columnWidthsInput" /></td><td>comma separated numbers</td></tr>
+      <tr><td>Column names:</td><td><input style="width: 40em;" bind="columnNamesInput" /></td><td>optional, comma separated</td></tr>
+    </table></div></td>
+  </tr>
+  <tr>
     <td><div class="grid-layout layout-tightest"><table>
       <tr><td colspan="2">Rows are separated by</td></tr>
       <tr><td width="1%"><input type="radio" name="row-separator" value="new-line" /></td><td>new line characters \n</td></tr>
@@ -21,7 +27,7 @@
         <input bind="rowSeparatorInput" type="text" class="lightweight" size="5" /></td></tr>
       <tr><td colspan="2">Escape special characters with \</td></tr>
     </table></div></td>
-    <td colspan="2"><div class="grid-layout layout-tightest"><table>
+    <td><div class="grid-layout layout-tightest"><table>
       <tr><td width="1%"><input type="checkbox" bind="ignoreCheckbox" /></td><td>Ignore first</td>
         <td><input bind="ignoreInput" type="text" class="lightweight" size="2" value="0" /> line(s) at beginning of file</td></tr>
       <tr><td width="1%"><input type="checkbox" bind="headerLinesCheckbox" /></td><td>Parse next</td>
@@ -31,13 +37,9 @@
       <tr><td width="1%"><input type="checkbox" bind="limitCheckbox" /></td><td>Load at most</td>
         <td><input bind="limitInput" type="text" class="lightweight" size="2" value="0" /> row(s) of data</td></tr>
     </table></div></td>
-  </tr>
-  <tr>
     <td><div class="grid-layout layout-tightest"><table>
       <tr><td width="1%"><input type="checkbox" bind="guessCellValueTypesCheckbox" /></td>
         <td>Parse cell text into<br/>numbers, dates, ...</td></tr>
-    </table></div></td>
-    <td><div class="grid-layout layout-tightest"><table>
       <tr><td width="1%"><input type="checkbox" bind="storeBlankRowsCheckbox" /></td>
         <td colspan="2">Store blank rows</td></tr>
       <tr><td width="1%"><input type="checkbox" bind="storeBlankCellsAsNullsCheckbox" /></td>

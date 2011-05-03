@@ -98,7 +98,6 @@ Refine.DefaultImportingController.prototype.startImportJob = function(form, prog
                     self._pollImportJob(
                         start, jobID, timerID,
                         function(job) {
-                            console.log(job);
                             return job.config.hasData;
                         },
                         function(jobID, job) {

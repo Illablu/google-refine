@@ -78,6 +78,11 @@ Refine.FixedWidthParserUI.prototype.getOptions = function() {
         columnWidths: [].concat(this._config.columnWidths)
     };
     
+    var columnNames = $.trim(this._optionContainerElmts.columnNamesInput[0].value).replace(/,\s+/g, ',').split(',');
+    if (columnNames.length > 0 && columnNames[0].length > 0) {
+      options.columnNames = columnNames;
+    }
+    
     switch (this._optionContainer.find("input[name='row-separator']:checked")[0].value) {
         case 'new-line':
             options.lineSeparator = "\n";
@@ -135,6 +140,11 @@ Refine.FixedWidthParserUI.prototype._initialize = function() {
         DOM.loadHTML("core", "scripts/index/parser-interfaces/fixed-width-parser-ui.html"));
     this._optionContainerElmts = DOM.bind(this._optionContainer);
     
+    this._optionContainerElmts.columnWidthsInput[0].value = this._config.columnWidths.join(',');
+    if ('columnNames' in this._config) {
+        this._optionContainerElmts.columnNamesInput[0].value = this._config.columnNames.join(',');
+    }
+    
     var rowSeparatorValue = (this._config.lineSeparator == "\n") ? 'new-line' : 'custom';
     this._optionContainer.find(
         "input[name='row-separator'][value='" + rowSeparatorValue + "']").attr("checked", "checked");
@@ -177,6 +187,22 @@ Refine.FixedWidthParserUI.prototype._initialize = function() {
     };
     this._optionContainer.find("input").bind("change", onChange);
     this._optionContainer.find("select").bind("change", onChange);
+    
+    this._optionContainerElmts.columnWidthsInput.bind("change", function() {
+        var newColumnWidths = [];
+        var a = $.trim(this.value).replace(/,\s+/g, ',').split(',');
+        for (var i = 0; i < a.length; i++) {
+            var n = parseInt(a[i]);
+            if (isNaN(n)) {
+                return;
+            }
+            newColumnWidths.push(n);
+        }
+        self._config.columnWidths = newColumnWidths;
+        onChange();
+    });
+    this._optionContainerElmts.columnNamesInput.bind("change", onChange);
+    
 };
 
 Refine.FixedWidthParserUI.prototype._scheduleUpdatePreview = function() {
@@ -352,6 +378,7 @@ Refine.FixedWidthPreviewTable.prototype._render = function() {
         }
         
         self._config.columnWidths = newColumnWidths;
+        self._parserUI._optionContainerElmts.columnWidthsInput[0].value = newColumnWidths.join(',');
         self._parserUI.updatePreview();
     };
     
