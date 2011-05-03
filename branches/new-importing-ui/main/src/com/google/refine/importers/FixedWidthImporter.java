@@ -66,16 +66,35 @@ public class FixedWidthImporter extends TabularImportingParserBase {
         // String lineSeparator = JSONUtilities.getString(options, "lineSeparator", "\n");
         final int[] columnWidths = JSONUtilities.getIntArray(options, "columnWidths");
         
+        final List<Object> columnNames;
+        if (options.has("columnNames")) {
+            columnNames = new ArrayList<Object>();
+            String[] strings = JSONUtilities.getStringArray(options, "columnNames");
+            for (String s : strings) {
+                columnNames.add(s);
+            }
+            JSONUtilities.safePut(options, "headerLines", 1);
+        } else {
+            columnNames = null;
+        }
+        
         final LineNumberReader lnReader = new LineNumberReader(reader);
         
         TableDataReader dataReader = new TableDataReader() {
+            boolean usedColumnNames = false;
+            
             @Override
             public List<Object> getNextRowOfCells() throws IOException {
-                String line = lnReader.readLine();
-                if (line == null) {
-                    return null;
+                if (columnNames != null && !usedColumnNames) {
+                    usedColumnNames = true;
+                    return columnNames;
                 } else {
-                    return getCells(line, columnWidths);
+                    String line = lnReader.readLine();
+                    if (line == null) {
+                        return null;
+                    } else {
+                        return getCells(line, columnWidths);
+                    }
                 }
             }
         };
