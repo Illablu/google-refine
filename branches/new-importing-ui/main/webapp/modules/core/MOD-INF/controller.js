@@ -303,7 +303,8 @@ function init() {
             "scripts/index/default-importing-sources/sources.js",
             "scripts/index/parser-interfaces/preview-table.js",
             "scripts/index/parser-interfaces/separator-based-parser-ui.js",
-            "scripts/index/parser-interfaces/fixed-width-parser-ui.js"
+            "scripts/index/parser-interfaces/fixed-width-parser-ui.js",
+            "scripts/index/parser-interfaces/excel-parser-ui.js"
         ]
     );
     

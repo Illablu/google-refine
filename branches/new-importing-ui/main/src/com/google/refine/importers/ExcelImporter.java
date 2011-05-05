@@ -33,6 +33,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.importers;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -48,10 +50,12 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.google.refine.ProjectMetadata;
 import com.google.refine.importing.ImportingJob;
+import com.google.refine.importing.ImportingUtilities;
 import com.google.refine.model.Cell;
 import com.google.refine.model.Project;
 import com.google.refine.model.Recon;
@@ -69,7 +73,43 @@ public class ExcelImporter extends TabularImportingParserBase {
             ImportingJob job, List<JSONObject> fileRecords, String format) {
         JSONObject options = super.createParserUIInitializationData(job, fileRecords, format);
         
-        JSONUtilities.safePut(options, "xmlBased", "text/xml/xlsx".equals(format));
+        boolean xmlBased = "text/xml/xlsx".equals(format);
+        JSONUtilities.safePut(options, "xmlBased", xmlBased);
+        
+        JSONArray sheetRecords = new JSONArray();
+        JSONUtilities.safePut(options, "sheetRecords", sheetRecords);
+        try {
+            JSONObject firstFileRecord = fileRecords.get(0);
+            File file = ImportingUtilities.getFile(job, firstFileRecord);
+            InputStream is = new FileInputStream(file);
+            try {
+                Workbook wb = xmlBased ?
+                    new XSSFWorkbook(is) :
+                    new HSSFWorkbook(new POIFSFileSystem(is));
+                
+                int sheetCount = wb.getNumberOfSheets();
+                boolean hasData = false;
+                for (int i = 0; i < sheetCount; i++) {
+                    Sheet sheet = wb.getSheetAt(i);
+                    int rows = sheet.getLastRowNum() - sheet.getFirstRowNum() + 1;
+                    
+                    JSONObject sheetRecord = new JSONObject();
+                    JSONUtilities.safePut(sheetRecord, "name", sheet.getSheetName());
+                    JSONUtilities.safePut(sheetRecord, "rows", rows);
+                    if (hasData) {
+                        JSONUtilities.safePut(sheetRecord, "selected", false);
+                    } else if (rows > 1) {
+                        JSONUtilities.safePut(sheetRecord, "selected", true);
+                        hasData = true;
+                    }
+                    JSONUtilities.append(sheetRecords, sheetRecord);
+                }
+            } finally {
+                is.close();
+            }
+        } catch (IOException e) {
+            // Ignore
+        }
         
         return options;
     }
