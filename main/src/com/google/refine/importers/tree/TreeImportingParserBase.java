@@ -61,9 +61,6 @@ abstract public class TreeImportingParserBase implements ImportingParser {
     public JSONObject createParserUIInitializationData(ImportingJob job,
             List<JSONObject> fileRecords, String format) {
         JSONObject options = new JSONObject();
-        
-        JSONUtilities.safePut(options, "ignoreLines", -1); // number of blank lines at the beginning to ignore
-        
         return options;
     }
     
