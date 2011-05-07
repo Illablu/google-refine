@@ -33,6 +33,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.importers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -42,6 +45,7 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.google.refine.ProjectMetadata;
@@ -49,11 +53,101 @@ import com.google.refine.importers.tree.ImportColumnGroup;
 import com.google.refine.importers.tree.TreeImportingParserBase;
 import com.google.refine.importers.tree.TreeReader;
 import com.google.refine.importing.ImportingJob;
+import com.google.refine.importing.ImportingUtilities;
 import com.google.refine.model.Project;
+import com.google.refine.util.JSONUtilities;
 
 public class XmlImporter extends TreeImportingParserBase {
     public XmlImporter() {
         super(true);
+    }
+    
+    static private class PreviewParsingState {
+        int tokenCount;
+    }
+    
+    final static private int PREVIEW_PARSING_LIMIT = 1000;
+    
+    @Override
+    public JSONObject createParserUIInitializationData(
+            ImportingJob job, List<JSONObject> fileRecords, String format) {
+        JSONObject options = super.createParserUIInitializationData(job, fileRecords, format);
+        try {
+            JSONObject firstFileRecord = fileRecords.get(0);
+            File file = ImportingUtilities.getFile(job, firstFileRecord);
+            InputStream is = new FileInputStream(file);
+            try {
+                XMLStreamReader parser = createXMLStreamReader(is);
+                PreviewParsingState state = new PreviewParsingState();
+                
+                while (parser.hasNext() && state.tokenCount < PREVIEW_PARSING_LIMIT) {
+                    int tokenType = parser.next();
+                    state.tokenCount++;
+                    if (tokenType == XMLStreamConstants.START_ELEMENT) {
+                        JSONObject rootElement = descendElement(parser, state);
+                        if (rootElement != null) {
+                            JSONUtilities.safePut(options, "dom", rootElement);
+                            break;
+                        }
+                    } else {
+                        // ignore everything else
+                    }
+                }
+            } finally {
+                is.close();
+            }
+        } catch (XMLStreamException e) {
+            // Ignore
+        } catch (IOException e) {
+            // Ignore
+        }
+
+        return options;
+    }
+    
+    final static private JSONObject descendElement(XMLStreamReader parser, PreviewParsingState state) throws XMLStreamException {
+        JSONObject result = new JSONObject();
+        JSONUtilities.safePut(result, "n", parser.getName());
+        
+        int attributeCount = parser.getAttributeCount();
+        if (attributeCount > 0) {
+            JSONArray attributes = new JSONArray();
+            JSONUtilities.safePut(result, "a", attributes);
+            
+            for (int i = 0; i < attributeCount; i++) {
+                JSONObject attribute = new JSONObject();
+                JSONUtilities.append(attributes, attribute);
+                JSONUtilities.safePut(attribute, "n", parser.getAttributeName(i));
+                JSONUtilities.safePut(attribute, "v", parser.getAttributeValue(i));
+            }
+        }
+        
+        JSONArray children = new JSONArray();
+        while (parser.hasNext() && state.tokenCount < PREVIEW_PARSING_LIMIT) {
+            int tokenType = parser.next();
+            state.tokenCount++;
+            if (tokenType == XMLStreamConstants.END_ELEMENT) {
+                break;
+            } else if (tokenType == XMLStreamConstants.START_ELEMENT) {
+                JSONObject childElement = descendElement(parser, state);
+                if (childElement != null) {
+                    JSONUtilities.append(children, childElement);
+                }
+            } else if (tokenType == XMLStreamConstants.CHARACTERS ||
+                       tokenType == XMLStreamConstants.CDATA ||
+                       tokenType == XMLStreamConstants.SPACE) {
+                JSONObject childElement = new JSONObject();
+                JSONUtilities.safePut(childElement, "t", parser.getText());
+                JSONUtilities.append(children, childElement);
+            } else {
+                // ignore everything else
+            }
+        }
+        
+        if (children.length() > 0) {
+            JSONUtilities.safePut(result, "c", children);
+        }
+        return result;
     }
     
     @Override
@@ -74,12 +168,7 @@ public class XmlImporter extends TreeImportingParserBase {
         final protected XMLStreamReader parser;
         
         public XmlParser(InputStream inputStream) throws XMLStreamException {
-            XMLInputFactory factory = XMLInputFactory.newInstance();
-            
-            factory.setProperty(XMLInputFactory.IS_COALESCING, true);
-            factory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, true);
-            
-            parser = factory.createXMLStreamReader(inputStream);
+            parser = createXMLStreamReader(inputStream);
         }
         
         @Override
@@ -176,4 +265,13 @@ public class XmlImporter extends TreeImportingParserBase {
             return parser.getAttributeLocalName(index);
         }
     }
+    
+    final static private XMLStreamReader createXMLStreamReader(InputStream inputStream) throws XMLStreamException {
+        XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.IS_COALESCING, true);
+        factory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, true);
+        
+        return factory.createXMLStreamReader(inputStream);
+    }
+    
 }
