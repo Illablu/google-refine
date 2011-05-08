@@ -261,14 +261,15 @@ public class XmlImportUtilities extends TreeImportUtilities {
         TreeReader parser,
         Project project,
         String[] recordPath,
-        ImportColumnGroup rootColumnGroup
+        ImportColumnGroup rootColumnGroup,
+        int limit
     ) {
         logger.trace("importTreeData(TreeReader, Project, String[], ImportColumnGroup)");
         try {
-            while (parser.hasNext()) {
+            while (parser.hasNext() && (limit <= 0 || project.rows.size() < limit)) {
                 Token eventType = parser.next();
                 if (eventType == Token.StartEntity) {
-                    findRecord(project, parser, recordPath, 0, rootColumnGroup);
+                    findRecord(project, parser, recordPath, 0, rootColumnGroup, limit);
                 }
             }
         } catch (Exception e) {
@@ -292,7 +293,8 @@ public class XmlImportUtilities extends TreeImportUtilities {
         TreeReader parser,
         String[] recordPath,
         int pathIndex,
-        ImportColumnGroup rootColumnGroup
+        ImportColumnGroup rootColumnGroup,
+        int limit
     ) throws Exception {
         logger.trace("findRecord(Project, TreeReader, String[], int, ImportColumnGroup");
         
@@ -301,13 +303,16 @@ public class XmlImportUtilities extends TreeImportUtilities {
             return;
         }
         
-        String tagName = parser.getFieldName();
-        if (tagName.equals(recordPath[pathIndex])) {
+        String recordPathSegment = recordPath[pathIndex];
+        
+        String localName = parser.getFieldName();
+        String fullName = composeName(parser.getPrefix(), localName);
+        if (recordPathSegment.equals(localName) || recordPathSegment.equals(fullName)) {
             if (pathIndex < recordPath.length - 1) {
-                while (parser.hasNext()) {
+                while (parser.hasNext() && (limit <= 0 || project.rows.size() < limit)) {
                     Token eventType = parser.next();
                     if (eventType == Token.StartEntity) {
-                        findRecord(project, parser, recordPath, pathIndex + 1, rootColumnGroup);
+                        findRecord(project, parser, recordPath, pathIndex + 1, rootColumnGroup, limit);
                     } else if (eventType == Token.EndEntity ) {
                         break;
                     }
@@ -448,8 +453,4 @@ public class XmlImportUtilities extends TreeImportUtilities {
         }
         thisColumnGroup.nextRowIndex = nextRowIndex;
     }
-
-
-
-
 }

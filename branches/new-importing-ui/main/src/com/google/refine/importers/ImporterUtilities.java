@@ -237,9 +237,11 @@ public class ImporterUtilities {
         return progress == null ? inputStream : new TrackingInputStream(inputStream) {
             @Override
             protected long track(long bytesRead) {
-                progress.readingFile(fileSource, bytesRead >= 0 ? bytesRead : file.length());
-                super.track(bytesRead);
-                return bytesRead;
+                long l = super.track(bytesRead);
+                
+                progress.readingFile(fileSource, this.bytesRead);
+                
+                return l;
             }
         };
     }

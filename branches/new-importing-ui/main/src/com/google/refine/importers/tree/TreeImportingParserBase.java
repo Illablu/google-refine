@@ -34,7 +34,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.google.refine.importers.tree;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -44,6 +43,8 @@ import org.apache.commons.lang.NotImplementedException;
 import org.json.JSONObject;
 
 import com.google.refine.ProjectMetadata;
+import com.google.refine.importers.ImporterUtilities;
+import com.google.refine.importers.ImporterUtilities.MultiFileReadingProgress;
 import com.google.refine.importing.ImportingJob;
 import com.google.refine.importing.ImportingParser;
 import com.google.refine.importing.ImportingUtilities;
@@ -69,11 +70,12 @@ abstract public class TreeImportingParserBase implements ImportingParser {
             ImportingJob job, List<JSONObject> fileRecords, String format,
             int limit, JSONObject options, List<Exception> exceptions) {
         
+        MultiFileReadingProgress progress = ImporterUtilities.createMultiFileReadingProgress(job, fileRecords);
         ImportColumnGroup rootColumnGroup = new ImportColumnGroup();
         
         for (JSONObject fileRecord : fileRecords) {
             try {
-                parseOneFile(project, metadata, job, fileRecord, rootColumnGroup, limit, options, exceptions);
+                parseOneFile(project, metadata, job, fileRecord, rootColumnGroup, limit, options, exceptions, progress);
             } catch (IOException e) {
                 exceptions.add(e);
             }
@@ -95,26 +97,29 @@ abstract public class TreeImportingParserBase implements ImportingParser {
         ImportColumnGroup rootColumnGroup,
         int limit,
         JSONObject options,
-        List<Exception> exceptions
+        List<Exception> exceptions,
+        final MultiFileReadingProgress progress
     ) throws IOException {
-        File file = ImportingUtilities.getFile(job, fileRecord);
-        String fileSource = ImportingUtilities.getFileSource(fileRecord);
-        if (useInputStream) {
-            InputStream inputStream = new FileInputStream(file);
+        final File file = ImportingUtilities.getFile(job, fileRecord);
+        final String fileSource = ImportingUtilities.getFileSource(fileRecord);
+        
+        progress.startFile(fileSource);
+        try {
+            InputStream inputStream = ImporterUtilities.openAndTrackFile(fileSource, file, progress);
             try {
-                parseOneFile(project, metadata, job, fileSource, inputStream,
-                        rootColumnGroup, limit, options, exceptions);
+                if (useInputStream) {
+                    parseOneFile(project, metadata, job, fileSource, inputStream,
+                            rootColumnGroup, limit, options, exceptions);
+                } else {
+                    Reader reader = ImportingUtilities.getFileReader(file, fileRecord);
+                    parseOneFile(project, metadata, job, fileSource, reader,
+                            rootColumnGroup, limit, options, exceptions);
+                }
             } finally {
                 inputStream.close();
             }
-        } else {
-            Reader reader = ImportingUtilities.getFileReader(file, fileRecord);
-            try {
-                parseOneFile(project, metadata, job, fileSource, reader,
-                        rootColumnGroup, limit, options, exceptions);
-            } finally {
-                reader.close();
-            }
+        } finally {
+            progress.endFile(fileSource, file.length());
         }
     }
     
@@ -159,6 +164,6 @@ abstract public class TreeImportingParserBase implements ImportingParser {
     ) {
         String[] recordPath = JSONUtilities.getStringArray(options, "recordPath");
         
-        XmlImportUtilities.importTreeData(treeParser, project, recordPath, rootColumnGroup);
+        XmlImportUtilities.importTreeData(treeParser, project, recordPath, rootColumnGroup, limit);
     }
 }

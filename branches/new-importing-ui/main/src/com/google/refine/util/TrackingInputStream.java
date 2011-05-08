@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 public class TrackingInputStream extends InputStream {
     final private InputStream is;
-    private long bytesRead;
+    protected long bytesRead;
 
     public TrackingInputStream(InputStream is) {
         this.is = is;

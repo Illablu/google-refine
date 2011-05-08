@@ -107,7 +107,32 @@ public class XmlImporter extends TreeImportingParserBase {
     
     final static private JSONObject descendElement(XMLStreamReader parser, PreviewParsingState state) throws XMLStreamException {
         JSONObject result = new JSONObject();
-        JSONUtilities.safePut(result, "n", parser.getName());
+        {
+            String name = parser.getLocalName();
+            JSONUtilities.safePut(result, "n", name);
+            
+            String prefix = parser.getPrefix();
+            if (prefix != null) {
+                JSONUtilities.safePut(result, "p", prefix);
+            }
+            String nsUri = parser.getNamespaceURI();
+            if (nsUri != null) {
+                JSONUtilities.safePut(result, "uri", nsUri);
+            }
+        }
+        
+        int namespaceCount = parser.getNamespaceCount();
+        if (namespaceCount > 0) {
+            JSONArray namespaces = new JSONArray();
+            JSONUtilities.safePut(result, "ns", namespaces);
+            
+            for (int i = 0; i < namespaceCount; i++) {
+                JSONObject namespace = new JSONObject();
+                JSONUtilities.append(namespaces, namespace);
+                JSONUtilities.safePut(namespace, "p", parser.getNamespacePrefix(i));
+                JSONUtilities.safePut(namespace, "uri", parser.getNamespaceURI(i));
+            }
+        }
         
         int attributeCount = parser.getAttributeCount();
         if (attributeCount > 0) {
@@ -117,8 +142,12 @@ public class XmlImporter extends TreeImportingParserBase {
             for (int i = 0; i < attributeCount; i++) {
                 JSONObject attribute = new JSONObject();
                 JSONUtilities.append(attributes, attribute);
-                JSONUtilities.safePut(attribute, "n", parser.getAttributeName(i));
+                JSONUtilities.safePut(attribute, "n", parser.getAttributeLocalName(i));
                 JSONUtilities.safePut(attribute, "v", parser.getAttributeValue(i));
+                String prefix = parser.getAttributePrefix(i);
+                if (prefix != null) {
+                    JSONUtilities.safePut(attribute, "p", prefix);
+                }
             }
         }
         
