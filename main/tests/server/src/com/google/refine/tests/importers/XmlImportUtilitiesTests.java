@@ -203,7 +203,7 @@ public class XmlImportUtilitiesTests extends RefineTest {
         loadSampleXml();
 
         String[] recordPath = new String[]{"library","book"};
-        XmlImportUtilitiesStub.importTreeData(createXmlParser(), project, recordPath, columnGroup );
+        XmlImportUtilitiesStub.importTreeData(createXmlParser(), project, recordPath, columnGroup, -1);
 
         log(project);
         assertProjectCreated(project, 0, 6);
@@ -223,7 +223,7 @@ public class XmlImportUtilitiesTests extends RefineTest {
         loadData(XmlImporterTests.getSampleWithVaryingStructure());
 
         String[] recordPath = new String[]{"library", "book"};
-        XmlImportUtilitiesStub.importTreeData(createXmlParser(), project, recordPath, columnGroup);
+        XmlImportUtilitiesStub.importTreeData(createXmlParser(), project, recordPath, columnGroup, -1);
 
         log(project);
         assertProjectCreated(project, 0, 6);

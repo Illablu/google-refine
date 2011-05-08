@@ -52,7 +52,7 @@ public class XmlImportUtilitiesStub extends XmlImportUtilities {
     }
 
     public void findRecordWrapper(Project project, TreeReader parser, String[] recordPath, int pathIndex, ImportColumnGroup rootColumnGroup) throws Exception{
-        super.findRecord(project, parser, recordPath, pathIndex, rootColumnGroup);
+        super.findRecord(project, parser, recordPath, pathIndex, rootColumnGroup, -1);
     }
 
     public void processRecordWrapper(Project project, TreeReader parser, ImportColumnGroup rootColumnGroup) throws Exception{

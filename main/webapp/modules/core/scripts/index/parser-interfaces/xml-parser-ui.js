@@ -124,21 +124,31 @@ Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
         if (node.t) {
             $('<div>').text(node.t).appendTo(container);
         } else {
-            var t = node.n;
+            var qname = node.n;
+            if (node.p) {
+                qname = node.p + ':' + qname;
+            }
+            
+            var t = qname;
             if (node.a) {
                 t += ' ' + $.map(node.a, function(attr) {
                     return attr.n + '="' + attr.v + '"';
                 }).join(' ');
             }
+            if (node.ns) {
+                t += ' ' + $.map(node.ns, function(ns) {
+                    return 'xmlns' + ((ns.p) ? (':' + ns.p) : '') + '="' + ns.uri + '"';
+                }).join(' ');
+            }
             
             var path = [].concat(parentPath);
-            path.push(node.n);
+            path.push(qname);
             
             var div = $('<div>').addClass('elmt').appendTo(container);
             var hotspot;
             if (node.c) {
                 if (node.c.length == 1 && (node.c[0].t)) {
-                    hotspot = $('<span>').text('<' + t + '>' + node.c[0].t + '</' + node.n + '>').appendTo(div);
+                    hotspot = $('<span>').text('<' + t + '>' + node.c[0].t + '</' + qname + '>').appendTo(div);
                 } else {
                     hotspot = $('<div>').text('<' + t + '>').appendTo(div);
 
@@ -147,7 +157,7 @@ Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
                         renderNode(this, divChildren, path);
                     });
 
-                    $('<div>').text('</' + node.n + '>').appendTo(div);
+                    $('<div>').text('</' + qname + '>').appendTo(div);
                 }
             } else {
                 hotspot = $('<span>').text('<' + t + ' />').appendTo(div);
