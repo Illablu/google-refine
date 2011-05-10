@@ -40,7 +40,9 @@ Returns e raised to the power of `d`.
 
 ===`pow(number d, number e)`===
 
-Returns `d`raised to the power of `e`. For example, `pow(2, 3)` returns `8` (2 cubed) and `pow(3, 2)` returns `9` (3 squared).
+Returns `d` raised to the power of `e`. For example, `pow(2, 3)` returns `8` (2 cubed) and `pow(3, 2)` returns `9` (3 squared).
+
+The Square Root of any numeric value is expressed `pow(value, 0.5)` 
 
 ===`sum(array a)`===
 
