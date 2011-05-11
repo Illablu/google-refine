@@ -8,7 +8,7 @@ The trunk version supposedly offers certain features that you want. You probably
 
 =What You Need=
 
-To get the trunk version, you need [http://subversion.apache.org/ Subversion]. If all the download options bewilder you, we would recommend just the "Command-Line Client" hosted on [http://www.collab.net/downloads/subversion/ CollabNet]. 
+To get the trunk version, you first need [http://subversion.apache.org/ Subversion]. If all the download options bewilder you, we would recommend just the "Command-Line Client" hosted on [http://www.collab.net/downloads/subversion/ CollabNet]. 
 
 You will also need [http://ant.apache.org/ Apache Ant] to build the source code. [http://ant.apache.org/bindownload.cgi Download], unzip, and point your path to it. Or you can try [http://wiki.apache.org/ant/AntOnWindows the Windows installer], too.
 
