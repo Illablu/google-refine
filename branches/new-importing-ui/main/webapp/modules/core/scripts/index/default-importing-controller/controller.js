@@ -84,7 +84,7 @@ Refine.DefaultImportingController.prototype.startImportJob = function(form, prog
             form.attr("method", "post")
                 .attr("enctype", "multipart/form-data")
                 .attr("accept-charset", "UTF-8")
-                .attr("target", "importing-iframe")
+                .attr("target", "default-importing-iframe")
                 .attr("action", "/command/core/importing-controller?" + $.param({
                     "controller": "core/default-importing-controller",
                     "jobID": jobID,
