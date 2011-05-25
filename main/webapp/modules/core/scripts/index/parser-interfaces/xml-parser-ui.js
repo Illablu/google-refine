@@ -70,7 +70,11 @@ Refine.XmlParserUI.prototype.dispose = function() {
 };
 
 Refine.XmlParserUI.prototype.confirmReadyToCreateProject = function() {
-  return true; // always ready
+  if ((this._config.recordPath) && this._config.recordPath.length > 0) {
+      return true;
+  } else {
+      window.alert('Please specify a record path first.');
+  }
 };
 
 Refine.XmlParserUI.prototype.getOptions = function() {
@@ -120,9 +124,19 @@ Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
         DOM.loadHTML("core", "scripts/index/parser-interfaces/xml-parser-select-ui.html"));
     
     var elmts = DOM.bind(this._dataContainer);
+    
+    var escapeElmt = $('<span>');
+    var escapeHtml = function(s) {
+        escapeElmt.empty().text(s);
+        return escapeElmt.html();
+    };
+    var textAsHtml = function(s) {
+        s = s.length <= 200 ? s : (s.substring(0, 200) + ' ...');
+        return '<span class="text">' + escapeHtml(s) + '</span>';
+    };
     var renderNode = function(node, container, parentPath) {
         if (node.t) {
-            $('<div>').text(node.t).appendTo(container);
+            $('<div>').html(textAsHtml(node.t)).appendTo(container);
         } else {
             var qname = node.n;
             if (node.p) {
@@ -145,12 +159,13 @@ Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
             path.push(qname);
             
             var div = $('<div>').addClass('elmt').appendTo(container);
+            var hasSelectableChildren = false;
             var hotspot;
             if (node.c) {
                 if (node.c.length == 1 && (node.c[0].t)) {
-                    hotspot = $('<span>').text('<' + t + '>' + node.c[0].t + '</' + qname + '>').appendTo(div);
+                    $('<span>').html('&lt;' + t + '&gt;' + textAsHtml(node.c[0].t) + '&lt;/' + qname + '&gt;').appendTo(div);
                 } else {
-                    hotspot = $('<div>').text('<' + t + '>').appendTo(div);
+                    $('<div>').text('<' + t + '>').appendTo(div);
 
                     var divChildren = $('<div>').addClass('children').appendTo(div);
                     $.each(node.c, function() {
@@ -158,19 +173,36 @@ Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
                     });
 
                     $('<div>').text('</' + qname + '>').appendTo(div);
+                    hasSelectableChildren = true;
                 }
             } else {
-                hotspot = $('<span>').text('<' + t + ' />').appendTo(div);
+                $('<span>').text('<' + t + ' />').appendTo(div);
             }
             
-            hotspot.bind('mouseover', function(evt) {
-                elmts.domContainer.find('.highlight').removeClass('highlight');
-                div.addClass('highlight');
-            }).bind('mouseout', function() {
-                div.removeClass('highlight');
-            }).click(function() {
-                self._setRecordPath(path);
-            });
+            var hittest = function(evt) {
+                if (hasSelectableChildren) {
+                    if (evt.target !== div[0] &&
+                        (evt.target.className == 'elmt' || evt.target.parentNode !== div[0])) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            div.attr('title', '/' + path.join('/'))
+                .bind('mouseover', function(evt) {
+                    if (hittest(evt)) {
+                        elmts.domContainer.find('.highlight').removeClass('highlight');
+                        div.addClass('highlight');
+                    }
+                })
+                .bind('mouseout', function(evt) {
+                    div.removeClass('highlight');
+                })
+                .click(function(evt) {
+                    if (hittest(evt)) {
+                        self._setRecordPath(path);
+                    }
+                });
         }
     };
     renderNode(this._config.dom, elmts.domContainer, []);
