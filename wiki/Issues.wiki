@@ -1,0 +1,10 @@
+#summary One-sentence summary of this page.
+
+Issue Tracking is only for reporting specific bugs and requesting specific features. If you just don't know how to do something using Google Refine, or want to discuss some ideas, please
+
+  * try the [http://code.google.com/p/google-refine/wiki/GettingStarted?tm=6 documentation wiki]
+  * post to the [http://groups.google.com/group/google-refine/ google-refine mailing list].
+
+If you really want to file a bug or request a feature, [http://code.google.com/p/google-refine/issues/list go to this issue list].
+
+Thank you.
