@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Issues Tracking
 
 Issue Tracking is only for reporting specific bugs and requesting specific features. If you just don't know how to do something using Google Refine, or want to discuss some ideas, please
 
