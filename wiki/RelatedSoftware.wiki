@@ -4,6 +4,7 @@
 
   * [http://www.powerpivot.com/ Microsoft PowerPivot]
   * [http://rapid-i.com/content/view/181/190/lang,en/ Rapid Miner]
+  * [http://orange.biolab.si/ Orange]
   * [http://www.talend.com/ Talend]
   * [http://rattle.togaware.com/ Rattle]
   * [http://www.tableausoftware.com/ Tableau]
