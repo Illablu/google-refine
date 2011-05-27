@@ -213,6 +213,13 @@ public class JSONUtilities {
         }
     }
     
+    static public void append(JSONArray a, Object element) {
+        try {
+            a.put(a.length(), element);
+        } catch (JSONException e) {
+        }
+    }
+    
     static public void append(JSONArray a, int element) {
         try {
             a.put(a.length(), element);

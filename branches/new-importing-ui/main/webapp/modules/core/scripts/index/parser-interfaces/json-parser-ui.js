@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-Refine.XmlParserUI = function(controller, jobID, job, format, config,
+Refine.JsonParserUI = function(controller, jobID, job, format, config,
     dataContainerElmt, progressContainerElmt, optionContainerElmt) {
     
     this._controller = controller;
@@ -46,18 +46,18 @@ Refine.XmlParserUI = function(controller, jobID, job, format, config,
     
     this._timerID = null;
     this._initialize();
-    this._showPickRecordElementsUI();
+    this._showPickRecordNodesUI();
 };
-Refine.DefaultImportingController.parserUIs["XmlParserUI"] = Refine.XmlParserUI;
+Refine.DefaultImportingController.parserUIs["JsonParserUI"] = Refine.JsonParserUI;
 
-Refine.XmlParserUI.prototype.dispose = function() {
+Refine.JsonParserUI.prototype.dispose = function() {
     if (this._timerID != null) {
         window.clearTimeout(this._timerID);
         this._timerID = null;
     }
 };
 
-Refine.XmlParserUI.prototype.confirmReadyToCreateProject = function() {
+Refine.JsonParserUI.prototype.confirmReadyToCreateProject = function() {
   if ((this._config.recordPath) && this._config.recordPath.length > 0) {
       return true;
   } else {
@@ -65,7 +65,7 @@ Refine.XmlParserUI.prototype.confirmReadyToCreateProject = function() {
   }
 };
 
-Refine.XmlParserUI.prototype.getOptions = function() {
+Refine.JsonParserUI.prototype.getOptions = function() {
     var options = {
         recordPath: this._config.recordPath
     };
@@ -80,11 +80,11 @@ Refine.XmlParserUI.prototype.getOptions = function() {
     return options;
 };
 
-Refine.XmlParserUI.prototype._initialize = function() {
+Refine.JsonParserUI.prototype._initialize = function() {
     var self = this;
     
     this._optionContainer.unbind().empty().html(
-        DOM.loadHTML("core", "scripts/index/parser-interfaces/xml-parser-ui.html"));
+        DOM.loadHTML("core", "scripts/index/parser-interfaces/json-parser-ui.html"));
     this._optionContainerElmts = DOM.bind(this._optionContainer);
     
     if (this._config.limit > 0) {
@@ -95,7 +95,7 @@ Refine.XmlParserUI.prototype._initialize = function() {
         this._optionContainerElmts.includeFileSourcesCheckbox.attr("checked", "checked");
     }
     this._optionContainerElmts.pickRecordElementsButton.click(function() {
-        self._showPickRecordElementsUI();
+        self._showPickRecordNodesUI();
     });
     
     var onChange = function() {
@@ -105,11 +105,11 @@ Refine.XmlParserUI.prototype._initialize = function() {
     this._optionContainer.find("select").bind("change", onChange);
 };
 
-Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
+Refine.JsonParserUI.prototype._showPickRecordNodesUI = function() {
     var self = this;
     
     this._dataContainer.unbind().empty().html(
-        DOM.loadHTML("core", "scripts/index/parser-interfaces/xml-parser-select-ui.html"));
+        DOM.loadHTML("core", "scripts/index/parser-interfaces/json-parser-select-ui.html"));
     
     var elmts = DOM.bind(this._dataContainer);
     
@@ -122,81 +122,86 @@ Refine.XmlParserUI.prototype._showPickRecordElementsUI = function() {
         s = s.length <= 200 ? s : (s.substring(0, 200) + ' ...');
         return '<span class="text">' + escapeHtml(s) + '</span>';
     };
+    var hittest = function(evt, elmt) {
+        var a = $(evt.target).closest('.node');
+        return a.length > 0 && a[0] == elmt[0];
+    };
+    var registerEvents = function(elmt, path) {
+        elmt.bind('mouseover', function(evt) {
+            if (hittest(evt, elmt)) {
+                elmts.domContainer.find('.highlight').removeClass('highlight');
+                elmt.addClass('highlight');
+            }
+        })
+        .bind('mouseout', function(evt) {
+            elmt.removeClass('highlight');
+        })
+        .click(function(evt) {
+            if (hittest(evt, elmt)) {
+                self._setRecordPath(path);
+            }
+        });
+    };
+    var renderArray = function(a, container, parentPath) {
+        $('<span>').addClass('punctuation').text('[').appendTo(container);
+        
+        var parentPath2 = [].concat(parentPath);
+        parentPath2.push('__anonymous__');
+        
+        var elementNode = null;
+        for (var i = 0; i < a.length; i++) {
+            if (elementNode != null) {
+                $('<span>').addClass('punctuation').text(',').appendTo(elementNode);
+            }
+            elementNode = $('<div>').addClass('node').addClass('indented').appendTo(container);
+            
+            renderNode(a[i], elementNode, parentPath2);
+        }
+        
+        $('<span>').addClass('punctuation').text(']').appendTo(container);
+    };
+    var renderObject = function(o, container, parentPath) {
+        $('<span>').addClass('punctuation').text('{').appendTo(container);
+        
+        var elementNode = null;
+        for (var key in o) {
+            if (o.hasOwnProperty(key)) {
+                if (elementNode != null) {
+                    $('<span>').addClass('punctuation').text(',').appendTo(elementNode);
+                }
+                elementNode = $('<div>').addClass('node').addClass('indented').appendTo(container);
+                
+                $('<span>').text(key).addClass('field-name').appendTo(elementNode);
+                $('<span>').text(': ').addClass('punctuation').appendTo(elementNode);
+                
+                var parentPath2 = [].concat(parentPath);
+                parentPath2.push(key);
+
+                renderNode(o[key], elementNode, parentPath2);
+            }
+        }
+        $('<span>').addClass('punctuation').text('}').appendTo(container);
+        
+        registerEvents(container, parentPath);
+    };
     var renderNode = function(node, container, parentPath) {
-        if (node.t) {
-            $('<div>').html(textAsHtml(node.t)).appendTo(container);
+        if (node == null) {
+            $('<span>').addClass('literal').text('null').appendTo(container);
         } else {
-            var qname = node.n;
-            if (node.p) {
-                qname = node.p + ':' + qname;
-            }
-            
-            var t = qname;
-            if (node.a) {
-                t += ' ' + $.map(node.a, function(attr) {
-                    return attr.n + '="' + attr.v + '"';
-                }).join(' ');
-            }
-            if (node.ns) {
-                t += ' ' + $.map(node.ns, function(ns) {
-                    return 'xmlns' + ((ns.p) ? (':' + ns.p) : '') + '="' + ns.uri + '"';
-                }).join(' ');
-            }
-            
-            var path = [].concat(parentPath);
-            path.push(qname);
-            
-            var div = $('<div>').addClass('elmt').appendTo(container);
-            var hasSelectableChildren = false;
-            var hotspot;
-            if (node.c) {
-                if (node.c.length == 1 && (node.c[0].t)) {
-                    $('<span>').html('&lt;' + t + '&gt;' + textAsHtml(node.c[0].t) + '&lt;/' + qname + '&gt;').appendTo(div);
-                } else {
-                    $('<div>').text('<' + t + '>').appendTo(div);
-
-                    var divChildren = $('<div>').addClass('children').appendTo(div);
-                    $.each(node.c, function() {
-                        renderNode(this, divChildren, path);
-                    });
-
-                    $('<div>').text('</' + qname + '>').appendTo(div);
-                    hasSelectableChildren = true;
-                }
+            if ($.isPlainObject(node)) {
+                renderObject(node, container, parentPath);
+            } else if ($.isArray(node)) {
+                renderArray(node, container, parentPath);
             } else {
-                $('<span>').text('<' + t + ' />').appendTo(div);
+                $('<span>').addClass('literal').text(node.toString()).appendTo(container);
+                registerEvents(container, parentPath);
             }
-            
-            var hittest = function(evt) {
-                if (hasSelectableChildren) {
-                    if (evt.target !== div[0] &&
-                        (evt.target.className == 'elmt' || evt.target.parentNode !== div[0])) {
-                        return false;
-                    }
-                }
-                return true;
-            };
-            div.attr('title', '/' + path.join('/'))
-                .bind('mouseover', function(evt) {
-                    if (hittest(evt)) {
-                        elmts.domContainer.find('.highlight').removeClass('highlight');
-                        div.addClass('highlight');
-                    }
-                })
-                .bind('mouseout', function(evt) {
-                    div.removeClass('highlight');
-                })
-                .click(function(evt) {
-                    if (hittest(evt)) {
-                        self._setRecordPath(path);
-                    }
-                });
         }
     };
-    renderNode(this._config.dom, elmts.domContainer, []);
+    renderNode(this._config.dom, elmts.domContainer, [ '__anonymous__' ]);
 };
 
-Refine.XmlParserUI.prototype._scheduleUpdatePreview = function() {
+Refine.JsonParserUI.prototype._scheduleUpdatePreview = function() {
     if (this._timerID != null) {
         window.clearTimeout(this._timerID);
         this._timerID = null;
@@ -209,12 +214,12 @@ Refine.XmlParserUI.prototype._scheduleUpdatePreview = function() {
     }, 500); // 0.5 second
 };
 
-Refine.XmlParserUI.prototype._setRecordPath = function(path) {
+Refine.JsonParserUI.prototype._setRecordPath = function(path) {
     this._config.recordPath = path;
     this._updatePreview();
 };
 
-Refine.XmlParserUI.prototype._updatePreview = function() {
+Refine.JsonParserUI.prototype._updatePreview = function() {
     var self = this;
     
     this._progressContainer.show();
@@ -229,7 +234,7 @@ Refine.XmlParserUI.prototype._updatePreview = function() {
                 self._progressContainer.hide();
                 
                 new Refine.PreviewTable(projectData, self._dataContainer.unbind().empty());
-            }, 20);
+            }, 100);
         }
     });
 };
