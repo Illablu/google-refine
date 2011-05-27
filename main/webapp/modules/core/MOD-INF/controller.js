@@ -305,7 +305,8 @@ function init() {
             "scripts/index/parser-interfaces/separator-based-parser-ui.js",
             "scripts/index/parser-interfaces/fixed-width-parser-ui.js",
             "scripts/index/parser-interfaces/excel-parser-ui.js",
-            "scripts/index/parser-interfaces/xml-parser-ui.js"
+            "scripts/index/parser-interfaces/xml-parser-ui.js",
+            "scripts/index/parser-interfaces/json-parser-ui.js"
         ]
     );
     
@@ -329,7 +330,8 @@ function init() {
             "styles/index/default-importing-sources.less",
             "styles/views/data-table-view.less", // for the preview table's styles
             "styles/index/fixed-width-parser-ui.less",
-            "styles/index/xml-parser-ui.less"
+            "styles/index/xml-parser-ui.less",
+            "styles/index/json-parser-ui.less"
         ]
     );
     

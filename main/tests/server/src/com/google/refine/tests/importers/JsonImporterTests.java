@@ -35,6 +35,7 @@ package com.google.refine.tests.importers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 import org.slf4j.LoggerFactory;
@@ -176,7 +177,7 @@ public class JsonImporterTests extends ImporterTest {
         String sampleJson2 = "{\"field\":{}}";
         String sampleJson3 = "{\"field\":[{},{}]}";
         
-        JSONTreeReader parser = new JSONTreeReader(new ByteArrayInputStream( sampleJson.getBytes( "UTF-8" ) ));
+        JSONTreeReader parser = new JSONTreeReader(new StringReader(sampleJson));
         Token token = Token.Ignorable;
         int i = 0;
         try{
@@ -195,7 +196,7 @@ public class JsonImporterTests extends ImporterTest {
         }
         
         
-        parser = new JSONTreeReader(new ByteArrayInputStream( sampleJson2.getBytes( "UTF-8" ) ) );
+        parser = new JSONTreeReader(new StringReader(sampleJson2));
         token = Token.Ignorable;
         i = 0;
         try{
@@ -213,7 +214,7 @@ public class JsonImporterTests extends ImporterTest {
             //silent
         }
         
-        parser = new JSONTreeReader(new ByteArrayInputStream( sampleJson3.getBytes( "UTF-8" ) ) );
+        parser = new JSONTreeReader(new StringReader(sampleJson3));
         token = Token.Ignorable;
         i = 0;
         try{
