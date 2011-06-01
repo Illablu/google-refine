@@ -31,6 +31,10 @@ The functionality offered by Google Refine is paramount and provides the user wi
 
 Google Refine for SEO: [http://www.blindfiveyearold.com/find-keyword-modifiers-with-google-refine]
 
+"When I first saw Freebase Gridworks I was a very happy man. Here was a tool that tackled one of the biggest problems in data journalism: cleaning dirty data (and data is invariably dirty). The tool made it easy to identify variations of a single term, and clean them up, to link one set of data to another – and much more besides."
+
+    [http://ojb.journallocal.co.uk Online Journalism Blog] post [http://ojb.journallocal.co.uk/2010/11/11/data-cleaning-tool-relaunches-freebase-gridworks-becomes-google-refine/ Data cleaning tool relaunches: Freebase Gridworks becomes Google Refine]
+
 ===Tweets===
 
 "Damn! Wish I had this 5 years ago! RT @swiertz nice tools ! Format & clean your data with Google Refine http://goo.gl/UniR6 #cleanup #tools"
