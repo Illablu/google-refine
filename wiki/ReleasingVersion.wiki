@@ -1,0 +1,12 @@
+#summary Releasing a new version of Refine
+
+= Introduction =
+
+When releasing a new version of refine, the following steps should be followed:
+
+  # I think the first order of business is to make sure nothing has been broken in the trunk since the previous version. We need some volunteers to try out trunk/ for a few days.
+  # Change the version number in [http://code.google.com/p/google-refine/source/browse/trunk/main/src/com/google/refine/RefineServlet.java#60 RefineServlet.java].
+  # Compose the list of changes in the code and on the wiki.
+  # Build the distributions and upload them. Tag trunk/ into tags/n.n/.
+  # Update the [http://code.google.com/p/google-refine/source/browse/support/releases.js releases.js] file. 
+  # Announce on the mailing list.
