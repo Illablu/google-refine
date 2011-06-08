@@ -3,7 +3,7 @@
 Here are a few sample data sets to get you started on understanding how to use Google Refine
 
   * [http://infochimps.org/datasets/disasters-wordwide-from-1900-2008 Disasters worldwide from 1900-2008 at Infochimps]
-  * [http://www.sos.louisiana.gov/tabid/136/Default.aspx Louisiana elected officials] - must use Excel itself to convert the .xls file to a .tsv file first, because Java lib for dealing with .xls files doesn't like this particular .xls file
+  * [http://www.sos.louisiana.gov/tabid/136/Default.aspx Louisiana elected officials] - For Google Refine versions up to 2.0, you must use Excel itself to convert the .xls file to a .tsv file first because the Java library for dealing with .xls files doesn't like this particular .xls file. Google Refine versions 2.1 and above will successfully load the .xls directly
   * [http://www.data.gov/raw/8 Clean Air Status and Trends Network (CASTNET): Ozone] - 500K rows, 6 columns
   * [http://www.data.gov/raw/1175 Federal Advisory Committee Act (FACA) Committee Member List-2004] - 65K rows, 25 columns
   * [http://www.data.gov/raw/1554 U.S. Overseas Loans and Grants (Greenbook)] - 2K rows
