@@ -4,9 +4,15 @@
 
 When releasing a new version of refine, the following steps should be followed:
 
-  # I think the first order of business is to make sure nothing has been broken in the trunk since the previous version. We need some volunteers to try out trunk/ for a few days.
+  # Make sure the trunk is stable and nothing has broken since the previous version. We need developers to stabilize the trunk and some volunteers to try out trunk/ for a few days.
   # Change the version number in [http://code.google.com/p/google-refine/source/browse/trunk/main/src/com/google/refine/RefineServlet.java#60 RefineServlet.java].
   # Compose the list of changes in the code and on the wiki.
+  # Tag the release candidate in SVN by copying trunk/... to tags/2.1-rc1/...
+  # Build the release candidate kits using the shell script (not just Ant). This must be done on Linux or Mac currently and only Mac can build kits for all three platforms (Linux, Windows, Mac).:
+    ./build dist 2.1
+  # Upload the kits to http://code.google.com/p/google-refine/downloads/list
+  # Announce the beta/release candidate for testing
+  # Repeat build/release candidate/testing cycle, if necessary.
   # Build the distributions and upload them. Tag trunk/ into tags/n.n/.
-  # Update the [http://code.google.com/p/google-refine/source/browse/support/releases.js releases.js] file. 
+  # Update the [http://code.google.com/p/google-refine/source/browse/support/releases.js releases.js] file.  This triggers the prompt to users to update their installations.
   # Announce on the mailing list.
