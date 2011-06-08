@@ -17,19 +17,26 @@ Please be aware that none of this is carved in stone and can change any time, so
   * Add JSoup-based HTML parsing to GREL (issue 220 & issue 338) - new functions:  parseHtml, select, htmlAttr, htmlText, innerHtml, ownText
   * add Fixed Width importer (not enabled?)  
   * add Fusion table import support
+  * update to Apache POI 3.7 (Excel library)
+  * update to Apache Commons Codec 1.5
+  * new facet for exact duplicates (issue 398)
+  * save favorite/starred transforms (issue 222)
 
 ===Issues fixed===
 
+  * issue 401 - Export error reporting masks real error
   * issue 374 - INC function doesn't work for dates
+  * issue 351 - unable to export to Excel for projects with more than 256 columns
   * issue 334 - Fusion Table CSV import causes NPE
   * issue 294 - Export date value in CSV/TSV
   * issue 263 - & character parsed incorrectly in XML import
+  * issue 358 - attempts to compare two values with all stop words returns NaN
   * issue 276 - Character encoding issue with project create
   * issue 228 - partial fix?
   * issue 202 - sort text with accents http://code.google.com/p/google-refine/issues/detail?id=202
   * issue 197 - date wraparound at year boundary
   * issue 196 x - removing columns causes error and disables undo
-  * issue 185 x - Same reconciliation candidate for multiple says causes problems
+  * issue 185 x - Same reconciliation candidate for multiple cells causes problems
   * issue 184 - date.toString() doesn't work
   * issue 107 - non-ASCII characters don't display correctly during reconciliation
   * issue 61 - multi-line text literals don't work in XML importer
