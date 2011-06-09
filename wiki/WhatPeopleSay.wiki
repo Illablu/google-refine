@@ -142,6 +142,15 @@ Google Refine, in one minute, has saved me hours of work! http://bit.ly/d3mIXG
 
     [http://twitter.com/rubinsztajn Aaron Rubinstein] [http://twitter.com/#!/rubinsztajn/status/74164857364156417 view tweet]
 
+@mattwaite tells of his despair over the hours spent cleaning data that can now be cleaned in a few minutes in Google Refine #IRE11 #gannett
+
+    [http://twitter.com/#!/markschaver Mark Schaver] [http://twitter.com/#!/markschaver/status/78837142964547584 view tweet]
+
+@mattwaite also says #IRE2011 "It makes me want to drown in a bathtub when I look at Google Refine... all the hours of my life I've lost."
+
+    [http://twitter.com/#!/alicitabrennan alicitabrennan] [http://twitter.com/#!/alicitabrennan/status/78836868719984640 view tweet]
+
+
 =About Freebase Gridworks 1.x=
 
 === Blog Posts ===
