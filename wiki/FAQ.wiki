@@ -1,21 +1,21 @@
 #summary Frequently Asked Questions
 
-This is a collection of frequently asked questions on Google Refine. Feel free to add your own question to the comments, we'll try to answer to the best of our abilities and add them to this list.
+This is a collection of frequently asked questions on Google Refine. Feel free to ask your own question on [http://groups.google.com/group/google-refine/ the Google Refine mailing list] and we'll try to answer to the best of our abilities and add them to this list.
 
 ==Questions with Long Answers==
 
   * [FaqWhereIsDataStored Where is the data stored?]
-  * [FaqAllocateMoreMemory How to allocate more memory?] - I get `java.lang.OutOfMemoryError` or Refine feels SLOW. How do I expand the memory that it can use?
+  * [FaqAllocateMoreMemory How to allocate more memory?] - Symptoms: `java.lang.OutOfMemoryError` or Refine feels slow.
 
 ==Questions with Short Answers==
-
-*Question:* I've found a bug or want a new feature. Where do I report it?
-
-  Go to [http://code.google.com/p/google-refine/issues/list the Issues page] and click on the New issue link (left side of dark blue bar, below the Refine logo)
 
 *Question:* I have a question. Where do I ask?
 
   Send your question to [http://groups.google.com/group/google-refine/ the Google Refine mailing list].
+
+*Question:* I've found a bug or want a new feature. What should I do?
+
+  Consider first discussing it on [http://groups.google.com/group/google-refine/ the mailing list]. This will likely help characterize the issue for a good quality bug report or feature request which you can file on  [http://code.google.com/p/google-refine/wiki/Issues?tm=3 the Issues page]. 
 
 *Question:* Google Refine opens my browser then waits a long time trying to connect to the server at 165.135.222.96 or another address I don't recognize.
 
@@ -23,7 +23,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
 *Question:* What syntax of regular expression (regex) does Google Refine support?
 
-  The regular expression syntax is that of Java regex, not of Javascript. See [GRELRegex GREL Regular Expressions].
+  The regular expression syntax is that of Java regex, not of Javascript. See [UnderstandingRegularExpressions GREL Regular Expressions].
 
 *Question:* When is it going to be possible to load things into the Freebase main graph, directly or indirectly?
 
@@ -31,16 +31,22 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
 *Question:* How can I delete a whole row or several rows?*
 
-  Follow these steps
+  Follow these steps:
+    # Flag (or star) the row(s)
+    # In the dropdown above the flag you can get a facet, by going to Facet > Facet by flag.
+    # From the facet that opens select the 'true' option.
+    # In the dropdown menu above the flag you can go to Edit Rows > Remove all matching rows.
 
-  # Flag (or star) the row(s)
-  # In the dropdown above the flag you can get a facet, by going to Facet > Facet by flag.
-  # From the facet that opens select the 'true' option.
-  # In the dropdown menu above the flag you can go to Edit Rows > Remove all matching rows.
+*Question:* How do I make a Text Facet show more than 2000 choices?
 
-*Question:* How Do I Make a Text Facet Show More Than 2000 Choices?
+  From version 2.0, you can go to http://127.0.0.1:3333/preferences and set the facet limit using the preference key "ui.browsing.listFacet.limit". If you are trying to discover duplicates see the next question.
 
-  From version 2.0, you can go to http://127.0.0.1:3333/preferences and set the facet limit using the preference key "ui.browsing.listFacet.limit".
+*Question:* How do I find duplicates in a column?
+
+  Several options:
+    * create a Text Facet on a column and then in the facet click "Sort by: count". Any facets with a count of 2 or more are duplicates
+    * use the [GRELOtherFunctions facetCount()] function like `facetCount(value, 'value', 'column name') > 1` and select 'true' to show all rows that have duplicates
+      * from version 2.1, there is a shortcut for this, Facet → Customized facets → Duplicates facet
 
 *Question*: can Google Refine be used as a piece of a larger [http://en.wikipedia.org/wiki/Etl ETL] pipeline?
 
