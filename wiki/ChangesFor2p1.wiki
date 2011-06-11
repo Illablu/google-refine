@@ -28,7 +28,7 @@ Google Refine 2.1 is a maintenance release primarily focused on bug fixes.
   * issue 358 - attempts to compare two values with all stop words returns NaN
   * issue 276 - Character encoding issue with project create
   * issue 228 - partial fix?
-  * issue 202 - sort text with accents http://code.google.com/p/google-refine/issues/detail?id=202
+  * issue 202 - sort text with accents 
   * issue 197 - date wraparound at year boundary
   * issue 196 - removing columns causes error and disables undo
   * issue 185 - Same reconciliation candidate for multiple cells causes problems
