@@ -22,5 +22,6 @@ From the academia
   * [http://web.tagus.ist.utl.pt/~helena.galhardas/ajax.html AJAX] by H.Galhardas, D. Florescu, D. Shasha, E. Simon, J.P. Matsumoto, C.A. Saita
   * [http://queens.db.toronto.edu/project/clio/ Clio] - UToronto, IBM
   * [http://vis.stanford.edu/wrangler/ Data Wrangler]
+  * [http://www.stat.ucla.edu/~jeroen/ggplot2.html Yeroon.net/ggplot2] - a javascript web interface for R package, ggplot2 - Jeroen C.L. Ooms, Hadley Wickham
 
 Feel free to add suggestions in the comments. 
