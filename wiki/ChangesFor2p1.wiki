@@ -35,3 +35,5 @@ Google Refine 2.1 is a maintenance release primarily focused on bug fixes.
   * issue 184 - date.toString() doesn't work
   * issue 107 - non-ASCII characters don't display correctly during reconciliation
   * issue  61 - multi-line text literals don't work in XML importer
+
+[http://code.google.com/p/google-refine/issues/list?can=1&q=milestone%3A2.1&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles Full list] of changes
