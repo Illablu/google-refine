@@ -6,14 +6,14 @@ Google Refine 2.1 is a maintenance release primarily focused on bug fixes.
 
 ==Features==
 
+  * JSoup-based HTML parsing (issue 220 & issue 338) - new functions:  parseHtml, select, htmlAttr, htmlText, innerHtml, ownText
   * New codec & clustering options: Metaphone3 (American English) and Cologne Phonetic (German - issue 399)
+  * Google Fusion Table import support
+  * new facet for exact duplicates (issue 398)
+  * save favorite (starred) transforms (issue 222)
   * new math functions (issue 224) - acos, asin, atan, atan2, cos, cosh, sin, sinh, tan, tanh, even, odd, abs, fact, factn, combin, degrees, radian, gcd (greatest common denominator), lcm (least common mulitple), multinomial, quotient
   * new operator: modulo (%)
   * new constant: PI
-  * JSoup-based HTML parsing (issue 220 & issue 338) - new functions:  parseHtml, select, htmlAttr, htmlText, innerHtml, ownText
-  * Google Fusion Table import support
-  * new facet for exact duplicates (issue 398)
-  * save favorite/starred transforms (issue 222)
   * update to Apache POI 3.7 (Excel library)
   * update to Apache Commons Codec 1.5
 
