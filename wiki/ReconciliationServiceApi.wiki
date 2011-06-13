@@ -76,12 +76,12 @@ A call to a standard reconciliation service API for multiple queries looks like 
 The json object literal has zero or more arbitrary key, each of which has a value in the same format as a single query, e.g.
 
 {{{
-  http://foo.com/bar/reconcile?queries={ "q1" : { "query" : "foo" }, "q2" : { "query" : "bar" } }
+  http://foo.com/bar/reconcile?queries={ "q0" : { "query" : "foo" }, "q1" : { "query" : "bar" } }
 }}}
 
-"q1" and "q2" can be arbitrary strings. Here is a live example:
+"q0" and "q1" can be arbitrary strings. Note that the query counter starts at zero.  Here is a live example:
 
-  http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q1%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q2%22:{%22query%22:%22jaguar%22}}
+  http://standard-reconcile.freebaseapps.com/reconcile?queries={%22q0%22:{%22query%22:%22boston%22,%22type%22:%22/music/musical_group%22},%22q1%22:{%22query%22:%22jaguar%22}}
 
 
 =Query Response=
@@ -108,10 +108,10 @@ For multiple queries, the response is a JSON literal object with the same keys a
 
 {{{
   {
-    "q1" : {
+    "q0" : {
       "result" : { ... }
     },
-    "q2" : {
+    "q1" : {
       "result" : { ... }
     }
   }
