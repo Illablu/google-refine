@@ -18,7 +18,7 @@ All other arguments are optional:
 Examples: 
 You can parse the cells "Nov-09" and "11/09" using
 {{{
-value.toDate2('MM/yy','MMM-yy').toString('yyyy-MM')
+value.toDate('MM/yy','MMM-yy').toString('yyyy-MM')
 }}}
 
 ===`toString(o, optional string format)`===
