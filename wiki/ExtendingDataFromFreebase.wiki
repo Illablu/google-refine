@@ -1,6 +1,8 @@
 #summary (WORK IN PROGRESS: additional feature documentation on this coming soon - Thanks to Tom Morris )
 #labels TODO
 
+== Fetching Text Blurbs (descriptions) and Photos ==
+
 The Freebase graph stores many things, but 2 examples of useful data that are NOT stored in the graph are - text blurbs and photos.
 
 You can get the text blurbs (topic descriptions) by fetching them from the Blob store using
@@ -27,3 +29,10 @@ licenses than the rest of Freebase data since they are often provided
 by Wikipedia (or other contributors).
 
 If you need additional help with pulling in other Freebase properties or schema, then do not hesitate to ask us on the Refine mailing list.
+
+
+== Fetching Properties against a reconciled Freebase Type ==
+(TODO)
+
+== Fetching Properties from Freebase co-Types ==
+(TODO)
