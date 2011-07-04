@@ -295,3 +295,5 @@ own technology for this purpose, I suggest you check out these state-of-the-art 
 [http://www.propublica.org/site/author/jeff_larson Jeff Larson] ([http://www.propublica.org/ ProPublica]) - *[http://www.propublica.org/nerds/item/the-rainbow-connection-how-we-made-our-cdo-connections-graphic The Rainbow Connection: How We Made Our CDO Connections Graphic]*
 
 [http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/ Where to sleep in Turin: un esempio d’uso dei raw data piemontesi con Google Refine e SIMILE Exhibit]
+
+[http://www.timdavies.org.uk/ Tim Davies] - *[http://www.opendatacookbook.net/wiki/recipe/sliced_and_diced_aid_data_with_google_refine Sliced and diced aid data with google refine]*
