@@ -8,6 +8,10 @@ Google Refine is a desktop application in that you download it, install it, and 
   # Install it as detailed below for your operation system.
   # As long as Google Refine is running, you can point your browser at http://127.0.0.1:3333/ to use it, and you can even use it in several browser tabs and windows.
 
+===For Developers or Advanced users who can build from source===
+
+If you want the latest and greatest version, see [GetDevelopmentVersion How to get the development version].
+
 ===Windows===
 
 *Install:* Once you have downloaded the .zip file, uncompress it into a folder wherever you want (such as in `C:\Google-Refine`).
@@ -43,7 +47,3 @@ this will start Google Refine and open your browser to its starting page.
 By default (and for security reasons) Refine only listens to TCP requests coming from localhost (127.0.0.1). If you want to respond to TCP requests coming to any IP address the machine has, run refine like this from the command line
 
  ./refine -i 0.0.0.0
-
-===Development Version===
-
-If you want the latest and greatest version, see [GetDevelopmentVersion how to get the development version].
