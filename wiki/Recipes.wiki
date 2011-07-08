@@ -75,6 +75,28 @@ then you select only the range between the 2nd and 4th and you get
 
 then you join them together with the same separator character ":" and you get what you wanted "b:c:d".
 
+===Facet and Count duplicate patterns found in a cell value at each row===
+
+With strings that have duplicate words in them such as "Beef, Ground Beef", you may wish to see a count of the duplicates in each column's row.  Using value.ngram(1) only separates the words, but doesn't give a count.  So, first, standardize spacing in the cell value or find good alternate separation chars to use on your particular pattern if needed, and perhaps clean up spaces with GREL tranform of
+{{{
+value.replace(/\s+/,' ')
+}}}
+
+then using Jython, you can create a Custom Facet using something such as:
+
+{{{
+from sets import Set
+# function to show count of Duplicates in a List returning an array
+def countDuplicatesInList(dupedList):
+   uniqueSet = Set(item for item in dupedList)
+   return [(item, dupedList.count(item)) for item in uniqueSet]
+
+v = countDuplicatesInList(value.split(" "))
+for x in v[:]: # makes a slice copy of the entire list
+  if x[1]>1: # compares if the 2nd value in each mini list (x) is greater than 1, such as ["Beef", 2] 
+    return x
+}}}
+
 ===Find a sub pattern that exists at the end of a string===
 
 Sometimes you have a need beyond just `endsWith` to find a varying substring and want to know if that variable pattern is found at the end of a string.  You can add a Custom Text Facet and find this variable pattern with regex delmited by `/` characters such as `/.*(PR\d+)/`
