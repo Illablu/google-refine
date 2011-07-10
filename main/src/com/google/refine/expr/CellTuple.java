@@ -49,7 +49,6 @@ public class CellTuple implements HasFields {
         this.row = row;
     }
     
-    @Override
     public Object getField(String name, Properties bindings) {
         Column column = project.columnModel.getColumnByName(name);
         if (column != null) {
@@ -63,7 +62,6 @@ public class CellTuple implements HasFields {
         return null;
     }
 
-    @Override
     public boolean fieldAlsoHasFields(String name) {
         return true;
     }
