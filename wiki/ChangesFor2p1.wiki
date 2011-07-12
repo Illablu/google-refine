@@ -4,7 +4,7 @@
 
 Google Refine 2.1 is a maintenance release primarily focused on bug fixes.
 
-==Features==
+==New Features==
 
   * JSoup-based HTML parsing (issue 220 & issue 338) - new functions:  parseHtml, select, htmlAttr, htmlText, innerHtml, ownText
   * New codec & clustering options: Metaphone3 (American English) and Cologne Phonetic (German - issue 399)
@@ -19,6 +19,8 @@ Google Refine 2.1 is a maintenance release primarily focused on bug fixes.
 
 ==Bug Fixes==
 
+  * issue 415 - Operand evaluation order wrong for + and - operators
+  * issue 404 - Character set incorrectly detected during project create
   * issue 401 - Export error reporting masks real error
   * issue 374 - INC function doesn't work for dates
   * issue 351 - unable to export to Excel for projects with more than 256 columns
