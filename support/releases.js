@@ -2,6 +2,11 @@ var releases = {
     "homepage" : "http://code.google.com/p/google-refine/wiki/Downloads",
     "releases" : [
         {
+            "description": "Google Refine 2.1",
+            "version": "2.1",
+            "revision": "r2136"
+        },
+        {
             "description": "Google Refine 2.0",
             "version": "2.0",
             "revision": "r1836"
