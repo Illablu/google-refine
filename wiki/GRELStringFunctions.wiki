@@ -100,7 +100,13 @@ Returns the array of strings obtained by splitting s into substrings with the gi
 
 ===`smartSplit(string s, optional string sep)`===
 
-Returns the array of strings obtained by splitting `s` by the separator `sep`. Handles quotes properly. Guesses tab or comma separator if `sep` is not given.
+Returns the array of strings obtained by splitting `s` by the separator `sep`. Handles quotes properly. Guesses tab or comma separator if `sep` is not given.  Also, `value.escape('javascript')` is useful for previewing unprintable chars prior to using smartSplit.
+{{{
+smartSplit(value,"\n")  //split cell at Carriage Return or New Line char
+}}}
+
+
+
 
 ===`splitByCharType(s)`===
 
