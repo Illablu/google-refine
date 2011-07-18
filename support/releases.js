@@ -29,5 +29,9 @@ var releases = {
     ]
 };
 
+// Backward compatibility with 2.0 & 2.1 update checking code
+var GoogleRefineReleases;
+GoogleRefineReleases.releases = releases;
+
 // This is for back compatibility... remove this after Gridworks usage phases out
 var GridworksReleases = releases;
