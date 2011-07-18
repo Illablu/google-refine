@@ -143,6 +143,7 @@ Refine.SeparatorBasedParserUI.prototype._initialize = function() {
     this._optionContainer.unbind().empty().html(
         DOM.loadHTML("core", "scripts/index/parser-interfaces/separator-based-parser-ui.html"));
     this._optionContainerElmts = DOM.bind(this._optionContainer);
+    this._optionContainerElmts.previewButton.click(function() { self._updatePreview(); });
     
     var rowSeparatorValue = (this._config.lineSeparator == "\n") ? 'new-line' : 'custom';
     this._optionContainer.find(
