@@ -10,3 +10,5 @@ This can be done by manually *making a copy* of the Google Refine workspace dire
     * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
     * `C:\Users\(user id)\Google\Refine`
   * Linux: `~/.local/share/google/refine/`
+
+You can quickly get to this directory from the Google Refine start page by clicking on the `Browse workspace directory` link at the bottom left of the page.
