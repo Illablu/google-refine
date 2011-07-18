@@ -21,7 +21,15 @@
   * [ReconciliationServiceApi Reconciliation Service API]
   * [SuggestApi Suggest API]
 
+==Known Client libraries for Refine==
+
+  * https://github.com/maxogden/refine-python
+  * https://github.com/maxogden/refine-ruby
+  * https://github.com/maxogden/refine-python/wiki/Refine-API - More docs on Refine's API
+
+
 ==Miscellaneous==
 
+  * [FAQ FAQ] - covers running a Refine server programmatically
   * [Roadmap Roadmap]
   * [ReleasingVersion Releasing a new Version]
