@@ -51,3 +51,8 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 *Question*: can Google Refine be used as a piece of a larger [http://en.wikipedia.org/wiki/Etl ETL] pipeline?
 
   Not right now (version 2.0) but we're open and intrigued by the possibility of using Refine in 'batch mode' if the   community finds it a useful feature to have. It's worth pointing out that not all Refine features can work unsupervised and without human interaction (clustering, for example), but some can, and for those it makes sense.
+
+  You may also be interested in scripting a Refine server programmatically.  Here is some discussion and a project:
+     * http://groups.google.com/group/google-refine/msg/ee29cf8d660e66a9?hl=en
+     * https://groups.google.com/group/google-refine-dev/browse_thread/thread/33374842ccfebfcd#
+     * https://github.com/dfhuynh/grefine-proxy
