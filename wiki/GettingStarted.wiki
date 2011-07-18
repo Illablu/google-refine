@@ -21,7 +21,7 @@
 *Back for More?*
 
   * [WhatsNew See what's new lately]
-  * [UpgradingTo2p0 Understand how to upgrade] from Freebase Gridworks 1.1 to Google Refine 2.0
+  * [UpgradingTo2p0 Understand how to upgrade] from Freebase Gridworks 1.1 to Google Refine 2.1
 
 *If You Are a Developer, see*
 
