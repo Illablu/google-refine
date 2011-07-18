@@ -178,8 +178,8 @@ function registerImporting() {
      */
     
     IM.registerFormat("text", "Text files"); // generic format, no parser to handle it
-    IM.registerFormat("text/line-based", "Line-based text files"/*, "LineBasedParserUI",
-        new Packages.com.google.refine.importers.LineBasedImporter()*/);
+    IM.registerFormat("text/line-based", "Line-based text files", "LineBasedParserUI",
+        new Packages.com.google.refine.importers.LineBasedImporter());
     IM.registerFormat("text/line-based/*sv", "CSV / TSV / separator-based files", "SeparatorBasedParserUI",
         new Packages.com.google.refine.importers.SeparatorBasedImporter());
     IM.registerFormat("text/line-based/fixed-width", "Fixed-width field text files", "FixedWidthParserUI",
@@ -303,6 +303,7 @@ function init() {
             "scripts/index/default-importing-sources/sources.js",
             "scripts/index/parser-interfaces/preview-table.js",
             "scripts/index/parser-interfaces/separator-based-parser-ui.js",
+            "scripts/index/parser-interfaces/line-based-parser-ui.js",
             "scripts/index/parser-interfaces/fixed-width-parser-ui.js",
             "scripts/index/parser-interfaces/excel-parser-ui.js",
             "scripts/index/parser-interfaces/xml-parser-ui.js",

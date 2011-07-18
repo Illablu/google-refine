@@ -117,6 +117,7 @@ Refine.ExcelParserUI.prototype._initialize = function() {
     this._optionContainer.unbind().empty().html(
         DOM.loadHTML("core", "scripts/index/parser-interfaces/excel-parser-ui.html"));
     this._optionContainerElmts = DOM.bind(this._optionContainer);
+    this._optionContainerElmts.previewButton.click(function() { self._updatePreview(); });
     
     var sheetTable = this._optionContainerElmts.sheetRecordContainer[0];
     $.each(this._config.sheetRecords, function(i, v) {

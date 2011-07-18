@@ -86,6 +86,7 @@ Refine.XmlParserUI.prototype._initialize = function() {
     this._optionContainer.unbind().empty().html(
         DOM.loadHTML("core", "scripts/index/parser-interfaces/xml-parser-ui.html"));
     this._optionContainerElmts = DOM.bind(this._optionContainer);
+    this._optionContainerElmts.previewButton.click(function() { self._updatePreview(); });
     
     if (this._config.limit > 0) {
         this._optionContainerElmts.limitCheckbox.attr("checked", "checked");
