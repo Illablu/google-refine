@@ -1,0 +1,12 @@
+#summary How to back up all Google Refine's data
+
+It is possible to backup each project individually by opening the project, then going to the `export` dropdown menu and selecting `export project`.  However, you may wish a quick way to quickly backup all your projects, particularly if you are upgrading to a new version of Google Refine.
+
+This can be done by manually *making a copy* of the Google Refine workspace directory. *Do not move* that directory, just copy.  The location of the Google Refine workspace directory varies between operating systems, and these are listed below:
+
+  * MacOSX: `~/Library/Application Support/Google/Refine/`
+  * Windows: depending on the Windows version, the data is in one of these directories
+    * `C:\Documents and Settings\(user id)\Local Settings\Application Data\Google\Refine`
+    * `C:\Users\(user id)\AppData\Roaming\Google\Refine`
+    * `C:\Users\(user id)\Google\Refine`
+  * Linux: `~/.local/share/google/refine/`
