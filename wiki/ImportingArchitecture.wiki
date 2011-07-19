@@ -26,3 +26,51 @@ If your extension requires a very unique importing work flow, or a very novel fe
 
 =The Create Project Action Area=
 
+The Create Project action area is itself extensible. Initially, it embeds a set of finger tabs corresponding to a variety of "source selection UIs": you can select a source of data by specifying a file on your computer, or you can specify the URL to a publicly accessible data file or data feed, or you can paste in from the clipboard a chunk of data.
+
+There are actually 3 points of extension in the Create Project action area, and the first is invisible.
+
+==Importing Controllers==
+
+The Create Project action area manages a list of "importing controllers". Each controller follows a particular work flow. There is one default importing controller (refine/main/webapp/modules/core/scripts/index/default-importing-sources/controller.js). Its work flow assumes that the data should be retrieved and cached in whole, and then it's processed in order to generate a preview for the user to inspect. (If the data should not be retrieved and cached in whole before previewing, then another importing controller is needed.)
+
+An importing controller is just logic, but it can manifest itself by registering one or more data source UIs and one or more custom panels in the Create Project action area.
+
+An extension can register any number of importing controller. The default importing controller is registered like so (refine/main/webapp/modules/core/scripts/index/default-importing-sources/controller.js)
+
+{{{
+Refine.CreateProjectUI.controllers.push(Refine.DefaultImportingController);
+}}}
+
+Each controller is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method.
+
+==Data Source Selection UIs==
+
+Data source selection UIs are another point of extensibility in the Create Project action area. As mentioned previously, by default there are 3 data source UIs. Those are added by the default importing controller.
+
+Extensions can also add their own data source UIs. A data source selection UI object can be registered like so
+
+{{{
+createProjectUI.addSourceSelectionUI({
+  label: "This Computer",
+  id: "local-computer-source",
+  ui: theDataSourceSelectionUIObject
+});
+}}}
+
+`theDataSourceSelectionUIObject` is an object that has the following member methods:
+
+  * `attachUI(bodyDiv)`
+  * `focus()`
+
+If you want to install a data source selection UI that is managed by the default importing controller, then register its UI class with the default importing controller, like so (refine/main/webapp/modules/core/scripts/index/default-importing-sources/sources.js):
+
+{{{
+Refine.DefaultImportingController.sources.push({
+    "label": "This Computer",
+    "id": "upload",
+    "uiClass": ThisComputerImportingSourceUI
+});
+}}}
+
+The default importing controller will assume that the `uiClass` field is a constructor function and call it with one argument--the controller object itself. See refine/main/webapp/modules/core/scripts/index/default-importing-sources/sources.js for examples of such a source selection UI.
