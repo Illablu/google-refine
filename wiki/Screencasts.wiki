@@ -1,5 +1,7 @@
 #summary Screencasts about Google Refine
 
-<wiki:video url="http://www.youtube.com/watch?v=yNccGtn3Wb0"/>
+<wiki:video url="http://www.youtube.com/watch?v=B70J_H_zAWM" width="720" height="500" />
 
-<wiki:video url="http://www.youtube.com/watch?v=45EnWK-fE9k"/>
+<wiki:video url="http://www.youtube.com/watch?v=cO8NVCs_Ba0" width="720" height="500" />
+
+<wiki:video url="http://www.youtube.com/watch?v=5tsyz3ibYzk" width="720" height="500" />
