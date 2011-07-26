@@ -291,3 +291,19 @@ To do this, there is a special numeric facet called "Unicode charcode Facet" tha
 == Spot Values Potentially Placed in the wrong Column ==
 
 Another useful numeric facet is the "Text Length Facet" which builds a distribution of lengths of the strings contained in a particular column. Here too spotting outliers, meaning strings that are too big or too small, might be an indication of a problem.
+
+== ISBN Calculations & Manipulations ==
+===ISBN-10===
+Compute ISBN-10 check digit:`grel:sum(forRange(1,10,1,i,toNumber(value[i])*i))%11`
+
+Check computed value against check digit: {{{grel:if(value==10,'X',toString(round(value)))==cells['ISBN10'].value[10]}}}
+
+Convert ISBN-10 check digit to number ('X' == 10) {{{grel:if(toLowercase(value[10])=='x',10,toNumber(value[10]))}}}
+
+
+===Convert an ISBN-10 to ISBN-13===
+Take the first 9 digits and prepend 978: {{{grel:'978'+value[1,10]}}}
+
+Compute the ISBN-13 check digit: {{{grel:(10-(sum(forRange(0,12,1,i,toNumber(value[i])*(1+((i)%2*2)))) %10))%10}}}
+
+Append the check digit to the 12-digit base
