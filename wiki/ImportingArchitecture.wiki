@@ -1,6 +1,6 @@
 #summary Importing architecture
 
-This is currently applicable only to the code in branches/new-importing-ui/.
+This is currently applicable only to the code in trunk/.
 
 = Introduction =
 
@@ -34,15 +34,20 @@ There are actually 3 points of extension in the Create Project action area, and 
 
 The Create Project action area manages a list of "importing controllers". Each controller follows a particular work flow. There is one default importing controller (refine/main/webapp/modules/core/scripts/index/default-importing-sources/controller.js). Its work flow assumes that the data should be retrieved and cached in whole, and then it's processed in order to generate a preview for the user to inspect. (If the data should not be retrieved and cached in whole before previewing, then another importing controller is needed.)
 
-An importing controller is just logic, but it can manifest itself by registering one or more data source UIs and one or more custom panels in the Create Project action area.
+An importing controller is just programming logic, but it can manifest itself visually by registering one or more data source UIs and one or more custom panels in the Create Project action area. (The default importing controller registers 3 such custom panels, which act like pages of a wizard.)
 
-An extension can register any number of importing controller. The default importing controller is registered like so (refine/main/webapp/modules/core/scripts/index/default-importing-sources/controller.js)
+An extension can register any number of importing controller. Each controller is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method. The default importing controller's code looks like this (refine/main/webapp/modules/core/scripts/index/default-importing-controller/controller.js):
 
 {{{
-Refine.CreateProjectUI.controllers.push(Refine.DefaultImportingController);
-}}}
+Refine.DefaultImportingController = function(createProjectUI) {
+  this._createProjectUI = createProjectUI; // save a reference to the create project action area
 
-Each controller is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method.
+  this._progressPanel = createProjectUI.addCustomPanel(); // create a custom panel
+  this._progressPanel.html('...'); // render the custom panel
+  ... do other stuff ...
+};
+Refine.CreateProjectUI.controllers.push(Refine.DefaultImportingController); // register the controller
+}}}
 
 ==Data Source Selection UIs==
 
