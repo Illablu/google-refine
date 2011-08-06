@@ -32,9 +32,9 @@ There are actually 3 points of extension in the Create Project action area, and 
 
 ==Importing Controllers==
 
-The Create Project action area manages a list of "importing controllers". Each controller follows a particular work flow. There is one default importing controller (refine/main/webapp/modules/core/scripts/index/default-importing-sources/controller.js). Its work flow assumes that the data should be retrieved and cached in whole, and then it's processed in order to generate a preview for the user to inspect. (If the data should not be retrieved and cached in whole before previewing, then another importing controller is needed.)
+The Create Project action area manages a list of "importing controllers". Each controller follows a particular work flow (in UI terms, think "wizard"). Refine comes with a "default importing controller" (refine/main/webapp/modules/core/scripts/index/default-importing-controller/controller.js) and its work flow assumes that the data can be retrieved and cached in whole before getting processed in order to generate a preview for the user to inspect. (If the data cannot be retrieved and cached in whole before previewing, then another importing controller is needed.)
 
-An importing controller is just programming logic, but it can manifest itself visually by registering one or more data source UIs and one or more custom panels in the Create Project action area. (The default importing controller registers 3 such custom panels, which act like pages of a wizard.)
+An importing controller is just programming logic, but it can manifest itself visually by registering one or more data source UIs and one or more custom panels in the Create Project action area. The default importing controller registers 3 such custom panels, which act like pages of a wizard.
 
 An extension can register any number of importing controller. Each controller is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method. The default importing controller's code looks like this (refine/main/webapp/modules/core/scripts/index/default-importing-controller/controller.js):
 
@@ -78,4 +78,29 @@ Refine.DefaultImportingController.sources.push({
 });
 }}}
 
-The default importing controller will assume that the `uiClass` field is a constructor function and call it with one argument--the controller object itself. See refine/main/webapp/modules/core/scripts/index/default-importing-sources/sources.js for examples of such a source selection UI.
+The default importing controller will assume that the `uiClass` field is a constructor function and call it with one argument--the controller object itself. That constructor function should save the controller object for later use. More specifically, for data source UIs that use the default importing controller, they can call the controller to kickstart the process that retrieves and caches the data to import:
+
+{{{
+controller.startImportJob(form, "... status message ...");
+}}}
+
+The argument `form` is a jQuery-wrapped FORM element that will get submitted to the server side at the command /command/core/create-importing-job. That command and the default importing controller will take care of uploading or downloading the data, caching it, updating the client side's progress display, and then showing the next importing step when the data is fully cached.
+
+See refine/main/webapp/modules/core/scripts/index/default-importing-sources/sources.js for examples of such source selection UIs. While we write about source selection UIs managed by the default importing controller here, chances are your own extension will not be adding such a new source selection UI. Your extension probably adds with a new importing controller as well as a new source selection UI that work together.
+
+==File Selection Panel==
+
+
+
+==Parsing UI Panel==
+
+
+=Server-Side Components=
+
+==ImportingController==
+
+==UrlRewriter==
+
+==FormatGuesser==
+
+==ImportingParser==
