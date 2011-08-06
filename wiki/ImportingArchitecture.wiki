@@ -36,7 +36,7 @@ The Create Project action area manages a list of "importing controllers". Each c
 
 An importing controller is just programming logic, but it can manifest itself visually by registering one or more data source UIs and one or more custom panels in the Create Project action area. The default importing controller registers 3 such custom panels, which act like pages of a wizard.
 
-An extension can register any number of importing controller. Each controller is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method. The default importing controller's code looks like this (refine/main/webapp/modules/core/scripts/index/default-importing-controller/controller.js):
+An extension can register any number of importing controller. Each controller has a client-side part and a server-side part. Its client-side part is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller (client-side) is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method. The default importing controller's client-side code looks like this (refine/main/webapp/modules/core/scripts/index/default-importing-controller/controller.js):
 
 {{{
 Refine.DefaultImportingController = function(createProjectUI) {
@@ -48,6 +48,8 @@ Refine.DefaultImportingController = function(createProjectUI) {
 };
 Refine.CreateProjectUI.controllers.push(Refine.DefaultImportingController); // register the controller
 }}}
+
+We will cover the server-side code below.
 
 ==Data Source Selection UIs==
 
