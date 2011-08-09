@@ -2,21 +2,8 @@
 
 == Introduction ==
 
-Google Refine does not currently support plugins, but they are planned for a future release.  This page keeps track of possible areas which could be exposed as plugin interfaces.
+Google Refine 2.0 (November 2010) and later supports third-party extensions/plugins.
 
+See WriteAnExtension for more information on writing your own extension.
 
-== Possible Interfaces ==
-
-===Commands===
-  * RefineServlet is the class which creates and calls commands
-
-===Importers===
-  * CreateProjectCommand is the class which creates and calls importers
-
-===Exporters===
-  * ExportRowsCommand is the class which creates and calls exporters
-
-===Expression Languages===
-  * MetaParser is the class which creates and calls expression languages
-    * Jython
-    * Clojure 
+ 
