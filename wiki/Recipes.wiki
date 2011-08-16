@@ -75,6 +75,10 @@ then you select only the range between the 2nd and 4th and you get
 
 then you join them together with the same separator character ":" and you get what you wanted "b:c:d".
 
+===Removing duplicate rows when Exact values are found in a column===
+
+Here is a general way to handle de-duplication of row values.  Sometimes you have Exact string duplicates in a column, that Clustering will not expose (they're exact, not similar) and you have a need to Flag those duplicates, and possibly remove them.  You can Sort the column, then choose Sort menu (in blue color in header) and choose to reorder rows permanently, then use Edit cells -> Blank down, to blank out the duplicate values in that row (keeping the first value in each duplicate grouping).  On that column, you can then use Facet -> Customized facets -> Facet by blank and set to True, which will show the rows that were blanked out and had duplicate values in that column.  You can then use All (1st dropdown column) -> Edit rows -> Remove all matching rows, to remove the duplicate rows.
+
 ===Facet and Count duplicate patterns found in a cell value at each row===
 
 With strings that have duplicate words in them such as "Beef, Ground Beef", you may wish to see a count of the duplicates in each column's row.  Using value.ngram(1) only separates the words, but doesn't give a count.  So, first, standardize spacing in the cell value or find good alternate separation chars to use on your particular pattern if needed, and perhaps clean up spaces with GREL tranform of
