@@ -77,7 +77,7 @@ then you join them together with the same separator character ":" and you get wh
 
 ===Removing duplicate rows when Exact values are found in a column===
 
-Here is a general way to handle de-duplication of row values.  Sometimes you have Exact string duplicates in a column, that Clustering will not expose (they're exact, not similar) and you have a need to Flag those duplicates, and possibly remove them.  You can Sort the column, then choose Sort menu (in blue color in header) and choose to reorder rows permanently, then use Edit cells -> Blank down, to blank out the duplicate values in that row (keeping the first value in each duplicate grouping).  On that column, you can then use Facet -> Customized facets -> Facet by blank and set to True, which will show the rows that were blanked out and had duplicate values in that column.  You can then use All (1st dropdown column) -> Edit rows -> Remove all matching rows, to remove the duplicate rows.
+In Release 2.1+ there is now a Facet -> Customized Facets -> Duplicates Facet that can be applied on more than one column as needed.
 
 ===Facet and Count duplicate patterns found in a cell value at each row===
 
