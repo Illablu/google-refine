@@ -45,7 +45,7 @@ If you reconcile against [http://www.freebase.com/ Freebase], you can then align
 
 For complicated tasks that are commonly done, just follow recipes that other folks have discovered and written up.  A recipe is just a sequence of steps, and tips and tricks.
 
-There are *[Recipes Quick Recipes]*
+There are *[Recipes Quick Recipes]*  (like removing duplicate row values, etc.)
 
 and there are full recipes:
 
