@@ -8,8 +8,8 @@ Where to start?
 
 Love it so much?
 
-  * [HowToParticipate Join in] with the development or help spread the meme about GoogleRefine
-  * [GetDevelopmentVersion Get the development version] so you can play with all the latest and greatest features, but if you are not afraid of bugs
+  * [HowToParticipate Join in] with the development or help spread the meme about Google Refine.
+  * [GetDevelopmentVersion Get the development version] so you can play with all the latest and greatest features, but if you are not afraid of bugs.
 
 =Feature Areas=
 
