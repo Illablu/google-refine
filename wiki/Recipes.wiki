@@ -79,6 +79,14 @@ then you join them together with the same separator character ":" and you get wh
 
 In Release 2.1+ there is now a Facet -> Customized Facets -> Duplicates Facet that can be applied on more than one column as needed.
 
+However, to remove subsequent instances of duplicates (any string), use this method:
+
+  # Sort (on the column that has duplicates or potentially)
+  # Reorder rows permanently (this option is in blue color SORT link in header)
+  # Edit cells -> Blank down
+  # Facet -> Customized Facets -> Facet by blank (click True)
+  # All -> Edit rows -> Remove all matching rows
+
 ===Facet and Count duplicate patterns found in a cell value at each row===
 
 With strings that have duplicate words in them such as "Beef, Ground Beef", you may wish to see a count of the duplicates in each column's row.  Using value.ngram(1) only separates the words, but doesn't give a count.  So, first, standardize spacing in the cell value or find good alternate separation chars to use on your particular pattern if needed, and perhaps clean up spaces with GREL tranform of
