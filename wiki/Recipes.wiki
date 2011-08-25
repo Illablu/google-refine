@@ -77,9 +77,9 @@ then you join them together with the same separator character ":" and you get wh
 
 ===Removing duplicate rows when Exact values are found in a column===
 
-In Release 2.1+ there is now a Facet -> Customized Facets -> Duplicates Facet that can be applied on more than one column as needed.
+In Release 2.1+ there is now a Facet -> Customized Facets -> Duplicates Facet that can be applied on more than one column as needed.  This easily applies for you a facetCount(value, 'value', 'Column') > 1 which shows ALL rows having more than 1 duplicate value in the column.
 
-However, to remove subsequent instances of duplicates (any string), use this method:
+However, to ONLY remove subsequent instances of duplicates (any string), use this method:
 
   # Sort (on the column that has duplicates or potentially)
   # Reorder rows permanently (this option is in blue color SORT link in header)
