@@ -1,4 +1,4 @@
-#summary Converting HTML markup to plain text
+#summary Extracting & Converting HTML markup
 
 = Introduction =
 
@@ -18,7 +18,22 @@ replace(value,/<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/
 }}}
 
 Press OK, and you'll soon have a new column with the plain text extracted from *Col1*.
+----
+= Extract HTML attributes, text, links with integrated GREL commands =
 
+*Note*: Now included in 2.1 version are HTML functions (Thanks Iain Sproat!) built upon [http://jsoup.org jsoup.org] which is a Java library built on [http://www.crummy.com/software/BeautifulSoup/ BeautifulSoup].
+
+Useful Common Examples:
+
+  Extract `<table>` rows from a `<div ID=content>`:
+{{{
+value.parseHtml().select("div#content")[0].select("tr")
+}}}
+
+  Simple Web Scrapping (Web Scraper) can be made in Google Refine with a pattern.  For example, you can add a new column based on an HTML page that has a bunch of links, where you need to Loop and Extract (using `forEach()`) all the `<a href=>` links based upon a regex pattern (such as those links containing a number digit \\d+) and join the array so that you can split and Fetch URLs on all those extracted links to scrape even more data off each HTML link with another Fetch URLs pass. :
+{{{
+forEach(value.parseHtml().select("a[href~=\\d+]"),e,e.htmlAttr("href")).join("SplitCharsGoHere")
+}}}
 ----
 = Using Jython and BeautifulSoup to handle Entity Extraction and HTML markup removal =
 
@@ -51,13 +66,4 @@ soup = BeautifulSoup(value)
 text = soup.table.findAllNext(text=True)
 
 return text
-}}}
-----
-= Using jsoup.org library to handle Entity Extraction and HTML markup removal =
-
-*Note*: Now included in Trunk version are HTML functions (Thanks Iain!) built upon [http://jsoup.org jsoup.org] which is a Java library built on BeautifulSoup.
-
-More Examples and a full tutorial coming soon.  But for now, here's a quick example:
-{{{
-value.parseHtml().select("div#content")[0].select("tr")
 }}}
