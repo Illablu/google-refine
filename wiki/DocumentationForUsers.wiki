@@ -51,7 +51,7 @@ and there are full recipes:
 
   * [Geocoding Geocoding] - translating street addresses to lat/lng coordinates
   * [FetchingURLsFromWebServices Fetching URLs From Web Services] - grabbing from the Web more data related to the data you already have
-  * [StrippingHTML Stripping HTML Tags]
+  * [StrippingHTML Web Scraping & Extracting items from HTML pages]
   * [RecipeApacheLogs Analyzing Apache Logs]
 
 
