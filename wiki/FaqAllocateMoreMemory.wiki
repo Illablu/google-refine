@@ -8,7 +8,7 @@ A typical best practice is to start with no more than 50% of your available phys
 
 Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only have 1 gig of physical memory left over.  Starting with a setting of 512m (50% of 1 Gig) can avoid disk caching problems processing large files with many rows and columns. (A 200 meg text file of 331,000 rows x 50 columns)
 
-*Windows:*
+===Windows===
 
 Open a "command prompt", 'cd' to the folder where Google Refine is installed, then type
 
@@ -37,7 +37,7 @@ Also, in order to use more than 3.5 Gigs RAM you need to download and install Ja
 
 [http://google-refine.googlecode.com/issues/attachment?aid=-2884257417064877035&name=JavaHomePathWin7_64bit.png&token=089b7b02a742d6ab3b07c9dc8664d3b3&inline=1]
 
-*Mac:*
+===Mac===
 
 If you have downloaded the ".dmg" package and you start Google Refine by double clicking on it, follow these instructions
 
@@ -52,7 +52,7 @@ If you have downloaded the ".dmg" package and you start Google Refine by double 
   * save file
   * start Google Refine again
 
-*Linux (or Mac):*
+===Linux (or Mac):===
 
 If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
 
