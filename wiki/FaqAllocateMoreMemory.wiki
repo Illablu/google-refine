@@ -1,6 +1,8 @@
 #summary FAQ: How to allocate more memory?
 
-Since Google Refine is a Java application that utilizes the JVM, you might need to allocate enough memory to handle processing large files and avoid java.lang.OutOfMemoryError: Java heap space errors.  But, you will also need to balance that allocation with the needs of your OS to prevent disk caching problems.
+If you are working with large data sets, you'll probably want to allow Google Refine to allocate more memory than the default.  If you get OutOfMemoryError reported or if your operations are taking a very long time to run, you should allocate more memory if possible. You will, however, need to balance that allocation with the needs of your operating system.
+
+Even if you don't get OutOfMemoryError, when you are getting close to running out of heap space (memory), the system will spend more and more time managing the heap (ie garbage collecting) and less time doing useful work on your operations.
 
 A typical best practice is to start with no more than 50% of your available physical memory, since certain OS's will utilize up to 1 Gig or more of physical RAM.
 
@@ -55,3 +57,7 @@ If you have downloaded the ".dmg" package and you start Google Refine by double 
 If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
 
 `./refine -m 1024m`
+
+== One final note ==
+
+If your project is big enough to need more than the default amount of memory, you probably also want to consider turning off "detect types automatically" on import as well.  It's convenient, but less efficient than explicitly converting any columns that you need as a data type other than the default "string" type.
