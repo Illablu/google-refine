@@ -2,39 +2,6 @@
 
 =About the Latest Version=
 
-===Blogs===
-
-"Google Refine isn’t going to solve the problem of poor data availability, but for those who manage to gain access to existing records, it can be a powerful tool for transparency."
-
-    [http://jackfruity.com/ Rebekah Heacock], co-director of the [http://transparency.globalvoicesonline.org/ Technology for Transparency Network] and a Project Coordinator at Harvard’s [http://cyber.law.harvard.edu/ Berkman Center for Internet and Society] -  [http://sunlightfoundation.com/blog/ Sunlight Foundation], [http://sunlightfoundation.com/blog/2011/01/06/tools-for-transparency-google-refine/ Tools for transparency: Google Refine].
-
-"Google Refine is an immensely powerful tool for dealing with "messy" data, and it sports a myriad of advanced features for massaging and analyzing complex data sets"
-
-    Dmitri Popov ([http://www.linux-magazine.com/ Linux Magazine]) - [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Use-Google-Refine-to-Massage-Your-Data Use Google Refine to Massage Your Data]
-
-"For anyone who’s ever had to sort through messy data to try to turn up a meaningful treatment, and who hasn’t, this tool is a godsend."
-
-    [http://library.law.uvic.ca/services/contact-us/mrl Michael Lines], [http://www.slaw.ca/ SLAW] - [http://www.slaw.ca/2010/11/12/google-refine-2/ Google Refine 2.0]
-
-"Google Refine 2.0 will serve an excellent back-end for data visualization services. It has been well received by the Chicago Tribune and open-government data communities. Along with Google Squared, Refine 2.0 can create a powerful research tool."
-
-    Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
-
-
-Google Refine (the program formerly known as Freebase Gridworks) is described by its creators as a “power tool for working with messy data” but could very well be advertised as “remedy for eye fatigue, migraines, depression, and other symptoms of prolonged data-cleaning.”
-
-    Dan Nguyen, ProPublica - [http://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning Chapter 1. Using Google Refine to Clean Messy Data]
-
-The functionality offered by Google Refine is paramount and provides the user with a simple interface with powerful data manipulation capabilities. ... I solicited Ryan Boyles to develop a script to sanitize the data which, in total, took about 45 minutes to get the data into a proper format. Utilizing Google Refine I was able to replicate the work of his script in about 15 minutes!
-
-    Logan Lynn, The Data Revolution - [http://www.thedatarevolution.com/2011/01/14/get-started-with-google-refine-2-0/ Get Started With Google Refine 2.0]
-
-Google Refine for SEO: [http://www.blindfiveyearold.com/find-keyword-modifiers-with-google-refine]
-
-"When I first saw Freebase Gridworks I was a very happy man. Here was a tool that tackled one of the biggest problems in data journalism: cleaning dirty data (and data is invariably dirty). The tool made it easy to identify variations of a single term, and clean them up, to link one set of data to another – and much more besides."
-
-    [http://ojb.journallocal.co.uk Online Journalism Blog] post [http://ojb.journallocal.co.uk/2010/11/11/data-cleaning-tool-relaunches-freebase-gridworks-becomes-google-refine/ Data cleaning tool relaunches: Freebase Gridworks becomes Google Refine]
-
 ===Tweets===
 
 "Damn! Wish I had this 5 years ago! RT @swiertz nice tools ! Format & clean your data with Google Refine http://goo.gl/UniR6 #cleanup #tools"
@@ -173,6 +140,44 @@ Totally and utterly in love with Google Refine right now...
 The more I learn about Google Refine the more excited I get about using it. #Analyst4Life
 
     [http://twitter.com/#!/observacious Kim Z Dale] [http://twitter.com/#!/observacious/status/108264180527792128 view tweet]
+
+@edwardog @leslieyoung GRefine = godsend ... :)
+
+    [http://twitter.com/#!/buzzdata buzzdata] [http://twitter.com/#!/buzzdata/status/113634815487655936 view tweet]
+
+
+===Blogs===
+
+"Google Refine isn’t going to solve the problem of poor data availability, but for those who manage to gain access to existing records, it can be a powerful tool for transparency."
+
+    [http://jackfruity.com/ Rebekah Heacock], co-director of the [http://transparency.globalvoicesonline.org/ Technology for Transparency Network] and a Project Coordinator at Harvard’s [http://cyber.law.harvard.edu/ Berkman Center for Internet and Society] -  [http://sunlightfoundation.com/blog/ Sunlight Foundation], [http://sunlightfoundation.com/blog/2011/01/06/tools-for-transparency-google-refine/ Tools for transparency: Google Refine].
+
+"Google Refine is an immensely powerful tool for dealing with "messy" data, and it sports a myriad of advanced features for massaging and analyzing complex data sets"
+
+    Dmitri Popov ([http://www.linux-magazine.com/ Linux Magazine]) - [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Use-Google-Refine-to-Massage-Your-Data Use Google Refine to Massage Your Data]
+
+"For anyone who’s ever had to sort through messy data to try to turn up a meaningful treatment, and who hasn’t, this tool is a godsend."
+
+    [http://library.law.uvic.ca/services/contact-us/mrl Michael Lines], [http://www.slaw.ca/ SLAW] - [http://www.slaw.ca/2010/11/12/google-refine-2/ Google Refine 2.0]
+
+"Google Refine 2.0 will serve an excellent back-end for data visualization services. It has been well received by the Chicago Tribune and open-government data communities. Along with Google Squared, Refine 2.0 can create a powerful research tool."
+
+    Chinmoy Kanjilal, Techie Buzz - [http://techie-buzz.com/foss/google-refine-data-tool.html Google Refine 2.0: Power Tools for Working With Data]
+
+
+Google Refine (the program formerly known as Freebase Gridworks) is described by its creators as a “power tool for working with messy data” but could very well be advertised as “remedy for eye fatigue, migraines, depression, and other symptoms of prolonged data-cleaning.”
+
+    Dan Nguyen, ProPublica - [http://www.propublica.org/nerds/item/using-google-refine-for-data-cleaning Chapter 1. Using Google Refine to Clean Messy Data]
+
+The functionality offered by Google Refine is paramount and provides the user with a simple interface with powerful data manipulation capabilities. ... I solicited Ryan Boyles to develop a script to sanitize the data which, in total, took about 45 minutes to get the data into a proper format. Utilizing Google Refine I was able to replicate the work of his script in about 15 minutes!
+
+    Logan Lynn, The Data Revolution - [http://www.thedatarevolution.com/2011/01/14/get-started-with-google-refine-2-0/ Get Started With Google Refine 2.0]
+
+Google Refine for SEO: [http://www.blindfiveyearold.com/find-keyword-modifiers-with-google-refine]
+
+"When I first saw Freebase Gridworks I was a very happy man. Here was a tool that tackled one of the biggest problems in data journalism: cleaning dirty data (and data is invariably dirty). The tool made it easy to identify variations of a single term, and clean them up, to link one set of data to another – and much more besides."
+
+    [http://ojb.journallocal.co.uk Online Journalism Blog] post [http://ojb.journallocal.co.uk/2010/11/11/data-cleaning-tool-relaunches-freebase-gridworks-becomes-google-refine/ Data cleaning tool relaunches: Freebase Gridworks becomes Google Refine]
 
 
 
