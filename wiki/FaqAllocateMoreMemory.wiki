@@ -8,6 +8,10 @@ A typical best practice is to start with no more than 50% of your available phys
 
 Example: If you have 2 Gigs of memory and run Windows Vista or 7, you might only have 1 gig of physical memory left over.  Starting with a setting of 512m (50% of 1 Gig) can avoid disk caching problems processing large files with many rows and columns. (A 200 meg text file of 331,000 rows x 50 columns)
 
+=== Side note about dealing with larger datasets ===
+
+If your project is big enough to need more than the default amount of memory, you probably also want to consider turning off "detect types automatically" on import as well.  It's convenient, but less efficient than explicitly converting any columns that you need as a data type other than the default "string" type.
+
 ===Windows===
 
 Open a "command prompt", 'cd' to the folder where Google Refine is installed, then type
@@ -57,7 +61,3 @@ If you have downloaded the ".dmg" package and you start Google Refine by double 
 If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
 
 `./refine -m 1024m`
-
-== One final note ==
-
-If your project is big enough to need more than the default amount of memory, you probably also want to consider turning off "detect types automatically" on import as well.  It's convenient, but less efficient than explicitly converting any columns that you need as a data type other than the default "string" type.
