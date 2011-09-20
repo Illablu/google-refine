@@ -36,6 +36,11 @@ value.parseHtml().select("div#content")[0].select("tr").toString()
 {{{
 forEach(value.parseHtml().select("a[href~=\\d+]"),e,e.htmlAttr("href")).join("SplitCharsGoHere")
 }}}
+
+After adding that new column with the above GREL snippet, you can then do Edit Cells -> Split multi-valued cells... and use your separator chars phrase, such as `"SplitCharsGoHere"` or `"--SPLITME--"` or `"|||||"` ; Whatever chars you choose to do your `join()`.
+
+After the Split multi-valued cells operation finishes, you should be left in records mode view (rather than row mode view) and you now have a bunch of URLs extracted from EACH original HTML record where you can perform another Fetch URLs operation on all of them.
+
 ----
 = Using Jython and BeautifulSoup to handle Entity Extraction and HTML markup removal =
 
