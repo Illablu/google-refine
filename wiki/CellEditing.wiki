@@ -56,7 +56,30 @@ When you click OK, the data set will become
 
 For more information on expressions, see [UnderstandingExpressions Understanding Expressions].
 
+===Splitting Multiple Values within Cells to produce Records===
 
+Refine has a feature called *Split multi-valued cells* that can essentially create fields similar to a database record.  Take the following example,
+
+|| name || data type || data record ||
+|| Kate Moss || Person || profession:Model,href:"/0122-kate-moss",title="Kate Moss",hair:brown ||
+|| Marilyn Monroe || Person || profession:Actor,href:"/1488-marilyn-monroe",title="Marilyn Monroe",hair:blond ||
+
+The 'data record' column has several fields that need to be split, but we do not necessarily want to create additional columns, instead we want those individual 'fields' for each Person record, since that seems to be how this dataset is arranged.  We can use `Edit Cells -> Split multi-valued cells...` on the 'data record' column using the comma `,` separator character.  After applying, our table in Refine now looks like this and you are taken from *rows* mode into *records* mode which is shown just above the *All* column,
+----
+Show as: rows *records*  Show: 5 *10* 25 50 records
+|| All || name || data type || data record ||
+|| || Kate Moss || Person || profession:Model ||
+|| || || ||href:"/0122-kate-moss"||
+|| || || ||title="Kate Moss"||
+|| || || ||hair:brown||
+|| || Marilyn Monroe || Person || profession:Actor||
+|| || || ||href:"/1488-marilyn-monroe"||
+|| || || ||title="Marilyn Monroe"||
+|| || || ||hair:blond||
+
+
+*NOTE:* You can split multi-valued cells on any column and even export those records, keeping the record format, but be aware of the current record model handling in Refine 2.5 and prior; The left-most column is always the *"key column"* for the record set. If you move columns to the left-most column (the beginning), this will break the underlying record model.  However, breakage is only because we have not yet incorporated support for interactive column grouping. (but planned for in a future release)  
+ 
 ===Comparison with Spreadsheets Software===
 
 Expressions in Google Refine differ from formulas in popular spreadsheet software. In spreadsheets, formulas are entered into cells. That is, a cell can contain a formula (the formula is computed and its result is displayed in the cell). In Google Refine, cells do *not* contain expressions. Rather, any expression you specify is evaluated to compute a value that is then stored into the cell. If the expression depends on other cells, and the other cells get changed later on, the expression is *not* evaluated again. Each transformation is done only once, *not* updated constantly.
