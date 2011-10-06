@@ -146,6 +146,11 @@ The more I learn about Google Refine the more excited I get about using it. #Ana
     [http://twitter.com/#!/buzzdata buzzdata] [http://twitter.com/#!/buzzdata/status/113634815487655936 view tweet]
 
 
+Cleaning up data using Google Refine. It's a gift sent from heaven
+
+    [http://twitter.com/#!/bposton Ben Poston] [http://twitter.com/#!/bposton/status/122056208709459970 view tweet]
+
+
 ===Blogs===
 
 "Google Refine isn’t going to solve the problem of poor data availability, but for those who manage to gain access to existing records, it can be a powerful tool for transparency."
