@@ -19,7 +19,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
 *Question:* Google Refine opens my browser then waits a long time trying to connect to the server at 165.135.222.96 or another address I don't recognize.
 
-  Try to run at a specific IP: `./refine /i 127.0.0.1`. Double check your Chrome or Firefox proxy settings - In Firefox options/advanced/network/connection/settings and switch from "use system proxy settings" to "auto-detect proxy settings for this network".
+  Try to run at a specific IP: `./refine -i 127.0.0.1`. Double check your Chrome or Firefox proxy settings - In Firefox options/advanced/network/connection/settings and switch from "use system proxy settings" to "auto-detect proxy settings for this network".
 
 *Question:* What syntax of regular expression (regex) does Google Refine support?
 
