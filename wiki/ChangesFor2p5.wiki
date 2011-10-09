@@ -31,4 +31,13 @@
  * Issue 395:	New UI Importer Branch - Inspecting Selected Files spinner shows along top on CSV preview
  * Issue 397:	New UI Importer Branch - individual JSON record nodes do not preview well
  * Issue 424:	Duplicate column names don't allow user to recover
- * Issue 433:	Usability: use HTML <label> (e.g., for checkboxes
+ * Issue 433:	Usability: use HTML label (e.g., for checkboxes)
+ * Issue 452:	Importing using Clipboard function does not guess structure correctly for XML or JSON
+ * Issue 450:	Parse error uploading to Fusion Table
+ * Issue 454:	Reselect Files after Configuring Parsing Options does not allow Select
+ * Issue 233:	404 Error upon Launch
+ * Issue 453:	Patch for /trunk/main/tests/server/src/com/google/refine/tests/importers/JsonImporterTests.java
+ * Issue 394:	Add a reset button to Text filter
+ * Issue 349:	Clustering not finding duplicates when facet is showing groupings
+ * Issue 362:	Augmentation screencast (#3) is now missing/private
+ * Issue 410:	Convert line-endings to DOS format
