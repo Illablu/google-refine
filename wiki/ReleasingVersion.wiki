@@ -9,7 +9,7 @@ When releasing a new version of refine, the following steps should be followed:
   # Compose the list of changes in the code and on the wiki.
   # Tag the release candidate in SVN by copying trunk/... to tags/2.1-rc1/...
   # Build the release candidate kits using the shell script (not just Ant). This must be done on Linux or Mac currently and only Mac can build kits for all three platforms (Linux, Windows, Mac).:
-    ./build dist 2.1
+    ./refine dist 2.1
   # Upload the kits to http://code.google.com/p/google-refine/downloads/list
   # Announce the beta/release candidate for testing
   # Repeat build/release candidate/testing cycle, if necessary.
