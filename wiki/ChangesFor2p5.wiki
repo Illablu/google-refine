@@ -25,6 +25,7 @@
 
 =Bug Fixes=
 
+ * Issue 149: rows button stays strike-through when clicking on it
  * Issue 349: Clustering not finding duplicates when facet is showing groupings
  * Issue 394: Add a reset button to Text filter
  * Issue 419: Values with Characters like é split across several lines
