@@ -2,19 +2,29 @@
 
 =New Features=
 
- * Completely new importing UI, including
-   * Live preview and interactive settings before creating project 
-   * Fixed-width importer that allows for specifying column widths by clicking
+ * Completely new user interface for project creation, including:
+   * Live preview with interactive settings before creating project 
+   * Fixed-width importer that allows for specifying column widths by clicking (Issue 85)
    * XML and JSON importers that allow for interactive selection of elements to import
-   * Support for creating projects by directly accessing Google Spreadsheets and Google Fusion Tables
-   * Support for selecting files within archive file
+   * Direct access to Google Spreadsheets (issue 278) and Google Fusion Tables (Issue 279)
+   * Import and export to private Google Spreadsheets & Fusion Tables for logged-in users 
+   * Import using results of Google spreadsheet visualisation API query (issue 375)
+   * Sheet selection for import from Excel (issue 280) & Google Spreadsheets (issue 281) 
+   * Support for directly selecting files within zip/archive file without unpacking them first (Issue 131)
+   * Support for creating a project using contents of the paste buffer (Issue 84)
+   * Better progress feedback during upload & processing (issue 179)
+
  * Custom tabular exporter that allows for selecting and configuring columns to export, and direct upload to Google Spreadsheets and Fusion Tables
 
-=Bug Fixes=
+=Enhancements=
 
  * Issue 31: Maximum number of facet values should be configurable.
  * Issue 38: [Wishlist] Fix the table header so that it's always visible when scrolling a long page
  * Issue 97: Exporting CSV should allow for optional columns
+ * Issue 447: Extend toTitlecase() function with support for custom delimiters
+
+=Bug Fixes=
+
  * Issue 349: Clustering not finding duplicates when facet is showing groupings
  * Issue 394: Add a reset button to Text filter
  * Issue 419: Values with Characters like é split across several lines
@@ -25,32 +35,9 @@
  * Issue 440: Fetch URLs aborts while saving/loading/computing facets
  * Issue 441: onError - "keep-original" / "store-blank" working oddly for value.toDate()
  * Issue 442: Two column transforms to date on the same column turns the cells blank
- * Issue 447: Extend toTitlecase() function with support for char[] delimiters in Apache WordUtils
  * Issue 449: Uncaught exception from Excel importer
 
-==Fixed by New Importer UI==
-
- * Issue 84: Add a cut and paste textbox importer
- * Issue 85: Fixed width column importer
- * Issue 131: Read multiple files in a directory
- * Issue 179: Progress feedback during upload
- * Issue 278: Add support for Google Fusion Tables
- * Issue 279: Add support for reading from non-public Google Spreadsheets docs
- * Issue 280: Spreadsheet/table importers should allow selection of sheet/table to import
- * Issue 281: Add sheet selection support to Google Spreadsheet importer
- * Issue 375: Importing data from Google spreadsheet via visualisation API query
-
-==Caused by New Development and Fixed==
-
- * Issue 395: New UI Importer Branch - Inspecting Selected Files spinner shows along top on CSV preview
- * Issue 396: New UI Importer Branch - When using clipboard import, heuristic guess is missed
- * Issue 397: New UI Importer Branch - individual JSON record nodes do not preview well
- * Issue 450: Parse error uploading to Fusion Table
- * Issue 452: Importing using Clipboard function does not guess structure correctly for XML or JSON
- * Issue 454: Reselect Files after Configuring Parsing Options does not allow Select
-
 ==Miscellaneous==
-
  * Issue 233: 404 Error upon Launch
  * Issue 362: Augmentation screencast (#3) is now missing/private
  * Issue 410: Convert line-endings to DOS format
