@@ -15,6 +15,7 @@
    * Better progress feedback during upload & processing (issue 179)
 
  * Custom tabular exporter that allows for selecting and configuring columns to export, and direct upload to Google Spreadsheets and Fusion Tables
+ * Support for IE8 and IE9 through Google Chrome Frame
 
 =Enhancements=
 
