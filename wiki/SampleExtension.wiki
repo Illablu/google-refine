@@ -31,7 +31,7 @@ Java code is built into the sub-directory `classes` inside `MOD-INF`, and suppor
 
 Client-side code is in the inner `module` sub-directory. They can be plain old .html, .css, .js, and image files, or they can be [http://lesscss.org/ LESS] files that get processed into CSS. There are also Velocity .vt files, but they need to be routed inside `MOD-INF/controller.js`.
 
-`MOD-INF/controller.js` lets you configure the extension's initialization and URL routing in Javascript rather than in Java. For example, when the requested URL path is either `/` or an empty string, we process and return `MOD-INF/index.vt` ([http://localhost:3333/sample-extensions/ see that page here] if Google Refine is running).
+`MOD-INF/controller.js` lets you configure the extension's initialization and URL routing in Javascript rather than in Java. For example, when the requested URL path is either `/` or an empty string, we process and return `MOD-INF/index.vt` ([http://localhost:3333/extension/sample/ see http://localhost:3333/extension/sample/] if Google Refine is running).
 
 The `init()` function in `controller.js` allows the extension to register various client-side handlers for augmenting pages served by Refine's core. These handlers are feature-specific. For example, [http://code.google.com/p/google-refine/source/browse/trunk/extensions/jython/module/MOD-INF/controller.js?r=965#4 here is where and how] the jython extension adds its parser. As for the sample extension, it adds its script `project-injection.js` and style `project-injection.less` into the `/project` page. If you [view-source:http://localhost:3333/project view source the /project page], you'd see references to those two files.
 
