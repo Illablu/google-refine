@@ -51,7 +51,7 @@ Also of importance is the dependency
 
 which makes sure that the core module of Google Refine is loaded before the extension attempts to hook into it.
 
-The file named controller.js is responsible for registering the extension's hooks into Google Refine. Look at the sample-extension extension's [http://code.google.com/p/google-refine/source/browse/trunk/extensions/sample-extension/module/MOD-INF/controller.js controller.js] file for an example. It should have a function called init() that does the hook registrations.
+The file named controller.js is responsible for registering the extension's hooks into Google Refine. Look at the sample-extension extension's [http://code.google.com/p/google-refine/source/browse/trunk/extensions/sample/module/MOD-INF/controller.js controller.js] file for an example. It should have a function called init() that does the hook registrations.
 
 The `build.xml` file is an [http://ant.apache.org/ Apache Ant] build file. You can make a copy of the sample extension's `build.xml` file to get started. The important point here is that the Java classes should be built into the `module/MOD-INF/classes` sub-directory.
 
