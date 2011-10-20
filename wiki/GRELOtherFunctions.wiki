@@ -26,7 +26,7 @@ returns 1.
 
 ===`cross(cell c, string projectName, string columnName)`===
 
-Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as cell `c`. Consider 2 projects with the following data
+Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as cell `c`. (Similar to a lookup) Consider 2 projects with the following data
 
 *My Address Book*
 
