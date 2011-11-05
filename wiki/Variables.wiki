@@ -43,7 +43,7 @@ A `recon` object has a few fields
 || `recon.matched` || a boolean, true iff judgment is "matched" || 
 || `recon.match` || null, or the recon candidate that has been matched against this cell || `.id` `.name` `.type` ||
 || `recon.best` || null, or the best recon candidate|| `.id` `.name` `.type` `.score` ||
-|| `recon.features` || an object encapsulating reconciliation features || `.typeMatch` `,nameMatch` `.nameLevenshtein` `.nameWordDistance` || 
+|| `recon.features` || an object encapsulating reconciliation features || `.typeMatch` `.nameMatch` `.nameLevenshtein` `.nameWordDistance` || 
 
 A recon candidate object has a few deeper fields: `id`, `name`, `type`, and `score`, whose meanings are obvious. `type` is an array of type IDs. So, the id of the best candidate can be accessed as any one of
 
