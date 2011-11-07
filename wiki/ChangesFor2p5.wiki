@@ -17,6 +17,7 @@
  * Custom tabular exporter that allows for selecting and configuring columns to export, and direct upload to Google Spreadsheets and Fusion Tables
  * Support for IE8 and IE9 through Google Chrome Frame
  * New command "Key/value Columnize" (see [http://code.google.com/p/google-refine/source/detail?r=2356 explanation])
+ * New importer for PC-Axis file format.
 
 =Enhancements=
 
@@ -24,7 +25,7 @@
  * Issue 38: [Wishlist] Fix the table header so that it's always visible when scrolling a long page
  * Issue 97: Exporting CSV should allow for optional columns
  * Issue 447: Extend toTitlecase() function with support for custom delimiters
- * Operation "Transpose columns into rows" now supports an additional mode of generating 2 key and value columns (rather than generating just one combined column).
+ * Operation "Transpose columns into rows" now supports an additional mode of generating 2 key and value columns (rather than generating just one combined column); it also has an option for filling in other columns.
 
 =Bug Fixes=
 
