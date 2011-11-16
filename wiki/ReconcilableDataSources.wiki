@@ -1,24 +1,34 @@
 #summary Listing of Reconcilable Data Sources
 #labels Phase-Implementation
 
-In Google Refine you can perform reconciliation against any web service supporting the [ReconciliationServiceApi Reconciliation Service API].
-
-====Freebase====
-Example:
-
-Documentation:
-
-====Talis Platform reconciliation services====
-
-Example: [http://ldodds.com/gridworks/govuk-statistics/reconcile]
-
-Documentation: [http://www.ldodds.com/blog/2010/08/gridworks-reconciliation-api-implementation/]
+With Google Refine you can perform reconciliation against any web service supporting the [ReconciliationServiceApi Reconciliation Service API].
+Reconciliation against Freebase is built in, but there are several other
+reconciliation services available, including:
 
 ====OpenCorporates====
 
+31 million corporate entities (as of Nov. 2011) available for reconciliation through their service.
 Screencast: [http://vimeo.com/17924204]
+Blog posts: [http://blog.opencorporates.com/tag/google-refine/]
 
-Blog post: [http://opencorporates.wordpress.com/2010/12/20/press-release-opencorporates-launches/]
+====SPARQL endpoints====
+
+The RDF Extension by DERI at NUI Galway includes reconciliation against
+any SPARQL endpoint or RDF dump file and publishing of the results in RDF.
+[http://lab.linkeddata.deri.ie/2010/grefine-rdf-extension/]
+
+====VIVO Scientific Collaboration Platform===
+
+VIVO is a U.S. national interdisciplinary open source scientific collaboration platform funded by the NIH with development led by Cornell.  Their reconciliation service allows reconciling against VIVO entities (faculty members, journals, etc) in any VIVO installation.
+http://sourceforge.net/apps/mediawiki/vivo/index.php?title=Extending_Google_Refine_for_VIVO
+
+====Talis Kasabi====
+The Kasabi reconciliation services provide reconciliation against any database published on the Kasabi platform. http://kasabi.com/doc/api/reconciliation
+
+====Talis Platform reconciliation services (dead?)====
+Example: [http://ldodds.com/gridworks/govuk-statistics/reconcile]
+
+Documentation: [http://www.ldodds.com/blog/2010/08/gridworks-reconciliation-api-implementation/]
 
 
 ==Wish List==
