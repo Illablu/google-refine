@@ -237,9 +237,9 @@ that does exactly that.
 
 As a tip, if you see two weird characters where you think there should be one, try reinterpreting with "utf-8" which normally solves it. Other encoding values that are useful to try are "latin-1" (for european content), "Big5" (for chinese content"), etc. You can get a list of all the supported encodings [http://java.sun.com/j2se/1.5.0/docs/guide/intl/encoding.doc.html here].  Re-encoding can also be done outside of Google Refine with text tools such as PSPad, Notepad++, etc.
 
-=== Reverse Question Marks � showing in your data ===
+=== Question Marks � showing in your data ===
 
-These will show if there are encoding issues with your data. So try reinterpreting above.  Also there may be non-breaking spaces `&nbsp` Unicode(160). You can inspect with `unicode(value)` and replace with regular spaces Unicode(32).
+This is the "Replacement Character - used to replace an incoming character whose value is unknown or unrepresentable."  These will show if there are encoding issues with your data. Because the data is actually changed at import time, this may not be recoverable without re-importing, but you can try reinterpreting as above.  Also there may be non-breaking spaces `&nbsp` Unicode(160). You can inspect with `unicode(value)` and replace with regular spaces Unicode(32).
 
 You can also try this quick fix to remove non-breaking spaces on both ends of your string:
 {{{
