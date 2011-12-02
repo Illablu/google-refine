@@ -35,7 +35,7 @@ Columns in the column model can be removed and re-ordered without changing the r
 
 Consider the following data:
 
-[http://google-refine.googlegroups.com/web/gridworks-row-groups.png?gsc=HfBWviMAAADmKupvm6NLMZKrfX8wiTziMS12ItRK21105q9SpgEhHa0IoyLhPG2x5smOr2otMGI]
+[https://google-refine.googlecode.com/svn/tags/2.0/graphics/row-groups.png]
 
 Although the data is in a grid, we humans can understand that it is a tree. First of all, all rows contain data ultimately linked to the movie Austin Powers, although only one row contains the text "Austin Powers" in the "movie title" column. We also know that "USA" and "Germany" are not related to Elizabeth Hurley and Mike Myers respectively (say, as their nationality), but rather, "USA" and "Germany" are related to the movie (where it was released). We know that Mike Myers played both the character "Austin Powers" and the character "Dr. Evil"; and for the latter he received 2 awards. We humans can understand how to interpret the grid as a tree based on its visual layout as well as some knowledge we have about the movie domain but is not encoded in the table.
 
