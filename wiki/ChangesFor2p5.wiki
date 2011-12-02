@@ -42,6 +42,7 @@
  * Issue 441: onError - "keep-original" / "store-blank" working oddly for value.toDate()
  * Issue 442: Two column transforms to date on the same column turns the cells blank
  * Issue 449: Uncaught exception from Excel importer
+ * issue 502 - Fetch URLs does not return a correct HTTP response
 
 ==Miscellaneous==
  * Issue 233: 404 Error upon Launch
