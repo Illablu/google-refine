@@ -29,6 +29,15 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
   The regular expression syntax is that of Java regex, not of Javascript. See [UnderstandingRegularExpressions GREL Regular Expressions].
 
+*Question:* What syntax should I use with GREL in Refine's Expression Editor for constructing URLs correctly and avoid HTTP errors and other pitfalls, for instance, when working with JSON strings within a URL ?
+
+  A good practice is to use `'` single quotes for your Refine Expression syntax and reserve `"` double quotes for the URL syntax parts.  Also make sure to escape() your cell values used, where necessary.
+
+  EXAMPLE:
+{{{
+'https://www.googleapis.com/freebase/v1/mqlread?query={"mid":null,"/type/object/key":{"namespace":"/authority/fmd/model","value":"'+escape(cells.ModelName.value, "url")+'}}'
+}}}
+
 *Question:* When is it going to be possible to load things into the Freebase main graph, directly or indirectly?
 
   Short answer: we're working on this. Long answer: [http://wiki.freebase.com/wiki/Refinery Refinery].
