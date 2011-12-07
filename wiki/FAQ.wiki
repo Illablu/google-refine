@@ -35,7 +35,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
   EXAMPLE:
 {{{
-'https://www.googleapis.com/freebase/v1/mqlread?query={"mid":null,"/type/object/key":{"namespace":"/authority/fmd/model","value":"'+escape(cells.ModelName.value, "url")+'}}'
+'https://www.googleapis.com/freebase/v1/mqlread?query={"mid":null,"/type/object/key":{"namespace":"/authority/fmd/model","value":"'+escape(cells.ModelName.value, "url")+'"}}'
 }}}
 
 *Question:* When is it going to be possible to load things into the Freebase main graph, directly or indirectly?
