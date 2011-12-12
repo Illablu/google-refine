@@ -26,7 +26,7 @@
  * Issue 97: Exporting CSV should allow for optional columns
  * Issue 447: Extend toTitlecase() function with support for custom delimiters
  * Operation "Transpose columns into rows" now supports an additional mode of generating 2 key and value columns (rather than generating just one combined column); it also has an option for filling in other columns.
- * reinterpret() now supports optionally specifying a source encoding to be used instead of the project encoding - reinterpret("source encoding","target encoding")
+ * reinterpret() now supports optionally specifying a source encoding to be used instead of the project encoding - reinterpret("target encoding", "source encoding")
 
 =Bug Fixes=
 
