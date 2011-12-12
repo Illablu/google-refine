@@ -1,4 +1,4 @@
 For all downloads, see [http://code.google.com/p/google-refine/downloads/list?can=1 this list].
 <wiki:gadget url="http://refine-gadgets.freebaseapps.com/gadget/downloads" width="600" height="470" border="0" />
 
-Here are [UpgradingTo2p0 instructions for upgrading from 1.1 to 2.0].
+Here are [UpgradingTo2p0 instructions for upgrading from 1.1 to 2.x].
