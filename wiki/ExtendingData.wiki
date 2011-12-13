@@ -2,6 +2,8 @@
 
 ==Calling Web Services==
 
+  * *NOTE:* For a walkthrough tutorial of this, see [FetchingURLsFromWebServices Fetching URLs From Web Services]
+
 You can construct a new column by calling a web service, passing it data from existing columns. For example, if you have a column containing street addresses, you can create a new column containing their corresponding latitude/longitude pairs by calling a geocoding service, such as Google's [http://code.google.com/apis/maps/documentation/geocoding/ Geocoding service]. Invoke the column's drop-down menu and pick Edit column > Add column by fetching URLs... The expression you enter formulates the URL to fetch for each row. For example, this expression should work on Google's Geocoding service:
 
 {{{
@@ -60,4 +62,5 @@ Since it's just JSON, we can parse it out using the parseJSON expression, and th
 
 ==Querying Databases==
 
-You can also extend your data using queryable web databases such as [http://www.freebase.com/ Freebase]. See [ExtendingDataFromFreebase this page] for more details.
+You can also extend your data using queryable web databases such as [http://www.freebase.com/ Freebase].
+  * See [ExtendingDataFromFreebase Extending Data - Using Freebase] for more details.
