@@ -28,7 +28,7 @@ Note that both text blurbs and images typically have different
 licenses than the rest of Freebase data since they are often provided
 by Wikipedia (or other contributors).
 
-If you need additional help with pulling in other Freebase properties or schema, then do not hesitate to ask us on the Refine mailing list.
+If you need additional help with pulling in other Freebase properties or schema, then do not hesitate to ask us on the [http://groups.google.com/group/google-refine/ Refine mailing list].
 
 
 == Fetching Properties against a reconciled Freebase Type ==
