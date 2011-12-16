@@ -11,6 +11,7 @@ The formats currently supported (in version 2.0) include:
   * XML, RDF as XML
   * JSON
   * Google Spreadsheets
+  * RDF N3 triples
 
 If you have data in a very peculiar text format, just import it without splitting lines into columns, and then once it's imported, do your own custom column splitting.
 
