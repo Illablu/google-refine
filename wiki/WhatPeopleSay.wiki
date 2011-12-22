@@ -201,6 +201,9 @@ Google Refine for SEO: [http://www.blindfiveyearold.com/find-keyword-modifiers-w
 
     [http://ojb.journallocal.co.uk Online Journalism Blog] post [http://ojb.journallocal.co.uk/2010/11/11/data-cleaning-tool-relaunches-freebase-gridworks-becomes-google-refine/ Data cleaning tool relaunches: Freebase Gridworks becomes Google Refine]
 
+Google Refine bills itself as a “power tool for working with messy data,” and it does not disappoint. While not a turnkey solve-all for data integrity, it makes this tedious task far less intimidating. ... Dirty data is here to stay. But with Refine, at least it’s no longer the daunting task it once was.
+
+    [http://www.poynter.org/author/matt-wynn/ Matt Wynn] - [http://www.poynter.org/how-tos/digital-strategies/155975/how-journalists-can-use-google-refine-to-clean-dirty-data-sets/ How journalists can use Google Refine to clean ‘dirty’ data sets]
 
 
 =About Freebase Gridworks 1.x=
