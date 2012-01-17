@@ -1,8 +1,12 @@
 #summary Announcements of the latest features
 
+==December 2011==
+
+Google Refine 2.5 is released ([ChangesFor2p5 change list])
+
 ==June 2011==
 
-Google Refine 2.1 release candidate available for testing ([ChangesFor2p1 change list])
+Google Refine 2.1 is released([ChangesFor2p1 change list])
 
 ==November 2010==
 
