@@ -44,7 +44,12 @@ A `recon` object has a few fields
 || `recon.match` || null, or the recon candidate that has been matched against this cell || `.id` `.name` `.type` ||
 || `recon.best` || null, or the best recon candidate|| `.id` `.name` `.type` `.score` ||
 || `recon.features` || an object encapsulating reconciliation features || `.typeMatch` `.nameMatch` `.nameLevenshtein` `.nameWordDistance` || 
+|| `recon.candidates` || an object encapsulating the default 3 candidates|| `.id` `.name` `.type` `.score` ||
 
+`recon.candidates` array can be accessed with something like:
+{{{
+forEach(cell.recon.candidates,v,v.id).join(",")
+}}}
 A recon candidate object has a few deeper fields: `id`, `name`, `type`, and `score`, whose meanings are obvious. `type` is an array of type IDs. So, the id of the best candidate can be accessed as any one of
 
   * `recon.best.id`
