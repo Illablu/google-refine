@@ -75,6 +75,16 @@ then you select only the range between the 2nd and 4th and you get
 
 then you join them together with the same separator character ":" and you get what you wanted "b:c:d".
 
+===Parse JSON and Create Custom Arrays using forEach()===
+
+{{{
+forEach(value.parseJson().result,v,[v.score,v.name,v.mid])
+}}}
+then getting your 1st custom result:
+{{{
+forEach(value.parseJson().result,v,[v.score,v.name,v.mid])[0]
+}}}
+
 ===Removing duplicate rows when Exact values are found in a column===
 
 In Release 2.1+ there is now a Facet -> Customized Facets -> Duplicates Facet that can be applied on more than one column as needed.  This easily applies for you a facetCount(value, 'value', 'Column') > 1 which shows ALL rows having more than 1 duplicate value in the column.
