@@ -25,12 +25,14 @@ then for row 1, it will yield "Smith" and for row 2, "Doe". Using [Variables], a
 
 ===Base Column===
 
-Note that an expression is typically based on one particular column in the data--the column whose drop-down menu is invoked. A lot of [Variables variables] are created to stand for things about the cell in that "base column" of the current row on which the expression is evaluated. But there are still variables about the whole row, and through them, you can access cells in other columns.
+Note that an expression is typically based on one particular column in the data--the column whose drop-down menu is invoked. A lot of [Variables variables] are created to stand for things about the cell in that "base column" of the current row on which the expression is evaluated. But there are still [Variables variables] about the whole row, and through them, you can access cells in other columns.
 
 
 ===Languages===
 
-Whereas each spreadsheet software has its own formula language, and only one language, Google Refine is capable of supporting several languages for writing expressions. Google Refine has its own native language called Google Refine Expression Language (GREL), but you could also use [Jython], or other languages if you install Google Refine extensions that support them. Where in GREL you write
+Whereas each spreadsheet software has its own formula language, and only one language, Google Refine is capable of supporting several languages for writing expressions. Google Refine has its own native language called Google Refine Expression Language (GREL), but you could also use [Jython], or other languages if you install Google Refine extensions that support them.
+
+Where in GREL you write
 
 {{{
   value.split(" ")[1]
@@ -70,7 +72,7 @@ The second form above is a shortcut to make expressions easier to read.
 
 It's only syntactic sugar or shorthand, such as:
 
-|| shorthand notation || full notation ||
+|| dot shorthand notation || full notation ||
 || `value.trim().length()` || `length(trim(value))` ||
 || `value.substring(7, 10)` || `substring(value, 7, 10)` ||
 || `value.substring(13)` || `substring(value, 13)` ||
