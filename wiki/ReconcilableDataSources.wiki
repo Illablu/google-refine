@@ -30,6 +30,10 @@ Example: [http://ldodds.com/gridworks/govuk-statistics/reconcile]
 
 Documentation: [http://www.ldodds.com/blog/2010/08/gridworks-reconciliation-api-implementation/]
 
+====Taxonomic Databases====
+
+Taxonomic databases (EOL, NCBI, uBio, WORMS), as documented here [http://iphylo.blogspot.com/2012/02/using-google-refine-and-taxonomic.html].
+
 
 ==Wish List==
 
