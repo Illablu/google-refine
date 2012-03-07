@@ -33,9 +33,9 @@ Reconciliation is a delicate process, hard to describe here. We will provide som
 
 ==Query-based Reconciliation==
 
-As a degenerated form of "reconciliation", you can get a column of database IDs to be "reconciled". It's "degenerated" because the process isn't ambiguous since you already have IDs. The process of "reconciliation" here only involves fetching more data for those IDs (such as the official names corresponding to those IDs).
+As a degenerate form of "reconciliation", you can get a column of database IDs to be "reconciled". It's "degenerate" because the process isn't ambiguous since you already have IDs. The process of "reconciliation" here only involves fetching more data for those IDs (such as the official names corresponding to those IDs).
 
-Right now Google Refine only supports this kind of "query-based reconciliation" against Freebase. In the Reconcile dialog box, pick Freebase Query-based Reconciliation on the left. Your data can contain Freebase IDs, GUIDs, or keys in certain namespaces. For example, if you have country 2-letter ISO codes, you can reconcile against the namespace ISO 3166-1.
+Right now Google Refine only supports this kind of "query-based reconciliation" against Freebase. In the Reconcile dialog box, pick Freebase Query-based Reconciliation on the left. Your data can contain Freebase IDs, GUIDs, Wikipedia IDs, or keys in certain namespaces. For example, if you have country 2-letter ISO codes, you can reconcile against the namespace ISO 3166-1.
 
 Note that you might have to encode your data into property Freebase keys before performing query-based reconciliation. Use the mqlKeyQuote() function documented [GRELStringFunctions here].
 
