@@ -60,4 +60,22 @@ When that command is applied, the result is
 
 Returns the facet count corresponding to the given choice value
 
-  TODO: Needs Example
+|| gift || recipient || price ||
+|| lamp || mary || 20 ||
+|| clock || john || 54 ||
+|| watch || amit || 80 ||
+|| clock || claire || 62 ||
+
+If we wanted to show how many of each gift we had given, we could use the following expression:
+
+{{{
+  facetCount(value, "value", "gift")
+}}}
+
+This would then complete the table as so:
+
+|| gift || recipient || price || count ||
+|| lamp || mary || 20 || 1 ||
+|| clock || john || 54 || 2 ||
+|| watch || amit || 80 || 1 ||
+|| clock || claire || 62 || 2 ||
