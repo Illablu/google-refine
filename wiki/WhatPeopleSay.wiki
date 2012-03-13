@@ -174,6 +174,23 @@ The award for the biggest timesaver goes to Google Refine and its data reconcili
 
     [https://twitter.com/#!/amyjo_brown AmyJo Brown] [https://twitter.com/#!/amyjo_brown/status/173138136489136129 view tweet]
 
+I may be late but this is quite possibly the coolest thing I've seen recently since the other side of the pillow: http://code.google.com/p/google-refine/
+
+    [http://twitter.com/#!/jeffrush Jeff Rush] [http://twitter.com/#!/jeffrush/status/179296155711193089 view tweet]
+
+Google Refine is amazing - fast cluster heuristics intelligently clean up your data. Best find of 2012 so far... #analytics #data
+
+    [http://twitter.com/#!/NativeAnalytics Senan] [http://twitter.com/#!/NativeAnalytics/status/179326447620591616 view tweet]
+
+I seriously love Google Refine. Dead simple and very useful. You don't want a Swiss army knife. Just a simple, simple hammer.
+
+    [http://twitter.com/#!/ehfeng Eric Feng] [http://twitter.com/#!/ehfeng/status/179496038548250624 view tweet]
+
+I love Google Refine.
+
+    [http://twitter.com/#!/citizensheep Michael Grimes] [http://twitter.com/#!/citizensheep/status/179554740521275393 view tweet]
+
+
 ===Blogs===
 
 "Google Refine isn’t going to solve the problem of poor data availability, but for those who manage to gain access to existing records, it can be a powerful tool for transparency."
