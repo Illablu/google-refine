@@ -27,12 +27,12 @@ Press OK, and you'll soon have a new column with the plain text extracted from *
 
 Useful Common Examples:
 
-  Extract `<table>` rows from a `<div ID=content>`:
+  Extract all the `<table>` rows from a `<div ID=content>`:
 {{{
 value.parseHtml().select("div#content")[0].select("tr").toString()
 }}}
 
-  Simple Web Scrapping (Web Scraper) can be made in Google Refine with a pattern.  For example, you can add a new column based on an HTML page that has a bunch of links, where you need to Loop and Extract (using `forEach()`) all the `<a href=>` links based upon a regex pattern (such as those links containing a number digit \\d+) and join the array so that you can split and Fetch URLs on all those extracted links to scrape even more data off each HTML link with another Fetch URLs pass. :
+  Simple Web Scraping (Web Scraper) can be made in Google Refine with a pattern.  For example, you can add a new column based on an HTML page that has a bunch of links, where you need to Loop and Extract (using `forEach()`) all the `<a href=>` links based upon a regex pattern (such as those links containing a number digit \\d+) and join the array so that you can split and Fetch URLs on all those extracted links to scrape even more data off each HTML link with another Fetch URLs pass. :
 {{{
 forEach(value.parseHtml().select("a[href~=\\d+]"),e,e.htmlAttr("href")).join("SplitCharsGoHere")
 }}}
