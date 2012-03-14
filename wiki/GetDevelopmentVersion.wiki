@@ -4,7 +4,7 @@ If you're a user who just wants the latest features even if they have not been r
 
 =Precautions=
 
-The trunk version supposedly offers certain features that you want. You probably want those features only one some particular existing projects. We recommend that you export those projects (as .tar.gz files) using your current released Google Refine version, and then re-import them when you run the trunk version. Then work on that new copy using the trunk version. You can always shutdown the trunk version and start up the released version and work with the old project. Or if things go really bad, you can scrap everything and re-import the saved .tar.gz files.
+The trunk version supposedly offers certain features that you want. You probably want those features only on some particular existing projects. We recommend that you export those projects (as .tar.gz files) using your current released Google Refine version, and then re-import them when you run the trunk version. Then work on that new copy using the trunk version. You can always shutdown the trunk version and start up the released version and work with the old project. Or if things go really bad, you can scrap everything and re-import the saved .tar.gz files.
 
 =What You Need=
 
