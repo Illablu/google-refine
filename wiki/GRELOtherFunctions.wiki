@@ -31,7 +31,7 @@ returns a full html document and adds any missing closing tags.
 
 You can then extract or .select() which portions of the html document you need for further splitting, partitioning, etc.
 
-An example of extracting all table rows `<tr>` using parseHtml().select() together is described more [StrippingHTML#Extract_HTML_attributes,_text,_links_with_integrated_GREL_comman here]
+An example of extracting all table rows `<tr>` from a <div> using parseHtml().select() together is described more [StrippingHTML#Extract_HTML_attributes,_text,_links_with_integrated_GREL_comman here]
 
 ===`select(Element e, String s)`===
 
