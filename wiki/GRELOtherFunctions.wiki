@@ -24,7 +24,7 @@ parseJson(" { 'a' : 1 } ").get("a")
 
 returns 1.
 
-==='parseHtml(string s)'===
+===`parseHtml(string s)`===
 
 TODO - we forgot to document these !
 [StrippingHTML#Extract_HTML_attributes,_text,_links_with_integrated_GREL_comman Click Here for example use, until we fully document this function]
