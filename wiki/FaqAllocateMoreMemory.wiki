@@ -18,9 +18,9 @@ Open a "command prompt", 'cd' to the folder where Google Refine is installed, th
 
 `refine.bat /m 2048m`
 
-where "2048m" is the maximum amount of memory (in Mb) that you want Google Refine to use.
+where "2048m" is the maximum amount of memory (in Mb) that you want Google Refine to use.  To change your default, you can edit refine.ini to specify the memory.  Note that this file is only read, if you use refine.bat, not google-refine.exe directly.
 
-If you decide to use the refine.exe, then set your parameters in the .ini file found in the same folder.
+If you decide to use the google-refine.exe directly, then set your parameters in the google-refine.l4j.ini file found in the same folder.
 {{{
 # Launch4j runtime config
 
@@ -61,3 +61,5 @@ If you have downloaded the ".dmg" package and you start Google Refine by double 
 If you have downloaded the ".tar.gz" package and you start Google Refine from the command line, use the "-m xxxM" parameter like this
 
 `./refine -m 1024m`
+
+To make the change permanent/default, edit the refine.ini file and specify the new value.
