@@ -1,6 +1,6 @@
 #summary Controls supported by the Google Refine Expression Language (GREL)
 
-There are inline controls to support branching and essentially looping. They look like functions, but unlike functions, their arguments don't all get evaluated down to value before they get run. A control can decide which part of the code to execute and can affect the environment bindings.  Functions, on the other hand, can't do either.  Each control decides which of their arguments to evaluate to value, and how.
+There are inline controls to support branching and essentially looping. They look like [GRELFunctions functions], but unlike functions, their arguments don't all get evaluated down to value before they get run. A control can decide which part of the code to execute and can affect the environment bindings.  Functions, on the other hand, can't do either.  Each control decides which of their arguments to evaluate to value, and how.
 
 ===`if(expression o, expression eTrue, expression eFalse)`===
 
