@@ -5,7 +5,7 @@ This page collects Google Refine recipes, small workflows and code fragments tha
 
 == String Manipulation ==
 
-Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the Google Refine Expression Language (GREL)
+Here are some examples of possible types of common string manipulation operations that you might encounter and how they can be achieved with the [GRELFunctions Google Refine Expression Language (GREL)]. See also [GRELStringFunctions GREL String Functions].
 
 === Change `2010-05-31T01:10:05Z` to `05/31/2010` ===
 
@@ -37,7 +37,7 @@ basically replacing what you don't want with the empty string.
 
 Note that "replace" replaces all instances of that first string in the cell value so see the next recipe for that case.
 
-=== "blah_2342_blah_1232" -> "2342_blah_1232"  ===
+==== "blah_2342_blah_1232" -> "2342_blah_1232"  ====
 
 Here we can't replace "blah" with "" because it would change the second occurrence as well. So we can use this
 
@@ -74,6 +74,16 @@ then you select only the range between the 2nd and 4th and you get
 }}}
 
 then you join them together with the same separator character ":" and you get what you wanted "b:c:d".
+
+===Pad with leading zeroes===
+
+If you need to fill out a number with for example leading zeroes up to four characters try,
+
+{{{
+"0000"[0,4-value.length()] + value
+}}}
+
+This provides a string of zeroes from which we ask for the first 4-length(value) characters using the string slicing action of [start, offset]. 
 
 ===Parse JSON and Create Custom Arrays using forEach()===
 
