@@ -71,3 +71,13 @@ and there are full recipes:
       * [GRELDateFunctions Date functions]
       * [GRELOtherFunctions Other functions]
   * [Jython Jython]
+
+=External Sites=
+
+While there's a lot information in this wiki, there's plenty more online too. Here are some notable sites,
+
+  * [http://blog.ouseful.info/tag/google-refine/ Tony Hirst's blog]
+  * [http://googlerefine.blogspot.ca/ Martin Magdinier's blog]
+  * Yours? [http://groups.google.com/group/google-refine/ Let us know!]
+
+And of course [https://www.google.com/search?q=%22google+refine%22 searching online].
