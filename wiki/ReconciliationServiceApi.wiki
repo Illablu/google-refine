@@ -14,6 +14,9 @@ A standard reconciliation service is a HTTP-based RESTful JSON-formatted API. It
 
 (Much of this standard is based on the [http://api.freebase.com/api/service/search?help Freebase relevance service] and the [http://data.labs.freebase.com/recon/ Freebase experimental recon service].)
 
+===BEFORE YOU BEGIN WITH BELOW ===
+View our [http://groups.google.com/group/google-refine/browse_thread/thread/b47758b5e9002149 mailing list thread HERE] were Tom Morris gives a helpful basic Reconciliation layout.
+
 =Query Request=
 
 ==Single Query Mode==
