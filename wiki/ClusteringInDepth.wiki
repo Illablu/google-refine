@@ -57,11 +57,11 @@ Why is this useful? In practice, using big values for n-grams doesn't yield any 
 
 For example "Krzysztof", "Kryzysztof" and "Krzystof" have different lengths and different regular fingerprints, but share the same 1-gram fingerprint because they use the same letters.
 
-=== Metaphone Fingerprint ===
+=== Phonetic Fingerprint ===
 
-A third keying method uses a phonetic fingerprinting (specifically, the [http://en.wikipedia.org/wiki/Double_Metaphone Double Metaphone] method up to version 2.0, the [http://en.wikipedia.org/wiki/Double_Metaphone#Metaphone_3 Metaphone3] method later), which is a way to transform tokens into the way they are pronounced. This is useful to spot errors that are due to people misunderstanding or not knowing the spelling of a word after only hearing it. The idea being that similar sounding words will end up sharing the same key and thus being binned in the same cluster.
+A third keying method uses a phonetic fingerprinting (specifically, [http://en.wikipedia.org/wiki/Double_Metaphone#Metaphone_3 Metaphone3] method for English and the [http://commons.apache.org/codec/apidocs/org/apache/commons/codec/language/ColognePhonetic.html Cologne phonetic keyer] for German), which is a way to transform tokens into the way they are pronounced. This is useful to spot errors that are due to people misunderstanding or not knowing the spelling of a word after only hearing it. The idea being that similar sounding words will end up sharing the same key and thus being binned in the same cluster.
 
-For example, "Reuben Gevorkiantz" and "Ruben Gevorkyants" share the same phonetic fingerprint but they have different fingerprints for both the regular and n-gram fingerprinting methods above, no matter the size of the n-gram.
+For example, "Reuben Gevorkiantz" and "Ruben Gevorkyants" share the same phonetic fingerprint for English pronounciation but they have different fingerprints for both the regular and n-gram fingerprinting methods above, no matter the size of the n-gram.
 
 == Nearest Neighbor Methods ==
 
