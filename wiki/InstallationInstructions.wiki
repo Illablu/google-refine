@@ -7,14 +7,15 @@ Google Refine is a desktop application in that you download it, install it, and 
 ===Release Version===
 ----
   # [http://code.google.com/p/google-refine/wiki/Downloads?tm=2 Download Google Refine here].
-  # Install it as detailed below for your operation system.
+  # Install it as detailed below for your operating system.
   # As long as Google Refine is running, you can point your browser at http://127.0.0.1:3333/ to use it, and you can even use it in several browser tabs and windows.
+  # If your running a proxy, you can change the IP configuration with -i, see *Running & Configuration* below, or use refine -help for options.
 
-===Development Version (Anyone wanting the latest trunk version & bug fixes)===
+===Development Version===
 ----
-====It's easy, Don't be scared...====
+====(Anyone wanting the latest trunk version with bug fixes, but some might still be lurking)====
 
-====Anyone who can follow our step-by-step instructions can build the development version:====
+====It's easy, Don't be scared...Follow our step-by-step instructions to get & build the development version:====
 
 1. [GetDevelopmentVersion Step-by-step to get & build the development version].
 
