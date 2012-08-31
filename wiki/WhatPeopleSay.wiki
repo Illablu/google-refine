@@ -222,6 +222,13 @@ Google Refine: Where the hell have you been all my life? Excel for Big Data/Rege
 
     [https://twitter.com/#!/geoffreymccaleb Geoffrey McCaleb] [https://twitter.com/geoffreymccaleb/status/220158210361929730 view tweet]
 
+Google Refine is (an outstanding) power tool for working with messy data. http://bit.ly/ak6gfC  Thank you, GR devs! #DataScience
+
+    [http://twitter.com/HarlanH Harlan Harris] [http://twitter.com/harlanh/status/241259084421156864 view tweet]
+
+Just spent 10 hours playing with Google Refine like it was my new favorite video game.
+
+    [http://twitter.com/iamkimiam Kim Witten] [http://twitter.com/iamkimiam/status/240930667955904513 view tweet]
 
 ===Blogs===
 
