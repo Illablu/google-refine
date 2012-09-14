@@ -120,7 +120,7 @@ The `forEach` control has this syntax
 
 The array_subexpr sub-expression is evaluated to an array. For each element in that array, element_subexpr sub-expression will be evaluated with the variable named by element_var_name standing for that element. In the example above, when `v.length()` is evaluated for the first element--the string "Once", the variable called `v` stands for that string "Once", and the sub-expression `v.length()` evaluates to `4`.
 
-Another useful control is `with` that can be used to define a new variable. For instance, if we want to computer the average word length for the string "Once upon a time in Mexico", then we might start with
+Another useful control is `with` that can be used to define a new variable. For instance, if we want to compute the average word length for the string "Once upon a time in Mexico", then we might start with
 
 {{{
   forEach("Once upon a time in Mexico".split(" "), v, v.length()).sum() / "Once upon a time in Mexico".split(" ").length()
