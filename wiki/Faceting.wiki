@@ -66,7 +66,9 @@ Now let's say you have some hypothesis about the first names that presidents usu
   value.split(" ")[0]
 }}}
 
-That facet splits against the 1st space char found (the `[0]` is how you say "1st one" or "1st index value" in GREL expressions, btw) and will show you something like this (sorted by count)
+That facet splits against the 1st space char found and returns the 1st part of the split and will show you something like this (sorted by count):
+
+*IMPORTANT TIP:*  `[1]` is equivalent to saying "The 2nd part of an array or list" in GREL since indexing of arrays or lists in Refine actually begins with `[0]` or "The 1st part of an array or list".
 
 || choice || count ||
 || James || 5 ||
