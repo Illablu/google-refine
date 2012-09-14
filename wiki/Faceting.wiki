@@ -66,7 +66,7 @@ Now let's say you have some hypothesis about the first names that presidents usu
   value.split(" ")[0]
 }}}
 
-That facet will show you something like this (sorted by count)
+That facet splits against the 1st space char found (the `[0]` is how you say "1st one" or "1st index value" in GREL expressions, btw) and will show you something like this (sorted by count)
 
 || choice || count ||
 || James || 5 ||
