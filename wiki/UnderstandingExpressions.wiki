@@ -20,7 +20,12 @@ When evaluated on a row in the example above, the expression can access that row
   value.split(" ")[1]
 }}}
 
-then for row 1, it will yield "Smith" and for row 2, "Doe". Using [Variables], a single expression yields different results for different rows.
+then for row 1, it will yield "Smith" and for row 2, "Doe".   That expression splits against the space char found and takes the 2nd part. 
+
+*IMPORTANT TIP:*  `[1]` is equivalent to saying "The 2nd part of an array or list" in GREL since indexing of arrays or lists in Refine actually begins with `[0]` or "The 1st part of an array or list".
+
+
+Using [Variables], a single expression yields different results for different rows.
 
 
 ===Base Column===
