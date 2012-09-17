@@ -12,6 +12,7 @@
 
   * [InstallationInstructions Installation Instructions]
   * [DocumentationForUsers Documentation] for Users
+  * [FAQ] Frequently Asked Questions
 
 *Get help:*
 
