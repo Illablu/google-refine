@@ -25,7 +25,7 @@ Press OK, and you'll soon have a new column with the plain text extracted from *
 
 *Note*: Now included in 2.1 version are HTML functions (Thanks Iain Sproat!) built upon [http://jsoup.org jsoup.org] which is a Java library built on [http://www.crummy.com/software/BeautifulSoup/ BeautifulSoup].
 
-For full documentation on using the integrated jsoup commands, you will probably want to refer back to jsoup's selector syntax itself http://jsoup.org/cookbook/extracting-data/selector-syntax . 
+*IMPORTANT TIP* For full documentation on using the integrated jsoup commands, you will probably want to refer back to jsoup's selector syntax itself http://jsoup.org/cookbook/extracting-data/selector-syntax . 
 
 Useful Common Examples:
 
