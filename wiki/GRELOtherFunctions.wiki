@@ -24,41 +24,6 @@ parseJson(" { 'a' : 1 } ").get("a")
 
 returns 1.
 
-===`parseHtml(string s)`===
-
-returns a full html document and adds any missing closing tags.
-
-
-You can then extract or .select() which portions of the html document you need for further splitting, partitioning, etc.
-
-An example of extracting all table rows `<tr>` from a `<div>` using parseHtml().select() together is described more [StrippingHTML#Extract_HTML_attributes,_text,_links_with_integrated_GREL_comman here]
-
-===`select(Element e, String s)`===
-
-returns an element from an HTML doc element using selector syntax.
-
-This function can be used with most of the Jsoup selector syntax as documented here: http://jsoup.org/cookbook/extracting-data/selector-syntax
-
-===`htmlAttr(Element e, String s)`===
-
-returns a value from an attribute on an Html Element.
-
-===`htmlText(Element e)`===
-
-returns the text from within an element (including all child elements).
-
-===`innerHtml(Element e)`===
-
-returns the innerHtml of an HTML element.
-
-===`outerHtml(Element e)`===
-
-???
-
-===`ownText`(Element e)`===
-
-Gets the text owned by this HTML element only; does not get the combined text of all children.
-
 ===`cross(cell c, string projectName, string columnName)`===
 
 Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as cell `c`. (Similar to a lookup) Consider 2 projects with the following data
@@ -114,3 +79,41 @@ This would then complete the table as so:
 || clock || john || 54 || 2 ||
 || watch || amit || 80 || 1 ||
 || clock || claire || 62 || 2 ||
+
+== Jsoup HTML parsing functions ==
+----
+[StrippingHTML Example usage of these functions is shown here]
+
+===`parseHtml(string s)`===
+
+returns a full HTML document and adds any missing closing tags.
+
+You can then extract or .select() which portions of the HTML document you need for further splitting, partitioning, etc.
+
+An example of extracting all table rows `<tr>` from a `<div>` using parseHtml().select() together is described more [StrippingHTML#Extract_HTML_attributes,_text,_links_with_integrated_GREL_comman here]
+
+===`select(Element e, String s)`===
+
+returns an element from an HTML doc element using selector syntax.
+
+This function can be used with most of the Jsoup selector syntax as documented here: http://jsoup.org/cookbook/extracting-data/selector-syntax
+
+===`htmlAttr(Element e, String s)`===
+
+returns a value from an attribute on an HTML Element.
+
+===`htmlText(Element e)`===
+
+returns the text from within an element (including all child elements).
+
+===`innerHtml(Element e)`===
+
+returns the innerHtml of an HTML element.
+
+===`outerHtml(Element e)`===
+
+???
+
+===`ownText`(Element e)`===
+
+Gets the text owned by this HTML element only; does not get the combined text of all children.
