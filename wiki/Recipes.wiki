@@ -135,7 +135,7 @@ Sometimes you have a need beyond just `endsWith` to find a varying substring and
 {{{
 value.endsWith(get(value.match(/.*(PR\d+)/),0))
 }}}
-Here you have to wrap with `get()` in order to ask if it `endsWith` the string version of the returned array from `match`.  `endsWith then returns a boolean of True or False if the string ends with your regex pattern, in this case, cells that end with reference numbers that begin with PR followed by any number of decimal digits.
+Here you have to wrap with `get()` in order to ask if it `endsWith` the string version of the returned array from `match`.  `endsWith` then returns a boolean of True or False if the string ends with your regex pattern, in this case, cells that end with reference numbers that begin with PR followed by any number of decimal digits.
 
 ===Remove the last word in a string===
 
