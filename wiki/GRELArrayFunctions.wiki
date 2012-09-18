@@ -6,9 +6,13 @@ See also: [GRELFunctions All GREL functions].
 
 Returns the length of array `a`.
 
-===`slice(array a, number from, optional number to)` and `get(array a, number or string from, optional number to)`===
+===`slice(array a, number from, optional number to)`===
 
 Returns the sub-array of `a` from its index `from` up to but not including index `to`. If `to` is omitted, it is understood to be the end of the array `a`. For example, `slice([ 0, 1, 2, 3, 4], 1, 3)` returns `[ 1, 2 ]`, and `slice([ 0, 1, 2, 3, 4], 1)` returns `[ 1, 2, 3, 4 ]`.
+
+===`get(array a, number or string from, optional number to)`===
+
+???
 
 ===`reverse(array a)`===
 
