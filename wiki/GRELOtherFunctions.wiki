@@ -24,6 +24,40 @@ parseJson(" { 'a' : 1 } ").get("a")
 
 returns 1.
 
+To get all instances of a JSON array having the same object string name of "text", combine with the `forEach()` function to iterate over the array, e.g.,
+
+JSON:
+{{{
+{
+   "status":"OK",
+   "url":"",
+   "language":"english",
+   "keywords":[
+      {
+         "text":"York en route",
+         "relevance":"0.974363"
+      },
+      {
+         "text":"Anthony Eden",
+         "relevance":"0.814394"
+      },
+      {
+         "text":"President Eisenhower",
+         "relevance":"0.700189"
+      }
+   ]
+}
+}}}
+
+GREL expression:
+{{{
+forEach(value.parseJson().keywords,v,v.text).join(":::")
+}}}
+
+will output like this:
+
+York en route:::Anthony Eden:::President Eisenhower
+
 ===`cross(cell c, string projectName, string columnName)`===
 
 Returns an array of zero or more rows in the project `projectName` for which the cells in their column `columnName` have the same content as cell `c`. (Similar to a lookup) Consider 2 projects with the following data
