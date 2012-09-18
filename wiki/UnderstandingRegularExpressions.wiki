@@ -28,6 +28,13 @@ Note for advanced users: That (wrapping with forward slashes) is similar to how 
 
 Elsewhere in Google Refine, i.e., not within a GREL expression, do not use slashes to wrap regular expressions.
 
+==GREL functions that support Regex==
+
+  # replace
+  # match
+  # partition
+  # rpartition
+  # split
 
 ==Basic Examples==
 
