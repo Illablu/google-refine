@@ -94,7 +94,10 @@ then getting your 1st custom result:
 {{{
 forEach(value.parseJson().result,v,[v.score,v.name,v.mid])[0]
 }}}
-
+to get all instances from a JSON array called "keywords" having the same object string name of "text", combine with the forEach() function to iterate over the array:
+{{{
+forEach(value.parseJson().keywords,v,v.text).join(":::")
+}}}
 ===Removing duplicate rows when Exact values are found in a column===
 
 In Release 2.1+ there is now a Facet -> Customized Facets -> Duplicates Facet that can be applied on more than one column as needed.  This easily applies for you a facetCount(value, 'value', 'Column') > 1 which shows ALL rows having more than 1 duplicate value in the column.
