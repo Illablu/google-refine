@@ -24,7 +24,7 @@ parseJson(" { 'a' : 1 } ").get("a")
 
 returns 1.
 
-To get all instances of a JSON array having the same object string name of "text", combine with the `forEach()` function to iterate over the array, e.g.,
+To get all instances from a JSON array called "keywords" having the same object string name of "text", combine with the forEach() function to iterate over the array, e.g.,
 
 JSON:
 {{{
