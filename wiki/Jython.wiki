@@ -6,6 +6,10 @@ Note: The Jython extension has been bundled with Google Refine since 2.1.  Befor
 
 You can use almost any Python `(.py)``(.pyc)` files compatible with the bundled Jython 2.5.1 and drop them into the path. For instance, download, extract and drop in `BeautifulSoup.py` and use it to parse and extract HTML tags or content using Jython as your expression language in Google Refine.  Since Jython is essentially Java, you can even import Java libraries and utilize those!
 
+*Refine now has most of the Jsoup.org library built in for parsing and working with HTML elements and extraction
+
+[http://code.google.com/p/google-refine/wiki/GRELOtherFunctions#Jsoup_HTML_parsing_functions Built-in GREL Jsoup functions]
+
 *Remember to restart Refine*, so that new Jython/Python libraries are initialized during Butterfly's startup.
 
 [StrippingHTML Using Jython and BeautifulSoup to handle Entity Extraction and HTML markup removal]
