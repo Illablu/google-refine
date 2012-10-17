@@ -1,6 +1,11 @@
 #summary How to get started with Google Refine
 #labels Featured
 
+
+==NOTE: This documentation wiki is in transition to [https://github.com/OpenRefine/OpenRefine/wiki]==
+
+----
+
 =Welcome!=
 
 *Here for the First Time?*
