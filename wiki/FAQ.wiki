@@ -15,7 +15,7 @@ This is a collection of frequently asked questions on Google Refine. Feel free t
 
 * I've found a bug or want a new feature. What should I do? *
 
-  Consider first discussing it on [http://groups.google.com/group/google-refine/ the mailing list]. This will likely help characterize the issue for a good quality bug report or feature request which you can file on  [http://code.google.com/p/google-refine/wiki/Issues?tm=3 the Issues page]. 
+  Consider first discussing it on [http://groups.google.com/group/google-refine/ the mailing list]. This will likely help characterize the issue for a good quality bug report or feature request which you can file on the [http://github.com/OpenRefine/OpenRefine/issues issue tracker]. 
 
 * How do I change the workspace directory that I want Refine to use for it's project storage ? *
 
