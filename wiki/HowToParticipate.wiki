@@ -1,14 +1,3 @@
-#summary How to join us to make Google Refine better
-
 Any help at all is appreciated.
 
-  * Help us find bugs and file issues for them at [http://code.google.com/p/google-refine/issues/].
-  * Help other users if you know the answers to their questions on [http://groups.google.com/group/google-refine/].
-  * Check out the source code and submit patches at [http://groups.google.com/group/google-refine-dev/].
-
-And of course, tell other people about Google Refine, at work, at conferences, etc. and
-  * on Twitter (using the tag #grefine)
-  * in blog posts--write about what you use Google Refine for and how, give other people tips and tricks
-The more Google Refine gets used, the more we can justify putting more development resources on it. Finding bugs is very helpful and contributes to more knowledge accumulated about how to use it. Etc. etc.
-
-We developers also tend to hang out on IRC (irc://irc.freenode.net/#grefine).
+Visit us on [https://github.com/OpenRefine/OpenRefine/wiki/How-To-Participate Github] to learn more.
