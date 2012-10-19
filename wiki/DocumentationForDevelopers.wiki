@@ -1,6 +1,8 @@
 #summary Documentation hub for developers
 #labels Featured
-
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers Github].  Please check [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers there] first for the latest information.
+----
 [DevelopersGuide Developer's Guide] - how to check out the code, build, run, and test
 
 ==Architecture==
