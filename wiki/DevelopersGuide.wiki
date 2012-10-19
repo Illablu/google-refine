@@ -1,5 +1,10 @@
 #summary Google Refine Developer's Guide
 
+----
+*NOTE:* The project is moving to [https://github.com/OpenRefine/OpenRefine Github] and the [https://github.com/OpenRefine/OpenRefine/wiki/DevelopersGuide Developer's Guide] now lives there.  This page refers to the old SVN-based source control.
+----
+
+
 = Guide for Google Refine Developers =
 
 == Build and Run Google Refine from an IDE (easier) ==
