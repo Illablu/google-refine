@@ -21,7 +21,7 @@
 
 *Get help:*
 
-  * [http://groups.google.com/group/google-refine/ Ask questions here]
+  * [http://groups.google.com/group/openrefine/ Ask questions here]
   * [http://code.google.com/p/google-refine/issues/list File bugs and feature requests here]
 
 *Back for More?*
