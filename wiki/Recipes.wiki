@@ -283,6 +283,17 @@ For a string holding longitude/latitude information in the format XX degrees, XX
    forNonBlank(value[6,8], v, v.toNumber()/360000, 0)
 }}}
 
+== Convert Numbers to Ordinal Numbers (1 to 1st, 2 to 2nd, etc) ==
+
+Using Jython as your expression language, you can use the following recipe to Transform a column of numbers to their ordinal number string representation:
+
+{{{
+def toOrdinalNum(n):
+    return str(n) + {1: 'st', 2: 'nd', 3: 'rd'}.get(4 if 10 <= n % 100 < 20 else n % 10, "th")
+
+return toOrdinalNum(value)
+}}}
+
 == Error Handling ==
 
 === forNonBlank ===
