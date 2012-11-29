@@ -40,4 +40,18 @@ Right now Google Refine only supports this kind of "query-based reconciliation" 
 Note that you might have to encode your data into property Freebase keys before performing query-based reconciliation. Use the mqlKeyQuote() function documented [GRELStringFunctions here].
 
 == Additional Recon variables and functions that can be used ==
-See also: [Variables#Recon]
+
+For Details on Recon variables, see: [Variables#Recon]
+
+General Notes regarding use of the Recon facets:
+
+  1. Best Candidates Types and Best Candidates Type Match facets will only look and compare against the 1st candidate or in other words the `cell.recon.best` (which is how Refine says the 1st candidate which is the one that has the best score returned.)
+  2. You can change to point to particular candidates like so,
+
+  `cell.recon.candidate[0]` or  `cell.recon.candidate[1]`
+
+  3. To get a facet on the 2nd candidates types, you can use this:
+  {{{
+forNonBlank(cell.recon.candidates[1].type, v, v, if(isNonBlank(value), "(unreconciled)", "(blank)"))
+  }}}
+  
