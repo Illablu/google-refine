@@ -29,6 +29,8 @@ When o is a date, format specifies how to format the date.
 
 For dates, returns the difference in given time units.
 
+See https://github.com/OpenRefine/OpenRefine/issues/624 for a discussion on a bug in `diff()` and its workaround.
+
 ===`inc(date d, number value, string unit (defaults to 'hour'))`===
 
 Returns a date changed by the given amount in the given unit of time.
