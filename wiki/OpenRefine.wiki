@@ -1,0 +1,3 @@
+#summary Google Refine has been renamed OpenRefine
+
+Google Refine was renamed OpenRefine in October, 2012 and the project was moved to a new home on Github.  Please come visit us at https://github.com/OpenRefine/OpenRefine/
