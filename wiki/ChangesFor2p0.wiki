@@ -1,4 +1,8 @@
-#summary Change list for version 2.0
+#summary Change list for version 2.0 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Changes-For2p0]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Changes-For2p0 there] first for the latest information. 
+----
 
 ==Major Changes==
 

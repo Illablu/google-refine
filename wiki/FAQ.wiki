@@ -1,4 +1,8 @@
-#summary Frequently Asked Questions
+#summary Frequently Asked Questions 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/FAQ]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/FAQ there] first for the latest information. 
+----
 
 This is a collection of frequently asked questions on Google Refine. Feel free to ask your own question on [http://groups.google.com/group/google-refine/ the Google Refine mailing list] and we'll try to answer to the best of our abilities and add them to this list.
 

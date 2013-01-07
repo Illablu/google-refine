@@ -1,4 +1,8 @@
-#summary Issues Tracking
+#summary Issues Tracking 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Issues]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Issues there] first for the latest information. 
+----
 
 Issue Tracking is only for reporting specific bugs and requesting specific features. If you just don't know how to do something using Google Refine, or want to discuss some ideas, please
 

@@ -1,4 +1,9 @@
-Google Refine supports faceted browsing as a mechanism for
+ 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Faceting]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Faceting there] first for the latest information. 
+----
+
 
   * seeing a big picture of your data, and
   * filtering down to just the subset of rows that you want to change in bulk.

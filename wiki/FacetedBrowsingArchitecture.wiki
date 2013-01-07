@@ -1,4 +1,8 @@
-#summary Faceted browsing architecture.
+#summary Faceted browsing architecture. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Faceted-Browsing-Architecture]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Faceted-Browsing-Architecture there] first for the latest information. 
+----
 
 Faceted browsing support is very core to Google Refine as it is the primary and only mechanism for filtering to a subset of rows on which to do something en masse. Without faceted browsing or an equivalent querying/browsing mechanism, you can only change one thing at a time (one cell or row) or else change everything all at once; both kinds of editing are practically useless when dealing with large data sets.
 

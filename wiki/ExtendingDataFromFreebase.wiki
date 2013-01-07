@@ -1,5 +1,9 @@
 #summary (WORK IN PROGRESS: additional feature documentation on this coming soon - Thanks to Tom Morris )
-#labels TODO
+#labels TODO 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Extending-Data-From-Freebase]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Extending-Data-From-Freebase there] first for the latest information. 
+----
 
 == Fetching Text Blurbs (descriptions) and Photos ==
 

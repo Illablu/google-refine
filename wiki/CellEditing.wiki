@@ -1,4 +1,8 @@
-#summary Editing cells.
+#summary Editing cells. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Cell-Editing]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Cell-Editing there] first for the latest information. 
+----
 
 ==Editing One Cell at A Time==
 

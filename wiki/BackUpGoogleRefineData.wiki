@@ -1,4 +1,8 @@
-#summary How to back up all Google Refine's data
+#summary How to back up all Google Refine's data 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Back-Up-Google-Refine-Data]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Back-Up-Google-Refine-Data there] first for the latest information. 
+----
 
 You may wish a quick way to quickly backup all your projects, particularly if you are upgrading to a new version of Google Refine.  It is possible to backup each project individually by opening the project, then going to the `export` dropdown menu and selecting `export project`.  However, there is a faster way to back up all your data.
 

@@ -1,4 +1,8 @@
-#summary Google Refine Roadmap
+#summary Google Refine Roadmap 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Roadmap]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Roadmap there] first for the latest information. 
+----
 
 This is a very rough outline of the future of this project.
 

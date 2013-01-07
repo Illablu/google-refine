@@ -1,4 +1,8 @@
-#summary How to install extensions.
+#summary How to install extensions. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Installing-Extensions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Installing-Extensions there] first for the latest information. 
+----
 
 This is applicable to version 2.0 and later only.
 

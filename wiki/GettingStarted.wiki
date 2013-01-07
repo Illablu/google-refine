@@ -1,5 +1,9 @@
 #summary How to get started with Google Refine
-#labels Featured
+#labels Featured 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Getting-Started]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Getting-Started there] first for the latest information. 
+----
 
 
 ==NOTE: This documentation wiki is in transition to [https://github.com/OpenRefine/OpenRefine/wiki]==

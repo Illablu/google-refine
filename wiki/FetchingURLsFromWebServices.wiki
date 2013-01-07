@@ -1,4 +1,8 @@
-#summary Examples of fetching URLs from web services and processing them within Google Refine
+#summary Examples of fetching URLs from web services and processing them within Google Refine 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Fetching-URLs-From-Web-Services]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Fetching-URLs-From-Web-Services there] first for the latest information. 
+----
 
 = Introduction =
 

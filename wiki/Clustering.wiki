@@ -1,4 +1,8 @@
-#summary How to edit cells by clustering.
+#summary How to edit cells by clustering. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Clustering]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Clustering there] first for the latest information. 
+----
 
 Google Refine's text facets are a great mechanism for surfacing patterns from your data. Consider a data set that contains people's names entered in two different ways: "first_name middle_initial last_name", and "last_name, first_name". A text facet on that column might reveal
 

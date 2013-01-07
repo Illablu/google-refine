@@ -1,4 +1,8 @@
-#summary Editing rows is done by creating a unique facet, then using the "All" button on the top left.
+#summary Editing rows is done by creating a unique facet, then using the "All" button on the top left. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Row-Editing]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Row-Editing there] first for the latest information. 
+----
 
 Rows can be *removed*, and *starred* or *flagged*.
 

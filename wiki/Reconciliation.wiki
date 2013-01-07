@@ -1,4 +1,9 @@
-Reconciliation is a semi-automated process of matching text names to database IDs (keys). This is semi-automated because in some cases, machine along is not sufficient and human judgement is essential. For example, given "Ocean's Eleven" as the name of a film, should it be matched to
+ 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation there] first for the latest information. 
+----
+
 
   * the original 1960 "Ocean's Eleven" ([http://www.freebase.com/view/en/oceans_eleven_1960 Freebase entry]), or
   * the 2001 remake "Ocean's Eleven" starring George Clooney ([http://www.freebase.com/view/en/oceans_eleven Freebase entry])?

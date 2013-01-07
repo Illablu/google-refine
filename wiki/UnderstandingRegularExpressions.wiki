@@ -1,4 +1,8 @@
-#summary Understanding regular expressions
+#summary Understanding regular expressions 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Understanding-Regular-Expressions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Understanding-Regular-Expressions there] first for the latest information. 
+----
 
 ==Introduction==
 

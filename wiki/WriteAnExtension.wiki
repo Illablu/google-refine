@@ -1,4 +1,8 @@
-#summary How to start writing an extension
+#summary How to start writing an extension 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Write-An-Extension]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Write-An-Extension there] first for the latest information. 
+----
 
 (This document is for the version 2.0 and later only. This is still in flux.)
 

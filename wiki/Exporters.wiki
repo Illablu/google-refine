@@ -1,4 +1,8 @@
-#summary Exporting data and projects
+#summary Exporting data and projects 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Exporters]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Exporters there] first for the latest information. 
+----
 
 ==Basics==
 

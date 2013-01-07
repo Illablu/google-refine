@@ -1,4 +1,8 @@
-#summary Explains the sample extension.
+#summary Explains the sample extension. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Sample-Extension]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Sample-Extension there] first for the latest information. 
+----
 
 The sample extension is included in the code base so that you can copy it and get started on writing your own extension. After you copy it, make sure you change its name inside its `module/MOD-INF/controller.js` file.
 

@@ -1,4 +1,8 @@
-#summary Extending data
+#summary Extending data 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Extending-Data]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Extending-Data there] first for the latest information. 
+----
 
 ==Calling Web Services==
 

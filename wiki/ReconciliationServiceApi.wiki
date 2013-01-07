@@ -1,4 +1,8 @@
-#summary Specification for a standard reconciliation service API.
+#summary Specification for a standard reconciliation service API. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-Api]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-Api there] first for the latest information. 
+----
 
 =Introduction=
 

@@ -1,4 +1,8 @@
-#summary Specification for a Suggest API that's compatible with the Freebase Suggest widget
+#summary Specification for a Suggest API that's compatible with the Freebase Suggest widget 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Suggest-Api]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Suggest-Api there] first for the latest information. 
+----
 
 A Suggest API that's compatible with the Freebase Suggest widget should have 2 entry points:
 

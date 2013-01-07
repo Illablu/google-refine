@@ -1,4 +1,8 @@
-#summary The protocol Google Refine instances use to communicate with a Broker.
+#summary The protocol Google Refine instances use to communicate with a Broker. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Broker-Protocol]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Broker-Protocol there] first for the latest information. 
+----
 
 NOTE: this is still work in progress and not currently implemented in Google Refine.
 

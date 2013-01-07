@@ -1,4 +1,8 @@
-#summary How to get the super latest development version.
+#summary How to get the super latest development version. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Get-Development-Version]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Get-Development-Version there] first for the latest information. 
+----
 
 If you're a user who just wants the latest features even if they have not been released yet, you can get the development "trunk" version. Beware that by its very nature that version can be unstable. Use it at your own risk.
 

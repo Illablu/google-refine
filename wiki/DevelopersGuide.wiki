@@ -1,4 +1,8 @@
-#summary Google Refine Developer's Guide
+#summary Google Refine Developer's Guide 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Developers-Guide]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Developers-Guide there] first for the latest information. 
+----
 
 ----
 *NOTE:* The project is moving to [https://github.com/OpenRefine/OpenRefine Github] and the [https://github.com/OpenRefine/OpenRefine/wiki/DevelopersGuide Developer's Guide] now lives there.  This page refers to the old SVN-based source control.

@@ -1,5 +1,9 @@
 #summary Useful recipes for achieving certain tasks in Google Refine
-#labels Tutorial
+#labels Tutorial 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Recipes]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Recipes there] first for the latest information. 
+----
 
 This page collects Google Refine recipes, small workflows and code fragments that show you how to achieve specific things with Google Refine.
 

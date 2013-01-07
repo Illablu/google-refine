@@ -1,4 +1,8 @@
-#summary Server-side architecture.
+#summary Server-side architecture. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Server-Side-Architecture]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Server-Side-Architecture there] first for the latest information. 
+----
 
 Google Refine's server-side is written entirely in Java (`main/src/`) and its entry point is the Java servlet `com.google.refine.RefineServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `server/src/com.google.refine.Refine`. Note that the server class itself is under `server/src/`, not `main/src/`; this separation leaves the possibility of hosting `RefineServlet` in a different servlet container.
 

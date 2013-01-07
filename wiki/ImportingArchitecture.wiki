@@ -1,4 +1,8 @@
-#summary Importing architecture
+#summary Importing architecture 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Importing-Architecture]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Importing-Architecture there] first for the latest information. 
+----
 
 This is currently applicable only to the code in trunk/.
 

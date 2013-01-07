@@ -1,4 +1,8 @@
-#summary Ideas, Brainstorm sessions, etc.
+#summary Ideas, Brainstorm sessions, etc. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Ideas]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Ideas there] first for the latest information. 
+----
 
 == Software to research: ==
 

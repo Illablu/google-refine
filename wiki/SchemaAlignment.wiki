@@ -1,4 +1,9 @@
-Please see the *new* [https://github.com/OpenRefine/OpenRefine/wiki/Schema-Alignment documentation wiki page] for current information on OpenRefine.  This page is no longer maintained.
+ 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Schema-Alignment]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Schema-Alignment there] first for the latest information. 
+----
+
 ----
 == Overview ==
 In Google Refine, the *Schema Alignment Skeleton* (a template for loading triples) specifies how your grid-shaped data of rows and columns will be transformed into graph-shaped triples in Freebase's schemas.  For more info on triples and the Freebase Triple Loader, see [http://wiki.freebase.com/wiki/T1:Intro_to_Triple_Loader Intro to Triple Loader]

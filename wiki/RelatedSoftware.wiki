@@ -1,4 +1,8 @@
-#summary List of other software products that can be used with or instead of Google Refine
+#summary List of other software products that can be used with or instead of Google Refine 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Related-Software]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Related-Software there] first for the latest information. 
+----
 
 (in no particular order)
 

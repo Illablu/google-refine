@@ -1,4 +1,8 @@
-#summary Curated list of quotes, references, uses and extensions about Google Refine (previously called Freebase Gridworks) in the wild
+#summary Curated list of quotes, references, uses and extensions about Google Refine (previously called Freebase Gridworks) in the wild 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/What-People-Say]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/What-People-Say there] first for the latest information. 
+----
 
 =About the Latest Version=
 

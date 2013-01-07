@@ -1,4 +1,8 @@
-#summary FAQ: Where is the data stored?
+#summary FAQ: Where is the data stored? 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Faq-Where-Is-Data-Stored]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Faq-Where-Is-Data-Stored there] first for the latest information. 
+----
 
 All your projects are stored on your own computer in the workspace directory listed below. To open it, click "Browse workspace directory" on your Google Refine application home page, by default at http://127.0.0.1:3333/
 

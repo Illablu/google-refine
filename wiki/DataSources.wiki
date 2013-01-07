@@ -1,4 +1,8 @@
-#summary List of useful places to get data
+#summary List of useful places to get data 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Data-Sources]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Data-Sources there] first for the latest information. 
+----
 
 = Data Sources =
 

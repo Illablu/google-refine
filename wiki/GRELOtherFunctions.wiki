@@ -1,4 +1,8 @@
-#summary Other functions supported by the Google Refine Expression Language (GREL)
+#summary Other functions supported by the Google Refine Expression Language (GREL) 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/GRELOther-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELOther-Functions there] first for the latest information. 
+----
 
 See also: [GRELFunctions All GREL functions].
 

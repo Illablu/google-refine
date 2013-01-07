@@ -1,4 +1,9 @@
-Import the log file:
+ 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Recipe-Apache-Logs]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Recipe-Apache-Logs there] first for the latest information. 
+----
+
   * without splitting into columns
   * with # header lines set 0
 

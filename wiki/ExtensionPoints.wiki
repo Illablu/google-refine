@@ -1,4 +1,8 @@
-#summary How extensions can hook into various points in Google Refine (1.5 or later).
+#summary How extensions can hook into various points in Google Refine (1.5 or later). 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Extension-Points]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Extension-Points there] first for the latest information. 
+----
 
 This document is for the upcoming version 1.5 and later only. This is still in flux.
 

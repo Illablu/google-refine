@@ -1,5 +1,9 @@
 #summary Listing of Reconcilable Data Sources
-#labels Phase-Implementation
+#labels Phase-Implementation 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Reconcilable-Data-Sources there] first for the latest information. 
+----
 
 With Google Refine you can perform reconciliation against any web service supporting the [ReconciliationServiceApi Reconciliation Service API].
 Reconciliation against Freebase is built in, but there are several other

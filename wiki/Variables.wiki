@@ -1,4 +1,8 @@
-#summary Variables available in expressions
+#summary Variables available in expressions 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Variables]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Variables there] first for the latest information. 
+----
 
 ==Variables==
 

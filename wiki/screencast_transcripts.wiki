@@ -1,4 +1,8 @@
-#summary Textual transcripts for the speech over the screencasts
+#summary Textual transcripts for the speech over the screencasts 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/screencast_transcripts]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/screencast_transcripts there] first for the latest information. 
+----
 
 = Screencast 1 - Introduction to Gridworks =
 

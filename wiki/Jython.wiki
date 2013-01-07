@@ -1,4 +1,9 @@
-== Using Jython as your Expression Language ==
+ 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Jython]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Jython there] first for the latest information. 
+----
+
 
 Full docs on the Jython language are at the official site [http://www.jython.org http://www.jython.org].
 

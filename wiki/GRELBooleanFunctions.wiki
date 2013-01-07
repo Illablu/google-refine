@@ -1,4 +1,8 @@
-#summary Boolean functions supported by Google Refine Expression Language (GREL)
+#summary Boolean functions supported by Google Refine Expression Language (GREL) 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/GRELBoolean-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELBoolean-Functions there] first for the latest information. 
+----
 
 See also: [GRELFunctions All GREL functions].
 

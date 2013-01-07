@@ -1,4 +1,8 @@
-#summary How to use the undo/redo change history
+#summary How to use the undo/redo change history 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/History]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/History there] first for the latest information. 
+----
 
 ==Basics==
 

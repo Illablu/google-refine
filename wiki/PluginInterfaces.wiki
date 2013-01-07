@@ -1,4 +1,8 @@
-#summary Plugin Interfaces
+#summary Plugin Interfaces 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Plugin-Interfaces]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Plugin-Interfaces there] first for the latest information. 
+----
 
 == Introduction ==
 

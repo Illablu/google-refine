@@ -1,4 +1,8 @@
-#summary Google Refine's architecture.
+#summary Google Refine's architecture. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Architecture]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Architecture there] first for the latest information. 
+----
 
 Google Refine is a web application, but unlike 99% of web applications, it is intended to be run on one's own machine and used by oneself. The server-side maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side maintains states of the user interface (facets and their selections, view pagination, etc.). The client-side makes GET and POST ajax calls to cause changes to the data and to fetch data and data-related states from the server-side.
 

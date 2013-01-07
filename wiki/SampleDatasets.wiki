@@ -1,4 +1,8 @@
-#summary List of sample datasets that you can use to try out Google Refine.
+#summary List of sample datasets that you can use to try out Google Refine. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Sample-Datasets]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Sample-Datasets there] first for the latest information. 
+----
 
 Here are a few sample data sets to get you started on understanding how to use Google Refine
 

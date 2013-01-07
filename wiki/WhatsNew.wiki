@@ -1,4 +1,8 @@
-#summary Announcements of the latest features
+#summary Announcements of the latest features 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Whats-New]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Whats-New there] first for the latest information. 
+----
 
 ==December 2011==
 

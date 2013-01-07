@@ -1,4 +1,8 @@
-#summary Methods and theory behind the clustering functionality in Google Refine.
+#summary Methods and theory behind the clustering functionality in Google Refine. 
+
+----
+*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth there] first for the latest information. 
+----
 
 = Introduction =
 
