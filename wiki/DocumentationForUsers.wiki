@@ -1,8 +1,10 @@
 #summary Documentation hub for users
-#labels Featured 
+#labels Featured
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users there] first for the latest information. 
+*NOTE:* The project has moved to [http://openrefine.org].  You can find the currnet version of this page at  [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users]. 
+
+This page is for historical purposes only and applies to Google Refine 2.5 and earlier.
 ----
 
 Where to start?
