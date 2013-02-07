@@ -2,7 +2,9 @@
 #labels Featured
 
 ----
-*NOTE:* The project has moved to [http://openrefine.org].  You can find the currnet version of this page at  [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users]. 
+=We have moved!=
+
+The project has moved to [http://openrefine.org].  You can find the current version of this page at  [https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users]. 
 
 This page is for historical purposes only and applies to Google Refine 2.5 and earlier.
 ----
