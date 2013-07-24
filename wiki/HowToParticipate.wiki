@@ -1,8 +1,6 @@
  
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/How-To-Participate]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/How-To-Participate there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/How-To-Participate]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/How-To-Participate there] first for the latest information. 
 ----
 
-
-Visit us on [https://github.com/OpenRefine/OpenRefine/wiki/How-To-Participate Github] to learn more.

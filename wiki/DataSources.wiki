@@ -1,19 +1,6 @@
 #summary List of useful places to get data 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Data-Sources]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Data-Sources there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Data-Sources]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Data-Sources there] first for the latest information. 
 ----
 
-= Data Sources =
-
-  * [http://data.worldbank.org/ The World Bank] 
-  * [http://www.data.gov/ The U.S. Government's Data]
-  * [http://data.gov.uk/ The U.K. Government's Data]
-  * [http://ec.europa.eu/beneficiaries/fts/find_en.htm# European Community Financial Transparency System]
-  * [http://www.gapminder.org/data/ Gapminder]
-  * [http://infochimps.org/ Infochimps]
-  * [http://manyeyes.alphaworks.ibm.com/manyeyes/datasets Many Eyes]
-  * [http://www.swivel.com/ Swivel]
-  * [http://www.data360.org/ds_list.aspx Data 360]
-  * [http://www.scraperwiki.com ScraperWiki]
- 

@@ -1,23 +1,6 @@
 #summary List of functions supported by the Google Refine Expression Language (GREL) 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/GRELFunctions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELFunctions there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/GRELFunctions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELFunctions there] first for the latest information. 
 ----
 
-<wiki:toc max_depth="1" />
-
-Function invocation in Google Refine expression language has 2 forms:
-
-  * `functionName(arg0, arg1, ...)`
-  * `arg0.functionName(arg1, ...)`
-
-The second is a shortcut to make expressions easier to read. It's only syntactic sugar.
-
-===Functions by Type===
-
-  * [GRELBooleanFunctions GREL Boolean Functions]
-  * [GRELStringFunctions GREL String Functions]
-  * [GRELArrayFunctions GREL Array Functions]
-  * [GRELMathFunctions GREL Math Functions]
-  * [GRELDateFunctions GREL Date Functions]
-  * [GRELOtherFunctions GREL Other Functions]

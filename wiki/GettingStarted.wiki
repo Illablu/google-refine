@@ -2,37 +2,5 @@
 #labels Featured 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Getting-Started]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Getting-Started there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Getting-Started]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Getting-Started there] first for the latest information. 
 ----
-
-
-==NOTE: This documentation wiki is in transition to [https://github.com/OpenRefine/OpenRefine/wiki]==
-
-----
-
-=Welcome!=
-
-*Here for the First Time?*
-
-  * Watch [Screencasts these screencasts] to understand what's possible with Google Refine
-  * [WhatPeopleSay Find out what people say and do with Google Refine], ... [http://refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view live on Twitter]
-
-*Get started:*
-
-  * [InstallationInstructions Installation Instructions]
-  * [DocumentationForUsers Documentation] for Users
-  * [FAQ] Frequently Asked Questions
-
-*Get help:*
-
-  * [http://groups.google.com/group/openrefine/ Ask questions here]
-  * [http://code.google.com/p/google-refine/issues/list File bugs and feature requests here]
-
-*Back for More?*
-
-  * [WhatsNew See what's new lately]
-  * [BackUpGoogleRefineData Understand how to upgrade] from Google Refine 2.0 to Google Refine 2.1
-
-*If You Are a Developer, see*
-
-  * [DocumentationForDevelopers Documentation] for Developers

@@ -1,31 +1,6 @@
 #summary List of other software products that can be used with or instead of Google Refine 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Related-Software]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Related-Software there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Related-Software]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Related-Software there] first for the latest information. 
 ----
 
-(in no particular order)
-
-  * [http://www.powerpivot.com/ Microsoft PowerPivot]
-  * [http://rapid-i.com/content/view/181/190/lang,en/ Rapid Miner]
-  * [http://orange.biolab.si/ Orange]
-  * [http://www.talend.com/ Talend]
-  * [http://rattle.togaware.com/ Rattle]
-  * [http://www.tableausoftware.com/ Tableau]
-  * [http://spotfire.tibco.com/ Spotfire]
-  * [http://www.pentaho.com Pentaho] 
-  * [http://www.cloveretl.com CloverETL]
-  * [http://www.informatica.com/PRODUCTS_SERVICES/POWERCENTER/OPTIONS/METADATA/Pages/metadata_exchange_features.aspx Informatica Powercenter]
-  * [http://www.elixirtech.com/products/DataETL.html Elixir Repertoire]
-  * [http://www.pervasivedatarush.com/Pages/default.aspx Pervasive Datarush]
-  * [http://www.palantirtech.com/ Palantir]
-  * [http://www.datamystic.com/textpipe.html TextPipe]
-  * [http://www.bonitasoft.com/products/bonita-open-solution-open-source-bpm Bonita Business Process Manager]
-From the academia
-  * [http://control.cs.berkeley.edu/abc/ Potter's Wheel] ([http://control.cs.berkeley.edu/abc/abc-rel/1.3/snapshots/ screenshots]) by Vijayshankar Raman and Joseph M. Hellerstein (UCBerkeley)
-  * [http://web.tagus.ist.utl.pt/~helena.galhardas/ajax.html AJAX] by H.Galhardas, D. Florescu, D. Shasha, E. Simon, J.P. Matsumoto, C.A. Saita
-  * [http://queens.db.toronto.edu/project/clio/ Clio] - UToronto, IBM
-  * [http://vis.stanford.edu/wrangler/ Data Wrangler]
-  * [http://www.stat.ucla.edu/~jeroen/ggplot2.html Yeroon.net/ggplot2] - a javascript web interface for R package, ggplot2 - Jeroen C.L. Ooms, Hadley Wickham
-
-Feel free to add suggestions in the comments. 

@@ -1,13 +1,6 @@
 #summary Plugin Interfaces 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Plugin-Interfaces]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Plugin-Interfaces there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Plugin-Interfaces]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Plugin-Interfaces there] first for the latest information. 
 ----
 
-== Introduction ==
-
-Google Refine 2.0 (November 2010) and later supports third-party extensions/plugins.
-
-See WriteAnExtension for more information on writing your own extension.
-
- 

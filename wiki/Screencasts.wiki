@@ -1,11 +1,6 @@
 #summary Screencasts about Google Refine 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Screencasts]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Screencasts there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Screencasts]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Screencasts there] first for the latest information. 
 ----
 
-<wiki:video url="http://www.youtube.com/watch?v=B70J_H_zAWM" width="720" height="500" />
-
-<wiki:video url="http://www.youtube.com/watch?v=cO8NVCs_Ba0" width="720" height="500" />
-
-<wiki:video url="http://www.youtube.com/watch?v=5tsyz3ibYzk" width="720" height="500" />

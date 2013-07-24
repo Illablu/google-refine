@@ -1,19 +1,6 @@
 #summary Boolean functions supported by Google Refine Expression Language (GREL) 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/GRELBoolean-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELBoolean-Functions there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/GRELBoolean-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELBoolean-Functions there] first for the latest information. 
 ----
 
-See also: [GRELFunctions All GREL functions].
-
-===`and(boolean b1, boolean b2, ...)`===
-
-Logically AND two or more booleans to yield a boolean. For example, `and(1 < 3, 1 > 0)` returns `true` because both conditions are true.
-
-===`or(boolean b1, boolean b2, ...)`===
-
-Logically OR two or more booleans to yield a boolean. For example, `or(1 < 3, 1 > 7)` returns `true` because at least one of the conditions (the first one) is true.
-
-===`not(boolean b)`===
-
-Logically NOT a boolean to yield another boolean. For example, `not(1 > 7)` returns `true` because `1 > 7` itself is false.

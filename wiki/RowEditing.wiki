@@ -1,19 +1,6 @@
 #summary Editing rows is done by creating a unique facet, then using the "All" button on the top left. 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Row-Editing]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Row-Editing there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Row-Editing]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Row-Editing there] first for the latest information. 
 ----
 
-Rows can be *removed*, and *starred* or *flagged*.
-
-To star or flag a single row, click on the star button or the flag button to the left of that row. You can also star or flag several rows at once by first using filters and facets to show only those rows. Then invoke the left-most drop-down menu in front of "All" and pick Edit rows > Star rows or Edit rows > Flag rows.
-
-==Removing Rows==
-
-You can remove several rows together by first using filters and facets to show only those rows. Then invoke the left-most drop-down menu in front of "All" and pick Edit rows > Remove all matching rows.
-
-==Removing a Single Row==
-
-At the moment, you cannot remove one row at a time directly. However, it is easy to do once you know how.
-
-You need to flag or star the row, then create a Flag or Star text facet. To do this, use the left-most drop-down menu in front of "All". Select `true` in that facet to show only the row(s) to remove, and invoke "Edit Rows" > "Remove all matching rows". It is thus best to star or flag as many rows to remove as possible before invoking the command Remove all matching rows.

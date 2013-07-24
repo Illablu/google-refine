@@ -1,8 +1,6 @@
 #summary Extensions 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Extensions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Extensions there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Extensions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Extensions there] first for the latest information. 
 ----
 
-  * [http://blog.apps.chicagotribune.com/2010/11/18/sprint-our-first-google-refine-extension-refine-stats/ Stats extension] - by the Chicago Tribune
-  * [http://lab.linkeddata.deri.ie/2010/grefine-rdf-extension/ RDF extension] - by DERI

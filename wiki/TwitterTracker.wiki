@@ -1,7 +1,6 @@
 #summary Tracking Google Refine mine on Twitter 
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Twitter-Tracker]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Twitter-Tracker there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Twitter-Tracker]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Twitter-Tracker there] first for the latest information. 
 ----
 
-<wiki:gadget url="http://6.refine-gadgets.stefanomazzocchi.user.dev.freebaseapps.com/twitter_tracker_view" height="500px" border="0" width="70%" />

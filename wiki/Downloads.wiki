@@ -1,9 +1,6 @@
  
 
 ----
-*NOTE:* The project & documentation is in the process of moving to [https://github.com/OpenRefine/OpenRefine/wiki/Downloads]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Downloads there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/Downloads]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/Downloads there] first for the latest information. 
 ----
 
-<wiki:gadget url="http://refine-gadgets.freebaseapps.com/gadget/downloads" width="600" height="500" border="0" />
-
-Here are [UpgradingTo2p0 instructions for upgrading from 1.1 to 2.x].
