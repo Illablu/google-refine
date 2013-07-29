@@ -1,6 +1,5 @@
-#summary String functions supported by Google Refine Expression Language (GREL) 
+#summary String functions supported by Google Refine Expression Language (GREL)
 
 ----
-*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/GRELString-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELString-Functions there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/GREL-String-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELString-Functions there] first for the latest information. 
 ----
-
