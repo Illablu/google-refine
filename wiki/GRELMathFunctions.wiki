@@ -1,6 +1,5 @@
-#summary Math functions supported by the Google Refine Expression Language (GREL) 
+#summary Math functions supported by the Google Refine Expression Language (GREL)
 
 ----
-*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/GRELMath-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELMath-Functions there] first for the latest information. 
+*NOTE:* The project & documentation has moved to [https://github.com/OpenRefine/OpenRefine/wiki/GREL-Math-Functions]. Please check [https://github.com/OpenRefine/OpenRefine/wiki/GRELMath-Functions there] first for the latest information. 
 ----
-
